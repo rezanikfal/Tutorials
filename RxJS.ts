@@ -103,3 +103,119 @@
       val => console.log(val),
       null,
       () => console.log('All Done!'))
+
+
+    //Subscribe (Hot Observable)
+    let sub$ = new Subject()
+    sub$.subscribe(value => console.log(`Observer 1: ${value}`))
+    sub$.subscribe(value => console.log(`Observer 2: ${value}`))
+
+    sub$.next('Reza')
+
+    //Cold Observable => When you subscribe, it emmits the data from begining.
+    //Hot Observable => When you subscribe, it emmits the data once and share them between observers.
+
+
+    //Cold Observable:
+
+    let reza$ = interval(1000).pipe(take(4))
+
+    reza$.subscribe(value => console.log(`Observer 1: ${value}`))
+
+    setTimeout(() => {
+      reza$.subscribe(value => console.log(`Observer 2: ${value}`))
+    }, 1000);
+
+    setTimeout(() => {
+      reza$.subscribe(value => console.log(`Observer 3: ${value}`))
+    }, 2000);
+
+    Observer 1: 0
+    Observer 1: 1
+    Observer 2: 0
+    Observer 1: 2
+    Observer 2: 1
+    Observer 3: 0
+    Observer 1: 3
+    Observer 2: 2
+    Observer 3: 1
+    Observer 2: 3
+    Observer 3: 2
+
+    //Hot Observable:
+
+    let reza1$ = interval(1000).pipe(take(4))
+
+    let subject$ = new Subject()
+    reza1$.subscribe(subject$)
+
+    subject$.subscribe(value => console.log(`Observer 1: ${value}`))
+
+    setTimeout(() => {
+      subject$.subscribe(value => console.log(`Observer 2: ${value}`))
+    }, 1000);
+
+    setTimeout(() => {
+      subject$.subscribe(value => console.log(`Observer 3: ${value}`))
+    }, 2000);
+
+    Observer 1: 0
+    Observer 1: 1
+    Observer 2: 1
+    Observer 1: 2
+    Observer 2: 2
+    Observer 3: 2
+    Observer 1: 3
+    Observer 2: 3
+    Observer 3: 3
+
+    //Multicast Operators(make cold to hot Observable):
+
+    let reza$ = interval(1000).pipe(take(4),publish(), refCount())
+
+    reza$.subscribe(value => console.log(`Observer 1: ${value}`))
+
+    setTimeout(() => {
+      reza$.subscribe(value => console.log(`Observer 2: ${value}`))
+    }, 1000);
+
+    setTimeout(() => {
+      reza$.subscribe(value => console.log(`Observer 3: ${value}`))
+    }, 2000);
+
+    //publishLast
+    let reza$ = interval(1000).pipe(take(4),publishLast(), refCount())
+    
+    Observer 1: 3
+    Observer 2: 3
+    Observer 3: 3
+
+    //publishBehavior
+    let reza$ = interval(1000).pipe(take(4),publishBehavior(24), refCount())
+    Observer 1: 24
+    Observer 1: 0
+    Observer 2: 0
+    Observer 1: 1
+    Observer 2: 1
+    Observer 3: 1
+    Observer 1: 2
+    Observer 2: 2
+    Observer 3: 2
+    Observer 1: 3
+    Observer 2: 3
+    Observer 3: 3
+
+    //publishReplay
+    let reza$ = interval(1000).pipe(take(4),publishReplay(), refCount())
+    Observer 1: 0
+    Observer 2: 0
+    Observer 1: 1
+    Observer 2: 1
+    Observer 3: 1
+    Observer 1: 2
+    Observer 2: 2
+    Observer 3: 2
+    Observer 1: 3
+    Observer 2: 3
+    Observer 3: 3
+
