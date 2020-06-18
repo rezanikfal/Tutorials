@@ -219,3 +219,41 @@
     Observer 2: 3
     Observer 3: 3
 
+    //map operatore to create HttpParams
+      getForecast() {
+        this.getCurrentLocation()
+          .pipe(
+            map(coords => {
+              return new HttpParams()
+                .set('lat', String(coords.latitude))
+                .set('lon', String(coords.longitude))
+                .set('units', 'metric')
+                .set('appid', '8b2b98ac09805bc077428235701c84be')
+            })
+          )
+      }
+
+    // Mergemap operator hijacks the value from on Observable and creates a new one
+    // timer makes Observable with value of "0" any given time (10*100 or 20*100, ...)
+    new Observable((observer) => {
+      observer.next(10)
+      observer.next(20)
+    }).pipe(
+      mergeMap((value:any) => timer(value * 100)),
+      tap(value=>console.log(value))
+    ).subscribe(()=>{})
+
+    // output:   ---O---O---O
+
+    // Switchmap operator hijacks the value like mergemap creates a new one and DELETES the observable before. 
+    new Observable((observer) => {
+      observer.next(10)
+      observer.next(20)
+    }).pipe(
+      switchMap((value:any) => timer(value * 100)),
+      tap(value=>console.log(value))
+    ).subscribe(()=>{})
+
+    // output:   -----------O
+
+
