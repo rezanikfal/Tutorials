@@ -256,4 +256,44 @@
 
     // output:   -----------O
 
+    // Getting position data from Browser, Call Open Weather API and refine the output
+
+      getForecast() {
+        return this.getCurrentLocation()
+          .pipe(
+            map(coords => {
+              return new HttpParams()
+                .set('lat', String(coords.latitude))
+                .set('lon', String(coords.longitude))
+                .set('units', 'metric')
+                .set('appid', '8b2b98ac09805bc077428235701c84be')
+            }),
+            switchMap(params => this.http.get<OpenWeatherResponse>(this.url, { params })
+            ),
+            pluck('list'),
+            mergeMap(listOfRecords => of(...listOfRecords)),
+            filter((value, index) => index % 8 === 0),
+            map(value=>{
+              return{
+                dateString: value.dt_txt,
+                temp:value.main.temp
+              }
+            }),
+            toArray(), // separate objects to array of objects
+            share()    // If we subscribe to a single observable more than one time, it shares the outcome between all subscribers and calls just once
+          )
+      }
+
+       // Get Location info from browser
+       getCurrentLocation() {
+         return new Observable<Coordinates>(observer => {
+           window.navigator.geolocation.getCurrentPosition(
+             position => {
+               observer.next(position.coords)
+               observer.complete()
+             },
+             err => observer.error(err)
+           )
+         })
+       }
 
