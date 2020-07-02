@@ -1,0 +1,21 @@
+For .Net Core:
+  1- C#
+  2- C# Extensions
+  3- NuGet Package Manager
+  
+For Git/Theme:
+  1- Git History
+  2- Gitignore Templates (for .Net Core use Visual studio)
+  3- Material Icon Theme
+
+  
+For Angular:
+  1- Angular Language Service
+  2- Prettier - Code formatter
+  3-Angular Files (generate Component/Service/... with right click)
+  4- Bracket Pair Colorizer 2 (for long methods with too many brackets)
+
+
+  
+  
+
