@@ -14,6 +14,7 @@ For Angular:
   2- Prettier - Code formatter
   3-Angular Files (generate Component/Service/... with right click)
   4- Bracket Pair Colorizer 2 (for long methods with too many brackets)
+  4- Angular 8 and TypeScript/HTML VS Code Snippets (for ready to use snippet like ngFor, ...)
 
 
   
