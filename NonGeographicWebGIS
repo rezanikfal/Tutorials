@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-07-07T18:54:22.885Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="QikH2SQbzxDhzCdZDP8G" version="13.3.9" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2020-07-07T19:27:45.069Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36" etag="5HozZjz-7b1AxQbD0VYY" version="13.3.9" type="github" pages="3">
   <diagram id="DfC4jeCwFGw9OSs_93aP" name="Drawing-Layer">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -341,7 +341,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Drawing-Toolbox" id="VxOTICC9_0HjzQfiO9Ig">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1673" dy="896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="sRFtp4C4F20i6RQXo5Qb-0" />
         <mxCell id="sRFtp4C4F20i6RQXo5Qb-1" parent="sRFtp4C4F20i6RQXo5Qb-0" />
@@ -393,6 +393,15 @@
         <mxCell id="sRFtp4C4F20i6RQXo5Qb-67" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeColor=#666666;fontSize=16;fontColor=#666666;align=left;" parent="sRFtp4C4F20i6RQXo5Qb-4" vertex="1">
           <mxGeometry x="445" y="700" width="10" height="105" as="geometry" />
         </mxCell>
+        <mxCell id="_84ns-4H8Txv2Bk4bVJw-117" value="" style="pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#005F4B;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.magnifying_glass;" vertex="1" parent="sRFtp4C4F20i6RQXo5Qb-4">
+          <mxGeometry x="20" y="260" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_84ns-4H8Txv2Bk4bVJw-118" value="" style="pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#005F4B;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.network_proxy;" vertex="1" parent="sRFtp4C4F20i6RQXo5Qb-4">
+          <mxGeometry x="90" y="260" width="64" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_84ns-4H8Txv2Bk4bVJw-119" value="" style="pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#005F4B;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.flr_helper_appliance;" vertex="1" parent="sRFtp4C4F20i6RQXo5Qb-4">
+          <mxGeometry x="160" y="260" width="60" height="60" as="geometry" />
+        </mxCell>
         <mxCell id="LP6ACpO66BNnhrx6C1wt-0" value="&lt;span style=&quot;color: rgb(34 , 34 , 34) ; font-family: &amp;#34;roboto&amp;#34; , &amp;#34;arial&amp;#34; , sans-serif ; font-size: 16px&quot;&gt;&amp;nbsp; &amp;nbsp;Select&amp;nbsp;&lt;/span&gt;&lt;font color=&quot;#222222&quot; face=&quot;roboto, arial, sans-serif&quot;&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;Geoprocessing Tools&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#999999;fontFamily=Helvetica;fontSize=14;fontColor=#000000;align=left;horizontal=1;verticalAlign=middle;" parent="sRFtp4C4F20i6RQXo5Qb-1" vertex="1">
           <mxGeometry x="680" y="100" width="330" height="40" as="geometry" />
         </mxCell>
@@ -420,6 +429,9 @@
         <mxCell id="36ykmCvPbD7NIh0oDL57-3" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;fillColor=#f5f5f5;fontFamily=Helvetica;fontSize=12;fontColor=#333333;" vertex="1" parent="36ykmCvPbD7NIh0oDL57-8">
           <mxGeometry y="2.5" width="15" height="15" as="geometry" />
         </mxCell>
+        <mxCell id="_84ns-4H8Txv2Bk4bVJw-0" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;strokeColor=#666666;fillColor=#3C4043;fontFamily=Verdana;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="36ykmCvPbD7NIh0oDL57-8">
+          <mxGeometry x="2.5" y="5" width="10" height="10" as="geometry" />
+        </mxCell>
         <mxCell id="36ykmCvPbD7NIh0oDL57-9" value="" style="group" vertex="1" connectable="0" parent="sRFtp4C4F20i6RQXo5Qb-1">
           <mxGeometry x="710" y="270" width="270" height="20" as="geometry" />
         </mxCell>
@@ -437,6 +449,9 @@
         </mxCell>
         <mxCell id="36ykmCvPbD7NIh0oDL57-12" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;fillColor=#f5f5f5;fontFamily=Helvetica;fontSize=12;fontColor=#333333;" vertex="1" parent="36ykmCvPbD7NIh0oDL57-10">
           <mxGeometry y="2.5" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="_84ns-4H8Txv2Bk4bVJw-1" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;strokeColor=#666666;fillColor=#3C4043;fontFamily=Verdana;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="36ykmCvPbD7NIh0oDL57-10">
+          <mxGeometry x="2.5" y="5" width="10" height="10" as="geometry" />
         </mxCell>
         <mxCell id="36ykmCvPbD7NIh0oDL57-13" value="" style="group" vertex="1" connectable="0" parent="sRFtp4C4F20i6RQXo5Qb-1">
           <mxGeometry x="711" y="365" width="270" height="20" as="geometry" />
