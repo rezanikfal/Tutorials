@@ -284,16 +284,22 @@
           )
       }
 
-       // Get Location info from browser
-       getCurrentLocation() {
-         return new Observable<Coordinates>(observer => {
-           window.navigator.geolocation.getCurrentPosition(
-             position => {
-               observer.next(position.coords)
-               observer.complete()
-             },
-             err => observer.error(err)
-           )
-         })
-       }
+       // Get Location info from browser / use tap to report success or failure
+          getCurrentLocation() {
+            return new Observable<Coordinates>(observer => {
+              window.navigator.geolocation.getCurrentPosition(
+                position => {
+                  observer.next(position.coords)
+                  observer.complete()
+                },
+                err => observer.error(err)
+              )
+            }).pipe(
+              tap((val) => {
+                this.notificationsService.addSuccess('Got your location')
+              }, (err)=>{
+                this.notificationsService.addError('Failed to get your location')
+              })
+            )
+          }
 
