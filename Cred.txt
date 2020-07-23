@@ -1,0 +1,5 @@
+Developing SQL Server:
+Instance: http://10.19.8.13/
+public: 67.198.99.134
+User Name: Admin
+Pass: Laynegeo123
