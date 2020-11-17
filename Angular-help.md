@@ -23,3 +23,30 @@ export class Mod1Comp1Component implements OnInit {
   }
 }
 ```
+## Pass Data from child to parent using OUTPUT:
+### Child (app-modal):
+```javascript
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+export class ModalComponent implements OnInit {
+  @Output() close = new EventEmitter();
+  
+  onCloseClick() {
+    this.close.emit();
+  }
+}
+```
+```html
+<div (click)="onCloseClick()"></div>
+```
+### Parent:
+```javascript
+export class ModsHomeComponent implements OnInit {
+  modalOpen = false;
+  onClick() {
+    this.modalOpen = !this.modalOpen;
+  }
+}
+```
+```html
+<app-modal (close)="onClick()" *ngIf="modalOpen"></app-modal>
+```
