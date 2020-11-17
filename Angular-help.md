@@ -10,3 +10,16 @@
 Display: block;  
 margin-top: 20px;
 }
+```
+## Access to the component HTML content:
+```javascript
+import { Component, OnInit, ElementRef } from '@angular/core';
+
+export class Mod1Comp1Component implements OnInit {
+  constructor(private el:ElementRef){}
+  
+  ngOnInit(): void {
+    console.log(this.el.nativeElement);
+  }
+}
+```
