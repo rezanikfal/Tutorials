@@ -1,6 +1,8 @@
 ## Naming Convention
 `ng g c PageList`  
-- It generates `page-list.component.ts` or `css` or `html`
+- It generates `page-list.component.ts` or `css` or `html`  
+`ng g s wikipedia`  
+- It generates `wikipedia.service.ts`
 ## New Project without Test
 - ng new angular-tour-of-heroes --skip-tests 
 ## New Module with routeing
