@@ -29,6 +29,51 @@ export class Mod1Comp1Component implements OnInit {
   }
 }
 ```
+## Pass Data from parent to child using INPUT:
+### Child (app-modal):
+```javascript
+import { Component, OnInit, Input } from '@angular/core';
+
+export class PageListComponent implements OnInit {
+  @Input() pages = [];
+}
+```
+```html
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Word Count</th>
+      <th>Snippet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let page of pages">
+      <td>{{ page.title }}</td>
+      <td>{{ page.wordcount }}</td>
+      <td>{{ page.snippet }}</td>
+    </tr>
+  </tbody>
+</table>
+```
+### Parent:
+```javascript
+export class AppComponent {
+  pages = [];
+
+  constructor(private wikipedia: WikipediaService) {}
+
+  onTerm(term: string) {
+    this.wikipedia.search(term).subscribe((response: any) => {
+      this.pages = response.query.search;
+    });
+  }
+}
+```
+```html
+<app-page-list [pages]="pages"></app-page-list>
+```
+
 ## Pass Data from child to parent using OUTPUT:
 ### Child (app-modal):
 ```javascript
