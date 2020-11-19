@@ -23,7 +23,6 @@
   3. Assigne a shortcut like "Alt+w"
   4. Accept the change by hitting Enter.
 
-##  A Fresh Start:
-  1. code -r . + Dest. Foldeer: 
-  
-    code -r .\udemy-course\
+##  Select Language Mode:
+To select and apply a language syntax on a plain text:
+`Ctrl+K M`
