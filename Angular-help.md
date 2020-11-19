@@ -30,7 +30,7 @@ export class Mod1Comp1Component implements OnInit {
 }
 ```
 ## Pass Data from parent to child using INPUT:
-### Child (app-modal):
+### Child:
 ```javascript
 import { Component, OnInit, Input } from '@angular/core';
 
