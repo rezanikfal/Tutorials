@@ -103,6 +103,21 @@ export class ModsHomeComponent implements OnInit {
 ```
 ## Http Call Details using RxJS (Angular 9):
 Sample API call: <https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Nelson%20Mandela&utf8=&format=json>
+### app.module.ts:
+```javascript
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule, HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+```
 ### Service:
 ```javascript
 import { Injectable } from '@angular/core';
