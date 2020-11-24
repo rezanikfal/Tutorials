@@ -245,7 +245,7 @@ export class AppCardComponent implements OnInit {
   </ng-container>
 </form>>
 ```
-## Form Control AbstractControl pristine/dirty/touched/untouched:
+## AbstractControl pristine/dirty/touched/untouched:
 ```html
 <form [formGroup]="cardForm">
   <input formControlName="name" />
