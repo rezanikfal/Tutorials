@@ -185,3 +185,37 @@ export class AppComponent {
   }
 }
 ```
+## Form Group/Control:
+### app.module.ts:
+```javascript
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule, ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+```
+### Form Component:
+```javascript
+import { FormGroup, FormControl } from '@angular/forms';
+export class AppCardComponent implements OnInit {
+  cardForm = new FormGroup({
+    name: new FormControl('')
+  });
+  ngOnInit(): void {}
+}
+```
+```html
+<form [formGroup]="cardForm">
+  <input formControlName="name" />
+</form>
+
+<div>{{ cardForm.value | json }}</div>
+<div>{{ cardForm.valid }}</div>
+```
