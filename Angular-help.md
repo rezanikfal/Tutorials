@@ -224,7 +224,39 @@ export class AppCardComponent implements OnInit {
 <div>{{ cardForm.controls.name.errors }}</div>
 <div>{{ cardForm.get('name').errors }}</div>
 ```
-
-
+## Form Control Validation/Error Handling:
+```javascript
+export class AppCardComponent implements OnInit {
+  cardForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  });
+```
+```html
+<form [formGroup]="cardForm">
+  <input formControlName="name" />
+  <ng-container *ngIf="cardForm.controls.name.errors">
+    <div *ngIf="cardForm.controls.name.errors.required">Value is required</div>
+    <div *ngIf="cardForm.controls.name.errors.minlength">
+      Value you entered is
+      {{ cardForm.controls.name.errors.minlength.actualLength }} characters
+      long, but it must be
+      {{ cardForm.controls.name.errors.minlength.requiredLength }} characters.
+    </div>
+  </ng-container>
+</form>>
+```
+## Form Control AbstractControl pristine/dirty/touched/untouched:
+```html
+<form [formGroup]="cardForm">
+  <input formControlName="name" />
+  <ng-container
+    *ngIf="
+      cardForm.controls.name.dirty &&
+      cardForm.controls.name.touched &&
+      cardForm.controls.name.errors
+    "
+  >
+    ....
+```
 
 
