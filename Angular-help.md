@@ -101,6 +101,7 @@ export class ModsHomeComponent implements OnInit {
 ```html
 <app-modal (close)="onClick()" *ngIf="modalOpen"></app-modal>
 ```
+# RxJS:
 ## Http Call Details using RxJS (Angular 9):
 Sample API call: <https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Nelson%20Mandela&utf8=&format=json>
 ### app.module.ts:
@@ -182,6 +183,38 @@ export class AppComponent {
     this.wikipedia.search(term).subscribe((pages) => {
       this.pages = pages;
     });
+  }
+}
+```
+## mergeMap VS switchMap:
+- *mergeMap* is best used when you wish to flatten an inner observable. It hijacks the value flowing through pipes and creates a new Observable.
+- Using *switchMap* each inner subscription is completed when the source emits, allowing only one active inner subscription.
+
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { timer, Observable, of } from 'rxjs';
+import { mergeMap, switchMap, tap } from 'rxjs/operators';
+
+
+@Component({
+  selector: 'app-comp1',
+  templateUrl: './comp1.component.html',
+  styleUrls: ['./comp1.component.css']
+})
+export class Comp1Component implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+
+    new Observable((observer) => {
+      observer.next(10)
+      observer.next(20)
+      observer.next(30)
+    }).pipe(
+      mergeMap((val: number) => timer(val * 100)),
+      tap((val) => console.log(val))
+    ).subscribe(()=>{})
   }
 }
 ```
