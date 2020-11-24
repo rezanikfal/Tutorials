@@ -219,7 +219,7 @@ export class AppCardComponent implements OnInit {
 <div>{{ cardForm.value | json }}</div>
 <div>{{ cardForm.valid }}</div>
 ```
-## Access to the Form Control:
+## Access to the Form Control in HTML:
 ```html
 <div>{{ cardForm.controls.name.errors }}</div>
 <div>{{ cardForm.get('name').errors }}</div>
