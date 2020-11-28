@@ -115,7 +115,8 @@ export class Comp1Component implements OnInit {
   }
 }
 ```
-## Get Location from Browser using RxJS:
+## Http Call for Weather Data using RxJS:
+### Get Location from Browser using RxJS (Service):
 ```javascript
 import { Observable, of } from "rxjs";
 ....
@@ -131,7 +132,7 @@ import { Observable, of } from "rxjs";
     });
   }
 ```
-## Get Data from External API using RxJS:
+### Get Data from External API using RxJS (Service):
 ```javascript
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, of } from "rxjs";
@@ -188,4 +189,38 @@ Store flowing objects in an array. This is the opposite of *mergeMap((value) => 
       toArray()
     );
   }
+```
+### UI Markup and Typescript:
+```javascript
+export class ForecastComponent implements OnInit {
+  forecastData = [];
+
+  constructor(forecastService: ForecastService) {
+    forecastService.getForecast().subscribe(forecastData => {
+      this.forecastData = forecastData;
+    });
+  }
+```
+```html
+<div *ngFor="let forecast of forecastData">
+  {{ forecast.temp | number: '1.0-0' }}°C
+  {{ forecast.dateString | date: 'E' }}
+</div>
+```
+## Async Pipe:
+Same UI Markup and Typescript using *Async Pipe*
+```javascript
+export class ForecastComponent implements OnInit {
+  forecast$: Observable<{ dateString: string; temp: number }[]>;
+
+  constructor(forecastService: ForecastService) {
+    this.forecast$ = forecastService.getForecast();
+  }
+```
+```html
+<div *ngFor="let forecast of forecast$ | async">
+  {{ forecast.temp | number: '1.0-0' }}°C
+  {{ forecast.dateString | date: 'E' }}
+</div>
+
 ```
