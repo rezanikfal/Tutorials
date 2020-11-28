@@ -1,4 +1,4 @@
-## Reactive Forms:
+# Reactive Forms:
 ## Form Group/Control:
 ### app.module.ts:
 ```javascript
