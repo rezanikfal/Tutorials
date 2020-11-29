@@ -25,7 +25,7 @@ export class AppCardComponent implements OnInit {
   ngOnInit(): void {}
 }
 ```
-```html
+```htm
 <form [formGroup]="cardForm">
   <input formControlName="name" />
 </form>
@@ -45,7 +45,7 @@ export class AppCardComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 ```
-```html
+```htm
 <form [formGroup]="cardForm">
   <input formControlName="name" />
   <ng-container *ngIf="cardForm.controls.name.errors">
@@ -60,7 +60,7 @@ export class AppCardComponent implements OnInit {
 </form>>
 ```
 ## AbstractControl pristine/dirty/touched/untouched:
-```html
+```htm
 <form [formGroup]="cardForm">
   <input formControlName="name" />
   <ng-container
@@ -71,4 +71,56 @@ export class AppCardComponent implements OnInit {
     "
   >
     ....
+```
+## Create *Reusable* Form Controls:
+### Child Componenet (Reusable) + Validation:
+```javascript
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+....
+export class InputComponent implements OnInit {
+  @Input() control: FormControl;
+}
+```
+```htm
+<input [formControl]="control" />
+<ng-container *ngIf="control.dirty && control.touched && control.errors">
+  <div *ngIf="control.errors.required">
+    Value is required.
+  </div>
+  <div *ngIf="control.errors.minlength">
+    Value you entered is
+    {{ control.errors.minlength.actualLength }}
+    characters long, but it must be at least
+    {{ control.errors.minlength.requiredLength }}
+    characters
+  </div>
+  <div *ngIf="control.errors.maxlength">
+    Value you entered is
+    {{ control.errors.maxlength.actualLength }}
+    characters long, but it cannot be longer than
+    {{ control.errors.maxlength.requiredLength }}
+    characters
+  </div>
+  <div *ngIf="control.errors.pattern">
+    Invalid format
+  </div>
+</ng-container>
+</form>>
+```
+### Parent Componenet:
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+....
+export class CardFormComponent implements OnInit {
+  cardForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)])
+  });
+}
+```
+```htm
+<form [formGroup]="cardForm">
+  <app-input [control]="cardForm.get('name')"></app-input>
+</form>
 ```
