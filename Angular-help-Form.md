@@ -160,3 +160,38 @@ export class EquationComponent implements OnInit {
   <input formControlName="answer" />
 </form>
 ```
+## RxJS & Forms:
+```javascript
+  mathForm = new FormGroup(
+    {
+      a: new FormControl(this.randomNumber()),
+      b: new FormControl(this.randomNumber()),
+      answer: new FormControl('')
+    },
+    [MathValidators.addition('answer', 'a', 'b')]
+  );
+  ```
+  __statusChanges__ watches for *Form Status Changes* in terms of Valid or Invalid
+  ```javascript
+    ngOnInit() {
+    this.mathForm.statusChanges
+      .pipe(
+        filter(value => value === 'VALID'),
+        delay(100)
+      )
+      .subscribe(({ numberSolved, startTime }) => {
+        ...
+      });
+  }
+
+```
+  __valueChanges__ watches for *Form Value Changes* and emmits the changed value
+  ```javascript
+    ngOnInit() {
+    this.mathForm.valueChanges
+      .pipe(map(({ a, b, answer }) => Math.abs((a + b - answer) / (a + b))))
+      .subscribe(value => {
+        console.log(value);
+      });
+  }
+```
