@@ -136,7 +136,7 @@ import { Observable, of } from "rxjs";
 ```javascript
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { map, switchMap, pluck, mergeMap, filter, toArray} from "rxjs/operators";
+import { map, switchMap, pluck, mergeMap, filter, toArray, share} from "rxjs/operators";
 
 interface OpenWeatherResponse {
   list: {
@@ -186,7 +186,11 @@ Create new object based on receiving object and dismiss the extera properties
 ```
 Store flowing objects in an array. This is the opposite of *mergeMap((value) => of(...value))*
 ```javascript
-      toArray()
+      toArray(),
+```
+In the case of **multiple subscription**, the network request is made just once
+```javascript
+      share(),
     );
   }
 ```
