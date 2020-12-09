@@ -228,3 +228,8 @@ export class ForecastComponent implements OnInit {
 </div>
 
 ```
+## Observable VS Subject
+__Observable__:   Cold ⮕ When the observer subscribes, it emmits the value  
+__Subject__:      Hot ⮕ When it emmits a value, it lets the observer know that the value has been emmited.  
+In other words, for Subject, when you throw the value 10 i.e. ```subject.next(10)``` it emmits the 10 right away.
+
