@@ -231,7 +231,9 @@ export class ForecastComponent implements OnInit {
 ## Observable VS Subject
 * __Observable (Cold)__
   * When the observer subscribes, it emmits the value  
+  * The observable itself decides what different values to be produced and emitted (inside the observable we have code that says here is the next value to emit).
 * __Subject (Hot)__
+  * The observable (Subject) is receiving some values from __outside__. 
   * When it emmits a value, it lets the observer know that the value has been emmited.  
   * In other words, for Subject, when you throw the value 10 i.e. ```subject.next(10)``` it emmits the 10 right away.  
 * __BehaviorSubject__
