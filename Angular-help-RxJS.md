@@ -253,3 +253,18 @@ Applies an accumulator function over the source Observable, and returns each int
       }, [])
     );
 ```
+## Scan VS Reduce
+Scan emits each successive value VS Reduce emits the final value
+```javascript
+import { of } from 'rxjs';
+import { reduce, scan } from 'rxjs/operators';
+
+const source = of(1, 2, 3, 4);
+const example = source.pipe(scan((acc, val) => acc + val));
+const subscribe = example.subscribe(val => console.log('Sum:', val));
+```
+Output: ```Sum: 1``` ```Sum: 3``` ```Sum: 6``` ```Sum: 10```
+```javascript
+const example = source.pipe(reduce((acc, val) => acc + val));
+```
+Output: ```Sum: 10```
