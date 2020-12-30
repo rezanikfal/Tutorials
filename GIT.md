@@ -26,3 +26,10 @@ Move HEAD pointer to a specific commit. Be careful about amending commits which 
 ### Hard
 - Return to an old state and __discard__ all code changes.
 - Useful to permanently undo commits. 
+
+## Merge Branches
+Always run Merges with clean working directory (Commit or Stash changes).  
+### Fast-forward Merge
+- When there is no commits in the master after the branch was made. 
+- The branch is an extension of the master.
+- The branch can be moved inline with the master with no need to a new commit.
