@@ -11,7 +11,7 @@ When you need to undo any changes. If it is not the recent commit, To avoid conf
 The older branch should go first (General rule).  
 `$ git diff master..feature`   
 Check the branches that is included in the current branch(master).  
-`$ git diff master..feature`  
+`$ git branch --merged`  
 `Reza11`  
 `*master`
 
