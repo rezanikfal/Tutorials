@@ -8,4 +8,5 @@ When you need to undo any changes. If it is not the recent commit, To avoid conf
 `$ git revert <commit>`   
 
 ## Compare Branches
+The older branch should go first (General rule).  
 `$ git diff master..feature` 
