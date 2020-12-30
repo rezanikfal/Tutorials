@@ -14,3 +14,10 @@ Check the branches that is included in the current branch(master).
 `$ git diff master..feature`  
 `Reza11`  
 `*master`
+
+## Reset Branches
+Move HEAD pointer to a specific commit.  
+### Soft
+- Return to an old state and leave code changes staged.  
+- Useful for amending one or more commits as a unique commit.   
+- Be careful about amending commits which have been shared.   
