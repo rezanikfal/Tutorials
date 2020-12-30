@@ -29,7 +29,7 @@ Move HEAD pointer to a specific commit. Be careful about amending commits which 
 
 ## Merge Branches
 Always run Merges with clean working directory (Commit or Stash changes).  
-### Fast-forward Merge
+### Fast-forward Commit
 - When there is no commits in the master after the branch was made. 
 - The branch is an extension of the master.
 - The branch can be moved inline with the master with no need to a new commit.
