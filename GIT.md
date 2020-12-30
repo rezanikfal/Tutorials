@@ -16,8 +16,13 @@ Check the branches that is included in the current branch(master).
 `*master`
 
 ## Reset Branches
-Move HEAD pointer to a specific commit.  
+Move HEAD pointer to a specific commit. Be careful about amending commits which have been shared.   
 ### Soft
-- Return to an old state and leave code changes staged.  
+- Return to an old state and leave code changes __staged__.  
 - Useful for amending one or more commits as a unique commit.   
-- Be careful about amending commits which have been shared.   
+### Mixed
+- Like Soft Reset, Return to an old state and leave code changes in __working directory__.  
+- Useful for reorganizing commits. 
+### Hard
+- Return to an old state and __discard__ all code changes.
+- Useful to permanently undo commits. 
