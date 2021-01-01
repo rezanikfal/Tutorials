@@ -37,9 +37,9 @@ Always run Merges with clean working directory (Commit or Stash changes).
 To cancel merge __Reset Hard__ to the commit right before the join commit in the mater branch.
 ### Reduce Conflicts
 - Merge to master branch more often and continue to work on your own branch. 
- ![Merge to Master](./merge1.png)
+ ![Merge to Master](./Pics/merge1.png)
 - Track changes to master.  
- ![Merge from Master](./merge2.png)
+ ![Merge from Master](./Pics/merge2.png)
  
 ## Git Stash
 - Help to checkout to other branch without commitimg current changes.
