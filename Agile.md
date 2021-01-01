@@ -28,3 +28,6 @@
 
 ### Avoid Multitasking  
 Instead of working on several different things at once, the entire team will focus on a limited set of high value tasks
+
+### Avoid Hand-offs  
+If you can keep your batches of work sizes smaller, it will make it easier to limit your handoffs.
