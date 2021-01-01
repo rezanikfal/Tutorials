@@ -26,3 +26,6 @@
 ##  Select Language Mode:
 To select and apply a language syntax on a plain text:
 `Ctrl+K M`
+
+## HTML/CSS:
+CSS Peek (for get the CSS popup in HTML and go to the class by Ctrl+Click)
