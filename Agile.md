@@ -26,3 +26,5 @@
 - __P1, P8, P9, P10:__ The product owner will identify what the customer ***Values the Most*** to be delivered in a short sprint.  
 - __P12:__ Encourages the team to meet frequently to discuss process improvement (***Stand-ups***).
 
+### Avoid Multitasking  
+Instead of working on several different things at once, the entire team will focus on a limited set of high value tasks
