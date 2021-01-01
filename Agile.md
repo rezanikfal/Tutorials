@@ -16,3 +16,13 @@
  ![cone of uncertainty](./Pics/Cone.png)
 ### Agile Manifesto
 <img src="./Pics/AgileManifesto.png" width="700">
+
+### Agile Principles  
+- __P2:__ Welcoming ***Changes*** when you're working in your cone of uncertainty.   
+- __P3, P7:__ Continuous software delivery in weeks as a measure of progress (***Sprints***).  
+- __P4:__ Business people and developers must work together daily throughout the project (***Product Owner***).  
+- __P11, P5:__ Most agile teams are cross functional and self organized (Small teams of ***Generalists***).  
+- __P6:__ Importance of face to face conversations (***User Stories***).  
+- __P1, P8, P9, P10:__ The product owner will identify what the customer ***Values the Most*** to be delivered in a short sprint.  
+- __P12:__ Encourages the team to meet frequently to discuss process improvement (***Stand-ups***).
+
