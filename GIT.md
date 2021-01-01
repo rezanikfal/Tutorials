@@ -33,3 +33,5 @@ Always run Merges with clean working directory (Commit or Stash changes).
 - When there is no commits in the master after the branch was made. 
 - The branch is an extension of the master.
 - The branch can be moved inline with the master with no need to a new commit.
+### Cancel Merge
+To cancel merge __Reset Hard__ to the commit right before the join commit in the mater branch.
