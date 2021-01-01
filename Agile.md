@@ -13,4 +13,4 @@
 ### Agile Mindset
  - Balance between making decisions and having enough flexibility to make changes
  - Most software products have to deal with something called the cone of uncertainty.
- ![cone of uncertainty](./Cone.png)
+ ![cone of uncertainty](./Pics/Cone.png)
