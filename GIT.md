@@ -40,3 +40,11 @@ To cancel merge __Reset Hard__ to the commit right before the join commit in the
  ![Merge to Master](./merge1.png)
 - Track changes to master.  
  ![Merge from Master](./merge2.png)
+ 
+## Git Stash
+- Help to checkout to other branch without commitimg current changes.
+- Stashes are independent of the branches that you're on. So, you could stash something on the master branch and use it in a different branch.
+- Taking a snapshot of a change and storing it away 'til later.
+
+
+
