@@ -35,3 +35,8 @@ Always run Merges with clean working directory (Commit or Stash changes).
 - The branch can be moved inline with the master with no need to a new commit.
 ### Cancel Merge
 To cancel merge __Reset Hard__ to the commit right before the join commit in the mater branch.
+### Reduce Conflicts
+- Merge to master branch more often and continue to work on your own branch. 
+
+- Track changes to master.
+
