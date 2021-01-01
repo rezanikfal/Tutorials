@@ -45,8 +45,6 @@ To cancel merge __Reset Hard__ to the commit right before the join commit in the
 - Help to checkout to other branch without commitimg current changes.
 - Stashes are independent of the branches that you're on. So, you could stash something on the master branch and use it in a different branch.
 - Taking a snapshot of a change and storing it away 'til later.
-- `git stash pop` to retieve the changes and delete it.  
-- `git stash apply` to retieve the changes and keep it.  
-- `git stash drop` to delete the stash.  
+- `git stash Pop/Apply/Drop` to retieve and delete, just retieve, and just delet the stash.  
 
 
