@@ -7,14 +7,11 @@
 ## For Git/Theme:
   1. Git History
   2. Gitignore Templates (for .Net Core use Visual studio)
-  3. Material Icon Theme
 
   
 ## For Angular:
   1. Angular Language Service
-  2. Prettier - Code formatter
   3. Angular-cli (to generate from TOC)
-  4. Bracket Pair Colorizer 2 (for long methods with too many brackets)
   5. Angular 8 and TypeScript/HTML VS Code Snippets (for ready to use snippet like ngFor, ...)
 
 ## To activate tag wrapping:
@@ -28,4 +25,7 @@ To select and apply a language syntax on a plain text:
 `Ctrl+K M`
 
 ## HTML/CSS:
-CSS Peek (for get the CSS popup in HTML and go to the class by Ctrl+Click)
+  1. Peek (for get the CSS popup in HTML and go to the class by Ctrl+Click)
+  2. Bracket Pair Colorizer 2 (for long methods with too many brackets)
+  3. Prettier - Code formatter
+  4. Material Icon Theme
