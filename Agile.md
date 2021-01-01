@@ -14,3 +14,5 @@
  - Balance between making decisions and having enough flexibility to make changes
  - Most software products have to deal with something called the cone of uncertainty.
  ![cone of uncertainty](./Pics/Cone.png)
+### Agile Manifesto
+<img src="./Pics/AgileManifesto.png" width="700">
