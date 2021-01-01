@@ -11,4 +11,6 @@
 2. Execute the project
 3. Test the project
 ### Agile Mindset
- Balance between making decisions and having enough flexibility to make changes
+ - Balance between making decisions and having enough flexibility to make changes
+ - Most software products have to deal with something called the cone of uncertainty.
+ ![cone of uncertainty](./Cone.png)
