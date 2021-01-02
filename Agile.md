@@ -33,3 +33,6 @@ Instead of working on several different things at once, the entire team will foc
 - If you can keep your batches of work sizes smaller, it will make it easier to limit your handoffs.
 - Penny game shows that while individual productivity decreases, the overall productivity of the whole team will increase.
 - The most productive way is by moving around small batches work and eliminating handoffs even if your own productivity decreases.
+
+### Deliver at a Predictable Pace 
+ Short-term predictable delivery over long-term plans with an uncertain outcome.
