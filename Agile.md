@@ -36,3 +36,23 @@ Instead of working on several different things at once, the entire team will foc
 
 ### Deliver at a Predictable Pace 
  Short-term predictable delivery over long-term plans with an uncertain outcome.
+
+### User Story
+- Product owners should creat the best possible user stories.
+- General Sample: As a user, I want some feature so that I can get some value.
+- As a restaurant owner, I want to be able to put my menu online so that people will be interested in my restaurant.
+- The restaurant owner doesn't talk about upload buttons or databases, they just care about the __value__.
+- Make sure they take the time to write __clear__ stories with a __simple__ value statement.
+
+### Requirements VS user stories
+Requirements are designed to limit the conversation. A good requirements document will be very clear and tell the developer exactly what to do. User stories are a note to have a future conversation. It isn't designed to show the answers, instead it helps the team ask the right questions.
+
+### Sample user stories:
+- As a restaurant owner, I want to be able to print out, email and text my reservation list so that we know how many people to expect.
+  - It has a long list of value statements, so it's really three stories in one. (Difficult to estimate and deliver).
+- As a customer, I want an email copy of my receipt so that I can have it on my phone.
+  - This story doesn't have a clear value statement. (Why the customer might value a copy on their phone).
+  - Maybe they're keeping track of their expenses. The team would want to know this value so they can better deliver the product.
+- As a developer, I want to design the database tables so that the restaurant owner can add reservation information. 
+  - This user story probably came from a requirements document.
+  - It talks about technical requirements and is not written from the perspective of the customer.
