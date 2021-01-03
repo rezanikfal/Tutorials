@@ -64,3 +64,6 @@ Software features that are user by customers:
 - Agile team should start the very frist 20% first.
 - This would be part of the highest priority featured delivered in the very first sprint.
 
+### Avoid PowerPoint
+- We need to deliver small, fully-functional features of the product to the customer in iterations or sprints
+- Agile team doesn't think about software as a __project__, instead it thinks of it as a __product__ that has prioritized value that you deliver
