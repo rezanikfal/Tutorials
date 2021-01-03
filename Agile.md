@@ -58,5 +58,9 @@ Requirements are designed to limit the conversation. A good requirements documen
   - It talks about technical requirements and is not written from the perspective of the customer.
 
 ### Pareto Principle (80/20 Rule)
-Software features that are user by customers:
-<img src="./Pics/rule8020.png" width="700">
+Software features that are user by customers:  
+<img src="./Pics/rule8020.png" width="550">
+- This 20% is the most valuable part of the software (__Often__ and __Always__ used)
+- Agile team should start the very frist 20% first.
+- This would be part of the highest priority featured delivered in the very first sprint.
+
