@@ -56,3 +56,7 @@ Requirements are designed to limit the conversation. A good requirements documen
 - As a developer, I want to design the database tables so that the restaurant owner can add reservation information. 
   - This user story probably came from a requirements document.
   - It talks about technical requirements and is not written from the perspective of the customer.
+
+### Pareto Principle (80/20 Rule)
+Software features that are user by customers:
+<img src="./Pics/rule8020.png" width="700">
