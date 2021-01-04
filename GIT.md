@@ -46,5 +46,15 @@ To cancel merge __Reset Hard__ to the commit right before the join commit in the
 - Stashes are independent of the branches that you're on. So, you could stash something on the master branch and use it in a different branch.
 - Taking a snapshot of a change and storing it away 'til later.
 - `git stash Pop/Apply/Drop` to retieve and delete, just retieve, and just delet the stash.  
-
+ 
+## Remote
+- Two branches on local machine:
+   - __master__ is a local branch
+   - __origin/master__ is a remote branch (which is a local copy of the branch named "master" on the remote named "origin")
+- One remote:
+   - __origin__ is a remote.
+- __Fetch__ master from the remote origin:
+   - The master branch on origin will be fetched and the local copy will be named origin/master.
+- Then you __merge__ origin/master into master.
+- __Pull__ does both of above steps
 
