@@ -87,6 +87,7 @@ Software features that are user by customers:
 - Agile:
    - Instead of having business analysts, testers, and developers, you'll have generalized team members that try to do a little bit of everything.
    - The product owner on the team will give you all the user stories you need to keep working.
+   
 ### Commit to sprints
 - The term Sprint is from __Scrum__ which is the most popular Agile framework (It is two week time box).
 - Scrum Events:
@@ -95,3 +96,12 @@ Software features that are user by customers:
    - At the end of the Sprint, the team will have a Sprint Review. The customer can offer any feedback (~ 2 hours).
    - The last hour and a half of the Sprint is dedicated to a team retrospective (What went well in the Sprint & What could be improved).
 - Even though you're doing a lot of the same work as a waterfall project, you're __not__ delivering the work in __phases__.
+   
+### Iterative delivery
+- It's very common for agile teams to deliver incrementally in a two-week sprint.
+- But these teams also work in sprints to deliver the product iteratively (Refinement).  
+
+Waterfall (Building car in phases):  
+<img src="./Pics/WF.png" width="550">  
+Agile (Building a smaller increment of the car's __value__):  
+<img src="./Pics/Ag.png" width="550">  
