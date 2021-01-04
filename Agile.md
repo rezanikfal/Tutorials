@@ -105,3 +105,22 @@ Most teams instinctively break up large products into phases (Building car in __
 <img src="./Pics/WF.png" width="550">  
 Agile (Building a smaller increment of the car's __value__):  
 <img src="./Pics/Ag.png" width="550">  
+
+### SCRUM (The most popular Agile framework)
+- Agile is a mindset, while Scrum is a way to help you embrace that mindset. 
+- Scrum is to Agile in the same way that something like aerobics is to fitness.
+- Scrum teams inspect and adapt. Scrum is very lightweight. A Scrum team only has three roles, and should only have five events.
+
+### Extreme programming (XP)
+- XP is still only focused on software development. Some form of XP's agile planning:
+  - __User stories__ are a short description of a feature that's written in the language of the customer (__NOT__ Technical).
+  - In the past, software development teams might work on some code and then try to integrate it all at the end. XP teams __continuously integrate__ their code (Constant Refactoring).
+  - __Test-driven__ development, or __TDD__, and it helps developers understand how the software will work
+  
+### Kanban
+- Kanban is a scheduling system that use to apply __lean thinking__ to software development.
+  - respect for people.
+  - continuously improve.
+-  Kanban board (or task board in Scrum)
+<img src="./Pics/kanbanBoard.PNG" width="550">  
+During the morning stand-up meeting, you assign yourself the work. Remember that lean encourages your team to be self-organized
