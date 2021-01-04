@@ -67,3 +67,12 @@ Software features that are user by customers:
 ### Avoid PowerPoint
 - We need to deliver small, fully-functional features of the product to the customer in iterations or sprints
 - Agile team doesn't think about software as a __project__, instead it thinks of it as a __product__ that has prioritized value that you deliver
+
+###  Embracing Change / Inspect and adapt
+- Agile teams welcome changing requirements even late in development (Principle 2).
+- Two of the most popular software development methods are __scrum__ and __extreme programming__.
+ 
+ ### Stay within timeboxes (2 weeks sprint)
+ -  Agile teams focus on being predictable instead of creating detailed plans (delivering predictably every few weeks).
+ -  We can't have meetings that go over schedule or brainstorming sessions. That's because your team has a deadline every few weeks (sprints).
+ - If your meeting is scheduled for 45 minutes then the meeting will end in 45 minutes. Whatever your team decides within that timebox.
