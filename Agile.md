@@ -101,7 +101,7 @@ Software features that are user by customers:
 - It's very common for agile teams to deliver incrementally in a two-week sprint.
 - But these teams also work in sprints to deliver the product iteratively (Refinement).  
 
-Waterfall (Building car in phases):  
+Most teams instinctively break up large products into phases (Building car in phases):  
 <img src="./Pics/WF.png" width="550">  
 Agile (Building a smaller increment of the car's __value__):  
 <img src="./Pics/Ag.png" width="550">  
