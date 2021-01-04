@@ -87,3 +87,11 @@ Software features that are user by customers:
 - Agile:
    - Instead of having business analysts, testers, and developers, you'll have generalized team members that try to do a little bit of everything.
    - The product owner on the team will give you all the user stories you need to keep working.
+### Commit to sprints
+- The term Sprint is from __Scrum__ which is the most popular Agile framework (It is two week time box).
+- Scrum Events:
+   - On the very first day of your Sprint, you'll have a Sprint planning meeting. This shouldn't be more than a two hour meeting.
+   - Every morning the Scrum team should stand up for it's daily Scrum. It is between developers about the progress (~ 15 min).
+   - At the end of the Sprint, the team will have a Sprint Review. The customer can offer any feedback (~ 2 hours).
+   - The last hour and a half of the Sprint is dedicated to a team retrospective (What went well in the Sprint & What could be improved).
+- Even though you're doing a lot of the same work as a waterfall project, you're __not__ delivering the work in __phases__.
