@@ -129,6 +129,12 @@ During the morning stand-up meeting, you assign yourself the work. Remember that
 - Scrum Master is NOT Project Manager
   - People in the organization will __Project Managers__ to them for status updates, and they're responsible for hiring and firing people on their team.
   - A scrum master acts as a coach. Instead of having authority over the team, he'll be encouraging them to take on greater responsibilities.
+  - Scrum master is contacting someone, setting up meetings, ordering software or showing the product owner how to write better user stories.
 - Product Owner is NOT Business Analyst
   - A business analyst will typically create project requirements, then hands it off to the team and team tekes care of the rest of story.
   - The product owner and even sits works with the team to deliver the product. They don't just hand off requirements, instead they own the product.
+  
+### Avoil normal group-think
+- Face-to-face communication and cross-functional self-organized teams are actually closely related.
+- A few experts make a convincing argument and the rest of the team just follow along (group-think is WRONG)
+- The face-to-face meetings where everyone's contributing their ideas and asking challenging questions.(AGILE)
