@@ -124,3 +124,11 @@ Agile (Building a smaller increment of the car's __value__):
 -  Kanban board (or task board in Scrum)
 <img src="./Pics/kanbanBoard.PNG" width="550">  
 During the morning stand-up meeting, you assign yourself the work. Remember that lean encourages your team to be self-organized
+  
+### Agile Roles
+- Scrum Master is NOT Project Manager
+  - People in the organization will __Project Managers__ to them for status updates, and they're responsible for hiring and firing people on their team.
+  - A scrum master acts as a coach. Instead of having authority over the team, he'll be encouraging them to take on greater responsibilities.
+- Product Owner is NOT Business Analyst
+  - A business analyst will typically create project requirements, then hands it off to the team and team tekes care of the rest of story.
+  - The product owner and even sits works with the team to deliver the product. They don't just hand off requirements, instead they own the product.
