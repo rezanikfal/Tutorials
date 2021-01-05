@@ -22,6 +22,7 @@ describe('Testing addition', ()=>{
     })
 })
 ```
+### Other Assertions
 ```JavaScript
 const testTest = 'Browser application bundle generation complete'
 const testTest2 = 'Hello World'
