@@ -132,9 +132,15 @@ During the morning stand-up meeting, you assign yourself the work. Remember that
   - Scrum master is contacting someone, setting up meetings, ordering software or showing the product owner how to write better user stories.
 - Product Owner is NOT Business Analyst
   - A business analyst will typically create project requirements, then hands it off to the team and team tekes care of the rest of story.
+  - That might make you uncomfortable because in the past there were very clear lines of responsibility. But an agile team mixes up these lines.
   - The product owner and even sits works with the team to deliver the product. They don't just hand off requirements, instead they own the product.
   
 ### Avoil normal group-think
 - Face-to-face communication and cross-functional self-organized teams are actually closely related.
 - A few experts make a convincing argument and the rest of the team just follow along (group-think is WRONG)
 - The face-to-face meetings where everyone's contributing their ideas and asking challenging questions.(AGILE)
+
+### Report VS Software / Organizational Change
+- An agile team doesn't communicate with reports, instead the team communicates with working software.
+- One of the most common types of Organizational Culture is the __Control Culture__. This is a culture that's based on a hierarchy of different positions.
+- This common type of organization will have a really hard time embracing some of the radical changes that are part of an agile.
