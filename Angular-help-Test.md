@@ -22,6 +22,7 @@ describe('Testing addition', ()=>{
     })
 })
 ```
+
 ### Other Assertions
 ```JavaScript
 const testTest = 'Browser application bundle generation complete'
@@ -34,6 +35,7 @@ expect(testTest2).not.toEqual('Hello World1')
 expect(array1).toEqual(['1',2,3])
 expect(array1).toContain('1')
 ```
+
 ## Exclude Test (In two levels)
 ```JavaScript
 xdescribe('Testing addition', ()=>{
@@ -45,3 +47,64 @@ xdescribe('Testing addition', ()=>{
     })
 })
 ```
+
+## beforeEach / afterEach
+```JavaScript
+export class CustomerReservationComponent {
+  hotelRoomCap = 30;
+  customersCount = 10;
+
+  registerCustomer() {
+    return ++this.customersCount;
+  }
+
+  unRegisterCustomer() {
+    return --this.customersCount;
+  }
+}
+```
+```JavaScript
+describe('Rgister Customer', () => {
+  
+  it('Should register and add one', () => {
+    let customerService = new CustomerReservationComponent();
+
+    let custCount = customerService.registerCustomer();
+    expect(custCount).toEqual(11);
+  });
+
+  it('Should register and add one', () => {
+    let customerService = new CustomerReservationComponent();
+
+    let custCount = customerService.unRegisterCustomer();
+    expect(custCount).toEqual(9);
+  });
+});
+```
+If the number of the tests rises, we cannot creat an instance of the object for every single test
+
+```JavaScript
+describe('Rgister Customer', () => {
+  let customerService: CustomerReservationComponent;
+  beforeEach(() => {
+    customerService = new CustomerReservationComponent();
+  });
+
+  it('Should register and add one', () => {
+    // let customerService = new CustomerReservationComponent();
+
+    let custCount = customerService.registerCustomer();
+    expect(custCount).toEqual(11);
+  });
+
+  it('Should register and add one', () => {
+    // let customerService = new CustomerReservationComponent();
+
+    let custCount = customerService.unRegisterCustomer();
+    expect(custCount).toEqual(9);
+  });
+});
+```
+- __beforeEach__ is for initialization and setting up the pre-reqiesits for each test
+- __afterEach__ is for make variables null, or removing the initialization.
+- __beforeAll / afterAll__ is executed before/After All tests only once.
