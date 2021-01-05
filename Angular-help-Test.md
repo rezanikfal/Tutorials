@@ -22,3 +22,25 @@ describe('Testing addition', ()=>{
     })
 })
 ```
+```JavaScript
+const testTest = 'Browser application bundle generation complete'
+const testTest2 = 'Hello World'
+const array1 = ['1',2,3]
+expect(testTest).toContain('a')
+expect(testTest).toMatch(/[A-Z]/)
+expect(testTest2).toEqual('Hello World')
+expect(testTest2).not.toEqual('Hello World1')
+expect(array1).toEqual(['1',2,3])
+expect(array1).toContain('1')
+```
+## Exclude Test (In two levels)
+```JavaScript
+xdescribe('Testing addition', ()=>{
+    xit('Testing addition function', ()=>{
+        expect(Addition(12,33)).toBe(55)
+    })
+    it('Testing addition function', ()=>{
+        expect(Addition(12,33)).toBe(45)
+    })
+})
+```
