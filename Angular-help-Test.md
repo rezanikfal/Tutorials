@@ -18,7 +18,7 @@ import { Addition } from "./Func1"
 
 describe('Testing addition', ()=>{
     it('Testing addition function', ()=>{
-        expect(Addition(12,33)===45)
+        expect(Addition(12,33)).toBe(45)
     })
 })
 ```
