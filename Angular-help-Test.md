@@ -108,3 +108,21 @@ describe('Rgister Customer', () => {
 - __beforeEach__ is for initialization and setting up the pre-reqiesits for each test
 - __afterEach__ is for make variables null, or removing the initialization.
 - __beforeAll / afterAll__ is executed before/After All tests only once.
+
+## Arrange / Act / Assert (AAA)
+- AAA is common standard for writing the unit test cases.
+- __Arrange__: Arrange to setup the unit test case, like creating the objects, initializing/mocking data etc..
+- __Act__: Act on your unit test case, meaning execute necessary functionality/methods that needs to be unit tested.
+- __Assert__: This part verifies the functionality/method that we are unit testing is giving the result as per expectation.
+```JavaScript
+describe('Room Reservation', () => {
+  it('Testing Room is reserved or not', () => {
+    // Arrange
+    let custReserve = new CustomerReservationComponent();
+    // Act
+    let isReserved = custReserve.reserveRoom();
+    //Assert
+    expect(isReserved).toBeTruthy()
+  });
+});
+```
