@@ -7,7 +7,7 @@
 ## For Git/Theme:
   1. Git History
   2. Gitignore Templates (for .Net Core use Visual studio)
-  3. To get ready to deploy the code: Checkout to Master -> Merge GIS branch into current -> Push -> Pull-> Push 
+  3. To get ready to deploy the code: Checkout to Master -> Merge GIS branch into current -> Push (not sure) -> Pull-> Push 
   
 ## For Angular:
   1. Angular Language Service
