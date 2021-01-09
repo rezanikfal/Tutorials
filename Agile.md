@@ -58,7 +58,7 @@ Requirements are designed to limit the conversation. A good requirements documen
   - It talks about technical requirements and is not written from the perspective of the customer.
 
 ### Pareto Principle (80/20 Rule)
-Software features that are user by customers:  
+Software features that are used by customers:  
 <img src="./Pics/rule8020.png" width="550">
 - This 20% is the most valuable part of the software (__Often__ and __Always__ used)
 - Agile team should start the very frist 20% first.
@@ -133,9 +133,9 @@ During the morning stand-up meeting, you assign yourself the work. Remember that
 - Product Owner is NOT Business Analyst
   - A business analyst will typically create project requirements, then hands it off to the team and team tekes care of the rest of story.
   - That might make you uncomfortable because in the past there were very clear lines of responsibility. But an agile team mixes up these lines.
-  - The product owner and even sits works with the team to deliver the product. They don't just hand off requirements, instead they own the product.
+  - The product owner sits and even works with the team to deliver the product. They don't just hand off requirements, instead they own the product.
   
-### Avoil normal group-think
+### Avoid normal group-think
 - Face-to-face communication and cross-functional self-organized teams are actually closely related.
 - A few experts make a convincing argument and the rest of the team just follow along (group-think is WRONG)
 - The face-to-face meetings where everyone's contributing their ideas and asking challenging questions.(AGILE)
