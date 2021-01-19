@@ -36,8 +36,8 @@
 - Angular 8 -> new syntax to declare the lazy-loading / 
 - @angular/http (not working)
 - Angular 8 -> new date range picker  June 2020
-- <a href="/element">Element</a> NO
-- <a routerLink="/element" routherLinkActive="active">Element</a> YES
+- ```<a href="/element">Element</a>``` NO
+- ```<a routerLink="/element" routherLinkActive="active">Element</a>``` YES
 - Not found routing rule: {path:"**", component: not-found.component}
 - Lazy Loading:
 ```
