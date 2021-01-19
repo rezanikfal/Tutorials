@@ -47,7 +47,7 @@ import('./elements/elements.module').then(m=>m.ElementModule)
 ```
 - ng-template tag to your template, it and everything inside it will be replaced by a comment.
 - Protractor: spec file and app.po.ts (page object) get all individual element in page object and test it in spec files
-- (citi) Create library in Angular: 
+- (citi) Create library in Angular: https://angular.io/guide/creating-libraries
 - (citi) Multiple Angular Applications (it shares node_modules, main app src, e2e, ...):   
   - main app: ```ng new my-app --routing```
   - Sub Application 1 ``` ng generate application app1 –-routing```
