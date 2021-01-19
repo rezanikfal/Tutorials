@@ -1,0 +1,49 @@
+- The main objectives of decorators is to add some metadata to the class that will tell Angular 4 how to process a class. @NgModule (root module - imports –> Modules & Declarations -> Components), @Component , @Injectable
+- Ahead-of-time (AOT) compilation: With AOT, the compiler runs at the build time. render the application immediately
+- Just-in-time (JIT) compilation: This is a standard developviment approach which compiles our Typescript and html files in the browser at runtime.
+- Template reference variables -> <input #reza ...
+- An Attribute directive changes the appearance or behavior of a DOM element and extend the power of the HTML by giving it new syntax. (Structural directives -> *ngIf and *ngFor , Attribute directives -> *ngStyle and *ngClass, Components)
+- Services encapsulates business logic and separates them from UI concerns
+- Pure pipes are stateless that flow input date without remembering
+- Impure pipes are those which can manage the state of the data (Async)
+- prevent security threads (external HTML /external urls/API)
+- optimize Angular: lazy loading/un-necessary import/AOT compilation/
+- NgZone exposes a set of Observables that allow us to determine the current status, or stability, of Angular's zone.
+- Access component in other module => put the component name in export array in the component's module - import the component module in the app module or any other destination module & put in the list of imports
+- Angular/AngularJS -> Typescript, dependency Injection/Tow Way bounding, Support mobile
+- Authentication -> server side validation using JWT(json web token)
+- Authorization -> Different level of access
+- Different data binding: String Interpolation/Property binding[*]/event binding(*)/Two way bounding
+- SPA is index.html
+- Constructor/ngOnChange/ngOnInit/ngOnDestroy
+- Memory leak -> de-attach event listener, unsubscrice  observables
+- Event Statement -> (event) = "EditProfile()" right side is statement
+- Date pipe with parameters: {{ dateObj | date:'shortTime' }} 
+- RxJS library for composing async ans callback-based code
+- Integration Test -> anywhere we have binding
+- Class/Template  binding: <div [class.special]="isSpecial" / [style.color]="color"
+- @View child - 
+- Test @input for component interaction Use an input property setter to intercept and act upon a value from the parent.
+- Component Fixture is a generic class . using that you can access to component instance as well as template
+- Arrange, Act and Assert (AAA) Pattern for Testbed you use fixture.component for AA and fixture.debugElement for Assert
+- ng g m Module_Name --routing (views-routing.module.ts & views.module.ts ) <router-outlet></router-outlet>
+- Angular Universal, an open-source technology that allows a back-end server
+- Angular CLI introduced with Angular 2 could be used by developers to generate components, routes, services and pipes via console/terminal commands, together with simple test shells.
+- Components. These are the main building blocks of Angular 2, entirely replacing the controllers and scopes of AngularJS
+- Angular 4 -> Ahead of Time compilation, Animations
+- Angular 5 -> @angular/http (no) @angular/common/http (yes)
+- Angular 7 -> ng new / ng add @angular/material /
+- Angular 8 -> new syntax to declare the lazy-loading / 
+- @angular/http (not working)
+- Angular 8 -> new date range picker  June 2020
+- <a href="/element">Element</a> NO
+- <a routerLink="/element" routherLinkActive="active">Element</a> YES
+- Not found routing rule: {path:"**", component: not-found.component}
+- Lazy Loading:
+```
+{path: 'elements',
+loadChildren: ()=>
+import('./elements/elements.module').then(m=>m.ElementModule)
+```
+- ng-template tag to your template, it and everything inside it will be replaced by a comment.
+- Protractor: spec file and app.po.ts (page object) get all individual element in page object and test it in spec files
