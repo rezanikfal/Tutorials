@@ -55,3 +55,13 @@ import('./elements/elements.module').then(m=>m.ElementModule)
 - (citi) Angular Route-Guards to Secure Angular Pages: __Guard__ a class that bans users to access a route: (Stephan 313)
 - (citi) Child - Child components both is a parent component relation: 
 - (citi) What is __CommonModule__ ? Exports all the basic Angular directives and pipes, such as NgIf, NgForOf, DecimalPipe, and so on
+- Sync __Custom Validator__ (like check Password & Password Confimarion is the same) -Stephan 276
+  - Create a Class using CLI
+  - Create validate(Form Group Or Control) method in the class and retrun null if OK or an object when it is not Ok (passwords don't match)
+  - Apply dependency injection to the class (Stephan 277) 
+    - Import {Injectable} from '@angular/core'
+    - Add the following decorator: @Injectable({providedIn: 'root'})
+  - Inject the custom validator class to the Form-Group __ts__ file to access to matchPassword class, validate method.
+  - Add ```{validators: [this.matchPassword.validate]}``` as second parameter of the FormGroup
+  
+  
