@@ -240,3 +240,81 @@ export class AppComponent implements OnInit {
 <div>{{ cardForm.value | json }}</div>
 }
 ```
+## Custom Validator (Synchrones):
+### form.component.ts:
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatchPassword } from "../validators/match-password";
+
+@Component({
+  selector: 'app-forms',
+  templateUrl: './forms.component.html',
+  styleUrls: ['./forms.component.css'],
+})
+export class FormsComponent {
+  constructor(private mtchPassword:MatchPassword) {}
+  authForm = new FormGroup(
+    {
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(20),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      passwordConfirmation: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    },
+    { validators: [this.mtchPassword.validate] }
+  );
+}
+
+```
+### Validator Class- Make it injectable to inject to the form.ts component (match-password.ts):
+```javascript
+import { Injectable } from '@angular/core';
+import { FormGroup, Validator } from '@angular/forms';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MatchPassword implements Validator {
+  validate(formGroup: FormGroup) {
+    if (
+      formGroup.get('password').value ===
+      formGroup.get('passwordConfirmation').value
+    ) {
+      return null;
+    } else {
+      return { passwordDontMatch: true };
+    }
+  }
+}
+```
+### form.component.html:
+```htm
+<form [formGroup]="authForm">
+  <div>
+    <label for="username">Username</label>
+    <input formControlName="username" id="username" autocomplete="off" />
+  </div>
+  {{authForm.get('username').errors|json}}
+  <div>
+    <label for="password">Password</label>
+    <input type="password" formControlName="password" id="password" autocomplete="off" />
+  </div>
+  {{authForm.get('password').errors|json}}
+  <div>
+    <label for="passwordConfirmation">Password Confirmation</label>
+    <input type="password"  formControlName="passwordConfirmation" id="passwordConfirmation" autocomplete="off" />
+  </div>
+  {{authForm.get('passwordConfirmation').errors|json}}
+</form>
+{{authForm.errors|json}}
+}
+```
