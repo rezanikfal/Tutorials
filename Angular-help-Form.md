@@ -241,6 +241,7 @@ export class AppComponent implements OnInit {
 }
 ```
 ## Custom Validator (Synchrones):
+We use dependency injection to be unified with the Async Custom Validator
 ### form.component.ts:
 ```javascript
 import { Component, OnInit } from '@angular/core';
