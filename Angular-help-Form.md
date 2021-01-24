@@ -124,42 +124,6 @@ export class CardFormComponent implements OnInit {
   <app-input [control]="cardForm.get('name')"></app-input>
 </form>
 ```
-## Custom Validator in FormGroup Level:
-```javascript
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-...
-export class EquationComponent implements OnInit {
-  mathForm = new FormGroup(
-    {
-      a: new FormControl(this.randomNumber()),
-      b: new FormControl(this.randomNumber()),
-      answer: new FormControl('')
-    },
-    [
-      (form: AbstractControl) => {
-        const { a, b, answer } = form.value;
-        if (a + b === parseInt(answer)) {
-          return null;
-        }
-
-        return { addition: true };
-      }
-    ]
-  );
-    get a() {return this.mathForm.value.a;}
-
-  get b() {return this.mathForm.value.b;}
-
-  randomNumber() {
-    return Math.floor(Math.random() * 10);
-  }
-```
-```htm
-<form [formGroup]="mathForm">
-  {{ a }} + {{ b }} =
-  <input formControlName="answer" />
-</form>
-```
 ## RxJS & Forms:
 ```javascript
   mathForm = new FormGroup(
