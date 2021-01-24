@@ -319,3 +319,76 @@ export class MatchPassword implements Validator {
 {{authForm.errors|json}}
 }
 ```
+## Custom Validator (Asynchrones):
+We have to retuen an __Observable__ from __validate__ method (function)  
+### form.component.ts:
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatchPassword } from "../validators/match-password";
+import { UniqueUsername } from "../validators/unique-username";
+
+@Component({
+  selector: 'app-forms',
+  templateUrl: './forms.component.html',
+  styleUrls: ['./forms.component.css'],
+})
+export class FormsComponent {
+  constructor(private mtchPassword:MatchPassword, private uniqueUsername:UniqueUsername) {}
+  authForm = new FormGroup(
+    {
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+      ], [this.uniqueUsername.validate]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      passwordConfirmation: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    },
+    { validators: [this.mtchPassword.validate] }
+  );
+}
+```
+### Validator Class- Make it injectable
+Make validate method to function to bind _this_ to the parent class:  
+```javascript
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { FormControl, AsyncValidator } from '@angular/forms';
+import { of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
+@Injectable({ providedIn: 'root' })
+export class UniqueUsername implements AsyncValidator {
+  constructor(private http: HttpClient) {}
+
+  validate = (formControl: FormControl) => {
+    const { value } = formControl;
+
+    return this.http
+      .post<any>('https://api.angular-email.com/auth/username', {
+        username: value,
+      })
+      .pipe(
+        map((val) => {
+          if (val.available) {
+            return null;
+          }
+        }),
+        catchError((err) => {
+          if (err.error.username === 'Username in use') {
+            return of({ nonUniqueUsername: true });
+          } else {
+            return of({ noConnection: true });
+          }
+        })
+      );
+  };
+}
+```
