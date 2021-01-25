@@ -22,7 +22,13 @@
 - RxJS library for composing async ans callback-based code
 - Integration Test -> anywhere we have binding
 - Class/Template  binding: <div [class.special]="isSpecial" / [style.color]="color"
-- @View child - 
+- @View child - it is vaialable in __AfterViewInit__ life cycle hook:
+```htm
+<input #nameRef type="text" [(ngModel)]="name">
+```
+```Javascript
+@ViewChild('nameRef') nameElementRef: ElementRef;
+```   
 - Test @input for component interaction Use an input property setter to intercept and act upon a value from the parent.
 - Component Fixture is a generic class . using that you can access to component instance as well as template
 - Arrange, Act and Assert (AAA) Pattern for Testbed you use fixture.component for AA and fixture.debugElement for Assert
