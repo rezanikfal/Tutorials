@@ -28,6 +28,8 @@
 ```
 ```Javascript
 @ViewChild('nameRef') nameElementRef: ElementRef;
+...
+this.nameElementRef.nativeElement.focus();
 ```   
 - Test @input for component interaction Use an input property setter to intercept and act upon a value from the parent.
 - Component Fixture is a generic class . using that you can access to component instance as well as template
