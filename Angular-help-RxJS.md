@@ -268,3 +268,5 @@ Output: ```Sum: 1``` ```Sum: 3``` ```Sum: 6``` ```Sum: 10```
 const example = source.pipe(reduce((acc, val) => acc + val));
 ```
 Output: ```Sum: 10```
+## Using Subject to handle Signed-In boolean key across the App
+ ![Behavior Subject](./Pics/BSubject.JPG)
