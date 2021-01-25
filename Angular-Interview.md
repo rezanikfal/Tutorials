@@ -13,7 +13,7 @@
 - Angular/AngularJS -> Typescript, dependency Injection/Tow Way bounding, Support mobile
 - Authentication -> server side validation using JWT(json web token)
 - Authorization -> Different level of access
-- Different data binding: String Interpolation/Property binding[*]/event binding(*)/Two way bounding
+- Different data binding: String Interpolation / Property binding [ngStyle] / event binding (click) / Two way bounding
 - SPA is index.html
 - Constructor/ngOnChange/ngOnInit/ngOnDestroy
 - Memory leak -> de-attach event listener, unsubscrice  observables
