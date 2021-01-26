@@ -61,8 +61,23 @@ import('./elements/elements.module').then(m=>m.ElementModule)
   - Sub Application 1 ``` ng generate application app1 –-routing```
   - Sub Application 2 ``` ng generate application app2 –-routing```
 - (citi) Angular Route-Guards to Secure Angular Pages: __Guard__ a class that bans users to access a route: (Stephan 313)
-- (citi) Child - Child components relationship -> using __Subject__
+- (citi/Virtusa) Child - Child components relationship -> using __Subject__
 - (citi) What is __CommonModule__ ? Exports all the basic Angular directives and pipes, such as NgIf, NgForOf, DecimalPipe, and so on
+- (Virtusa) Pure (Default)/Impure Pipes:
+  - A pure change is either a change to a primitive input (string, number etc) value. or changed Object reference.
+  - impure pipe executes everytime irrespective of source has changed or not. which leads to bad performance.
+  ```javascript
+  @Pipe({
+      name: 'sort',
+      pure: false //true makes it pure and false makes it impure
+       })
+      export class myPipe implements PipeTransform {
+
+      transform(value: any, args?: any): any {
+         //your logic here and return the result
+       }
+      }
+  ```
 - Sync __Custom Validator__ (like check Password & Password Confimarion is the same) -Stephan 276
   - Create a Class using CLI
   - Create validate(Form Group Or Control) method in the class and retrun null if OK or an object when it is not Ok (passwords don't match)
