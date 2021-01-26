@@ -65,7 +65,7 @@ import('./elements/elements.module').then(m=>m.ElementModule)
 - (citi) What is __CommonModule__ ? Exports all the basic Angular directives and pipes, such as NgIf, NgForOf, DecimalPipe, and so on
 - (Virtusa) Pure (Default)/Impure Pipes:
   - A pure change is either a change to a primitive input (string, number etc) value. or changed Object reference.
-  - impure pipe executes everytime irrespective of source has changed or not. which leads to bad performance.
+  - Impure pipe executes everytime no matter the source has changed or not. which leads to bad performance.
   ```javascript
   @Pipe({
       name: 'sort',
