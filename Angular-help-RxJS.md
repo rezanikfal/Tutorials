@@ -237,7 +237,7 @@ export class ForecastComponent implements OnInit {
   * When it emmits a value, it lets the observer know that the value has been emmited.  
   * In other words, for Subject, when you throw the value 10 i.e. ```subject.next(10)``` it emmits the 10 right away.  
 * __BehaviorSubject__
-  * Takes an initial value.   
+  * Takes an initial value. Always emits the most recent value and notify the subscribers as soon as you throw a value in.  
 * __ReplaySubject__
   * Get all values that already have been emmited.  
 ## Scan Operator
