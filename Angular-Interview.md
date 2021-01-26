@@ -86,7 +86,7 @@ import('./elements/elements.module').then(m=>m.ElementModule)
     - Add the following decorator: @Injectable({providedIn: 'root'})
   - Inject the custom validator class to the Form-Group __ts__ file to access to matchPassword class, validate method.
   - Add ```{validators: [this.matchPassword.validate]}``` as second parameter of the FormGroup
-- Async Pipes (Before_:
+- Async Pipes (Before):
   ```javascript
   export class AppComponent {
     signedin = false;
@@ -100,6 +100,18 @@ import('./elements/elements.module').then(m=>m.ElementModule)
     }
   }
   ```
+    
+  ```htm
+    <div class="right menu">
+      <ng-container *ngIf="signedin">
+        <a class="ui item" routerLink="/inbox" routerLinkActive="active">
+          Inbox
+        </a>
+        <a class="ui item" routerLink="/signout" routerLinkActive="active">
+          Sign Out
+        </a>
+      </ng-container>
+   ```
 - After:
   ```javascript
   export class AppComponent {
