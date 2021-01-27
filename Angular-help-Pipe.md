@@ -27,7 +27,7 @@ export class TrimOutletNamePipe implements PipeTransform {
   </a>
 </div>
 ```
-## Async Pipes:
+## Async Pipe:
 Replacing a regular subscription with __Async__ pipe.
 ### Before using Async Pipe
   ```javascript
@@ -77,3 +77,17 @@ Replacing a regular subscription with __Async__ pipe.
         </a>
       </ng-container>
    ```
+### Pure (Default) / Impure Pipes:
+A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe. An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes.
+  ```javascript
+  @Pipe({
+      name: 'sort',
+      pure: false //true makes it pure and false makes it impure
+       })
+      export class myPipe implements PipeTransform {
+
+      transform(value: any, args?: any): any {
+         //your logic here and return the result
+       }
+      }
+  ```
