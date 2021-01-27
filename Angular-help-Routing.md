@@ -21,3 +21,18 @@ Instead of duplicating path, just redirect to the home path. Make sure pathMatch
 { path: '',  redirectTo: '/home', pathMatch: 'full' }
 { path: '/home', component: home }
 ```
+### routerLink VS HTML href
+_routerLinkActive_ applies a class  on the activated link (like making the activated link BOLD). Since the link is "/" it applies to all routes so we should us _routerLinkActiveOptions_ as follows:
+```htm
+<a
+  class="ui item"
+  routerLink="/"
+  [routerLinkActiveOptions]="{ exact: true }"
+  routerLinkActive="active"
+>
+  Sign In
+</a>
+<a class="ui item" routerLink="/signup" routerLinkActive="active">
+  Sign Up
+</a>
+```
