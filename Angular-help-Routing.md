@@ -21,7 +21,7 @@ Instead of duplicating path, just redirect to the home path. Make sure pathMatch
 { path: '',  redirectTo: '/home', pathMatch: 'full' }
 { path: '/home', component: home }
 ```
-### routerLink VS HTML href
+### RouterLink VS HTML href
 _routerLinkActive_ applies a class  on the activated link (like making the activated link BOLD). Since the link is "/" it applies to all routes so we should us _routerLinkActiveOptions_ as follows:
 ```htm
 <a
@@ -35,4 +35,27 @@ _routerLinkActive_ applies a class  on the activated link (like making the activ
 <a class="ui item" routerLink="/signup" routerLinkActive="active">
   Sign Up
 </a>
+```
+### Programmatic Navigation
+Injecting the _Router_ service and make use of it to navigate to another URL:
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+
+@Component({
+  selector: 'app-signout',
+  templateUrl: './signout.component.html',
+  styleUrls: ['./signout.component.css']
+})
+export class SignoutComponent implements OnInit {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.authService.signout().subscribe(() => {
+      this.router.navigateByUrl('/');
+    });
+  }
+}
+
 ```
