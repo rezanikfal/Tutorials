@@ -65,3 +65,25 @@ import { AuthModule } from './auth/auth.module';
 })
 export class AppModule {}
 ```
+### Control the send/response object
+We can differentiate the send request and received response using _HttpEventType_ class:
+```javascript
+export class AuthHttpInterceptor implements HttpInterceptor {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    // Modify or log the outgoing request
+    const modifiedReq = req.clone({
+      withCredentials: true
+    });
+
+    return next.handle(modifiedReq).pipe(
+      filter(val => val.type === HttpEventType.Sent),
+      tap(val => {
+        console.log('Sent the request');
+      })
+    );
+  }
+}
+```
