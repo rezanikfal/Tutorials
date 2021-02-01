@@ -15,6 +15,9 @@ Lazy loading speeds up application load time by splitting the application into m
   loadChildren: () => import('./lazy-route/lazy.module').then(mod => mod.LazyModule),
 }];
 ```
+#### Lazy loading in Email Client App
+<img src="./Pics/LazyLoad.png" width="550">
+
 ### RedirectTo
 Instead of duplicating path, just redirect to the home path. Make sure pathMatch is full otherwise it redirects for all other paths
 ```javascript
