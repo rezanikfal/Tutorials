@@ -16,8 +16,43 @@ Lazy loading speeds up application load time by splitting the application into m
 }];
 ```
 #### Lazy loading in Email Client App
-<img src="./Pics/LazyLoad.png" width="550">
+<img src="./Pics/LazyLoad.png" width="550">   
 
+inbox-routing.module.ts:  
+```javascript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+
+const routes: Routes = [{ path: '', component: HomeComponent }];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class InboxRoutingModule {}
+```
+
+app-routing.module.ts:  
+```javascript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'inbox',
+    loadChildren: () =>
+      import('./inbox/inbox.module').then(mod => mod.InboxModule)
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```
 ### RedirectTo
 Instead of duplicating path, just redirect to the home path. Make sure pathMatch is full otherwise it redirects for all other paths
 ```javascript
