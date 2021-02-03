@@ -34,7 +34,9 @@ $ sudo ln -s /snap/dotnet-sdk/current/dotnet /usr/local/bin/
 - __Model__ maps to the database (Representation of database table).
 - We remove some elements of model in DTO that we don't need to show to the user.
 
-### Interface
+### Create & Inject Services
+We need to create a service class (i.e. `CharacterService`) and an Interface (i.e. `ICharacterService`)  
+#### Interface
 An interface contains definitions for a group of related functionalities that a class must implement.
 - Syntax: Type + Name + Parameter
 ```csharp
@@ -49,4 +51,33 @@ namespace dotnet_rpg.Services.CharacterService
     }
 }
 ```
+#### Class
+```csharp
+namespace dotnet_rpg.Services.CharacterService
+{
+    public class CharacterService : ICharacterService
+    {
+        // Provides data istead of DB
+        private static List<Character> characters = new List<Character>{
+            new Character(),
+            new Character{Id=1,Name = "Sam"}
+        };
+        public List<Character> AddCharacter(Character newCharacter)
+        {
+            characters.Add(newCharacter);
+            return characters;
+        }
 
+        public List<Character> GetAllCharacters()
+        {
+            return characters;
+        }
+
+        public Character GetCharacterById(int id)
+        {
+            return characters.FirstOrDefault(c => c.Id == id);
+        }
+    }
+}
+```
+#### Inject Service in the Controller
