@@ -33,3 +33,20 @@ $ sudo ln -s /snap/dotnet-sdk/current/dotnet /usr/local/bin/
 - We use DTOs to __comunication between client & server__.
 - __Model__ maps to the database (Representation of database table).
 - We remove some elements of model in DTO that we don't need to show to the user.
+
+### Interface
+An interface contains definitions for a group of related functionalities that a class must implement.
+- Syntax: Type + Name + Parameter
+```csharp
+namespace dotnet_rpg.Services.CharacterService
+{
+    public interface ICharacterService
+    {
+        List<Character> GetAllCharacters();
+        Character  GetCharacterById (int id);
+        List<Character>  AddCharacter (Character newCharacter);
+
+    }
+}
+```
+
