@@ -29,7 +29,7 @@ $ sudo ln -s /snap/dotnet-sdk/current/dotnet /usr/local/bin/
 - To to so we __Inject__ necessary services to the controller to make use of it.
 <img src="./Pics/ControllerService.png" width="550"> 
 
-### DTO vs Model
+### DTO (Data Transfer Object) vs Model
 - We use DTOs to __comunication between client & server__.
 - __Model__ maps to the database (Representation of database table).
 - We remove some elements of model in DTO that we don't need to show to the user.
