@@ -52,6 +52,7 @@ namespace dotnet_rpg.Services.CharacterService
 }
 ```
 #### Class
+We should add the `ICharacterService` interface to `CharacterService` class and implement it:
 ```csharp
 namespace dotnet_rpg.Services.CharacterService
 {
@@ -81,3 +82,43 @@ namespace dotnet_rpg.Services.CharacterService
 }
 ```
 #### Inject Service in the Controller
+- Need a __constructor__ to inject the service
+- Create a new private field for the service (i.e. `characterService`)
+- Call proper method of the service for each HTTP call
+- Say to the application (i.e. `Startup.cs`) about the implementation for `ICharacterService`
+```csharp
+namespace dotnet_rpg.Services.CharacterService
+{
+    public class CharacterService : ICharacterService
+    {
+        // Provides data istead of DB
+        private static List<Character> characters = new List<Character>{
+            new Character(),
+            new Character{Id=1,Name = "Sam"}
+        };
+        public List<Character> AddCharacter(Character newCharacter)
+        {
+            characters.Add(newCharacter);
+            return characters;
+        }
+
+        public List<Character> GetAllCharacters()
+        {
+            return characters;
+        }
+
+        public Character GetCharacterById(int id)
+        {
+            return characters.FirstOrDefault(c => c.Id == id);
+        }
+    }
+}
+```
+####Startup.cs
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers();
+    services.AddScoped<ICharacterService, CharacterService>();
+}
+```
