@@ -122,3 +122,24 @@ public void ConfigureServices(IServiceCollection services)
     services.AddScoped<ICharacterService, CharacterService>();
 }
 ```
+### Convert to Async Methods
+#### Service Interface (`ICharacterService`)
+```csharp
+Task<List<Character>> GetAllCharacters();
+```
+#### Service Class (`CharacterService`)
+```csharp
+public async Task<List<Character>> AddCharacter(Character newCharacter)
+{
+    characters.Add(newCharacter);
+    return characters;
+}
+```
+#### Controller (`CharacterController`)
+```csharp
+[HttpGet("GetAll")]
+public async Task<IActionResult> Get()
+{
+    return Ok(await _characterService.GetAllCharacters());
+}
+```
