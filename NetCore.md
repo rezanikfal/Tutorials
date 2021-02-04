@@ -83,7 +83,7 @@ namespace dotnet_rpg.Services.CharacterService
 ```
 #### Inject Service in the Controller
 - Need a __constructor__ to inject the service
-- Create a new private field for the service (i.e. `characterService`)
+- Create a new private field for the service (i.e. `CharacterService`)
 - Call proper method of the service for each HTTP call
 - Say to the application (i.e. `Startup.cs`) about the implementation for `ICharacterService`
 ```csharp
@@ -137,9 +137,100 @@ public async Task<List<Character>> AddCharacter(Character newCharacter)
 ```
 #### Controller (`CharacterController`)
 ```csharp
+Task<ServiceResponse<List<Character>>> GetAllCharacters();
+```
+### Add Wrapper to the respond
+We Should update the Service (i.e. `CharacterService`) and Interface (i.e. `ICharacterService`):
+#### Wrapper Class
+```csharp
+namespace dotnet_rpg.Models
+{
+    public class ServiceResponse<T>
+    {
+        public T Data { get; set; }
+        public bool Success { get; set; } = true;
+        public string Message { get; set; } = null;
+    }
+}
+```
+#### Interface (`ICharacterService`)
+```csharp
 [HttpGet("GetAll")]
 public async Task<IActionResult> Get()
 {
     return Ok(await _characterService.GetAllCharacters());
+}
+```
+#### Service (`CharacterService`)
+```csharp
+public async Task<ServiceResponse<List<Character>>> AddCharacter(Character newCharacter)
+{
+    ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>();
+    serviceResponse.Data.Add(newCharacter);
+    return serviceResponse;
+}
+
+public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
+{
+    ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>();
+    serviceResponse.Data = characters;
+    return serviceResponse;
+}
+
+public async Task<ServiceResponse<Character>> GetCharacterById(int id)
+{
+    ServiceResponse<Character> serviceResponse = new ServiceResponse<Character>();
+    serviceResponse.Data = characters.FirstOrDefault(c => c.Id == id);
+    return serviceResponse;
+}
+```
+#### Before Wrapper:
+```json
+[
+    {
+        "id": 0,
+        "name": "Frodo",
+        "hitPoints": 100,
+        "strength": 10,
+        "defence": 10,
+        "intelligence": 10,
+        "class": 1
+    },
+    {
+        "id": 1,
+        "name": "Sam",
+        "hitPoints": 100,
+        "strength": 10,
+        "defence": 10,
+        "intelligence": 10,
+        "class": 1
+    }
+]
+```
+#### After Wrapper:
+```json
+{
+    "data": [
+        {
+            "id": 0,
+            "name": "Frodo",
+            "hitPoints": 100,
+            "strength": 10,
+            "defence": 10,
+            "intelligence": 10,
+            "class": 1
+        },
+        {
+            "id": 1,
+            "name": "Sam",
+            "hitPoints": 100,
+            "strength": 10,
+            "defence": 10,
+            "intelligence": 10,
+            "class": 1
+        }
+    ],
+    "success": true,
+    "message": null
 }
 ```
