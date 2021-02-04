@@ -1,6 +1,6 @@
 ## After installation in VS-Code
 ### Problem with globalization [(Link)](https://docs.microsoft.com/en-us/dotnet/core/run-time-config/globalization")
-dotnet run does not work. (This also happend when I installed AutoMapper) 
+dotnet run does not work. (This also happend when I installed __AutoMapper__) 
 In `PROJECT_NAME/bin/Debug/netcoreapp3.1/PROJECT_NAME.runtimeconfig.json` make the following change:
 ```yaml
 {
