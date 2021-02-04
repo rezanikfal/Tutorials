@@ -234,3 +234,6 @@ public async Task<ServiceResponse<Character>> GetCharacterById(int id)
     "message": null
 }
 ```
+### Data Transfer Object (DTO):
+- We map certain properties from Model to the DTO to __Receive__ data from the server.
+- Also we can use DTOs for creating an object like _character_ and __Send__ it to the server.
