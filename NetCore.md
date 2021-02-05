@@ -279,3 +279,46 @@ serviceResponse.Data = _mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c 
 return serviceResponse;
 ```
 - mapper.Map<`Which type the value should mapped to`>(`Actual object that will be mapped`)
+- Add Mapper to the character service (Before and After)
+```csharp
+public async Task<List<Character>> AddCharacter(Character newCharacter)
+{
+    characters.Add(newCharacter);
+    return characters;
+}
+
+public async Task<List<Character>> GetAllCharacters()
+{
+    return characters;
+}
+
+public async Task<Character> GetCharacterById(int id)
+{
+    return characters.FirstOrDefault(c => c.Id == id);
+}
+```
+```csharp
+public async Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
+{
+    ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+    Character character = _mapper.Map<Character>(newCharacter);
+    character.Id = characters.Max(c => c.Id) + 1;
+    characters.Add(character);
+    serviceResponse.Data = (characters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
+    return serviceResponse;
+}
+
+public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
+{
+    ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+    serviceResponse.Data = (characters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
+    return serviceResponse;
+}
+
+public async Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id)
+{
+    ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
+    serviceResponse.Data = _mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c => c.Id == id));
+    return serviceResponse;
+}}
+```
