@@ -249,3 +249,15 @@ Project Root
     |_ ServiceResponse.cs
 ```
 - The DTO's structure is like Model
+### AutoMapper:
+ - For installation (with no specific version):  
+`$ dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection`  
+ - Add Service to the `Startup.cs`:
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers();
+    services.AddAutoMapper(typeof(Startup));
+    services.AddScoped<ICharacterService, CharacterService>();
+}
+```
