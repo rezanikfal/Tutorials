@@ -261,3 +261,12 @@ public void ConfigureServices(IServiceCollection services)
     services.AddScoped<ICharacterService, CharacterService>();
 }
 ```
+ - Add constructor to __Inject__ Mapper to the service (`CharacterService`):
+```csharp
+private readonly IMapper _mapper;
+
+public CharacterService(IMapper mapper)
+{
+    _mapper = mapper;
+}
+```
