@@ -250,9 +250,9 @@ Project Root
 ```
 - The DTO's structure is like Model
 ### AutoMapper:
- - For installation (with no specific version):  
+- For installation (with no specific version):  
 `$ dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection`  
- - Add Service to the `Startup.cs`:
+- Add Service to the `Startup.cs`:
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -261,7 +261,7 @@ public void ConfigureServices(IServiceCollection services)
     services.AddScoped<ICharacterService, CharacterService>();
 }
 ```
- - Add constructor to __Inject__ Mapper to the service (`CharacterService`):
+- Add constructor to __Inject__ Mapper to the service (`CharacterService`):
 ```csharp
 private readonly IMapper _mapper;
 
@@ -270,3 +270,12 @@ public CharacterService(IMapper mapper)
     _mapper = mapper;
 }
 ```
+- Before and after applying AutoMapper
+```csharp
+return characters.FirstOrDefault(c => c.Id == id);
+```
+```csharp
+serviceResponse.Data = _mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c => c.Id == id));
+return serviceResponse;
+```
+- mapper.Map<`Which type the value should mapped to`>(`Actual object that will be mapped`)
