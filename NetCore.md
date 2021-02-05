@@ -237,3 +237,15 @@ public async Task<ServiceResponse<Character>> GetCharacterById(int id)
 ### Data Transfer Object (DTO):
 - We map certain properties from Model to the DTO to __Receive__ data from the server.
 - Also we can use DTOs for creating an object like _character_ and __Send__ it to the server.
+```
+Project Root
+  |_ Dtos
+    |_ Character
+      |_AddCharacterDto.cs
+      |_GetCharacterDto.cs
+  |_ Models
+    |_ Character.cs
+    |_ RpgClass.cs
+    |_ ServiceResponse.cs
+```
+- The DTO's structure is like Model
