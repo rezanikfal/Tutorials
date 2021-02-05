@@ -247,6 +247,7 @@ Project Root
     |_ Character.cs
     |_ RpgClass.cs
     |_ ServiceResponse.cs
+  |_ AutoMapperProfile.cs
 ```
 - The DTO's structure is like Model
 ### AutoMapper:
@@ -321,4 +322,18 @@ public async Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id)
     serviceResponse.Data = _mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c => c.Id == id));
     return serviceResponse;
 }}
+```
+- Add AutoMapper Profile:
+```csharp
+namespace dotnet_rpg
+{
+    public class AutoMapperProfile : Profile
+    {
+        public AutoMapperProfile()
+        {
+            CreateMap<Character, GetCharacterDto>();
+            CreateMap<AddCharacterDto, Character>();
+        }
+    }
+}
 ```
