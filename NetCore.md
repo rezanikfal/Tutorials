@@ -280,7 +280,7 @@ serviceResponse.Data = _mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c 
 return serviceResponse;
 ```
 - mapper.Map<`Which type the value should mapped to`>(`Actual object that will be mapped`)
-- Add Mapper to the character service (Before and After)
+- Add `Mapper` & `ServiceResponse` to the character service (Before and After)
 ```csharp
 public async Task<List<Character>> AddCharacter(Character newCharacter)
 {
