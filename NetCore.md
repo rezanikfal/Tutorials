@@ -23,6 +23,8 @@ For Ubuntu & Snap use this instead:
 ```javascript
 $ sudo ln -s /snap/dotnet-sdk/current/dotnet /usr/local/bin/
 ```
+For Windows:
+- try setting the "omnisharp.path" option in the VS Code settings to "latest"
 ## Udemy Course (.NET Core 3.1 Jumpstart)
 ### Controller:
 - It should be pretty simple, just forward data to the service and result to the client.
