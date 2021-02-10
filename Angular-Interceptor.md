@@ -1,5 +1,5 @@
 ### withCredentials
-Adding this option object kepps the cookie even you refresh the page
+Adding this option `withCredentials: true` keeps the cookie even you refresh the page
 ```javascript
   signup(credentials: SignupCredentials) {
     return this.http
