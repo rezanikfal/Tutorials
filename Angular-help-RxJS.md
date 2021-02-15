@@ -272,7 +272,7 @@ Output: ```Sum: 10```
 We use this approach whenever we are writing a service that has some data inside of it that needs to communicate that data to some outside components.  
  ![Behavior Subject](./Pics/BSubject.JPG)
 
-## take & skipWhile Operators
+## take & skipWhile Operators (316, Stephen)
 ```javascript
 import { Observable } from 'rxjs';
 import { take, skipWhile } from 'rxjs/operators';
