@@ -271,3 +271,33 @@ Output: ```Sum: 10```
 ## Using Subject to handle Signed-In boolean key across the App
 We use this approach whenever we are writing a service that has some data inside of it that needs to communicate that data to some outside components.  
  ![Behavior Subject](./Pics/BSubject.JPG)
+
+## take & skipWhile Operators
+```javascript
+import { Observable } from 'rxjs';
+import { take, skipWhile } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanLoad {
+  constructor(private authService: AuthService) {}
+
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this.authService.signedin$.pipe(
+```
+__skipWhile__ receives the value and returns True/False. in case of True it does not allow the value to continue flowing.
+```javascript
+      skipWhile(value => value === null),
+```
+Allow __One(1)__ value comes out of the observable and then mark the observable as __Complete__
+```javascript
+      take(1)
+    );
+  }
+}
+```
