@@ -160,7 +160,30 @@ export class CardFormComponent implements OnInit {
       });
   }
 ```
-## Dynamic Forms using FormBuilder/FormArray:
+## Dynamic Forms using FormBuilder/FormArray:  
+Using __Getter__ to get a form array to push __formCotrols__ in:   
+- Inject form builder:
+```javascript
+  constructor(private fb: FormBuilder) {}
+```
+- Create form array (using fb or directly):
+```javascript
+  cardForm = new FormGroup({
+    alterEmails: this.fb.array([]),
+  });
+```
+- Create getter:
+```javascript
+  get alterEmails(){
+    return this.cardForm.get('alterEmails') as FormArray
+  }
+  ```
+- Use getter to create Form Controls:
+```javascript
+  addAlterEmails() {
+    this.alterEmails.push(this.fb.control(''));
+  }
+  ```
 ### app.module.ts:
 ```javascript
 import { Component, OnInit } from '@angular/core';
