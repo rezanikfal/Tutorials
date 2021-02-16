@@ -166,7 +166,7 @@ Using __Getter__ to get a form array to push __formCotrols__ in:
 ```javascript
   constructor(private fb: FormBuilder) {}
 ```
-- Create Form Grou/Array (using fb or directly):
+- Create Form Group/Array (using fb or directly):
 ```javascript
   cardForm = new FormGroup({
     alterEmails: this.fb.array([]),
