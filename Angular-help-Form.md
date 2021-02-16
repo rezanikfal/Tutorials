@@ -102,6 +102,7 @@ export class InputComponent implements OnInit {
     {{ control.errors.maxlength.requiredLength }}
     characters
   </div>
+  //regular expression
   <div *ngIf="control.errors.pattern">
     Invalid format
   </div>
