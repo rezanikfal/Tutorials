@@ -268,8 +268,11 @@ __Take__ allows __One(1)__ value comes out of the observable and then mark the o
   }
 }
 ```
-## Map VS MergMap
-Scan emits each successive value VS Reduce emits the final value
+## Map VS MergMap VS SwitchMap
+- map takes in every value emitted from the Observable, performs an operation on it and returns an Observable (so the Observable chain can continue)
+- There are times when map will generate multiple Observables. So the consumer should subscribe multiple times
+- MergMap will subscribe to all the inner Observables inside the outer Observable and merges the inner Observables. So the consumer just subscries once.
+- SwitchMap does what mergeMap does but it does not merge the inner Observables. It instead switches to the __latest__ Observable and passes that along to the chain.
 ```javascript
 const getData = (param) => {
   return of(`retrieved new data with param ${param}`).pipe(
