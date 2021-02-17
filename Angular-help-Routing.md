@@ -6,7 +6,7 @@
 { path: '**', component: WildcardComponent }
 ```
 ### PathMatch
-The default path-match strategy is 'prefix', which means that the router checks URL elements from the left to see if the URL matches a specified path.You can specify the path-match strategy 'full' to make sure that the path covers the whole unconsumed URL.
+The default path-match strategy is 'prefix', which means that the router checks URL elements from the left to see if the URL matches a specified path.You can specify the path-match strategy __full__ to make sure that the path covers the whole unconsumed URL.
 ### Lazy Loading
 Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
 ```javascript
