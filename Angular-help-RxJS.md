@@ -286,3 +286,9 @@ from([1,2,3,4]).pipe(
   mergeMap(param => getData(param))
 ).subscribe(val => console.log(val));
 ```
+## Observable vs Promise
+- Observable can emit multiple values but Promise cannot
+- Observable can be cancelled by Unsubscribe but Promise does not have cancellation mechanism
+- Observable is lazy but Promise is eager
+- Observable has chaining mechanism and subscription but Promise has just _Then_ clause
+- Observable can be used by multiple consumers but Promise has just one consumer
