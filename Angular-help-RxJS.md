@@ -268,3 +268,21 @@ __Take__ allows __One(1)__ value comes out of the observable and then mark the o
   }
 }
 ```
+## Map VS MergMap
+Scan emits each successive value VS Reduce emits the final value
+```javascript
+const getData = (param) => {
+  return of(`retrieved new data with param ${param}`).pipe(
+    delay(1000)
+  )
+}
+
+from([1,2,3,4]).pipe(
+  map(param => getData(param))
+).subscribe(val => val.subscribe(data => console.log(data)));
+```
+```javascript
+from([1,2,3,4]).pipe(
+  mergeMap(param => getData(param))
+).subscribe(val => console.log(val));
+```
