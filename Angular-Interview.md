@@ -38,7 +38,7 @@
 - Impure pipes are those which can manage the state of the data (Async)
 - prevent security threads (external HTML /external urls/API)
 - optimize Angular: lazy loading/un-necessary import/AOT compilation/
-- NgZone exposes a set of Observables that allow us to determine the current status, or stability, of Angular's zone.
+- NgZone The most common use of this service is to optimize performance when starting a work consisting of one or more asynchronous tasks that don't require UI updates or error handling to be handled by Angular.
 - Access component in other module => put the component name in export array in the component's module - import the component module in the app module or any other destination module & put in the list of imports
 - Angular/AngularJS -> Typescript, dependency Injection/Tow Way bounding, Support mobile
 - Authentication -> server side validation using JWT(json web token)
