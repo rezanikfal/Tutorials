@@ -10,6 +10,9 @@ The default path-match strategy is 'prefix', which means that the router checks 
 ### Lazy Loading
 Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
 ```javascript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = 
 [{ path: 'my/path/', component: MyComponent },
 {
   path: 'lazy',
