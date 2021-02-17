@@ -4,8 +4,33 @@
 - Template reference variables -> <input #reza ...
 - An Attribute directive changes the appearance or behavior of a DOM element and extend the power of the HTML by giving it new syntax. (Structural directives -> *ngIf and *ngFor , Attribute directives -> *ngStyle and *ngClass, Components)
 ```htm
+<div *ngIf="condition">Content to render when condition is true.</div></ul>
+```
+```htm
 <ul>
   <li *ngFor="let user of users">{{ user.name }}</li>
+</ul>
+```
+```htm
+<ul>
+  <div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div>
+</ul>
+```
+```htm
+<ul *ngFor="let person of people">
+  <li [style.color]="getColor(person.country)">{{ person.name }} ({{ person.country }})
+  </li>
+</ul>
+```
+```htm
+<h4>NgClass</h4>
+<ul *ngFor="let person of people">
+  <li [ngClass]="{
+    'text-success':person.country === 'UK',
+    'text-primary':person.country === 'USA',
+    'text-danger':person.country === 'HK'
+  }">{{ person.name }} ({{ person.country }})
+  </li>
 </ul>
 ```
 - Services encapsulates business logic and separates them from UI concerns
