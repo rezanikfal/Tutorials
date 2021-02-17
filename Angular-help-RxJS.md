@@ -172,7 +172,7 @@ hijacking the array and create another observable that emmits objects inside the
 ```javascript
       mergeMap((value) => of(...value)),
 ```
-Filter out the values based on their index and a condition (here we pick out 0,8,16,24,32 from 0-39). You can apply the filter on the __value__ or the __index__
+Filter out the values based on their index and a condition (here we pick out 0,8,16,24,32 from 0-39). You can apply the filter on the __value__ or the __index__:
 ```javascript
       filter((value, index) => index % 8 === 0),
 ```
@@ -261,7 +261,7 @@ __skipWhile__ receives the value and returns True/False. in case of True it does
 ```javascript
       skipWhile(value => value === null),
 ```
-Allow __One(1)__ value comes out of the observable and then mark the observable as __Complete__
+__Take__ allows __One(1)__ value comes out of the observable and then mark the observable as __Complete__
 ```javascript
       take(1)
     );
