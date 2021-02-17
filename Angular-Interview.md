@@ -3,6 +3,11 @@
 - Just-in-time (JIT) compilation: This is a standard developviment approach which compiles our Typescript and html files in the browser at runtime.
 - Template reference variables -> <input #reza ...
 - An Attribute directive changes the appearance or behavior of a DOM element and extend the power of the HTML by giving it new syntax. (Structural directives -> *ngIf and *ngFor , Attribute directives -> *ngStyle and *ngClass, Components)
+```htm
+<ul>
+  <li *ngFor="let user of users">{{ user.name }}</li>
+</ul>
+```
 - Services encapsulates business logic and separates them from UI concerns
 - Pure pipes are stateless that flow input date without remembering
 - Impure pipes are those which can manage the state of the data (Async)
