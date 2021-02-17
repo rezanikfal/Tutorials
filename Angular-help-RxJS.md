@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 ```
 ### Service:
-pluck returns a new Observable of property values from the source values.
+pluck returns a new __Observable__ of property values from the source values.
 ```javascript
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
