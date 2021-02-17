@@ -195,40 +195,6 @@ In the case of **multiple subscription**, the network request is made just once
     );
   }
 ```
-### UI Markup and Typescript:
-```javascript
-export class ForecastComponent implements OnInit {
-  forecastData = [];
-
-  constructor(forecastService: ForecastService) {
-    forecastService.getForecast().subscribe(forecastData => {
-      this.forecastData = forecastData;
-    });
-  }
-```
-```html
-<div *ngFor="let forecast of forecastData">
-  {{ forecast.temp | number: '1.0-0' }}°C
-  {{ forecast.dateString | date: 'E' }}
-</div>
-```
-## Async Pipe:
-Same UI Markup and Typescript using *Async Pipe*
-```javascript
-export class ForecastComponent implements OnInit {
-  forecast$: Observable<{ dateString: string; temp: number }[]>;
-
-  constructor(forecastService: ForecastService) {
-    this.forecast$ = forecastService.getForecast();
-  }
-```
-```html
-<div *ngFor="let forecast of forecast$ | async">
-  {{ forecast.temp | number: '1.0-0' }}°C
-  {{ forecast.dateString | date: 'E' }}
-</div>
-
-```
 ## Observable VS Subject
 * __Observable (Cold)__
   * When the observer subscribes, it emmits the value  
