@@ -41,6 +41,7 @@ describe('Testing addition', ()=>{
 })
 ```
 ## Test a Method / Event Emitter in an Angular Component
+If there are several __it__ in a test suit, We can use __befoeEach__ to do someting before each Assertion:
 ```JavaScript
 export class VoteComponent implements OnInit {
   
@@ -87,27 +88,6 @@ describe('VoteComponent', () => {
     component.upVote()
     expect(totalVote).toBe(1);
     expect(totalVote).not.toBeNull()
-  });
-});
-```
-### befoeEach
-If there are several __it__ in a test suit, We can use __befoeEach__ to do someting before each Assertion:
-```JavaScript
-import { VoteComponent } from './vote.component';
-
-describe('VoteComponent', () => {
-  let component: VoteComponent
-
-  beforeEach(() => component = new VoteComponent)
-
-  it('should increment total vote when upvothed', () => {
-    component.upVote()
-    expect(component.tootalVotes).toBe(1);
-  });
-
-  it('should decrement total vote when downvothed', () => {
-    component.downVote()
-    expect(component.tootalVotes).toBe(-1);
   });
 });
 ```
