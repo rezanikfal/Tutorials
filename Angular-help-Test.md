@@ -40,3 +40,26 @@ describe('Testing addition', ()=>{
     })
 })
 ```
+## Test a Method in an Angular Component
+```JavaScript
+export class VoteComponent implements OnInit {
+  tootalVotes = 0
+  constructor() { }
+  ngOnInit(): void {}
+  upVote() {
+    this.tootalVotes++
+  }
+}
+```
+```JavaScript
+import { VoteComponent } from './vote.component';
+
+describe('VoteComponent', () => {
+  let component = new VoteComponent
+  component.upVote()
+
+  it('should increment total vote when upvothed', () => {
+    expect(component.tootalVotes).toBe(1);
+  });
+});
+```
