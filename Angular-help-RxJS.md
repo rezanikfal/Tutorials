@@ -331,3 +331,13 @@ export class SubscriberComponent implements OnInit, OnDestroy {
 ```
 ### Some important operators
 ![RxJs Operators](./Pics/rxjs.png)
+### EMPTY & isEmpty Operators
+```javascript
+import { EMPTY } from 'rxjs';
+import { isEmpty } from 'rxjs/operators';
+
+const result = EMPTY.pipe(isEmpty());
+result.subscribe(x => console.log(x));
+// Results in:
+// true
+```
