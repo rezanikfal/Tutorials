@@ -40,14 +40,22 @@ describe('Testing addition', ()=>{
     })
 })
 ```
-## Test a Method in an Angular Component
+## Test a Method / Event Emitter in an Angular Component
 ```JavaScript
 export class VoteComponent implements OnInit {
-  tootalVotes = 0
+  
+  totalVotes = 0
+  voteChange = new EventEmitter()
   constructor() { }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+  }
   upVote() {
-    this.tootalVotes++
+    this.totalVotes++
+    this.voteChange.emit(this.totalVotes)
+  }
+  downVote() {
+    this.totalVotes--
   }
 }
 ```
@@ -55,11 +63,30 @@ export class VoteComponent implements OnInit {
 import { VoteComponent } from './vote.component';
 
 describe('VoteComponent', () => {
-  let component = new VoteComponent
-  component.upVote()
+  let component: VoteComponent
+
+  beforeEach(() => component = new VoteComponent)
 
   it('should increment total vote when upvothed', () => {
-    expect(component.tootalVotes).toBe(1);
+    component.upVote()
+    expect(component.totalVotes).toBe(1);
+  });
+
+  it('should decrement total vote when downvothed', () => {
+    component.downVote()
+    expect(component.totalVotes).toBe(-1);
+  });
+  it('should decrement total vote when downvothed', () => {
+    component.downVote()
+    expect(component.totalVotes).toBe(-1);
+  });
+
+  it('should raise voteChanged event when upvoted', () => {
+    let totalVote=undefined
+    component.voteChange.subscribe(tv => totalVote = tv)
+    component.upVote()
+    expect(totalVote).toBe(1);
+    expect(totalVote).not.toBeNull()
   });
 });
 ```
