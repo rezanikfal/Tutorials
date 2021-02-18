@@ -301,8 +301,10 @@ export class SubscriberComponent implements OnInit, OnDestroy {
   value1: number;
   value2: number;
   value3: number;
+  
   destroySubjects: Subject<void> = new Subject();
   constructor(private service: MyService) { }
+  
   ng0nInit() {
     this.service.value1.pipe(
       takeUntil(this.destroySubject$)
