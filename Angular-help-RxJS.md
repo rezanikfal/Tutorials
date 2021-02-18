@@ -329,3 +329,5 @@ export class SubscriberComponent implements OnInit, OnDestroy {
   }
 }
 ```
+### Some important operators
+![RxJs Operators](./Pics/rxjs.png)
