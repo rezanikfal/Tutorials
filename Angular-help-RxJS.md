@@ -295,3 +295,35 @@ from([1,2,3,4]).pipe(
 - Observable is lazy but Promise is eager
 - Observable has chaining mechanism and subscription but Promise has just _Then_ clause
 - Observable can be used by multiple consumers but Promise has just one consumer
+### Unsubscribe several Observables using Subject
+```javascript
+export class SubscriberComponent implements OnInit, OnDestroy {
+  value1: number;
+  value2: number;
+  value3: number;
+  destroySubjects: Subject<void> = new Subject();
+  constructor(private service: MyService) { }
+  ng0nInit() {
+    this.service.value1.pipe(
+      takeUntil(this.destroySubject$)
+    ).subscribe(value => {
+      this.valuel = value;
+    });
+
+    this.service.value2.pipe(
+      takeUntil(this.destroySubject$)
+    ).subscribe(value => {
+      this.value2 = value;
+    });
+
+    this.service.value3.pipe(
+      takeUntil(this.destroySubject$)
+    ).subscribe(value => {
+      this.value3 = value;
+    });
+  }
+  ngonDestroy() {
+    this.destroySubjects.next();
+  }
+}
+```
