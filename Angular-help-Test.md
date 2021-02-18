@@ -122,3 +122,12 @@ describe('TodoFormComponent', () => {
   });
 });
 ```
+## Test Services by SpyOn method
+Using SpyOn methos we can change a method (i.e. getTodos) on a class (i.e. service) as follows:
+- Change the implementation of the method
+- the mothod has been called
+- return a different value
+- throw an error
+```JavaScript
+test
+```
