@@ -122,12 +122,46 @@ describe('TodoFormComponent', () => {
   });
 });
 ```
-## Test Services by SpyOn method
-Using SpyOn methos we can change a method (i.e. getTodos) on a class (i.e. service) as follows:
+## Test Services using SpyOn method
+Using SpyOn method we can change a method on a class so that:
 - Change the implementation of the method
-- the mothod has been called
+- if the mothod has been called
 - return a different value
 - throw an error
 ```JavaScript
-test
+export class TodosComponent implements OnInit {
+  todos: any[] = [];
+  message;
+  constructor(private service: TodoService) { }
+
+  ngOnInit(): void {
+    this.service.getTodos().subscribe(t => this.todos.push(t));
+  }
+}
+```
+```JavaScript
+import { TodosComponent } from './todos.component';
+import { TodoService } from './todo.service';
+import { of } from 'rxjs';
+
+describe('TodosComponent', () => {
+  let component: TodosComponent;
+  let service: TodoService;
+
+  beforeEach(() => {
+    service = new TodoService(null)
+    component = new TodosComponent(service)
+  });
+
+  it('should set todos property with the item returned from the server', () => {
+    spyOn(service, "getTodos").and.callFake(() => {
+      return of(1, 2, 3)
+    })
+
+    component.ngOnInit()
+    expect(component.todos.length).toBeGreaterThan(0);
+    expect(component.todos.length).toBe(3);
+    expect(component.todos).toEqual([1, 2, 3]);
+  });
+});
 ```
