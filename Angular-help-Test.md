@@ -128,6 +128,7 @@ Using SpyOn method we can change a method on a class so that:
 - if the mothod has been called
 - return a different value
 - throw an error
+### Test ngOnInit
 ```JavaScript
 export class TodosComponent implements OnInit {
   todos: any[] = [];
