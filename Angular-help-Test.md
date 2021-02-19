@@ -128,7 +128,6 @@ Using SpyOn method we can change a method on a class so that:
 - if the mothod has been called
 - return a different value
 - throw an error
-### Test ngOnInit
 ```JavaScript
 export class TodosComponent implements OnInit {
   todos: any[] = [];
@@ -138,12 +137,24 @@ export class TodosComponent implements OnInit {
   ngOnInit(): void {
     this.service.getTodos().subscribe(t => this.todos.push(t));
   }
+
+  add() { 
+    var newTodo = { title: '... ' };
+    this.service.add(newTodo).subscribe(
+      t => this.todos.push(t),
+      err => this.message = err);
+  }
+
+  delete(id) {
+    if (confirm('Are you sure?'))
+      this.service.delete(id).subscribe();
+  } 
 }
 ```
 ```JavaScript
 import { TodosComponent } from './todos.component';
 import { TodoService } from './todo.service';
-import { of } from 'rxjs';
+import { EMPTY, of, throwError } from 'rxjs';
 
 describe('TodosComponent', () => {
   let component: TodosComponent;
@@ -153,7 +164,9 @@ describe('TodosComponent', () => {
     service = new TodoService(null)
     component = new TodosComponent(service)
   });
-
+```
+### Test ngOnInit
+```JavaScript
   it('should set todos property with the item returned from the server', () => {
     spyOn(service, "getTodos").and.callFake(() => {
       return of(1, 2, 3)
@@ -163,6 +176,56 @@ describe('TodosComponent', () => {
     expect(component.todos.length).toBeGreaterThan(0);
     expect(component.todos.length).toBe(3);
     expect(component.todos).toEqual([1, 2, 3]);
+  });
+```
+### Test calling the server
+```JavaScript
+  it('should call the server to save the changes when new item is added', () => {
+    let spy = spyOn(service, "add").and.callFake(t => {
+      return EMPTY
+    })
+    component.add()
+    expect(spy).toHaveBeenCalled()
+  });
+```
+### Test returning data by a function in the service
+```JavaScript
+  it('should add the new todo returned from the server', () => {
+    let todo = { id: 1 }
+    // let spy = spyOn(service, "add").and.callFake(t => {
+    //   return of(todo)
+    // })
+    spyOn(service, "add").and.returnValue(of(todo))
+    component.add()
+    expect(component.todos).toContain(todo)
+    expect(component.todos.indexOf(todo)).toBeGreaterThan(-1)
+  });
+```
+### Test returning Error Message by a function in the service
+```JavaScript
+  it('should set the message property if server returns error', () => {
+    let error = 'Error from the server'
+    spyOn(service, "add").and.returnValue(throwError(error))
+    component.add()  
+    expect(component.message).toBe(error)
+  });
+```
+### Put Spy on the Confirmation Window (Test Delete method)
+```JavaScript
+  it('should call the server to delete a todo if the user confirms', () => {
+    spyOn(window, "confirm").and.returnValue(true)
+    let spy = spyOn(service, "delete").and.returnValue(EMPTY)
+    component.delete(1)  
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledWith(1)
+  });
+
+  it('should NOT call the server to delete a todo if the user cancels', () => {
+    spyOn(window, "confirm").and.returnValue(false)
+    let spy = spyOn(service, "delete").and.returnValue(EMPTY)
+    component.delete(1)  
+    expect(spy).not.toHaveBeenCalled()
+    expect(spy).not.toHaveBeenCalledWith(1)
   });
 });
 ```
