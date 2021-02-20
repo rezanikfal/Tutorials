@@ -233,3 +233,33 @@ describe('TodosComponent', () => {
   });
 });
 ```
+## Integration Test
+You cannot create an instance of the model like before. Angular does it for you.
+```JavaScript
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { VoterComponent } from './voter.component';
+
+describe('VoterComponent', () => {
+  let component: VoterComponent;
+  let fixture: ComponentFixture<VoterComponent>;
+```
+- Create a dynamic testing module:
+```JavaScript
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ VoterComponent ]
+    })
+```
+- Creating  __Component fixture__ which is a wrapper around the component instance. 
+  - Using Fixture we have access to the component __Model & Template__.
+  - We can create the component class instance.
+  - Get DOM Element using ```debugElement``` or ```nativeElement```
+  - Run Change Detection manually
+  - Get Injected dependencies.
+```JavaScript
+    fixture = TestBed.createComponent(VoterComponent);
+    component = fixture.componentInstance;
+    fixture.debugElement
+    fixture.detectChanges();
+  });
+```
