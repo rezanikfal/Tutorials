@@ -13,6 +13,10 @@
 - __Arrange__: Arrange to setup the unit test case, like creating the objects, initializing/mocking data etc..
 - __Act__: Act on your unit test case, meaning execute necessary functionality/methods that needs to be unit tested.
 - __Assert__: This part verifies the functionality/method that we are unit testing is giving the result as per expectation.
+### Test Types
+- __Unit Test,__ Tests the logic of the model
+- __Integration Test,__ Tests the integration of the model with its template
+
 ```JavaScript
 describe('Room Reservation', () => {
   it('Testing Room is reserved or not', () => {
