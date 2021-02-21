@@ -164,7 +164,7 @@ import('./elements/elements.module').then(m=>m.ElementModule)
         </a>
       </ng-container>
    ```
-- Getter & Setter VS Methods
+- __Getter__ & __Setter__ VS __Methods__
   - A difference between using a getter or setter and using a standard function is that getters/setters are automatically invoked on assignment. So it looks just like a normal property but behind the scenes you can have extra logic (or checks) to be run just before or after the assignment.
   - So if you decide to add this kind of extra logic to one of the existing object properties that is already being referenced, you can convert it to getter/setter style without altering the rest of the code that has access to that property.
   - This is useful if you want to follow the JavaScript convention of using __methods__ (functions that have been attached to objects) to do things, and use __properties__ (variables that have been attached to objects) to describe things. Or, put differently, you may want methods to mutate the object and getters to describe it.
@@ -179,4 +179,19 @@ import('./elements/elements.module').then(m=>m.ElementModule)
        return this.meters / 100; 
     } 
   } 
+  ```
+   - The __set__ syntax binds an object property to a function to be called when there is an attempt to set that property:
+  ```javascript
+  const language = {
+    set current(name) {
+      this.log.push(name);
+    },
+    log: []
+  };
+
+  language.current = 'EN';
+  language.current = 'FA';
+
+  console.log(language.log);
+  // expected output: Array ["EN", "FA"]
   ```
