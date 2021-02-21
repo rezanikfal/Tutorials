@@ -264,7 +264,7 @@ describe('VoterComponent', () => {
   });
 ```
 - ```fixture.debugElement.query()``` takes a __predicate__. A predicate is a function that takes one item as input and returns either true or false based on whether the item satisfies some condition.
-- Using __By__ class we can query the DOM by css classes.
+- Using __By__ class we Predicates for use with DebugElement's query functions.
 ```JavaScript
   it('should render total vote', () => {
     component.othersVote = 20
