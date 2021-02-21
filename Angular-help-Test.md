@@ -234,7 +234,8 @@ describe('TodosComponent', () => {
 });
 ```
 ## Integration Test
-You cannot create an instance of the model like before. Angular does it for you.
+- You cannot create an instance of the model like before. Angular does it for you.
+- We use Integration Test when we need to test any kind of __binding__ (i.e. Property, Event, style, and Class binding).
 ```JavaScript
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { VoterComponent } from './voter.component';
