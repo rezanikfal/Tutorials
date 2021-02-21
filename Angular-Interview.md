@@ -164,3 +164,17 @@ import('./elements/elements.module').then(m=>m.ElementModule)
         </a>
       </ng-container>
    ```
+- Getter VS Methods
+  - This is useful if you want to follow the JavaScript convention of using __methods__ (functions that have been attached to objects) to do things, and use __properties__ (variables that have been attached to objects) to describe things. Or, put differently, you may want methods to mutate the object and getters to describe it.
+  - Getter becomes useful when you start needing to do more than one representation of the same data:
+  ```javascript
+  class Distance { 
+    setCentimeters(cm) { 
+      this.setMeters(cm / 100); 
+    } 
+
+    get centimeters() { 
+       return this.meters / 100; 
+    } 
+  } 
+  ```
