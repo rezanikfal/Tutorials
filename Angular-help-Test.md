@@ -238,6 +238,7 @@ describe('TodosComponent', () => {
 - We use Integration Test when we need to test any kind of __binding__ (i.e. Property, Event, style, and Class binding).
 ```JavaScript
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { VoterComponent } from './voter.component';
 
 describe('VoterComponent', () => {
@@ -260,8 +261,31 @@ describe('VoterComponent', () => {
 ```JavaScript
     fixture = TestBed.createComponent(VoterComponent);
     component = fixture.componentInstance;
-    fixture.debugElement
-    fixture.detectChanges();
   });
 ```
 - ```fixture.debugElement.query()``` takes a __predicate__. A predicate is a function that takes one item as input and returns either true or false based on whether the item satisfies some condition.
+- Using __By__ class we can query the DOM by css classes.
+```JavaScript
+  it('should render total vote', () => {
+    component.othersVote = 20
+    component.myVote = 1
+    fixture.detectChanges();
+
+    let de = fixture.debugElement.query(By.css('.vote-count'))
+    let el: HTMLElement = de.nativeElement
+
+    expect(el.innerText).toBe(String(21));
+  });
+```
+- Also we have access to the classes directly from ```fixture.debugElement```
+```JavaScript
+  it('should highlight the upvote button if I have upvoted', () => {
+    component.myVote = 1
+    fixture.detectChanges();
+
+    let de = fixture.debugElement.query(By.css('.glyphicon-menu-up'))
+
+    expect(de.classes['highlighted']).toBeTruthy();
+  });
+});
+```
