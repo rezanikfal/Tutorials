@@ -236,6 +236,49 @@ describe('TodosComponent', () => {
 ## Integration Test
 - You cannot create an instance of the model like before. Angular does it for you.
 - We use Integration Test when we need to test any kind of __binding__ (i.e. Property, Event, style, and Class binding).
+### Model
+```JavaScript
+export class VoterComponent {
+  @Input() othersVote = 0;
+  @Input() myVote = 0;
+
+  @Output() vote = new EventEmitter();
+
+  upVote() {
+    if (this.myVote == 1)
+      return;
+    this.myVote++;
+    this.vote.emit({ myVote: this.myVote });
+  }
+  
+  downVote() {
+    if (this.myVote == -1)
+      return;
+    this.myVote--;
+    this.vote.emit({ myVote: this.myVote });
+  }
+
+  get totalVotes() {
+    return this.othersVote + this.myVote;
+  }
+}
+```
+### Markup
+```htm
+<div class="voter">
+    <i 
+        class="glyphicon glyphicon-menu-up vote-button"
+        [class.highlighted]="myVote == 1" 
+        (click)="upVote()"></i>
+        
+    <span class="vote-count">{{ totalVotes }}</span>
+    
+    <i 
+        class="glyphicon glyphicon-menu-down vote-button"
+        [class.highlighted]="myVote == -1" 
+        (click)="downVote()"></i>
+</div>
+```
 ### Property and Class Binding
 ```JavaScript
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
