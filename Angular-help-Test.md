@@ -290,3 +290,13 @@ describe('VoterComponent', () => {
   });
 });
 ```
+- Test click event handler
+```JavaScript
+  it('should increase total vote when I click the upvote button', () => {
+
+    let button = fixture.debugElement.query(By.css('.glyphicon-menu-up'))
+    button.triggerEventHandler('click', null)
+    expect(component.totalVotes).toBe(1);
+  });
+});
+```
