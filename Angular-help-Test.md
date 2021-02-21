@@ -264,3 +264,4 @@ describe('VoterComponent', () => {
     fixture.detectChanges();
   });
 ```
+- ```fixture.debugElement.query()``` takes a __predicate__. A predicate is a function that takes one item as input and returns either true or false based on whether the item satisfies some condition.
