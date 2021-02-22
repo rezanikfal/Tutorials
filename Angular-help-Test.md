@@ -1,9 +1,45 @@
 ## Testing Framework
+### Protractor (E2E)
+- Automate the application workflow from login to logout 
+- Run end to end test by ```ng e2e``` all file names related to this ends with ```.e2e-spec.ts```
+- There are 2 files for testing including ```app.e2e-spec.ts```, the test page and ```app.po.ts``` the __Page Object__
+```JavaScript
+import { browser, by, element } from 'protractor';
+
+export class AppPage {
+  navigateTo(): Promise<unknown> {
+    return browser.get(browser.baseUrl) as Promise<unknown>;
+  }
+
+  getTitleText(): Promise<string> {
+    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  }
+}
+```
+- using Page Object we can define all UI elements and use it in the test file. So like unit test we don't need to create the objects for every test.
+- in the spec file we should initialize the Page Object and use the defined elemets (i.e. ```page.getTitleText()```)
+- We can use ```browser.sleep(5000)``` to keep the browser open for 5 sec.
+```JavaScript
+import { AppPage } from './app.po';
+import { browser, logging } from 'protractor';
+
+describe('workspace-project App', () => {
+  let page: AppPage;
+
+  beforeEach(() => {
+    page = new AppPage();
+  });
+
+  it('should display welcome message', () => {
+    page.navigateTo();
+    browser.sleep(5000)
+    expect(page.getTitleText()).toEqual('AngularTest app is running!');
+  });
+```
 ### Jasmin
 - Open source testing for JS.
 - It is a Behavior Driven Development testing (BDD)
 - BDD focuses on more on Behavior of code instead of Implementation. So if you change the implementation, it still works.
-
 ### Karma
 - Open source test runner framework for JS.
 - Karma can be easily integrated in Angular project and makes it easy to execute test using Angular CLI.
