@@ -40,6 +40,8 @@ export class AppCardComponent implements OnInit {
 ```
 ## Form Control Validation/Error Handling:
 ```javascript
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+...
 export class AppCardComponent implements OnInit {
   cardForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -60,6 +62,10 @@ export class AppCardComponent implements OnInit {
 </form>>
 ```
 ## AbstractControl pristine/dirty/touched/untouched:
+- untouched True if control has not lost focus yet.
+- touched True if control has lost focus.
+- pristine True if user has not interacted with the control yet.
+- dirty True if user has already interacted with the control.
 ```htm
 <form [formGroup]="cardForm">
   <input formControlName="name" />
