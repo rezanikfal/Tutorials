@@ -9,7 +9,7 @@ The components have their whole lifecycle managed by Angular, from creation to d
 - ngDoCheck()
   -  It detects changes that Angular can’t or won’t detect. It is called in __every__ change detection, immediately after the ngOnChanges and ngOnInit hooks.this hook is really costly.It is called when __change detection runs__.
 - ngAfterContentInit()
-  - The AfterContent hooks concern _ContentChildren_, the child components that Angular projected into the component.
+  - The AfterContent hooks concern _ContentChildren_, the child components that Angular projected into the component. Children usually to be projected at some <ng-content> element of a component.
   - This method is called only __once__ during the component’s lifecycle, after the first ngDoCheck.
 - ngAfterContentChecked()
   - This method is called once during the component’s lifecycle after ngAfterContentInit and then after __every__ subsequent ngDoCheck.
