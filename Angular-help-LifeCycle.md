@@ -1,13 +1,13 @@
 ## Angular Life Cycle Hooks
-The components have their whole lifecycle managed by Angular, from creation to destruction. Lifecycle hooks allow us to act in key moments. It is called when a value bound to an input has changed
+The components have their whole lifecycle managed by Angular, from creation to destruction. Lifecycle hooks allow us to act in key moments.
 ## List of hooks
 - ngOnChanges()  
-  - This method is called once on component’s creation and then __every time__ changes are detected in one of the component’s input properties.You can handle any specific logic in the component based on the received input property.
+  - This method is called once on component’s creation and then __every time__ changes are detected in one of the component’s input properties.You can handle any specific logic in the component based on the received input property. It is called when a __value bound to an input has changed__.
 - ngOnInit()  
-  - This method is called only __once__ during the component lifecycle, after the first ngOnChanges call. At this point, within this method, you can have access not only to data-bound properties but also the component’s input properties.+
+  - This method is called only __once__ during the component lifecycle, after the first ngOnChanges call. At this point, within this method, you can have access not only to data-bound properties but also the component’s input properties.
   - constructor is best left to be used for dependency injection and our initialization logic should be put on ngOnInit.
 - ngDoCheck()
-  -  It detects changes that Angular can’t or won’t detect. It is called in __every__ change detection, immediately after the ngOnChanges and ngOnInit hooks.this hook is really costly.It is called when change detection runs
+  -  It detects changes that Angular can’t or won’t detect. It is called in __every__ change detection, immediately after the ngOnChanges and ngOnInit hooks.this hook is really costly.It is called when __change detection runs__.
 - ngAfterContentInit()
   - The AfterContent hooks concern _ContentChildren_, the child components that Angular projected into the component.
   - This method is called only __once__ during the component’s lifecycle, after the first ngDoCheck.
