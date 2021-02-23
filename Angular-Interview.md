@@ -195,3 +195,15 @@ import('./elements/elements.module').then(m=>m.ElementModule)
   console.log(language.log);
   // expected output: Array ["EN", "FA"]
   ```
+- Planning the Architecture of your Angular App
+ - App Overview: the application goals
+ - Development Methodology:  using a waterfall or agile approach
+ - Domain Security: The domain security, using rules on the server side and communication with Angular app
+ - Services/Communication: How is the app going to talk to the server
+ - Data Models: What’s the data from the API
+ - Application modules: Each has a structured block of code dedicated to an application domain
+ - Feature Components: How are our features and how are we structure our component
+ - Shared Functionality: What shared functionality
+ - Third party libraries: Decision about UI libraries like Angular Material or Kendo UI
+ - Unit Testing: Are we testing? Budget? Coverage? Built-in CLI lib or something else?
+ - End-to-end testing: Are we testing? Budget? Built-in CLI lib or something else? 
