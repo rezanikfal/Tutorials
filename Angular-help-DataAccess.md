@@ -29,7 +29,7 @@ export class Mod1Comp1Component implements OnInit {
   }
 }
 ```
-## Pass Data from parent to child using INPUT:
+## Pass Data from parent to child using INPUT directive:
 ### Child:
 ```javascript
 import { Component, OnInit, Input } from '@angular/core';
@@ -74,7 +74,7 @@ export class AppComponent {
 <app-page-list [pages]="pages"></app-page-list>
 ```
 
-## Pass Data from child to parent using OUTPUT:
+## Pass Data from child to parent using OUTPUT directive:
 ### Child (app-modal):
 ```javascript
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
