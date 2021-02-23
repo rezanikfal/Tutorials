@@ -22,4 +22,4 @@ The components have their whole lifecycle managed by Angular, from creation to d
 - ngOnDestroy()
   - Lastly, this method is called only __once__ during the component’s lifecycle, right before Angular destroy it. 
   - you should put all your cleanup logic for that component. 
-  - Remove any localstorage information and, unsubscribe observables/detach event handlers/stop timers, etc. to avoid memory leaks.
+  - Remove any localstorage information and, unsubscribe observables/detach event handlers/stop timers, etc. to avoid __memory leaks__.
