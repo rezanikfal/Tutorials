@@ -18,6 +18,7 @@ margin-top: 20px;
 }
 ```
 ## Access to the component HTML content:
+By injecting the ```ElementRef``` in the component, we have access to the DOM elements. 
 ```javascript
 import { Component, OnInit, ElementRef } from '@angular/core';
 
