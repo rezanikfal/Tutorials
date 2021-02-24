@@ -79,6 +79,22 @@ export class AppCardComponent implements OnInit {
     ....
 ```
 ## Create *Reusable* Form Controls:
+### Parent Componenet:
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+....
+export class CardFormComponent implements OnInit {
+  cardForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)])
+  });
+}
+```
+```htm
+<form [formGroup]="cardForm">
+  <app-input [control]="cardForm.get('name')"></app-input>
+</form>
+```
 ### Child Componenet (Reusable) + Validation:
 ```javascript
 import { Component, OnInit, Input } from '@angular/core';
@@ -114,22 +130,6 @@ export class InputComponent implements OnInit {
   </div>
 </ng-container>
 </form>>
-```
-### Parent Componenet:
-```javascript
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-....
-export class CardFormComponent implements OnInit {
-  cardForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)])
-  });
-}
-```
-```htm
-<form [formGroup]="cardForm">
-  <app-input [control]="cardForm.get('name')"></app-input>
-</form>
 ```
 ## RxJS & Forms:
 ```javascript
