@@ -10,3 +10,9 @@ Pass: 8f1sx3
 
 WIFI: UGC-KELLER
 Pass: R3D15TH3B35T
+
+Remote Front-End Web API Server:
+Computer: 10.19.8.13
+User name: Administrator
+Pass: Tee5ithi
+
