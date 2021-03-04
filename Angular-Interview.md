@@ -63,7 +63,7 @@
 ...
 this.nameElementRef.nativeElement.focus();
 ```  
-- ViewChild VS ContentChild: As the name suggests, @ContentChild and @ContentChildren queries will return directives existing inside the <ng-content></ng-content> element of your view, whereas @ViewChild    and @ViewChildren only look at elements that are on your view template directly. 
+- @ViewChild VS @ContentChild: As the name suggests, ```@ContentChild``` and ```@ContentChildren``` queries will return directives existing inside the ```<ng-content></ng-content>``` element of your view, whereas ```@ViewChild``` and ```@ViewChildren``` only look at elements that are on your view template directly. 
 - Test @input for component interaction Use an input property setter to intercept and act upon a value from the parent.
 - Component Fixture is a generic class . using that you can access to component instance as well as template
 - Arrange, Act and Assert (AAA) Pattern for Testbed you use fixture.component for AA and fixture.debugElement for Assert
