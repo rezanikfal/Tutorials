@@ -2,6 +2,11 @@
 <img src="./Pics/CSharp1.JPG" width="400"> <img src="./Pics/CSharp2.JPG" width="400">  
 ### Using Statement
 ```using System;``` means importing the __System Namespace__. A namespace is a container for related classes.
+### Variables / Constants
+- Variable: a name given to a storage location in memory. It is written Camel Case like ```int myName``` 
+- Constant: an immutable value. It is written Pascal Case like ```const int MyName```
+## Primitive Types (in .NET and Mapped type in C#) 
+<img src="./Pics/PrimitiveTypes.JPG" width="400"> <img src="./Pics/CSharp2.JPG" width="400">  
 ### Type Conversion
 - Implicit (```int``` covers ```byte``` range)
 ```csharp
