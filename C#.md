@@ -5,7 +5,7 @@
 ### Variables / Constants
 - Variable: a name given to a storage location in memory. It is written Camel Case like ```int myName``` 
 - Constant: an immutable value. It is written Pascal Case like ```const int MyName```
-## Primitive Types (in .NET and Mapped type in C#) 
+### Primitive Types
 - When we compile C# data types, the compiler translate then to equivalent .NET type.
 - C# keywords are always __Lowercase__.
 - Each C# Types or Keywords maps to a type in .NET framework. So if we declare a float or decimal, we should say that to the compiler explicitly. Also the same story for integral numbers that ```int``` is default:
