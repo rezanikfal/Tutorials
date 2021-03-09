@@ -5,8 +5,6 @@
 -  declaring my own namespaces can help control the scope of class and method names in larger programming projects.
 <img src="./Pics/NamespaceCSharp.JPG" width="700">
 
-### Using Statement
-```using System;``` means importing the __System Namespace__. A namespace is a container for related classes.
 ### Variables / Constants
 - Variable: a name given to a storage location in memory. It is written Camel Case like ```int myName``` 
 - Constant: an immutable value. It is written Pascal Case like ```const int MyName```
@@ -98,7 +96,12 @@ class Calculator
     }
 }
 ```
-
+- Look at ```Console``` class in System namespace. the ```WriteLine``` method has defined as __Static__.
+```csharp
+Console.WriteLine("Reza Nikfal");
+```
+ - We don't need to create an instance of  ```Console``` class to make use of it.
+ - There are just one __Console__ in the application and having several instances of Console doesn't make sence.
 
 
 
