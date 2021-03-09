@@ -57,9 +57,42 @@ int j = int.Parse(s);
 ```csharp
 Console.WriteLine("{0} {1}", byte. MinValue, byte. MaxValue);
 ```
+## Class vs Object
+- __Class__ is a type or blueprin from which we create __Object__. It is an __instance__ of the class.
+<img src="./Pics/ClassObjectCSharp.JPG" width="500">
 
-
-
+- When we run the program, the __Objects__ are talking to each other to provide functionality.
+- To create class we need __Access Modifier__ + __class keyword__ + __Identifier or class name__.
+- Inside a class we might have __Variable or Field__ as well as __Method or Function__
+```csharp
+public class Person
+{
+    public string Name;
+    public void Introduce()
+    {
+        Console.WriteLine("Hi, my name is" + Name);
+    }
+}
+```
+### Create Object
+It is like __Primitive__ types but we have to allocate memory for the object using __new__ operator.
+```csharp
+int number; //No need to allocate memory for Primitive types
+Person person = new Person();
+```
+### Static Modifier
+- If we add the __Static Modifier__ to the __add Method__ in calculate class we can access it directly from class and no need to create an instance.
+- We __cannot__ access the Static methods from the objects.
+- It means there is only __one__ instance from the Static class in memory.
+```csharp
+class Calculator
+{
+    public static int add(int a, int b)
+    {
+        return a + b;
+    }
+}
+```
 
 
 
