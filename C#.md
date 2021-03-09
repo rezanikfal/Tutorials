@@ -52,7 +52,10 @@ int j = int.Parse(s);
 ### String VS Char
 - ```string (C#) or String (.Net)``` is Class. It is Non-Primitive type like Array, Enum, Class.
 - ```char (C#) or Char (.Net)``` is Structure. It is Primitive type like int, float, ....
-
+### Format String
+```csharp
+Console.WriteLine("{0} {1}", byte. MinValue, byte. MaxValue);
+```
 
 
 
