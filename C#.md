@@ -49,6 +49,9 @@ int i = Convert.ToInt32(s);
 // All premetive types in C# have Parse Method.
 int j = int.Parse(s);
 ```
+### String VS Char
+- ```string (C#) or String (.Net)``` is Class. It is Non-Primitive type like Array, Enum, Class.
+- ```char (C#) or Char (.Net)``` is Structure. It is Primitive type like int, float, ....
 
 
 
@@ -67,6 +70,4 @@ int j = int.Parse(s);
 
 
 ### DateTime & TimeSpan
-```using System;``` means importing the __System Namespace__. A namespace is a container for related classes.
-### String
 ```using System;``` means importing the __System Namespace__. A namespace is a container for related classes.
