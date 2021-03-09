@@ -1,5 +1,10 @@
 ## Fundamentals
 <img src="./Pics/CSharp1.JPG" width="400"> <img src="./Pics/CSharp2.JPG" width="400">  
+### namespaces
+-  The .NET classes use namespaces to organize its many classes.
+-  declaring my own namespaces can help control the scope of class and method names in larger programming projects.
+<img src="./Pics/NamespaceCSharp.JPG" width="700">
+
 ### Using Statement
 ```using System;``` means importing the __System Namespace__. A namespace is a container for related classes.
 ### Variables / Constants
