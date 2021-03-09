@@ -6,6 +6,7 @@
 - Variable: a name given to a storage location in memory. It is written Camel Case like ```int myName``` 
 - Constant: an immutable value. It is written Pascal Case like ```const int MyName```
 ### Primitive Types
+- C# is a statically-typed, strongly-typed language. That means all variables must be declared to be of a specific type.
 - When we compile C# data types, the compiler translate them to equivalent .NET type.
 - C# keywords are always __Lowercase__.
 - Each C# Types or Keywords maps to a type in .NET framework (like ```int``` to ```Int32```)
