@@ -107,10 +107,28 @@ Console.WriteLine("Reza Nikfal");
 ```
  - We don't need to create an instance of  ```Console``` class to make use of it.
  - There are just one __Console__ in the application and having several instances of Console doesn't make sence.
-
-
-
-
+### String Class
+- Create string:
+```csharp
+var firstName="Mosh"; //maps to System.String
+string firstName="Mosh"; //maps to System.String
+String firstName="Mosh"; // Direct usage. Needs to import System namespace
+```
+- Concatanate/Join using ```Format and Join``` static method on string class:
+```csharp
+var myFullName = string.Format("My name is {0} {1}", firstName, lastName);
+var names = new string[3] { "John", "Jack", "Mary" };
+var formattedNames = string.Join(",", names);
+```
+- The @ special character serves as a __verbatim__ identifier:
+```csharp
+var text = "Hi John\nLook into the following paths\nc:\\folder1\\folder2";
+```
+```csharp
+var text = @"Hi John
+Look into the following paths
+c:\folder1\folder2";
+```
 
 
 
