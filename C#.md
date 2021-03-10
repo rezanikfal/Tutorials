@@ -129,7 +129,38 @@ var text = @"Hi John
 Look into the following paths
 c:\folder1\folder2";
 ```
+### Enum Class
+- To create a new type we use ```enum``` where you have a number of related constants. 
+- Since it is a new type. It should be created at namespace level.
+- It is internally integer so we can parse it to int and vice versa.
+- We can convert a string to an enum using ```Enum.Parse``` class. It asks for __type object__ that represents the metadata of another type. To pass the type object we should use ```typeof(...)``` operator.
+```csharp
+namespace App1
+{
+    public enum ShippingMethod
+    {
+        AirMail=1,
+        Ground = 2,
+        Express =3
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var method = ShippingMethod.Express;
+            Console.WriteLine((int)method);
 
+            var methodId = 3;
+            Console.WriteLine((ShippingMethod)methodId);
+
+            Console.WriteLine(method.ToString());
+
+            var methodName= "Express";
+            var shippingMethod = (ShippingMethod)Enum.Parse(typeof(ShippingMethod), methodName);
+        }
+    }
+}
+```
 
 
 
