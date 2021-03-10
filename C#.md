@@ -161,6 +161,10 @@ namespace App1
     }
 }
 ```
+### Value/Ref Type
+When we copy an object depending on the type you get different results.
+
+<img src="./Pics/ValueRefTypesCSharp.JPG" width="700">
 
 
 
