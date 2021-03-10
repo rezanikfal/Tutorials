@@ -83,9 +83,9 @@ It is like __Primitive__ types but we have to allocate memory for the object usi
 int number; //No need to allocate memory for Primitive types
 Person person = new Person();
 ```
-When we use [ ] in declaration, behind the scene, the Array class gets called. So we need to allocate memory and initialize like classes.
+When we use [ ] in declaration, behind the scene, the Array class gets called. So we need to allocate memory and initialize like classes. Also there is a shortcut to assign values to an array.
 ```csharp
-int[] number=new int[3]
+int[] number = new int[3] {1,2,3}
 ```
 ### Static Modifier
 - If we add the __Static Modifier__ to the __add Method__ in calculate class we can access it directly from class and no need to create an instance.
