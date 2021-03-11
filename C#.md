@@ -56,6 +56,7 @@ int j = int.Parse(s);
 ### String VS Char
 - ```string (C#) or String (.Net)``` is Class. It is Non-Primitive type like Array, Enum, Class.
 - ```char (C#) or Char (.Net)``` is Structure. It is Primitive type like int, float, ....
+- Originally ```char``` is int. So we can cast it to int and vice versa.
 ### Format String
 ```csharp
 Console.WriteLine("{0} {1}", byte. MinValue, byte. MaxValue);
@@ -166,7 +167,13 @@ When we copy an object depending on the type you get different results.
 
 <img src="./Pics/ValueRefTypesCSharp.JPG" width="700">
 
-
+### Random Class
+After initializatioin we can use ```Next``` method to generate random numbers.
+```csharp
+var random = new Random();
+for (var i = 0; i < 10; i++)
+    Console.WriteLine(random.Next(97, 122));
+```
 
 
 
