@@ -84,11 +84,6 @@ It is like __Primitive__ types but we have to allocate memory for the object usi
 int number; //No need to allocate memory for Primitive types
 Person person = new Person();
 ```
-When we use [ ] in declaration, behind the scene, the Array class gets called. So we need to allocate memory and initialize like classes. Also there is a shortcut to assign values to an array. Also we can use ```var```. 
-```csharp
-int[] number = new int[3] {1,2,3}
-var number = new int[3] {1,2,3}
-```
 ### Static Modifier
 - If we add the __Static Modifier__ to the __add Method__ in calculate class we can access it directly from class and no need to create an instance.
 - We __cannot__ access the Static methods from the objects.
@@ -174,9 +169,21 @@ var random = new Random();
 for (var i = 0; i < 10; i++)
     Console.WriteLine(random.Next(97, 122));
 ```
-
-
-
+### Array/List
+When we use [ ] in declaration, behind the scene, the Array class from ```System namespace``` gets called. So we need to allocate memory and initialize like classes. Also there is a shortcut to assign values to an array. Also we can use ```var```. 
+```csharp
+int[] number = new int[3] {1,2,3}
+var number = new int[3] {1,2,3}
+var matrix = new int[2, 3]
+{
+{1,2,3},
+{4,5,6}
+}
+```
+List is a generic type. we can create a list of everything like int, string, Person, ...
+```csharp
+var reza = new List<int> { 1, 2, 3, 4, 5 };
+```
 
 
 ### DateTime & TimeSpan
