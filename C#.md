@@ -187,4 +187,14 @@ var reza = new List<int> { 1, 2, 3, 4, 5 };
 
 
 ### DateTime & TimeSpan
-```using System;``` means importing the __System Namespace__. A namespace is a container for related classes.
+Both are structure and immutable.
+```csharp
+var someDate = new DateTime(2000, 12, 12);
+someDate.AddDays(10);                                  // No Change because DateTime is immutable.
+var otherDay = someDate.AddDays(10);                   // Now 10 days will be added.
+var formattedDay = someDate.ToString("yyyyy-MM-dd");   // Create user-defined formats
+var timeSpan = new TimeSpan(1, 1, 1); 
+var timeSpan_new = TimeSpan.FromDays(3);               // Static Method
+Console.WriteLine(timeSpan_new.Hours);                 // Hour part of the Time Span
+Console.WriteLine(timeSpan_new.TotalHours);            // Time Span in Hours
+```
