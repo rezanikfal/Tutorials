@@ -218,3 +218,14 @@ var builder = new StringBuilder("Starting Text")
     .AppendLine();
 Console.WriteLine(builder);
 ```
+### Files/Directories/Path
+- They are located in __System.IO__ namespace:
+- __File/Directory__ class provides __Static__ methods VS __FileInfo/DirectoryInfo__ class provides __Instance__ methods.
+```csharp
+ var path = @"C:\Users\Reza\Documents\DotNet\CSahrpMosh\Reza.jpg";
+
+ Console.WriteLine(Path.GetExtension(path));       // .jpg
+ Console.WriteLine(Path.GetFileName(path));        // Reza.jpg
+ Console.WriteLine(Path.GetDirectoryName(path));   // C:\Users\Reza\Documents\DotNet\CSahrpMosh
+ Console.WriteLine(Path.GetTempPath());            // C:\Users\Reza\AppData\Local\Temp\
+``` 
