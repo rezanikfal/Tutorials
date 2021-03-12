@@ -198,3 +198,23 @@ var timeSpan_new = TimeSpan.FromDays(3);               // Static Method
 Console.WriteLine(timeSpan_new.Hours);                 // Hour part of the Time Span
 Console.WriteLine(timeSpan_new.TotalHours);            // Time Span in Hours
 ```
+### String
+- To compare with null, empty or whiteSpace we can use the following methods:
+```csharp
+String.IsNullOrEmpty (str)
+String.IsNullOrWhiteSpace (str)
+```
+- Convert Number to String:
+```csharp
+int i = 1234;
+string s = i.ToString();       // “1234"
+string t = i.ToString(“C");    // “$1,234.00"
+string t = i.ToString (“C0");  // “$1,234"
+```
+- String Builder to create __mutable__ strings:
+```csharp
+var builder = new StringBuilder("Starting Text")
+    .Append(" Second Part")
+    .AppendLine();
+Console.WriteLine(builder);
+```
