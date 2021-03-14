@@ -158,7 +158,8 @@ namespace App1
 }
 ```
 ### Value/Ref Type
-When we copy an object depending on the type you get different results.
+- When we copy an object depending on the type you get different results.
+- Value type cannot be ```Null```.
 
 <img src="./Pics/ValueRefTypesCSharp.JPG" width="700">
 
