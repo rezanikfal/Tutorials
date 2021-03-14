@@ -88,6 +88,7 @@ Person person = new Person();
 - If we add the __Static Modifier__ to the __add Method__ in calculate class we can access it directly from class and no need to create an instance.
 - We __cannot__ access the Static methods from the objects.
 - It means there is only __one__ instance from the Static class in memory.
+- It presents concepts that are __Singleton__.
 ```csharp
 class Calculator
 {
