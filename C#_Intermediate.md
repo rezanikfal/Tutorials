@@ -21,8 +21,27 @@ public class Customer
     }
 }
 ```
-
-
+### Object Initializer
+To avoid creating multiple Constructor to handle initializing an object.
+```csharp
+public class Person
+{
+    public int Id;
+    public string FirstName;
+    public string LastName;
+    public DateTime Birthdate;
+    }
+```
+```csharp
+static void Main(string[] args)
+{
+    var person = new Person
+    {
+        FirstName = "Reza",
+        LastName = "Nikfal"
+    };
+}
+```
 
 
 
