@@ -3,7 +3,7 @@ If we don't use Constructor in a class, C# compiler creates one to initialize al
 ### Constructor Overloading
 It means using multiple Constructor with different signature.
 - It makes initialization of the class easier.
-- Using ```: this()``` we can call the default constructor.
+- Using ```: this()``` we can call the default or parameterless constructor.
 ```csharp
 public class Customer
 {
