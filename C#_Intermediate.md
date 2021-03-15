@@ -42,7 +42,23 @@ static void Main(string[] args)
     };
 }
 ```
-
+## Methods
+Using one overload on the other and handle the exception using __Defensive Programming__.
+```csharp
+public void Move(int x, int y)
+{
+    this.X = x;
+    this.Y = y;
+}
+public void Move(Point newLocation)
+{
+    if (newLocation == null)
+    {
+        throw new ArgumentNullException("newLocation");
+    }
+    Move(newLocation.X, newLocation.Y);
+}
+```
 
 
 
