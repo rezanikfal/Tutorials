@@ -165,6 +165,7 @@ class Program
 - Classes should not be aware of their details. That is the concept of __Encapsulation__.
 - Writing code once and re-use it in multiple context.
 - UML is a graphical language to show classes and their collaboration.
+- Inheritance creates hierarchy that is fragile. it is against the __Encapsulation__ concept.
 <img src="./Pics/InheritanceCShart.JPG" width="400">
 
 - Inheriting the __Text__ class from __PresentationObject__ class
@@ -230,3 +231,7 @@ static void Main(string[] args)
 
 }
 ```
+## Composition VS Inheritance
+With composition, we get great flexibility as well as __loose coupling__.   
+<img src="./Pics/Inheritance2CSharp.JPG" width="400">
+<img src="./Pics/Composition2CSharp.JPG" width="400">
