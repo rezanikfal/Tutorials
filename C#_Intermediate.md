@@ -162,6 +162,7 @@ class Program
 }
 ```
 ## Inheritance
+- Classes should not be aware of their details. That is the concept of __Encapsulation__.
 - Writing code once and re-use it in multiple context.
 - UML is a graphical language to show classes and their collaboration.
 <img src="./Pics/InheritanceCShart.JPG" width="400">
