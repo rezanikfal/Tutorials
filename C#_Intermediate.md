@@ -162,5 +162,6 @@ class Program
 }
 ```
 ## Inheritance
-Writing code once and re-use it in multiple context.
+- Writing code once and re-use it in multiple context.
+- UML is a graphical language to show classes and their collaboration.
 <img src="./Pics/InheritanceCShart.JPG" width="400">
