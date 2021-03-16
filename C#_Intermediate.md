@@ -189,3 +189,43 @@ public class Text : PresentationObject
 }
 ```
 <img src="./Pics/Inheritance.JPG" width="600">
+
+## Composition
+- No special syntax. The class will be added to the Constructor. 
+<img src="./Pics/CompositioCSharp.JPG" width="400">
+
+```csharp
+public class Logger
+{
+    public void Log(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+```
+```csharp
+public class DbMigrator
+{
+    private readonly Logger _logger;
+
+    public DbMigrator(Logger logger)
+    {
+        _logger = logger;
+    }
+
+    public void Migrate()
+    {
+        _logger.Log("Logging through Logger class.");
+    }
+}
+```
+```csharp
+static void Main(string[] args)
+{
+    var logger = new Logger();
+    var migrator = new DbMigrator(logger);
+
+    migrator.Migrate();
+
+}
+```
