@@ -165,3 +165,27 @@ class Program
 - Writing code once and re-use it in multiple context.
 - UML is a graphical language to show classes and their collaboration.
 <img src="./Pics/InheritanceCShart.JPG" width="400">
+
+- Inheriting the __Text__ class from __PresentationObject__ class
+```csharp
+public class PresentationObject
+{
+    public int width { get; set; }
+    public int height { get; set; }
+    public void Copy()
+    {
+        Console.WriteLine("Copy the object");
+    }
+}
+```
+```csharp
+public class Text : PresentationObject
+{
+    public int FontSize { get; set; }
+    public void AddHyperlink()
+    {
+        System.Console.WriteLine("Hyperlink added");
+    }
+}
+```
+<img src="./Pics/Inheritance.JPG" width="600">
