@@ -133,13 +133,31 @@ public class Person
     }
 }
 ```
-
-
-
-
-
-
-
-
-
-<img src="./Pics/NamespaceCSharp.JPG" width="700">
+## Indexers
+- Indexer is a special kind of property that allows accessing elements of a list by an index.
+```csharp
+public class HttpCookie
+{
+    private readonly Dictionary<string, string> _dictionary;
+    public HttpCookie()
+    {
+        _dictionary = new Dictionary<string, string>();
+    }
+    public string this[string key]
+    {
+        get { return _dictionary[key]; }
+        set { _dictionary[key] = value; }
+    }
+}
+```
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        var cookie = new HttpCookie();
+        cookie["name"] = "Mosh";
+        Console.WriteLine(cookie["name"]);
+    }
+}
+```
