@@ -59,7 +59,26 @@ public void Move(Point newLocation)
     Move(newLocation.X, newLocation.Y);
 }
 ```
+## Fields
+- We can initialize _orders_ directly as follows or using constructor.
+- Adding __readonly__ to make sure this field will be initialized just once.
+```csharp
+    public class Customer
+    {
+public int Id;
+public string name;
+public readonly List<order> orders = new List<order>();
 
+public Customer(int id)
+{
+    Id = id;
+}
+
+public Customer(int id, string name) : this(id)
+{
+    this.name = name;
+}     
+```
 
 
 
