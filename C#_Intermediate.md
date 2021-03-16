@@ -63,8 +63,8 @@ public void Move(Point newLocation)
 - We can initialize _orders_ directly as follows or using constructor.
 - Adding __readonly__ to make sure this field will be initialized just once.
 ```csharp
-    public class Customer
-    {
+public class Customer
+{
 public int Id;
 public string name;
 public readonly List<order> orders = new List<order>();
@@ -79,6 +79,35 @@ public Customer(int id, string name) : this(id)
     this.name = name;
 }     
 ```
+## Properties
+### Getter & Setter
+- In C# we have 5 access modifiers: __public, private, protected, internal and protected internal__.
+- We use access modifiers to hide the implementation details of a class. 
+- Using getters and setters we can add logic to our fields. (like checking the null entry).
+- __Private Fields__ starts with __Undeline__ and follows __camelCase__.
+```csharp
+public class Person
+{
+    private DateTime _birthdate;
+    public void SetBirthdate(DateTime birthdate)
+    {
+        _birthdate = birthdate;
+    }
+    public DateTime GetBirthdate()
+    {
+        return _birthdate;
+    }
+}  
+```
+
+
+
+
+
+
+
+
+
 
 
 
