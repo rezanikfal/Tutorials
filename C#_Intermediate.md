@@ -235,3 +235,8 @@ static void Main(string[] args)
 With composition, we get great flexibility as well as __loose coupling__.   
 <img src="./Pics/Inheritance2CSharp.JPG" width="400">
 <img src="./Pics/Composition2CSharp.JPG" width="400">
+## Access Modifier
+Other than __Public__, __Private__, __Protected__ (accessible in the inherited classes) there is __Internal__ which is accessible in the assembly.
+### Create new assembly (dll)
+- Right click on the current __Solution__ -> Create a __new Project__ -> Add __Class Library__.
+- If we have to use any class from the new assemble (namespace) we should add its reference in the __Dependencies__. 
