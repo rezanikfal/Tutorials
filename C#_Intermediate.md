@@ -240,3 +240,14 @@ Other than __Public__, __Private__, __Protected__ (accessible in the inherited c
 ### Create new assembly (dll)
 - Right click on the current __Solution__ -> Create a __new Project__ -> Add __Class Library__.
 - If we have to use any class from the new assemble (namespace) we should add its reference in the __Dependencies__. 
+## UpCasting & DownCasting
+- In .NET UpCasting (from a derived class or child to a base class or parent) is implicit and DownCasting is explicit.
+```csharp
+// Upcasting
+Shape shape = circle;
+// Downcasting
+Circle circle = (Circle)shape;
+Circle circle = shape as Circle;
+if (circle != null)  // It works if we use 'as' keyboard
+if (shape is Circle) // Make sure the Circle is drived from shape
+```
