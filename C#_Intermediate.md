@@ -295,4 +295,4 @@ public class Circle : Shape
 }
 ```
 ### Sealed Classes
-- Abstract modiﬁer states that a class or a member misses implementation.
+If Sealed modiﬁer is applied to a class, it prevents derivation from that class. Not very usable.
