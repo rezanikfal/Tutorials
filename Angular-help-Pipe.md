@@ -91,3 +91,43 @@ A pure pipe is only called when Angular detects a change in the value or the par
        }
       }
   ```
+### Use Date Pipe in Angular Component:
+- ```app.module.ts```:
+```javascript
+import { DatePipe } from '@angular/common';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    AngularpipeComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [DatePipe],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+- We should import and inject the pipe and use the ```transform``` method to apply the Pipe:
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
+@Component({
+  selector: 'app-angularpipe',
+  templateUrl: './angularpipe.component.html',
+  styleUrls: ['./angularpipe.component.scss']
+})
+export class AngularpipeComponent implements OnInit {
+
+  datePipeString : string;
+
+  constructor(private datePipe: DatePipe) { 
+    this.datePipeString = datePipe.transform(Date.now(),'yyyy-MM-dd');
+    console.log(this.datePipeString);
+    //2019-07-22
+  }
+}
+```
