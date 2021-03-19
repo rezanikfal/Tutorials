@@ -275,7 +275,7 @@ public class Circle : Shape
 ### Abstract Classes
 - Abstract modiﬁer states that a class or a member misses implementation.
 - **All** abstract members **must** be overrided in the inherited class.
-- Abstract class is too abstract to have implementation. Like ```Shape Class``` and ```Draw``` method that doesn't make any sense.
+- Abstract class is too abstract to have implementation. Like implementing ```Draw``` method in the ```Shape Class``` that doesn't make any sense.
 ```csharp
 public abstract class Shape
 {
@@ -294,3 +294,5 @@ public class Circle : Shape
     }
 }
 ```
+### Sealed Classes
+- Abstract modiﬁer states that a class or a member misses implementation.
