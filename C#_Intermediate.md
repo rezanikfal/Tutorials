@@ -251,3 +251,24 @@ Circle circle = shape as Circle;
 if (circle != null)  // It works if we use 'as' keyboard
 if (shape is Circle) // Make sure the Circle is drived from shape
 ```
+## Polymorphism
+### Method Overriding
+- **Overriding** is changing the implementation of an inherited method VS **Overloading** means having methods with the same name and different signature.
+- If a declare a method as **virtual** in the base class, we can override it in a derived class.
+```csharp
+public class Shape
+{
+    public virtual Draw()
+    {
+        // Default implementation for all derived classes
+    }
+}
+
+public class Circle : Shape
+{
+    public override Draw()
+    {
+        // Changed implementation
+    }
+}
+```
