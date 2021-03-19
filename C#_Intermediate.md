@@ -272,3 +272,25 @@ public class Circle : Shape
     }
 }
 ```
+### Abstract Classes
+- Abstract modiﬁer states that a class or a member misses implementation.
+- **All** abstract members **must** be overrided in the inherited class.
+- Abstract class is too abstract to have implementation. Like ```Shape Class``` and ```Draw``` method that doesn't make any sense.
+```csharp
+public abstract class Shape
+{
+    // This method doesn’t have a body. 
+    public abstract void Draw();
+    public void copy()
+    {
+        // has implementation
+    }
+}
+public class Circle : Shape
+{
+    public override void Draw()
+    {
+        // implementation
+    }
+}
+```
