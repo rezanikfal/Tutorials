@@ -1,4 +1,5 @@
 ## Create Custom Pipe:
+They are a simple way to transform values in an Angular template.
 ### Typescript (Pipe)
 ```ng generate pipe Pipe-Name```
 ```javascript
