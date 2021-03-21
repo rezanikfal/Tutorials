@@ -93,6 +93,7 @@ A pure pipe is only called when Angular detects a change in the value or the par
       }
   ```
 ### Use Date Pipe in Angular Component:
+- We should add the ```Pipe``` to the ```providers: [DatePipe]``` array. That is the old way of creating an injectable (before Angular 6).
 - ```app.module.ts```:
 ```javascript
 import { DatePipe } from '@angular/common';
@@ -132,3 +133,28 @@ export class AngularpipeComponent implements OnInit {
   }
 }
 ```
+### Two ways for creating an Injectable:
+To create a service all we need to do is create a class
+```javascript
+export class VoteService {}
+```
+And register it in providers array of **@NgModule**
+```javascript
+import {VoteService} from './vote.service';
+...
+@NgModule({
+  imports:      [ BrowserModule],
+  declarations: [ AppComponent],
+  bootstrap:    [ AppComponent],
+  providers: [VoteService]
+})
+```
+The second way (more preferred in Angular 6) is to use **@Injectable** decorator and specify **providedIn** property
+```javascript
+import { Injectable } from '@angular/core';
+@Injectable({   
+  providedIn: 'root', 
+}) 
+export class VoteService { }
+```
+‘root’ means that we want provide the service at the root level (AppModule)
