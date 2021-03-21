@@ -1,5 +1,5 @@
 ## Routes and Paths
-Tocreate a module with routing we should run ```ng g m Reza --routing``` the outcome is 2 files as follows in ```reza``` folder:
+To create a module with routing we should run ```ng g m Reza --routing``` the outcome is 2 files as follows in ```reza``` folder:
 - ```reza-routing.module.ts```
 - ```reza.module.ts```
 ```javascript
