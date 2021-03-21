@@ -386,3 +386,11 @@ export class UniqueUsername implements AsyncValidator {
   };
 }
 ```
+### AbstractControl
+- This is the base class for FormControl, FormGroup, and FormArray.
+- For example it the following sample ```control``` can be any type of form control.
+```javascript
+validate(control: AbstractControl): ValidationErrors {
+  throw new Error('Method not implemented.')
+}
+```
