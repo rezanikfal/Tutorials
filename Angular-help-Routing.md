@@ -105,11 +105,11 @@ export class SignoutComponent implements OnInit {
 }
 
 ```
-Also we can rout to a component Programmaticly:
+Also we can rout to a defined rout and params Programmaticly:
 ```javascript
 ngOnInit() {
   this.authService.signout().subscribe(() => {
-    this.router.navigate(['users']);
+    this.router.navigate(['/heroes', { id: heroId }]);
   });
 }
 ```
