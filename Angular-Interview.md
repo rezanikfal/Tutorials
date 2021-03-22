@@ -2,7 +2,7 @@
 - Reactive programming: Our application reacts to the changes of states in the application.
 - The main objectives of decorators is to add some metadata to the __class__ that will tell Angular 4 how to process a __class__. @NgModule (root module - imports –> Modules & Declarations -> Components), @Component , @Injectable
 - Ahead-of-time (AOT) compilation: With AOT, the compiler runs at the build time. render the application immediately
-- Just-in-time (JIT) compilation: This is a standard developviment approach which compiles our Typescript and html files in the browser at runtime.
+- Just-in-time (JIT) compilation: This is a standard developviment approach which compiles our Typescript and html files in the browser at runtime (Default ng serve or build).
 - Template reference variables -> <input #reza ...
 - An Attribute directive changes the appearance or behavior of a DOM element and extend the power of the HTML by giving it new syntax. (Structural directives -> *ngIf and *ngFor , Attribute directives -> *ngStyle and *ngClass, Components)
 ```htm
