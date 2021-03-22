@@ -21,6 +21,7 @@
 ```htm
 <ul *ngFor="let person of people">
   <li [style.color]="getColor(person.country)">{{ person.name }} ({{ person.country }})
+  <div class="theme-preview" [style.font-size.px]="fontSize">
   </li>
 </ul>
 ```
