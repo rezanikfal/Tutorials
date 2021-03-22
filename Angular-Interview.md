@@ -100,6 +100,7 @@ export class NgZoneDemo {
 this.nameElementRef.nativeElement.focus();
 ```  
 - @ViewChild VS @ContentChild: As the name suggests, ```@ContentChild``` and ```@ContentChildren``` queries will return directives existing inside the ```<ng-content></ng-content>``` element of your view, whereas ```@ViewChild``` and ```@ViewChildren``` only look at elements that are on your view template directly. 
+- You use the ```<ng-content></ng-content>``` tag as a placeholder for that dynamic content, then when the template is parsed Angular will replace that placeholder tag with your content.
 - Using ```ng-template``` you can create comment based on a condition.
 ```Javascript
 <ng-template [ngIf]="shouldSayHello">
