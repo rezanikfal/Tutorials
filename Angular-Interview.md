@@ -41,6 +41,34 @@
 - prevent security threads (external HTML /external urls/API)
 - optimize Angular: lazy loading/un-necessary import/AOT compilation/
 - NgZone The most common use of this service is to optimize performance when starting a work consisting of one or more asynchronous tasks that don't require UI updates or error handling to be handled by Angular.
+```Javascript
+export class NgZoneDemo {
+  progress: number = 0;
+  label: string;
+
+  constructor(private _ngZone: NgZone) {}
+
+  // Loop inside the Angular zone
+  // so the UI DOES refresh after each setTimeout cycle
+  processWithinAngularZone() {
+    this.label = 'inside';
+    this.progress = 0;
+    this._increaseProgress(() => console.log('Inside Done!'));
+  }
+
+  // Loop outside of the Angular zone
+  // so the UI DOES NOT refresh after each setTimeout cycle
+  processOutsideOfAngularZone() {
+    this.label = 'outside';
+    this.progress = 0;
+    this._ngZone.runOutsideAngular(() => {
+      this._increaseProgress(() => {
+        // reenter the Angular zone and display done
+        this._ngZone.run(() => { console.log('Outside Done!'); });
+      });
+    });
+  }
+```
 - Access component in other module => put the component name in export array in the component's module - import the component module in the app module or any other destination module & put in the list of imports
 - Angular/AngularJS -> Typescript, dependency Injection/Tow Way bounding, Support mobile
 - Authentication -> server side validation using JWT(json web token)
