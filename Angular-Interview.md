@@ -21,7 +21,7 @@
 ```htm
 <ul *ngFor="let person of people">
   <li [style.color]="getColor(person.country)">{{ person.name }} ({{ person.country }})
-  <div class="theme-preview" [style.font-size.px]="fontSize">
+  <div [class.special]="isSpecial" [style.font-size.px]="fontSize">
   </li>
 </ul>
 ```
@@ -90,7 +90,6 @@ export class NgZoneDemo {
 - Date pipe with parameters: {{ dateObj | date:'shortTime' }} 
 - RxJS library for composing async ans callback-based code
 - Integration Test -> anywhere we have binding
-- Class/Template  binding: <div [class.special]="isSpecial" / [style.color]="color"
 - @View child - it is vaialable in __AfterViewInit__ life cycle hook:
 ```htm
 <input #nameRef type="text" [(ngModel)]="name">
