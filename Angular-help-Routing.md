@@ -105,6 +105,14 @@ export class SignoutComponent implements OnInit {
 }
 
 ```
+Also we can rout to a component Programmaticly:
+```javascript
+ngOnInit() {
+  this.authService.signout().subscribe(() => {
+    this.router.navigate(['users']);
+  });
+}
+```
 ### Guard
 A class that we implement to restrict access to some routes inside your application. Inside the guard we decide about accessing the user to a route. it returns __Boolean__. there are 3 types (a single guard can implement all three types simultaneously):
 - __canActivate__: User can visit this route
