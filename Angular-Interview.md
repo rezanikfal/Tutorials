@@ -35,6 +35,14 @@
   </li>
 </ul>
 ```
+- Component Directives: It forms the main class and is declared by @Component. It contains the details on component processing, instantiated and usage at run time.
+```htm
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+```
 - Services encapsulates business logic and separates them from UI concerns
 - Pure pipes are stateless that flow input date without remembering
 - Impure pipes are those which can manage the state of the data (Async)
