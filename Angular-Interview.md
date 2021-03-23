@@ -1,4 +1,32 @@
-- **Realtime** Data Handling: **WebSocket** is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps. ASP.NET Core **SignalR** is a library that simplifies adding real-time web functionality to apps. It uses WebSockets.
+- **Realtime** Data Handling: **WebSocket** is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps. ASP.NET Core **SignalR** is a library that simplifies adding real-time web functionality to apps. It uses WebSockets. Here is the Angular side:
+ - ```npm install @aspnet/signalr```
+```Javascript
+import { Injectable } from '@angular/core';
+import * as signalR from '@aspnet/signalr';
+import { ChartModel } from '../_interfaces/chartmodel.model';
+@Injectable({
+  providedIn: 'root'
+})
+export class SignalRService {
+  public data: ChartModel[];
+  private hubConnection: signalR.HubConnection;
+  public startConnection = () => {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('https://localhost:5001/chart')
+      .build();
+    this.hubConnection
+      .start()
+      .then(() => console.log('Connection started'))
+      .catch(err => console.log('Error while starting connection:
+        + err))
+  }
+  public addTransferChartDataListener() => {
+  this.hubConnection.on('transferchartdata', (data) => {
+    this.data = data;
+    console.log(data);
+  });  
+}
+```
 - State represents every single piece of data in your application. This means that everything that is rendered on the screen. All of the data of our application as well as any configuration information.
 - Reactive programming: Our application reacts to the changes of states in the application.
 - The main objectives of decorators is to add some metadata to the __class__ that will tell Angular 4 how to process a __class__. @NgModule (root module - imports –> Modules & Declarations -> Components), @Component , @Injectable
