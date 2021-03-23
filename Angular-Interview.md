@@ -1,3 +1,4 @@
+- **Realtime** Data Handling: **WebSocket** is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps. ASP.NET Core **SignalR** is a library that simplifies adding real-time web functionality to apps. It uses WebSockets.
 - State represents every single piece of data in your application. This means that everything that is rendered on the screen. All of the data of our application as well as any configuration information.
 - Reactive programming: Our application reacts to the changes of states in the application.
 - The main objectives of decorators is to add some metadata to the __class__ that will tell Angular 4 how to process a __class__. @NgModule (root module - imports –> Modules & Declarations -> Components), @Component , @Injectable
