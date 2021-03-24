@@ -305,4 +305,45 @@ A class that has tight dependencies to other classes cannot be isolated in order
 ### Extensibility
 - We can use interfaces to change our application’s behaviour by “extending” its code (rather than changing the existing code).
 - If a class is dependent on an interface, we can supply a different implementation of that interface at runtime. This way, the behaviour of the application changes without any impact on that class.
-- 
+```csharp
+namespace Extensibility
+{
+    public class DbMigrator
+    {
+        public void Migrate()
+        {
+            Console.WriteLine("Migrationg started at {0}", DateTime.Now);
+            // Details of migrating the database
+            Console.WriteLine("Migrationg finished at {0}", DateTime.Now);
+        }
+    }
+}
+```
+- Interface:
+```csharp
+public interface Ilogger
+{
+    void LogError(string message);
+    void LogInfo(string message);
+}
+```
+- Dependency Injection (In constructor we are specifying the dependencies as Interface and later in the main method we specify the concrete class)
+```csharp
+namespace Extensibility
+{
+    public class DbMigrator
+    {
+        private readonly Ilogger _logger;
+        public DbMigrator(Ilogger logger)
+        {
+            _logger = logger;
+        }
+        public void Migrate()
+        {
+            _logger.LogInfo("Migrationg started at {@}" + DateTime.Now);
+            // Details of migrating the database
+            _logger.LogInfo("Migrationg finished at {0}" + DateTime.Now);
+        }
+    }
+}
+```
