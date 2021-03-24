@@ -297,3 +297,5 @@ public class Circle : Shape
 ```
 ### Sealed Classes
 If Sealed modiﬁer is applied to a class, it prevents derivation from that class. Not very usable.
+### OCP (open–closed principle)
+Software entities should be **open** for extension, but **closed** for modification.
