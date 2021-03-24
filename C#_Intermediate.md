@@ -347,3 +347,32 @@ namespace Extensibility
     }
 }
 ```
+- The **concrete** class that implements the ```ILogger``` interface.
+```csharp
+public class ConsoleLogger : ILogger
+{
+    public void LogError(string message)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(message);
+    }
+    public void LogInfo(string message)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(message);
+    }
+}
+```
+- The **Main** method in the Program class.
+- We create an instance of ```DbMigrator``` class and pass ```ConsoleLogger()``` class as its parameter.
+- We can easily replace the ```ConsoleLogger()``` class with any other implementation like ```MemoryLogger()``` or ```FileLogger()```.
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        var dbMigrator = new DbMigrator(new ConsoleLogger());
+        dbMigrator.Migrate();
+    }
+}
+```
