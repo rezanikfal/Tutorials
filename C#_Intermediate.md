@@ -299,3 +299,10 @@ public class Circle : Shape
 If Sealed modiﬁer is applied to a class, it prevents derivation from that class. Not very usable.
 ### OCP (open–closed principle)
 Software entities should be **open** for extension, but **closed** for modification.
+## Interfaces
+### Testability
+A class that has tight dependencies to other classes cannot be isolated in order to unit test. To solve this problem, we use an interface to create loose coupling.
+### Extensibility
+- We can use interfaces to change our application’s behaviour by “extending” its code (rather than changing the existing code).
+- If a class is dependent on an interface, we can supply a different implementation of that interface at runtime. This way, the behaviour of the application changes without any impact on that class.
+- 
