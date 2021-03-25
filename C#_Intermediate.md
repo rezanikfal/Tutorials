@@ -321,7 +321,7 @@ namespace Extensibility
 ```
 - Interface:
 ```csharp
-public interface Ilogger
+public interface ILogger
 {
     void LogError(string message);
     void LogInfo(string message);
@@ -333,8 +333,8 @@ namespace Extensibility
 {
     public class DbMigrator
     {
-        private readonly Ilogger _logger;
-        public DbMigrator(Ilogger logger)
+        private readonly ILogger _logger;
+        public DbMigrator(ILogger logger)
         {
             _logger = logger;
         }
