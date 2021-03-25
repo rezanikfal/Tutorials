@@ -376,3 +376,6 @@ class Program
     }
 }
 ```
+### Inheritance & Polymorphism using Interface
+- A class can **Implement** an interface. No inheritance and code reuse is happening in this case.
+- We can create different implementation for the same interface. In the run time, based on the variable, proper implementation gets called. That is the Polymorphic behavior.
