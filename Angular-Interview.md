@@ -1,4 +1,3 @@
-- **var** is valid in the nearest function. **let** is valid in the current block.
 - **WebSocket** is bidirectional, a full-duplex protocol that is used in the same scenario of client-server communication, unlike HTTP it starts from ws:// or wss://. ... When the connection is established and alive the communication takes place using the same connection channel until it is terminated.
 - **Realtime** Data Handling: **WebSocket** is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps. ASP.NET Core **SignalR** is a library that simplifies adding real-time web functionality to apps. It uses WebSockets. Here is the Angular side:
  - ```npm install @aspnet/signalr```
