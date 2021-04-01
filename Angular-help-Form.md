@@ -235,7 +235,7 @@ export class AppComponent implements OnInit {
 }
 ```
 ## Custom Validator (Synchrones):
-We use dependency injection to be unified with the Async Custom Validator
+We use dependency injection to be unified with the Async Custom Validator. ```implements Validator```
 ### form.component.ts:
 ```javascript
 import { Component, OnInit } from '@angular/core';
@@ -314,7 +314,7 @@ export class MatchPassword implements Validator {
 }
 ```
 ## Custom Validator (Asynchrones):
-We have to retuen an __Observable__ from __validate__ method (function)  
+We have to retuen an __Observable__ from __validate__ method (function). ```implements AsyncValidator```
 ### form.component.ts:
 ```javascript
 import { Component, OnInit } from '@angular/core';
