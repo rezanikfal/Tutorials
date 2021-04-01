@@ -190,7 +190,7 @@ Using __Getter__ to get a form array to push __formCotrols__ in:
     this.alterEmails.push(this.fb.control(''));
   }
   ```
-### app.module.ts:
+### app.component.ts:
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
