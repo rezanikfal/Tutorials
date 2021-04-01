@@ -17,6 +17,24 @@ Display: block;
 margin-top: 20px;
 }
 ```
+### :host
+To apply CSS on the component host. Here is the component html:
+```htm
+<div>
+    <h1>Test</h1>
+    <p>By injecting the ElementRef in the component, we have access to the DOM elements.</p>
+</div>
+```
+Here is the shadow DOM that we can access using Chrome Inspection tool (```app-root``` is the component selector):
+```htm
+<app-root _nghost-lpg-c40="" ng-version="11.1.2">
+   <div _ngcontent-lpg-c40="">
+      <h1 _ngcontent-lpg-c40="">Test</h1>
+      <p _ngcontent-lpg-c40="">By injecting the ElementRef in the component, we have access to the DOM elements.</p>
+   </div>
+</app-root>
+```
+When we apply a css on ```:host```, it will be applied on ```<app-root>``` tag.
 ## Access to the component HTML content:
 By injecting the ```ElementRef``` in the component, we have access to the DOM elements. 
 ```javascript
