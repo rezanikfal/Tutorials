@@ -96,4 +96,12 @@ public void ConfigureServices(IServiceCollection services)
 ### Setting up Entity Framework
 Right click on **Dependencies** and click on **Manage Nuget Packages**. Then install:
 - Microsoft.EntityFrameworkCore.SqlServer
-- 
+- Microsoft.EntityFrameworkCore.Tools
+
+Run Migration:
+- dfsdfsd
+- dfsdfsd
+
+
+
+
