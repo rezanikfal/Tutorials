@@ -102,7 +102,7 @@ Right click on **Dependencies** and click on **Manage Nuget Packages**. Then ins
 - Add-Migration initialMigration
 - Update-Database
 
-### Inject ```PeopleContext``` to Seed Database or make a query:
+### Inject ```PeopleContext``` to Seed Database or Make a Query:
 ```csharp
 namespace EFBestPractices.Pages
 {
