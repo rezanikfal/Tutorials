@@ -98,9 +98,9 @@ Right click on **Dependencies** and click on **Manage Nuget Packages**. Then ins
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
 
-Run Migration:
-- dfsdfsd
-- dfsdfsd
+Run **Migration**:
+- Add-Migration initialMigration
+- Update-Database
 
 
 
