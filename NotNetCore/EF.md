@@ -145,3 +145,6 @@ PM> Scaffold-DbContext "CONNECTION STRING" Microsoft.EntityFrameworkCore.SqlServ
 - Create the first migration
 - Comment out the **contents** of the Up method prior to applying the migration to the database.
 - Update-Database
+### Reverting to a specific migration (i.e. Initial)
+- Update-Database InitialMigration
+- Remove-Migration
