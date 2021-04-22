@@ -141,4 +141,7 @@ After installing EF Core, run this:
 ```
 PM> Scaffold-DbContext "CONNECTION STRING" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 ```
-
+####  Matching the model and the database schema
+- Create the first migration
+- Comment out the **contents** of the Up method prior to applying the migration to the database.
+- Update-Database
