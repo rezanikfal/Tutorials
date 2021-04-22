@@ -148,3 +148,4 @@ PM> Scaffold-DbContext "CONNECTION STRING" Microsoft.EntityFrameworkCore.SqlServ
 ### Reverting to a specific migration (i.e. Initial)
 - Update-Database InitialMigration
 - Remove-Migration
+- If we add a new field for example to a model we should remove it manually. EF does not update the models
