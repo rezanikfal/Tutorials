@@ -136,5 +136,9 @@ namespace EFBestPractices.Pages
     }
 }
 ```
-
+### Creating a Model for an Existing Database
+After installing EF Core, run this:
+```
+PM> Scaffold-DbContext "CONNECTION STRING" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+```
 
