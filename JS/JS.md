@@ -65,3 +65,25 @@ delete myObj.prop1
 
 console.log(myObj); //{ prop2:123 }
 ```
+### Array
+- In JS **array is an object** with number properties.
+- Since numbers are invlid prop name we have to access the prop using ```[]``` notation. 
+- ```length``` is another property alog with the number props in array.
+```javascript
+var Arr1 = ['Reza','Matt', 'Andrew']
+Arr1[5]='Fariba'
+Arr1['foo']='Maneli'
+console.log(Arr1)
+console.log(Arr1.length)
+```
+- **length** does not count the ```foo``` property. ```foo``` is part of object but it is ignored as part of the array.
+- Console:
+```
+["Reza", "Matt", "Andrew", empty × 2, "Fariba", foo: "Maneli"]
+0: "Reza"
+1: "Matt"
+2: "Andrew"
+5: "Fariba"
+foo: "Maneli"
+length: 6
+```
