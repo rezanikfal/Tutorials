@@ -20,3 +20,21 @@ console.log(typeof(a)) // number
 a = 'Reza';
 console.log(typeof(a)) // string
 ```
+### Objest
+- In JS we create objects directly and there is no ```class``` concept.
+- To access the properties, we can use ```.``` or ```[]``` notation.
+- The bracket notation is for properties with **invalid** name or with **Variable** name.
+```javascript
+var myObj = {
+  "prop1": "Reza",
+  "prop2": 123,
+  "prop3": true,
+  "1":"one"
+}
+console.log(myObj.prop1)
+console.log(myObj["prop1"])
+
+var myProperty = "prop3"
+console.log(myObj["1"])        //Invalid prop name
+console.log(myObj[myProperty]) //variable prop name
+```
