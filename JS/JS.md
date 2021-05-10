@@ -55,3 +55,13 @@ var myObj2 = myObj;
 console.log(myObj === myObj2); //true
 console.log(myObj === myObj3); //false
 ```
+### Delete Properties
+```javascript
+var myObj = {
+  prop1: 'Reza',
+  prop2: 123,
+};
+delete myObj.prop1
+
+console.log(myObj); //{ prop2:123 }
+```
