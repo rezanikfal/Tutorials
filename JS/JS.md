@@ -87,3 +87,18 @@ console.log(Arr1.length)
 foo: "Maneli"
 length: 6
 ```
+## Function
+- function **declration** is the common way of creating functions.
+```javascript
+function foo() {
+  console.log("Hello");
+}
+foo()
+```
+- function **expression** is assigning functions to variables.
+```javascript
+var f = function () {
+  console.log("Hello");
+};
+f()
+```
