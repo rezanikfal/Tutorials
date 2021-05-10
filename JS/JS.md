@@ -20,8 +20,9 @@ console.log(typeof(a)) // number
 a = 'Reza';
 console.log(typeof(a)) // string
 ```
-### Objest
-- In JS we create objects directly and there is no ```class``` concept.
+## Object
+In JS we create objects directly and there is no ```class``` concept.
+### Access to Propertits
 - To access the properties, we can use ```.``` or ```[]``` notation.
 - The bracket notation is for properties with **invalid** name or with **Variable** name.
 ```javascript
@@ -38,7 +39,8 @@ var myProperty = "prop3"
 console.log(myObj["1"])        //Invalid prop name
 console.log(myObj[myProperty]) //variable prop name
 ```
-- ```obj1 === obj2``` is ```true``` if both objects point to the same location in the memory.
+### Comparing Objects
+```obj1 === obj2``` is ```true``` if both objects point to the same location in the memory.
 ```javascript
 var myObj = {
   prop1: 'Reza',
