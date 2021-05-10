@@ -38,3 +38,18 @@ var myProperty = "prop3"
 console.log(myObj["1"])        //Invalid prop name
 console.log(myObj[myProperty]) //variable prop name
 ```
+- ```obj1 === obj2``` is ```true``` if both objects point to the same location in the memory.
+```javascript
+var myObj = {
+  prop1: 'Reza',
+  prop2: 123,
+};
+var myObj3 = {
+  prop1: 'Reza',
+  prop2: 123,
+};
+var myObj2 = myObj;
+
+console.log(myObj === myObj2); //true
+console.log(myObj === myObj3); //false
+```
