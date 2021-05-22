@@ -101,7 +101,7 @@ export class ModalComponent implements OnInit {
   @Output() close = new EventEmitter();
   
   onCloseClick() {
-    this.close.emit();
+    this.close.emit('TEST');
   }
 }
 ```
@@ -118,5 +118,5 @@ export class ModsHomeComponent implements OnInit {
 }
 ```
 ```html
-<app-modal (close)="onClick()" *ngIf="modalOpen"></app-modal>
+<app-modal (close)="onClick($event)" *ngIf="modalOpen"></app-modal>
 ```
