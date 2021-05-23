@@ -24,7 +24,7 @@ const routes: Routes =
 }];
 ```
 #### Lazy loading in Email Client App
-<img src="./Pics/LazyLoad.png" width="550">   
+<img src="../Pics/LazyLoad.png" width="550">   
 
 inbox-routing.module.ts:  
 ```javascript
