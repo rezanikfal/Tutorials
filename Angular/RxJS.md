@@ -330,7 +330,7 @@ export class SubscriberComponent implements OnInit, OnDestroy {
 }
 ```
 ### Some important operators
-![RxJs Operators](./Pics/rxjs.png)
+![RxJs Operators](../Pics/rxjs.png)
 ### EMPTY & isEmpty Operators
 ```javascript
 import { EMPTY } from 'rxjs';
@@ -341,13 +341,3 @@ result.subscribe(x => console.log(x));
 // Results in:
 // true
 ```
-## Subject
-### Component with RxJS Pluck:
-aAaAaAaAsdsd
-### Subject Variations:
-- Async Subject:
-  - Same as subject, but also doesn't emit any values until it is marked as 'complete'. Only last value is emitted.
-- Behavior Subject:
-  - Same as subject, but also takes an initial 'seed' value. New subscribers instantly get the most recent value.
-- Replay Subject:
-  - Same as subject, but also new subscribers instantly get sent all previously emitted values.
