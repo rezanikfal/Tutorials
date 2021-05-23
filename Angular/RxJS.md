@@ -237,7 +237,7 @@ const example = source.pipe(reduce((acc, val) => acc + val));
 Output: ```Sum: 10```
 ## Using Subject to handle Signed-In boolean key across the App
 We use this approach whenever we are writing a service that has some data inside of it that needs to communicate that data to some outside components.  
- ![Behavior Subject](./Pics/BSubject.JPG)
+ ![Behavior Subject](../Pics/BSubject.JPG)
 
 ## take & skipWhile Operators (316, Stephen)
 ```javascript
