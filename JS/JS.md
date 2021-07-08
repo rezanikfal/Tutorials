@@ -102,3 +102,15 @@ var f = function () {
 };
 f()
 ```
+## For ... of
+Creates a loop iterating over iterable objects, including: built-in String, Array, array-like objects
+```javascript
+const iterable = 'boo';
+
+for (const value of iterable) {
+  console.log(value);
+}
+// "b"
+// "o"
+// "o"
+```
