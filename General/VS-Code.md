@@ -29,3 +29,6 @@ To select and apply a language syntax on a plain text:
   2. Bracket Pair Colorizer 2 (for long methods with too many brackets)
   3. Prettier - Code formatter
   4. Material Icon Theme
+
+## Clear Terminal History:
+Alt+F7
