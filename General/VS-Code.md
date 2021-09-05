@@ -11,8 +11,9 @@
   
 ## For Angular:
   1. Angular Language Service
+  2. CSS Navigation
   3. Angular-cli (to generate from TOC)
-  5. Angular 8 and TypeScript/HTML VS Code Snippets (for ready to use snippet like ngFor, ...)
+  4. Angular 8 and TypeScript/HTML VS Code Snippets (for ready to use snippet like ngFor, ...)
 
 ## To activate tag wrapping:
   1. Preferencees -> Keyboard Shortcut
