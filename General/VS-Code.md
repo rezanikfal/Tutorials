@@ -1,5 +1,9 @@
 ## Delete Project Folder:
-`C:\REZA\NGRX\OOP>rmdir /S /Q NGRX-Course`
+<pre>
+  <code>
+    C:\REZA\NGRX\OOP>rmdir /S /Q NGRX-Course
+  </code>
+</pre>
 ## For .Net Core:
   1. C#
   2. C# Extensions
