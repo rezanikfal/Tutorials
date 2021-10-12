@@ -43,3 +43,33 @@ import { createAction } from '@ngrx/store'
 export const increment = createAction('increment')
 export const customIncrement = createAction('customincrement', (count: number)=>({count}))
 ```
+
+3- `counter.reducer.ts`
+
+Adding the business logic for each Actions:
+
+```javascript
+import { createReducer, on } from '@ngrx/store'
+import { customIncrement, increment } from './counter.actions'
+import { initialState } from './counter.store'
+
+const _counterReducer = createReducer(
+  initialState,
+  on(increment, (state) => {
+    return {
+      ...state,
+      counter: state.counter + 1,
+    }
+  }),
+  on(customIncrement, (state, action) => {
+    return {
+      ...state,
+      counter: state.counter + action.count,
+    }
+  })
+)
+
+export function counterReducer(state, action) {
+  return _counterReducer(state, action)
+}
+```
