@@ -152,7 +152,7 @@ import { AppState } from 'src/app/store/app.state'
 import { decrement, increment, reset } from '../store/counter.actions'
 
 export class CounterButtonsComponent implements OnInit {
-
+  counter$: Observable<number>
   constructor(private store: Store<AppState>) {}
   
   ngOnInit() {
