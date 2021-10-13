@@ -11,7 +11,7 @@
 
 1- `counter.state.ts`:
 
-By default it includs the **State Interface** & **Initial State**.
+- By default it includs the **State Interface** & **Initial State**.
 
 ```javascript
 export interface CounterState {
@@ -46,7 +46,7 @@ export const customIncrement = createAction('customincrement', (count: number)=>
 
 3- `counter.reducer.ts`
 
-Adding the business logic for each Actions:
+- Adding the business logic for each Actions:
 
 ```javascript
 import { createReducer, on } from '@ngrx/store'
@@ -73,3 +73,36 @@ export function counterReducer(state, action) {
   return _counterReducer(state, action)
 }
 ```
+
+4- `app.module.ts`
+
+- Register the reducer on App Module (Assign **counter** as the Reducer Name):
+
+```javascript
+import { StoreModule } from '@ngrx/store'
+import { counterReducer } from './counter/store/counter.reducer'
+
+@NgModule({
+  declarations: [AppComponent, ....],
+  imports: [
+    StoreModule.forRoot({ counter: counterReducer }),
+  ],
+})
+export class AppModule {}
+```
+
+5- `counter.selectors.ts`
+
+- Selector is a query of store (getting a slice of store):
+
+```javascript
+import { createFeatureSelector, createSelector } from '@ngrx/store'
+import { CounterState } from './counter.store'
+
+const getCounterState = createFeatureSelector<CounterState>('counter')
+
+export const getCounter = createSelector(getCounterState, (state) => {
+  return state.counter
+})
+```
+
