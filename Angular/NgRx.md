@@ -6,6 +6,8 @@
   - `counter.reducer.ts`
   - `counter.selectors.ts`
   - `counter.state.ts`
+  - 
+<img src="https://user-images.githubusercontent.com/62316360/137068657-52e9b11a-e7d6-44dd-be60-52134cf457c4.png" width="800" />
 
 ## Store Elements Sample Code
 
@@ -139,3 +141,4 @@ import { appReducer } from './store/app.state'
 })
 export class AppModule {}
 ```
+
