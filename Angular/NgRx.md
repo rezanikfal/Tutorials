@@ -108,7 +108,8 @@ export const getCounter = createSelector(getCounterState, (state) => {
 
 ## Define a Application level Store
 
-- We can create a separate store for each module and integrate all in an application level store:
+- We can create a separate store for each module and integrate all in an application level store
+- **appReducer** will be registered in app.module.ts istead of all other reducers
 
 1- `app.state.ts`:
 
