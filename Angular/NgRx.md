@@ -106,3 +106,35 @@ export const getCounter = createSelector(getCounterState, (state) => {
 })
 ```
 
+## Define a Application level Store
+
+- We can create a separate store for each module and integrate all in an application level store:
+
+1- `app.state.ts`:
+
+```javascript
+export interface AppState {
+  counter: CounterState
+  posts: PostsState
+}
+
+export const appReducer = {
+    counter:counterReducer,
+    posts:postsReducer,
+} 
+```
+
+4- `app.module.ts`
+
+```javascript
+import { StoreModule } from '@ngrx/store'
+import { appReducer } from './store/app.state'
+
+@NgModule({
+  declarations: [AppComponent, ....],
+  imports: [
+    StoreModule.forRoot(appReducer)
+  ],
+})
+export class AppModule {}
+```
