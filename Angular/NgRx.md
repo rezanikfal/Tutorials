@@ -152,10 +152,13 @@ import { AppState } from 'src/app/store/app.state'
 import { decrement, increment, reset } from '../store/counter.actions'
 
 export class CounterButtonsComponent implements OnInit {
+
   constructor(private store: Store<AppState>) {}
+  
   ngOnInit() {
     this.counter$ = this.store.select(getCounter)
   }
+  
   onIncrement() {
     this.store.dispatch(increment())
   }
