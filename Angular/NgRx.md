@@ -26,7 +26,7 @@ export const initialState = {
 
 2- `counter.actions.ts`
 
-Any Component tells give me something or update something. It is **Actions** (with or without Data):
+- Any Component tells give me something or update something. It is **Actions** (with or without Data):
 
 ```javascript
 import { createAction, props } from '@ngrx/store'
@@ -35,7 +35,7 @@ export const increment = createAction('increment')
 export const customIncrement = createAction('customincrement', props<{ count: number }>())
 ```
 
-**ES6** Format:
+- **ES6** Format:
 
 ```javascript
 import { createAction } from '@ngrx/store'
