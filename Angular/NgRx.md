@@ -10,7 +10,14 @@
     Redux takes a given state (object) and passes it to each reducer in a loop. And it expects a brand new object from the reducer if there are any changes. And it also expects to get the old object back if there are no changes.Redux simply checks whether the old object is the same as the new object by comparing the memory locations of the two objects. So if you mutate the old object’s property inside a reducer, the “new state” and the “old state” will both point to the same object. Hence Redux thinks nothing has changed! So this won’t work.
   - **Change detection**      
     The main benefit is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.
+    
+- NgRx libraries installation (other elements of the store should be installed individually):
+```code
+ng add @ngrx/store@latest
+```
 
+- NgRx flow:
+<img src="https://miro.medium.com/max/631/1*wO1_IJX7dZgwjlouDyL3Ng.png" width="631" />
 
 ## File Structure
 
@@ -20,9 +27,8 @@
   - `counter.reducer.ts`
   - `counter.selectors.ts`
   - `counter.state.ts`
-  - 
-<img src="https://user-images.githubusercontent.com/62316360/137068657-52e9b11a-e7d6-44dd-be60-52134cf457c4.png" width="800" />
-
+  - `counter.effects.ts`
+  
 ## Store Elements Sample Code
 
 1- `counter.state.ts`:
