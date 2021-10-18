@@ -1,4 +1,18 @@
-# NgRx Tutorial 
+# NgRx Introduction
+
+- NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
+  - **Single source of truth**  
+    In the case of a redux/ngrx architecture, this means that the state of your whole application is stored in an object tree within a single store.
+  - **State is read-only**  
+    You are never going to change the state directly instead you are going to dispatch actions.
+  - **Changes are made with pure functions**  
+    The operation triggered by dispatching an action is going to be a pure function (any function that doesn’t alter input data) called reducers. The reducer function takes an object that represents the “old” state, then creates a brand new object by copying all the old object’s details into a it and **overriding** old properties with new ones.  
+    Redux takes a given state (object) and passes it to each reducer in a loop. And it expects a brand new object from the reducer if there are any changes. And it also expects to get the old object back if there are no changes.Redux simply checks whether the old object is the same as the new object by comparing the memory locations of the two objects. So if you mutate the old object’s property inside a reducer, the “new state” and the “old state” will both point to the same object. Hence Redux thinks nothing has changed! So this won’t work.
+  - **Change detection**      
+    The main benefit is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.
+
+
+## File Structure
 
 - For Each module we can create a Store and register the store on `appName.module.ts`
 - Store includs the following folders: 
