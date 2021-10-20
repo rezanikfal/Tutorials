@@ -128,6 +128,25 @@ export const getCounter = createSelector(getCounterState, (state) => {
 })
 ```
 
+- Selector with props:
+
+```javascript
+import { createFeatureSelector, createSelector } from '@ngrx/store'
+import { PostsState } from './posts.state'
+
+export const getPostById = (id: string) =>
+  createSelector(getPostsState, (state) => {
+    return state.posts.find((post) => post.id === id)
+  })
+})
+
+
+//in the Component:
+  this.store.select(getPostById(id)).subscribe(data=>{
+    this.post = data
+  })
+```
+
 ## Define a Application level Store
 
 - We can create a separate store for each module and integrate all in an application level store
