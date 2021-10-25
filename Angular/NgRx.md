@@ -206,6 +206,6 @@ export class CounterButtonsComponent implements OnInit {
 ## Adding App.Module with Routing for Lazy Loading 
 https://github.com/rezanikfal/NGRX/commit/18d124ec44ca8edf47b481f17fbbd643f6c99814
 ## Lazy load the ngrx state using StoreModule.forFeature
-- If we load a state data across multiple modules keep it as `StoreModule.forRoot(appReducer)` in `app.module.ts`
-- If we load a state data just in one modules keep it as `StoreModule.forFeature(COUNTER_STATE_NAME, counterReducer)` in `counter.module.ts`
+- If we load the state data across multiple modules keep it as `StoreModule.forRoot(appReducer)` in `app.module.ts`
+- If we load the state data just in one modules keep it as `StoreModule.forFeature(COUNTER_STATE_NAME, counterReducer)` in `counter.module.ts`
 - https://github.com/rezanikfal/NGRX/commit/12a0f096e814a642962b18a0f9fcba43ad5cec22
