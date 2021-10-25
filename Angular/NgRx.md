@@ -203,5 +203,5 @@ export class CounterButtonsComponent implements OnInit {
   }
  } 
 ```
-## Convert a group of Components to Module for Lazy Loading 
+## Convert a group of Components to App.Module & App.Routing.Module for Lazy Loading 
 https://github.com/rezanikfal/NGRX/commit/18d124ec44ca8edf47b481f17fbbd643f6c99814
