@@ -209,3 +209,6 @@ https://github.com/rezanikfal/NGRX/commit/18d124ec44ca8edf47b481f17fbbd643f6c998
 - If we load the state data across multiple modules keep it as `StoreModule.forRoot(appReducer)` in `app.module.ts`
 - If we load the state data just in one modules keep it as `StoreModule.forFeature(COUNTER_STATE_NAME, counterReducer)` in `counter.module.ts`
 - https://github.com/rezanikfal/NGRX/commit/12a0f096e814a642962b18a0f9fcba43ad5cec22
+## NgRx Effects
+- Effects takes the action, does some work and again dispatches new action.
+- This could be success or the fail action.
