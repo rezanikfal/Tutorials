@@ -1,7 +1,7 @@
 # Redux Structure
 <img src="../Pics/redux1.PNG" width="950">
 <img src="../Pics/redux3.PNG" width="600">
-<img src="../Pics/redux2.PNG" width="600">
+<img src="../Pics/redux2.PNG" width="800">
 
 ## Immutability in JS
 JS is not a good language for Immutability. **Arrays** and **objects** are mutable in JS:
