@@ -15,7 +15,7 @@
  - Most software products have to deal with something called the cone of uncertainty.
  ![cone of uncertainty](./Pics/Cone.png)
 ### Agile Manifesto
-<img src="./Pics/AgileManifesto.png" width="700">
+<img src="../Pics/AgileManifesto.png" width="700">
 
 ### Agile Principles  
 - __P2:__ Welcoming ***Changes*** when you're working in your cone of uncertainty.   
@@ -59,7 +59,7 @@ Requirements are designed to limit the conversation. A good requirements documen
 
 ### Pareto Principle (80/20 Rule)
 Software features that are used by customers:  
-<img src="./Pics/rule8020.png" width="550">
+<img src="../Pics/rule8020.png" width="550">
 - This 20% is the most valuable part of the software (__Often__ and __Always__ used)
 - Agile team should start the most valuable 20% first.
 - This would be part of the highest priority featured delivered in the very first sprint.
@@ -102,9 +102,9 @@ Software features that are used by customers:
 - But these teams also work in sprints to deliver the product iteratively (Refinement).  
 
 Most teams instinctively break up large products into phases (Building car in __phases__):  
-<img src="./Pics/WF.png" width="550">  
+<img src="../Pics/WF.png" width="550">  
 Agile (Building a smaller increment of the car's __value__):  
-<img src="./Pics/Ag.png" width="550">  
+<img src="../Pics/Ag.png" width="550">  
 
 ### SCRUM (The most popular Agile framework)
 - Agile is a mindset, while Scrum is a way to help you embrace that mindset. 
@@ -122,7 +122,7 @@ Agile (Building a smaller increment of the car's __value__):
   - respect for people.
   - continuously improve.
 -  Kanban board (or task board in Scrum)
-<img src="./Pics/kanbanBoard.PNG" width="550">  
+<img src="../Pics/kanbanBoard.PNG" width="550">  
 During the morning stand-up meeting, you assign yourself the work. Remember that lean encourages your team to be self-organized
   
 ### Agile Roles
