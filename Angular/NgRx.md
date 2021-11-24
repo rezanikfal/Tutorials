@@ -3,6 +3,53 @@
 <img src="../Pics/redux3.PNG" width="600">
 <img src="../Pics/redux2.PNG" width="600">
 
+## Immutability in JS
+JS is not a good language for Immutability. **Arrays** and **objects** are mutable in JS:
+
+```javascript
+const a = ["a", "f", "y", "r", "b"];
+console.log(a);  //["a", "f", "y", "r", "b"];
+const b =a.sort();
+console.log(a);  //["a", "b", "f", "r", "y"]
+```
+```javascript
+const a = ["a", "f", "y", "r", "b"];
+console.log(a);  //["a", "f", "y", "r", "b"];
+const b =[...a].sort();
+console.log(a);  //["a", "f", "y", "r", "b"];
+```
+
+Functions like **map**, **slice**, **filter** are non-destructive as well.
+```javascript
+const a = ["a", "f", "y", "r", "b"];
+const c = a.map(data=>data).sort()
+console.log(c);  //["a", "b", "f", "r", "y"];
+console.log(a);  //["a", "f", "y", "r", "b"];
+```
+
+Objects Immutability.
+```javascript
+const state = {
+name: 'Jon Snow',
+occupation: 'Lord Commander',
+skills: [] // knows nothing...
+}
+const newState = {
+...state,
+occupation: 'King in the North',
+skills: [...state.skills, 'Fighting', 'Test']
+};
+
+console.log(newState)
+//{
+//  name:"Jon Snow",
+//  occupation:"King in the North",
+//  skills:[
+//    "Fighting",
+//    "Test"
+//    ]
+//}
+```
 
 # NgRx Introduction
 - NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
