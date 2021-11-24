@@ -1,6 +1,7 @@
 # Redux Structure
 <img src="../Pics/redux1.png" width="550">
 <img src="../Pics/redux2.png" width="550">
+<img src="../Pics/redux3.png" width="550">
 
 
 # NgRx Introduction
