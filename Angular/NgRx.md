@@ -1,5 +1,9 @@
-# NgRx Introduction
+# Redux Structure
+<img src="../Pics/redux1.png" width="550">
+<img src="../Pics/redux2.png" width="550">
 
+
+# NgRx Introduction
 - NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
   - **Single source of truth**  
     In the case of a redux/ngrx architecture, this means that the state of your whole application is stored in an object tree within a single store.
