@@ -57,7 +57,30 @@ console.log(newState)
 //    ]
 //}
 ```
+## Pure and Impure functions in JS
+When the function **changes the state** or produces **different results** each time, it is Impure:
+### Pure
+```javascript
+function add(a, b) {
+    const total = a + b;
+    return total;
+}
+console.log(add(1, 3));
+```
+### Impure
+The first function changes the state. Note that, even logging something on the console renders a new thing on the screen. That is part of the application state. We are triggering a **Side Effect**.  
+```javascript
+function add(a, b) {
+    const total = a + b;
+    console.log(total);
+}
 
+function subtractWithRandom(a, b) {
+    const rnd = Math.random();
+    const total = a - b - rnd;
+    return total;
+}
+```
 # NgRx Introduction
 - NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
   - **Single source of truth**  
