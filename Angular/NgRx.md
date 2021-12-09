@@ -57,6 +57,9 @@ console.log(newState)
 //    ]
 //}
 ```
+## Smart vs Dumb Component
+- Smart: Know about state, business ligic and how to manage the state 
+- Dumb: Don't know about state & business logic
 ## Pure and Impure functions in JS
 When the function **changes the state** or produces **different results** each time, it is Impure:
 ### Pure
