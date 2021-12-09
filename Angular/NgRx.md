@@ -102,7 +102,7 @@ ng add @ngrx/store@latest
 ```
 
 - NgRx flow:
-<img src="https://miro.medium.com/max/631/1*wO1_IJX7dZgwjlouDyL3Ng.png" width="631" />
+<img src="https://www.danielcornock.co.uk/assets/images/articles/ngrx-intro/ngrx-flow.png" width="1000" />
 
 ## File Structure
 
