@@ -71,7 +71,7 @@ function add(a, b) {
 console.log(add(1, 3));
 ```
 ### Impure
-The first function changes the state. Note that, even logging something on the console renders a new thing on the screen. That is part of the application state. We are triggering a **Side Effect**.  
+The first function changes the state. Note that, even logging something on the console renders a new thing on the screen. That is part of the application state. We are triggering a **Side Effect**. Side effects means an external source that you don't know about 100%. Like make a http call. Maybe return data, maybe error!
 ```javascript
 function add(a, b) {
     const total = a + b;
