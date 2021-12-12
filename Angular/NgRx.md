@@ -162,12 +162,7 @@ import { initialState } from './counter.store'
 
 const _counterReducer = createReducer(
   initialState,
-  on(increment, (state) => {
-    return {
-      ...state,
-      counter: state.counter + 1,
-    }
-  }),
+  on(increment, (state) => ({ ...state, count: state.count + 1 })), //Shorter version
   on(customIncrement, (state, action) => {
     return {
       ...state,
