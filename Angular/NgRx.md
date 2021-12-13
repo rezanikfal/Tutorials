@@ -226,6 +226,36 @@ constructor(private store: Store<{ cState: counterState }>) {}
 })
 ```
 
+6- `counter.selectors.ts`
+
+- Selector is a query of store (getting a slice of store):
+
+```javascript
+import { createFeatureSelector, createSelector } from '@ngrx/store'
+import { CounterState } from './counter.store'
+
+const getCounterState = createFeatureSelector<counterState>('cState');
+export const getCounter = createSelector(
+    getCounterState,
+    (state: counterState) => state.myCount
+);
+```
+
+- Component:
+
+```javascript
+import { Store } from '@ngrx/store'
+import { getCounter } from '../store/app.selectors'
+import { counterState } from '../store/app.state'
+
+  constructor(private store: Store<{ cState: counterState }>) {}
+  counter: number
+  ngOnInit(): void {
+    this.store.select(getCounter).subscribe((data) => {
+      this.counter = data
+    })
+  }
+```
 
 ## Define a Application level Store
 
