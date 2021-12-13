@@ -122,24 +122,26 @@ ng add @ngrx/store@latest
 
 ```javascript
 export interface CounterState {
-  counter: number,
+  myCount: number
   channelName:string
 }
 export const initialState = {
-  counter: 0,
+  myCount: 0,
   channelName:'Reza from Citi'
 }    
 ```
 
 2- `counter.actions.ts`
 
+- Actions express unique events that happen throughout your application.
 - Any Component tells give me something or update something. It is **Actions** (with or without Data):
 
 ```javascript
 import { createAction, props } from '@ngrx/store'
 
-export const increment = createAction('increment')
-export const customIncrement = createAction('customincrement', props<{ count: number }>())
+export const Time6 = createAction('[App Page] Time6');
+export const Reset = createAction('[App Page] Reset');
+export const ResetTo = createAction('[App Page] ResetTo', props<{value: number}>());
 ```
 
 - **ES6** Format:
@@ -148,11 +150,12 @@ export const customIncrement = createAction('customincrement', props<{ count: nu
 import { createAction } from '@ngrx/store'
 
 export const increment = createAction('increment')
-export const customIncrement = createAction('customincrement', (count: number)=>({count}))
+export const customIncrement = createAction('[App Page] ResetTo', (value: number)=>({value}))
 ```
 
 3- `counter.reducer.ts`
 
+- Reducers are responsible for handling transitions from one state to the next state in your application.
 - Adding the business logic for each Actions:
 
 ```javascript
@@ -162,11 +165,12 @@ import { initialState } from './counter.store'
 
 const _counterReducer = createReducer(
   initialState,
-  on(increment, (state) => ({ ...state, count: state.count + 1 })), //Shorter version
-  on(customIncrement, (state, action) => {
+  on(Time6, (state) => ({ ...state, myCount: state.myCount * 6 })), //Shorter version
+  on(Reset, (state) => ({ ...state, myCount: 0 })),
+  on(ResetTo, (stat, action) => {
     return {
       ...state,
-      counter: state.counter + action.count,
+      myCount: action.value
     }
   })
 )
@@ -187,45 +191,58 @@ import { counterReducer } from './counter/store/counter.reducer'
 @NgModule({
   declarations: [AppComponent, ....],
   imports: [
-    StoreModule.forRoot({ counter: counterReducer }),
+    StoreModule.forRoot({ cState: counterReducer }),
   ],
 })
 export class AppModule {}
 ```
 
-5- `counter.selectors.ts`
+5- `app.module.ts`
 
-- Selector is a query of store (getting a slice of store):
+- Register the reducer on App Module (Assign **counter** as the Reducer Name):
 
 ```javascript
-import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { CounterState } from './counter.store'
+import { StoreModule } from '@ngrx/store'
+import { counterReducer } from './counter/store/counter.reducer'
 
-const getCounterState = createFeatureSelector<CounterState>('counter')
+@NgModule({
+  declarations: [AppComponent, ....],
+  imports: [
+    StoreModule.forRoot({ cState: counterReducer }),
+  ],
+})
+export class AppModule {}
+```
 
-export const getCounter = createSelector(getCounterState, (state) => {
-  return state.counter
+6- `*.component.ts`
+
+- Dispatching actions / Select states.
+
+```javascript
+import { Store } from '@ngrx/store'
+import { Reset, ResetTo, Time6 } from '../store/app.action';
+import { counterState } from '../store/app.state'
+
+constructor(private store: Store<{ cState: counterState }>) {}
+
+  ngOnInit(): void {
+    this.store.select('cState').subscribe((data) => {
+      this.counter = data.myCount
+    })
+  }
+  
+  onClick(){
+    this.store.dispatch(Time6())
+  }
+  onClickReset(){
+    this.store.dispatch(Reset())
+  }
+  onClickResetTo() {
+    this.store.dispatch(ResetTo({ value: +this.binding }))
+  }
 })
 ```
 
-- Selector with props:
-
-```javascript
-import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { PostsState } from './posts.state'
-
-export const getPostById = (id: string) =>
-  createSelector(getPostsState, (state) => {
-    return state.posts.find((post) => post.id === id)
-  })
-})
-
-
-//in the Component:
-  this.store.select(getPostById(id)).subscribe(data=>{
-    this.post = data
-  })
-```
 
 ## Define a Application level Store
 
