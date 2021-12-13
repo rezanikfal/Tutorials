@@ -197,24 +197,7 @@ import { counterReducer } from './counter/store/counter.reducer'
 export class AppModule {}
 ```
 
-5- `app.module.ts`
-
-- Register the reducer on App Module (Assign **counter** as the Reducer Name):
-
-```javascript
-import { StoreModule } from '@ngrx/store'
-import { counterReducer } from './counter/store/counter.reducer'
-
-@NgModule({
-  declarations: [AppComponent, ....],
-  imports: [
-    StoreModule.forRoot({ cState: counterReducer }),
-  ],
-})
-export class AppModule {}
-```
-
-6- `*.component.ts`
+5- `*.component.ts`
 
 - Dispatching actions / Select states.
 
