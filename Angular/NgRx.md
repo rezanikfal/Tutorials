@@ -144,6 +144,17 @@ const routes:Routes=[
 })
 export class AppModule { }
 ```
+### Adding routs to "a" tag
+```html
+<ul class="navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#" [routerLink]="['/']">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" href="#" [routerLink]="['/counter']">Counter</a>
+  </li>
+</ul>
+```
 # NgRx Introduction
 - NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
   - **Single source of truth**  
