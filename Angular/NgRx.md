@@ -84,6 +84,66 @@ function subtractWithRandom(a, b) {
     return total;
 }
 ```
+## Add routing to a Module
+We can easily add routing to a module without a new **routing.ts** file:
+### Before Routing
+```javascript
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { CounterComponent } from './counter/counter/counter.component';
+import { PostsComponent } from './posts/posts/posts.component';
+import { HeaderComponent } from './header/header/header.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CounterComponent,
+    PostsComponent,
+    HeaderComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+### After Routing
+```javascript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from "@angular/router";
+import { AppComponent } from './app.component';
+import { CounterComponent } from './counter/counter/counter.component';
+import { PostsComponent } from './posts/posts/posts.component';
+import { HeaderComponent } from './header/header/header.component';
+
+const routes:Routes=[
+  {
+    path:'', component:PostsComponent
+  },
+  {
+    path:'counter', component:CounterComponent
+  }
+]
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CounterComponent,
+    PostsComponent,
+    HeaderComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 # NgRx Introduction
 - NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
   - **Single source of truth**  
