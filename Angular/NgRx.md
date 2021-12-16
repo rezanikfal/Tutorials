@@ -155,6 +155,46 @@ export class AppModule { }
   </li>
 </ul>
 ```
+### After Lazy Loading
+```javascript
+const routes:Routes=[
+  {
+    path:'', component:PostsComponent
+  },
+  {
+    path: 'counter', 
+    loadChildren: () => import('./counter/counter.module').then(m => m.CounterModule)
+  }
+]
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    PostsComponent,
+    HeaderComponent
+  ],
+```
+### Components Folder to Module with routing (for Lazy Loading)
+first add the ```counter.module.ts``` to the folder and:
+```javascript
+import { NgModule } from '@angular/core'
+import { CounterComponent } from './counter/counter.component'
+import { RouterModule, Routes } from '@angular/router'
+import { CommonModule } from '@angular/common'
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: CounterComponent,
+  },
+]
+
+@NgModule({
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [CounterComponent],
+})
+export class CounterModule {}
+```
 # NgRx Introduction
 - NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
   - **Single source of truth**  
