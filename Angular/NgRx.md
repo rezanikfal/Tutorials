@@ -308,6 +308,33 @@ import { counterReducer } from './counter/store/counter.reducer'
 export class AppModule {}
 ```
 
+- **Lazy Load the NgRx State - app.module** 
+
+```javascript
+import { StoreModule } from '@ngrx/store'
+
+@NgModule({
+  declarations: [AppComponent, ....],
+  imports: [
+    StoreModule.forRoot({}),
+  ],
+})
+```
+
+- **Lazy Load the NgRx State - counter.module** 
+
+```javascript
+import { StoreModule } from '@ngrx/store'
+import { counterReducer } from './counter/store/counter.reducer'
+
+@NgModule({
+  declarations: [AppComponent, ....],
+  imports: [
+    StoreModule.forFeature({ cState: counterReducer }),
+  ],
+})
+```
+
 5- `*.component.ts`
 
 - Dispatching actions / Select states.
