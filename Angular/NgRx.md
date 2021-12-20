@@ -296,13 +296,14 @@ export function counterReducer(state, action) {
 - Register the reducer on App Module (Assign **counter** as the Reducer Name):
 
 ```javascript
+import { BrowserModule } from '@angular/platform-browser'
 import { StoreModule } from '@ngrx/store'
 import { counterReducer } from './counter/store/counter.reducer'
 
 @NgModule({
   declarations: [AppComponent, ....],
   imports: [
-    StoreModule.forRoot({ cState: counterReducer }),
+    BrowserModule, StoreModule.forRoot({ cState: counterReducer }),
   ],
 })
 export class AppModule {}
