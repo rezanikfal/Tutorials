@@ -278,7 +278,7 @@ const _counterReducer = createReducer(
   initialState,
   on(Time6, (state) => ({ ...state, myCount: state.myCount * 6 })), //Shorter version
   on(Reset, (state) => ({ ...state, myCount: 0 })),
-  on(ResetTo, (stat, action) => {
+  on(ResetTo, (state, action) => {
     return {
       ...state,
       myCount: action.value
