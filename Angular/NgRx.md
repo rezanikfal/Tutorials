@@ -406,11 +406,26 @@ import { counterState } from '../store/app.state'
 ```javascript
 import { fromEvent } from 'rxjs';
 // ...
-
 @Effect()
 resize$ = fromEvent(window, 'resize').pipe(
   debounceTime(300),
   map(e => new MyWindowResizeAction(e))
 );
 ```
+### Fill the store implicitly
+- This effect starts working when the book list in our store changes. Using the filter operator it continues the pipeline only when there are no books in the store.
+- The key behind this idea is that store selectors like store.pipe(select(mySelector)) also return Observables. Thus, we can build an effect like the one following.
 
+```javascript
+import { fromEvent } from 'rxjs';
+// ...
+@Effect()
+getBooks$ = this.store$.pipe(
+  select(getAllBooks), // get book list from store
+  filter(booksFromStore => booksFromStore.length == 0), // only continue if there are no books
+  map(_ => new LoadBooks())
+);
+
+// Selector
+const getAllBooks = createSelector(getBooksState, state => state.books);
+```
