@@ -397,5 +397,20 @@ import { counterState } from '../store/app.state'
 ```
 
 ## NgRx Effects
-- Effects takes the action, does some work and again dispatches new action.
+- Effects provide a powerful model to keep our reducers pure and describe side effect handling in a declarative way using RxJS streams.
 - This could be success or the fail action.
+### Native events
+- Trigger an action whenever the user resizes the browser window.
+- Using the **fromEvent** function from RxJS we can easily build up an observable stream of window resizing events. The **debounce** is just cosmetic and makes the stream only emit once when the user has stopped resizing for a certain amount of time.
+
+```javascript
+import { fromEvent } from 'rxjs';
+// ...
+
+@Effect()
+resize$ = fromEvent(window, 'resize').pipe(
+  debounceTime(300),
+  map(e => new MyWindowResizeAction(e))
+);
+```
+
