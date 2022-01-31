@@ -429,3 +429,34 @@ getBooks$ = this.store$.pipe(
 // Selector
 const getAllBooks = createSelector(getBooksState, state => state.books);
 ```
+## RxJS
+- Pipeline for a letter based search call
+
+```htm
+<div>
+<label>Search reddit.com/r/aww for images containing: </label>
+<input [formControll="search" />
+</div>
+<div class="box" *ngFor="let post of results | async">
+<img [src]="post.thumbnail" [alt]="post.title" />
+</div> >
+```
+```javascript
+results: Observable<RedditResult[]>;
+search: FormControl = new FormControl('');
+
+constructor(ris: RedditImageSearchService) {
+  this.results = this.search.valueChanges.pipe(
+    map((search) => search.trim()),
+    debounceTime(200),
+    distinctUntilChanged(),
+    filter((search) => search !== ''),
+    switchMap((search) =>
+      ris.search(search).pipe(
+        retry(3),
+        startwith([])
+      )
+    )
+  );
+}
+```
