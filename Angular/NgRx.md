@@ -460,3 +460,16 @@ constructor(ris: RedditImageSearchService) {
   );
 }
 ```
+### Generic Interface
+- For example for CRUD operation:
+```javascript
+export interface CRUDAction<T> {
+  action: 'add' | 'update' | 'delete';
+  data: T;
+}
+
+private postCRUDSubject = new Subject<CRUDAction<IPost>>();
+addPost(post: IPost) {
+  this.postCRUDSubject.next({ action: 'add', data: post })
+}
+```
