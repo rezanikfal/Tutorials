@@ -151,6 +151,7 @@ this.nameElementRef.nativeElement.focus();
 - @angular/http (not working)
 - Angular 8 -> new date range picker  June 2020
 - ```<a href="/element">Element</a>``` NO
+- ```<a href="/">Element</a>``` goes to root URL
 - ```<a routerLink="/element" routherLinkActive="active">Element</a>``` YES
 - Not found routing rule: {path:"**", component: not-found.component}
 - Lazy Loading:
