@@ -81,6 +81,11 @@ _routerLinkActive_ applies a class  on the activated link (like making the activ
 <a class="ui item" routerLink="/signup" routerLinkActive="active">
   Sign Up
 </a>
+
+<a [routerLink]="['/hero', hero.id]">
+  <span class="badge">{{ hero.id }}</span>{{ hero.name }}
+</a>
+<a [routerLink]="['/crisis-center', { foo: 'foo' }]">Crisis Center</a>
 ```
 ### Programmatic Navigation
 Injecting the _Router_ service and make use of it to navigate to another URL:
