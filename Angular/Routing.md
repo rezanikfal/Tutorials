@@ -158,7 +158,7 @@ const routes: Routes = [
   },
 ];
 ```
-### Get information from a route/Get Id/Relative route:
+### Get information from a route/Get Id/Snapshot/Relative route:
 As your application grows more complex, you may want to create routes that are relative to a component other than your root component. These types of nested routes are called child routes.
 ```javascript
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -178,6 +178,10 @@ ngOnInit() {
       return this.service.getHeroes();
     })
   );
+}
+ngOnInit() {
+  const heroId = this.route.snapshot.paramMap.get('id');
+  this.hero$ = this.service.getHero(heroId);
 }
 goToItems() {
   this.router.navigate(['items'], { relativeTo: this.route });
