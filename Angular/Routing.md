@@ -100,6 +100,7 @@ export class SignoutComponent implements OnInit {
   ngOnInit() {
     this.authService.signout().subscribe(() => {
       this.router.navigateByUrl('/');
+      this.router.navigate(['/heroes', { id: heroId }]); ///heres/1
     });
   }
 }
@@ -157,16 +158,28 @@ const routes: Routes = [
   },
 ];
 ```
-### Get information from a route:
+### Get information from a route/Get Id/Relative route:
 As your application grows more complex, you may want to create routes that are relative to a component other than your root component. These types of nested routes are called child routes.
 ```javascript
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 constructor(
   private route: ActivatedRoute,
+  private router: Router
 ) {}
 ngOnInit() {
   this.route.queryParams.subscribe(params => {
     this.name = params['name'];
   });
+}
+ngOnInit() {
+  this.heroes$ = this.route.paramMap.pipe(
+    switchMap(params => {
+      this.selectedId = Number(params.get('id'));
+      return this.service.getHeroes();
+    })
+  );
+}
+goToItems() {
+  this.router.navigate(['items'], { relativeTo: this.route });
 }
 ```
