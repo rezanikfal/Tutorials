@@ -157,3 +157,16 @@ const routes: Routes = [
   },
 ];
 ```
+### Get information from a route:
+As your application grows more complex, you may want to create routes that are relative to a component other than your root component. These types of nested routes are called child routes.
+```javascript
+import { ActivatedRoute } from '@angular/router';
+constructor(
+  private route: ActivatedRoute,
+) {}
+ngOnInit() {
+  this.route.queryParams.subscribe(params => {
+    this.name = params['name'];
+  });
+}
+```
