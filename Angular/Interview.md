@@ -285,5 +285,5 @@ import('./elements/elements.module').then(m=>m.ElementModule)
   - Third party libraries: Decision about UI libraries like Angular Material or Kendo UI
   - Unit Testing: Are we testing? Budget? Coverage? Built-in CLI lib or something else?
   - End-to-end testing: Are we testing? Budget? Built-in CLI lib or something else? 
-- CSS pseudo-class is used to define a special state of an element. Like a:visited, a:hover, a:active
--**Closures**: The inner function has access to the outer function scope and variables even the the out function has triggered and you don't have access to its scope from outside anymore.
+- CSS pseudo-class is used to define a special state of an element. Like a:visited, a:hover, a:active  
+- **Closures**: The inner function has access to the outer function scope and variables even the the outer function has triggered and you don't have access to its scope from outside anymore.Its like the inner function remembers the scpe of outer function
