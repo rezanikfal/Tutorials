@@ -20,6 +20,13 @@ console.log(typeof(a)) // number
 a = 'Reza';
 console.log(typeof(a)) // string
 ```
+### Hoisting
+Before running, JS first checks all the code and variables. So if you derive variables after initializing, it works fine.
+```javascript
+a = 12;
+console.log(a);
+var a;
+```
 ## Object
 In JS we create objects directly and there is no ```class``` concept.
 ### Access to Propertits
