@@ -5,6 +5,18 @@ var element = document.querySelector('li .name');  // First element
 var element = document.querySelectorAll('li .name');  // All elements array
 console.log(element.forEach(x=>console.log('REZA',x.innerHTML)));
 ```
+```javascript
+var elementALl = document.querySelectorAll('li .name');  // All elements array
+elementALl.forEach(x => {
+    bookContent = x.textContent // Get text content
+    bookContent +=' (book)'   // Append a string to the original DOM i.e. The Wise Man's Fear (book)
+    console.log(bookContent)
+```
+```javascript
+var books = document.querySelector('#book-list'); 
+books.innerHTML = '<h1>The list of Books</h1>' // Replace the whole DOM element with a new one
+books.innerHTML += '<h2>Reza Nikfal</h2>' // Append the new DOM element
+```
 ## Variables
 ### Declaration VS Definition
 ```javascript
