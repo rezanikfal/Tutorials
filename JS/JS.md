@@ -1,3 +1,10 @@
+## DOM
+### Query selector
+```javascript
+var element = document.querySelector('li .name');  // First element
+var element = document.querySelectorAll('li .name');  // All elements array
+console.log(element.forEach(x=>console.log('REZA',x.innerHTML)));
+```
 ## Variables
 ### Declaration VS Definition
 ```javascript
