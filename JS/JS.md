@@ -17,6 +17,27 @@ var books = document.querySelector('#book-list');
 books.innerHTML = '<h1>The list of Books</h1>' // Replace the whole DOM element with a new one
 books.innerHTML += '<h2>Reza Nikfal</h2>' // Append the new DOM element
 ```
+### HTML Nodes
+Almost everything in HTML page is a Node like elements, attributes, ... with different [types](https://www.w3schools.com/jsref/prop_node_nodetype.asp#midcontentadcontainer)
+```javascript
+const banner = document.getElementById('page-banner')
+
+console.log(banner.nodeType);  // Node Type (i.e. 1 which is an Element)
+console.log(banner.nodeName); // Node Name (i.e. DIV)
+console.log(banner.hasChildNodes());
+
+
+const clonedBanner = banner.cloneNode(true) // true = deep clone (the element as well as children)
+const eachBook = document.querySelector('#book-list ul')
+eachBook.innerHTML += clonedBanner.innerHTML
+
+const bookList = document.querySelector('#book-list')
+console.log(bookList.parentElement); // Parent Node or Element
+console.log(bookList.children); // Child Node
+console.log(bookList.nextElementSibling.innerHTML); // Next Sibling Node (inner HTML)
+console.log(bookList.previousElementSibling); // last Sibling Node (inner HTML)
+bookList.previousElementSibling.querySelector('p').innerHTML += '</br>REZA'  // Update p tag
+```
 ## Variables
 ### Declaration VS Definition
 ```javascript
