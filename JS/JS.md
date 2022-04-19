@@ -38,6 +38,22 @@ console.log(bookList.nextElementSibling.innerHTML); // Next Sibling Node (inner 
 console.log(bookList.previousElementSibling); // last Sibling Node (inner HTML)
 bookList.previousElementSibling.querySelector('p').innerHTML += '</br>REZA'  // Update p tag
 ```
+### Event listener
+Assign an event including an event [type](https://www.w3schools.com/jsref/dom_obj_event.asp) and **Callback Function**
+```javascript
+const header = document.querySelector('#book-list h2')
+header.addEventListener('click', (e) => {
+    console.log('fired!');
+})
+// Delete the element once click on the button
+const deleteKey = document.querySelectorAll('#book-list .delete')
+Array.from(deleteKey).forEach(element => {   //Convert to JS array
+    element.addEventListener('click', (e) => {
+        e.target.parentElement.remove()  //Remove the whole element including button
+    })
+
+})
+```
 ## Variables
 ### Declaration VS Definition
 ```javascript
