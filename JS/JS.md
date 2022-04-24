@@ -108,11 +108,33 @@ console.log(a);
 var a;
 ```
 ## Object
+Object is a container that encloses data & behavior together.
 In JS we create objects directly and there is no ```class``` concept.
+```javascript
+//creating Objects using Object data type.
+var myCar = new Object()
+myCar.color = 'red'
+myCar.age = 5
+myCar.used = true
+myCar.myMethod = function () {
+    console.log('REZA')
+}
+
+//Shorthand for creating Objects 
+var myCar2 = {
+    color: 'red',
+    age: 5,
+    used: true,
+    myMethod: function () {
+        console.log('REZA');
+    }
+}
+```
 ### Access to Propertits
 - To access the properties, we can use ```.``` or ```[]``` notation.
 - The bracket notation is for properties with **invalid** name or with **Variable** name.
 ```javascript
+
 var myObj = {
   "prop1": "Reza",
   "prop2": 123,
@@ -152,11 +174,25 @@ delete myObj.prop1
 
 console.log(myObj); //{ prop2:123 }
 ```
-### Array
+### Array / String
 - In JS **array is an object** with number properties.
 - Since numbers are invlid prop name we have to access the prop using ```[]``` notation. 
 - ```length``` is another property alog with the number props in array.
 ```javascript
+var myString = 'JavaScript Tutorial For Beginners #24 - Strings'
+console.log(myString)
+
+console.log(myString.indexOf('Tu')) // 11
+console.log(myString.slice(0, 10))    // "JavaScript"
+
+var tags = "meat, ham, salami, prok, beef, chicken"
+console.log(tags.split(', '))    // ["meat", "ham", "salami", "prok", "beef", "chicken"]
+
+var myArray = new Array(1, 2, 3, 4, true, 'str', NaN)
+console.log(myArray) //[1, 2, 3, 4, true, "str", NaN]
+console.log(myArray.reverse()) //[NaN, "str", true, 4, 3, 2, 1]
+console.log(myArray.sort()) //[1, 2, 3, 4, NaN, "str", true]
+
 var Arr1 = ['Reza','Matt', 'Andrew']
 Arr1[5]='Fariba'
 Arr1['foo']='Maneli'
