@@ -74,7 +74,7 @@ document.getElementById('reza').addEventListener('click', function() {
     var that = this;
 
     colours.forEach(function() {
-        console.log(this); //undefined
+        console.log(this); //Global scope (i.e. window object)
         console.log(that); //<span class="delete" id="reza">delete</span>
     });
 });
