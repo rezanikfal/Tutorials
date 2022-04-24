@@ -55,6 +55,30 @@ Array.from(deleteKey).forEach(element => {   //Convert to JS array
 })
 ```
 ## Variables
+### Closure
+Unlike other programming languages, in JS, you have access to variable in outer scope:
+```javascript
+// Once the console.log starts running, the outer scope is done ans no "i" exists. However it logs the i as follows
+for (var i = 0; i < 4; i++) {
+    setTimeout(() => {
+        console.log(i)
+    }, 1000)
+
+} // 0  1  2  3  (let -> var: 4  4  4  4)
+
+// Same story for colours and "this" that can be accessed in the internal function, once it is stored in "that" variable
+var colours = ['red', 'green', 'blue'];
+document.getElementById('reza').addEventListener('click', function() {
+
+    console.log(this); //<span class="delete" id="reza">delete</span>
+    var that = this;
+
+    colours.forEach(function() {
+        console.log(this); //undefined
+        console.log(that); //<span class="delete" id="reza">delete</span>
+    });
+});
+```
 ### Declaration VS Definition
 ```javascript
 var a; //Declaration
