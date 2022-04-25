@@ -310,3 +310,14 @@ var a = firstWord.toLowerCase().split('').sort().join('')
 var b = secondWord.toLowerCase().split('').sort().join('')
 console.log(a==b);
 ```
+## Event Bubbling  
+Once we click on **delete**, if the ```<span>``` has a callback functions, it will be fired. If not the event bubbles up to ```<li>``` element. If it has a callback functions, it will be fired. If not ...
+```html
+<div id="book-list">
+	<h2 class="title">Books to Read</h2>
+	<ul>
+		<li>
+			<span class="name">Name of the Wind</span>
+			<span class="delete">delete</span>
+		</li>
+```
