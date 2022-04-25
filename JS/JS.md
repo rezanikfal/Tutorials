@@ -223,6 +223,9 @@ console.log(myArray) //[1, 2, 3, 4, true, "str", NaN]
 console.log(myArray.reverse()) //[NaN, "str", true, 4, 3, 2, 1]
 console.log(myArray.sort()) //[1, 2, 3, 4, NaN, "str", true]
 
+// Convert any number/base to INT:
+console.log(parseInt("111101011001", 2)); //3929
+
 var Arr1 = ['Reza','Matt', 'Andrew']
 Arr1[5]='Fariba'
 Arr1['foo']='Maneli'
