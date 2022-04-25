@@ -174,7 +174,7 @@ delete myObj.prop1
 
 console.log(myObj); //{ prop2:123 }
 ```
-### Array / String
+## Array / String
 - In JS **array is an object** with number properties.
 - Since numbers are invlid prop name we have to access the prop using ```[]``` notation. 
 - ```length``` is another property alog with the number props in array.
@@ -201,7 +201,7 @@ console.log(Arr1.length)
 ```
 - **length** does not count the ```foo``` property. ```foo``` is part of object but it is ignored as part of the array.
 - Console:
-```
+```javascript
 ["Reza", "Matt", "Andrew", empty × 2, "Fariba", foo: "Maneli"]
 0: "Reza"
 1: "Matt"
@@ -209,6 +209,20 @@ console.log(Arr1.length)
 5: "Fariba"
 foo: "Maneli"
 length: 6
+```
+### splice
+The splice() method changes the contents of an array by removing or replacing existing elements.
+```javascript
+const months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb');
+// inserts at index 1
+console.log(months);
+// expected output: Array ["Jan", "Feb", "March", "April", "June"]
+
+months.splice(4, 1, 'May');
+// replaces 1 element at index 4
+console.log(months);
+// expected output: Array ["Jan", "Feb", "March", "April", "May"]
 ```
 ## Function
 - **function declration** is the common way of creating functions.
