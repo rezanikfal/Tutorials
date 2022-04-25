@@ -272,6 +272,15 @@ var f = function () {
 };
 f()
 ```
+### Function definition
+```javascript
+var Foo = Function Bar()
+{
+return 7;
+};
+typeof Bar();
+```
+The output would be **Reference Error**. A function definition can have only one reference variable as its function name.
 ## For ... of
 Creates a loop iterating over iterable objects, including: built-in String, Array, array-like objects
 ```javascript
