@@ -237,3 +237,16 @@ for (const value of iterable) {
 // "o"
 // "o"
 ```
+## Callback Function
+A **callback** function is a function that is **passed to another function** as an argument and is executed **after** some operation has been completed. 
+```javascript
+function modifyArray(arr, callback) {
+  arr.push(100);
+  callback();
+}
+
+var arr = [1, 2, 3, 4, 5];
+modifyArray(arr, function() {
+  console.log("array has been modified", arr);
+});
+```
