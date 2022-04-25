@@ -269,3 +269,14 @@ modifyArray(arr, function() {
 let test = [1,2,3,4,5]
 console.log(Array.isArray(test)) //true
 ```
+## Check if two strings are anagrams 
+**Mary** is an anagram of **Army**. 
+```javascript
+var firstWord = "Mary";
+var secondWord = "Army";
+
+
+var a = firstWord.toLowerCase().split('').sort().join('')
+var b = secondWord.toLowerCase().split('').sort().join('')
+console.log(a==b);
+```
