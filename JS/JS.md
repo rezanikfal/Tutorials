@@ -94,6 +94,16 @@ c.add(5);
 c.add(9); 
 c.retrieve(); // => The counter is currently at: 14
 ```
+Create **multiply(3)(4)**
+```javascript
+function multiply(a) {
+  return function (b) {
+    return b * a
+  }
+}
+
+console.log(multiply(3)(4)); // 12
+```
 ### Declaration VS Definition
 ```javascript
 var a; //Declaration
