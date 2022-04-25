@@ -79,6 +79,21 @@ document.getElementById('reza').addEventListener('click', function() {
     });
 });
 ```
+Use a closure to create a private counter (_counter)
+```javascript
+function counter() {
+  var _counter = 0;
+  return {
+    add: function(increment) { _counter += increment; },
+    retrieve: function() { return 'The counter is currently at: ' + _counter; }
+  }
+}
+
+var c = counter();
+c.add(5); 
+c.add(9); 
+c.retrieve(); // => The counter is currently at: 14
+```
 ### Declaration VS Definition
 ```javascript
 var a; //Declaration
