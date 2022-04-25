@@ -122,6 +122,11 @@ a = 12;
 console.log(a);
 var a;
 ```
+### JS Boolean
+```javascript
+"", 0, -0, NaN, null, undefined //false
+" ", [], {} //true
+```
 ## Object
 Object is a container that encloses data & behavior together.
 In JS we create objects directly and there is no ```class``` concept.
