@@ -280,6 +280,19 @@ return 7;
 };
 typeof Bar();
 ```
+### Function definition
+**arguments** is an Array-like object accessible inside functions that contains the values of the arguments passed to that function.
+```javascript
+function func1(a, b, c) {
+    console.log(arguments[0]); // 1
+    console.log(arguments[1]); // 2
+    console.log(arguments[2]); // 3
+    console.log(Array.from(arguments)); // [1, 2, 33]
+    console.log(arguments.length); // 3
+  }
+  
+func1(1, 2, 33);
+```
 The output would be **Reference Error**. A function definition can have only one reference variable as its function name.
 ## For ... of
 Creates a loop iterating over iterable objects, including: built-in String, Array, array-like objects
