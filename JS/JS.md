@@ -280,7 +280,7 @@ return 7;
 };
 typeof Bar();
 ```
-### Function definition
+### The arguments object
 **arguments** is an Array-like object accessible inside functions that contains the values of the arguments passed to that function.
 ```javascript
 function func1(a, b, c) {
