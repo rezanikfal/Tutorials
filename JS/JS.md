@@ -1,3 +1,15 @@
+## Methods/Properties
+- Check if a var is number: ```typeof(x) == "number"```
+- Check if an elements is in an array: ```outcome.includes(x)```
+- Create random number between 0-199 (including 0 & 199): ```Math.floor((Math.random()*200))```
+- Remove Duplicates from an array:
+```javascript
+const noDuplicate = arr.filter((x,i)=>{
+    return arr.indexOf(x) == i
+})
+```
+
+
 ## DOM
 ### Query selector
 ```javascript
