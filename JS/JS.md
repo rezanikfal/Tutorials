@@ -346,3 +346,11 @@ Once we click on **delete**, if the ```<span>``` has a callback functions, it wi
 			<span class="delete">delete</span>
 		</li>
 ```
+## setInterval vs setTimeout  
+setTimeout runs the code/function once after the timeout. setInterval runs the code/function repeatedly, with the length of the timeout between each repeat.
+```javascript
+var intervalID = setInterval(alert, 1000); // Will alert every second.
+// clearInterval(intervalID); // Will clear the timer.
+
+setTimeout(alert, 1000); // Will alert once, after a second.
+```
