@@ -8,8 +8,13 @@ const noDuplicate = arr.filter((x,i)=>{
     return arr.indexOf(x) == i
 })
 ```
-
-
+- The substring() method returns the part of the string:
+```javascript
+const str = 'Mozilla';
+console.log(str.substring(1, 3));
+// expected output: "oz"
+})
+```
 ## DOM
 ### Query selector
 ```javascript
