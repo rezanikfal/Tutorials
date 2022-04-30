@@ -2,18 +2,24 @@
 - Check if a var is number: ```typeof(x) == "number"```
 - Check if an elements is in an array: ```outcome.includes(x)```
 - Create random number between 0-199 (including 0 & 199): ```Math.floor((Math.random()*200))```
-- Remove Duplicates from an array:
+- **Remove Duplicates** from an array:
 ```javascript
 const noDuplicate = arr.filter((x,i)=>{
     return arr.indexOf(x) == i
 })
 ```
-- The substring() method returns the part of the string:
+- The **substring()** method returns the part of the string:
 ```javascript
 const str = 'Mozilla';
 console.log(str.substring(1, 3));
 // expected output: "oz"
 })
+```
+- The **flat()** method creates a new array with all sub-array elements:
+```javascript
+var A = [1, [2], [3, [[4]]],[5,6]]
+console.log(A.flat(2)); //[1, 2, 3, [4], 5, 6]
+console.log(A.flat(Infinity)); //[1, 2, 3, 4, 5, 6]
 ```
 ## DOM
 ### Query selector
