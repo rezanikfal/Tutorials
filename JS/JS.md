@@ -21,6 +21,12 @@ var A = [1, [2], [3, [[4]]],[5,6]]
 console.log(A.flat(2)); //[1, 2, 3, [4], 5, 6]
 console.log(A.flat(Infinity)); //[1, 2, 3, 4, 5, 6]
 ```
+- Intersect or Deferenciate array A and B:
+```javascript
+console.log(A.filter(x=>B.includes(x))); // Intersection
+console.log(A.filter(x=>!B.includes(x))); // A-B
+console.log(A.filter(x=>!B.includes(x)).concat(B.filter(x=>!A.includes(x))); // Symmetric difference
+```
 ## DOM
 ### Query selector
 ```javascript
