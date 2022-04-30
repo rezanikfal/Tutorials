@@ -8,7 +8,7 @@ const noDuplicate = arr.filter((x,i)=>{
     return arr.indexOf(x) == i
 })
 ```
-- The **substring()** method returns the part of the string:
+- The **substring()** method returns the part of the string (substring is all **lower case**):
 ```javascript
 const str = 'Mozilla';
 console.log(str.substring(1, 3));
