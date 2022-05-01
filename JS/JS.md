@@ -4,6 +4,7 @@
 - Check if an elements is in an array: ```outcome.includes(x)```
 - Create random number between 0-199 (including 0 & 199): ```Math.floor((Math.random()*200))```
 - Get e letter in a string: ```myLetter = 'Reza Nikfal'.charAt(6).toUpperCase() //I```
+- Convert ['a', 'reza', 15] to 'a','reza',15: ```['a', "reza", 15].toString()```
 - **Remove Duplicates** from an array:
 ```javascript
 const noDuplicate = arr.filter((x,i)=>{
@@ -261,6 +262,21 @@ var myObj = {
 delete myObj.prop1
 
 console.log(myObj); //{ prop2:123 }
+```
+### Loop through Properties
+```javascript
+var student = {
+    name : "David Rayy",
+    sclass : "VI",
+    myFucn:()=>console.log('Reza')
+};
+for (const key in student) {
+console.log(key);
+} //name sclass myFucn
+//----------------------------------
+console.log(Object.keys(student)); //['name', 'sclass', 'myFucn']
+console.log(Object.keys(student).toString()); //'name', 'sclass', 'myFucn'
+console.log(Object.keys(student).lenght); // 3
 ```
 ## Array / String
 - In JS **array is an object** with number properties.
