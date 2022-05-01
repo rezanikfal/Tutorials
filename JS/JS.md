@@ -3,6 +3,7 @@
 - Print the current web page: ```window.print()```
 - Check if an elements is in an array: ```outcome.includes(x)```
 - Create random number between 0-199 (including 0 & 199): ```Math.floor((Math.random()*200))```
+- Get e letter in a string: ```myLetter = 'Reza Nikfal'.charAt(6).toUpperCase() //I```
 - **Remove Duplicates** from an array:
 ```javascript
 const noDuplicate = arr.filter((x,i)=>{
