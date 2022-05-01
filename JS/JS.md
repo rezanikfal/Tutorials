@@ -46,6 +46,14 @@ let mySt = ['go', 'google', 'googthfhg','googlehdiusghcdkjasbgci', 'googthfh']
 var longest = mySt.reduce((a, b)=>a.length > b.length ? a : b) // Loop through the array, Each time stores the function result in b
 var longest2 = mySt.sort((a,b)=> b.length-a.length) //return a - b => ascending , return b - a => decending (for Numbers)
 ```
+- Date object 
+```javascript
+let pastDay= new Date(2000,1,1,20,11,28)
+let currentDay= new Date()
+console.log(pastDay.getTime()); //949457488000
+console.log(currentDay.getHours()); //1
+console.log(pastDay); //Tue Feb 01 2000 20:11:28 GMT-0600 (Central Standard Time)
+```
 ## DOM
 ### Query selector
 ```javascript
