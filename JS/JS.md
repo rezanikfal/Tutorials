@@ -34,8 +34,13 @@ var library = [
 { author: 'Steve Jobs', title: 'Walter Isaacson', libraryID: 4264},
 { author: 'Suzanne Collins', title: 'Mockingjay: The Final Book of The Hunger Games', libraryID: 3245}
 ];
-
 console.log(library.sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1));
+```
+- Sort an string array based on the elements length:
+```javascript
+let mySt = ['go', 'google', 'googthfhg','googlehdiusghcdkjasbgci', 'googthfh']
+var longest = mySt.reduce((a, b)=>a.length > b.length ? a : b) // Loop through the array, Each time stores the function result in b
+var longest2 = mySt.sort((a,b)=> b.length-a.length) //return a - b => ascending , return b - a => decending
 ```
 ## DOM
 ### Query selector
