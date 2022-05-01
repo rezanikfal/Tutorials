@@ -9,11 +9,13 @@ const noDuplicate = arr.filter((x,i)=>{
 })
 ```
 - The **substring()** method returns the part of the string (substring is all **lower case**):
+- The **slice()** method returns the part of an array:
 ```javascript
 const str = 'Mozilla';
-console.log(str.substring(1, 3));
-// expected output: "oz"
+console.log(str.substring(1, 3)); // expected output: "oz"
 })
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2, 4)); // expected output: Array ["camel", "duck"]
 ```
 - The **flat()** method creates a new array with all sub-array elements:
 ```javascript
