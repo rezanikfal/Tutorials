@@ -219,6 +219,30 @@ var myCar2 = {
     }
 }
 ```
+### Constructor Function
+- We use this function to create an **object** 
+- In the normal situation it will be like this:
+```javascript
+function bike(name, age) {
+    myObj = {};  // In common with all similar functions
+    myObj.name = name;
+    myObj.age = age;
+    return myObj  // In common with all similar functions
+}
+
+let bik1 = bike('Reza', 34)
+```
+- JavaScript provided ```new``` keyword. Once you create the object using this keyword, you can omit the **In common** lines (↑).
+- Also by convention, the function name starts Capital, it is called Constructor Function.
+- We use ```this``` keyword since there is no object declaration in the function.
+```javascript
+function Bike(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+let bik1 = new Bike('Reza', 34)
+```
 ### Access to Propertits
 - To access the properties, we can use ```.``` or ```[]``` notation.
 - The bracket notation is for properties with **invalid** name or with **Variable** name.
