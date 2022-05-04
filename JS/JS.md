@@ -392,6 +392,25 @@ function func1(a, b, c) {
 func1(1, 2, 33);
 ```
 The output would be **Reference Error**. A function definition can have only one reference variable as its function name.
+## call() method
+- You can use call to **chain** constructors functions
+- Food & Toy constructor functions, invoke Product, passing **this**, name, and price. 
+```javascript
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+function Toy(name, price) {
+  Product.call(this, name, price);
+  this.category = 'toy';
+}
+const cheese = new Food('feta', 5);
+const fun = new Toy('robot', 40);
+```
 ## For ... of
 Creates a loop iterating over iterable objects, including: built-in String, Array, array-like objects
 ```javascript
