@@ -58,6 +58,13 @@ console.log(pastDay.getTime()); //949457488000
 console.log(currentDay.getHours()); //1
 console.log(pastDay); //Tue Feb 01 2000 20:11:28 GMT-0600 (Central Standard Time)
 ```
+- Create a clock on console
+```javascript
+setInterval(_=>{
+    now = new Date
+    console.log(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
+}, 1000)
+```
 ## DOM
 ### Query selector
 ```javascript
