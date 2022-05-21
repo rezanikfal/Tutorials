@@ -13,7 +13,7 @@ const noDuplicate = arr.filter((x,i)=>{
 })
 ```
 - The **substring()** method returns the part of the string (substring is all **lower case**):
-- The **slice()** method returns the part of an array - **The Second Number is not included in both methods**:
+- The **slice()** method returns the part of an array/string - **The Second Number is not included in both methods**:
 ```javascript
 const str = 'Mozilla';
 console.log(str.substring(1, 3)); // expected output: "oz"
