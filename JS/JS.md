@@ -27,6 +27,12 @@ var A = [1, [2], [3, [[4]]],[5,6]]
 console.log(A.flat(2)); //[1, 2, 3, [4], 5, 6]
 console.log(A.flat(Infinity)); //[1, 2, 3, 4, 5, 6]
 ```
+- The **chatAt()** method returns the exact character:
+```javascript
+let myFirst = 'js string exercises'
+let var1 = myFirst.split(' ').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')
+console.log(var1) // Js String Exercises
+```
 - Intersect or Deferenciate array A and B:
 ```javascript
 console.log(A.filter(x=>B.includes(x))); // Intersection
