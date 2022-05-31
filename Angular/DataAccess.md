@@ -78,19 +78,19 @@ export class PageListComponent implements OnInit {
 ### Parent:
 ```javascript
 export class AppComponent {
-  pages = [];
+  currentItem = [];
 
   constructor(private wikipedia: WikipediaService) {}
 
   onTerm(term: string) {
     this.wikipedia.search(term).subscribe((response: any) => {
-      this.pages = response.query.search;
+      this.currentItem = response.query.search;
     });
   }
 }
 ```
 ```html
-<app-page-list [pages]="pages"></app-page-list>
+<app-page-list [pages]="currentItem"></app-page-list>
 ```
 
 ## Pass Data from child to parent using OUTPUT directive:
