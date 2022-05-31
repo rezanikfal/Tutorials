@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 ```
 ### Form Component:
+```username: new FormControl('Default Value', [ Default Validator], [Custom Validators]),```
 ```javascript
 import { FormGroup, FormControl } from '@angular/forms';
 export class AppCardComponent implements OnInit {
