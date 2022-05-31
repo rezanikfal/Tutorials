@@ -34,7 +34,7 @@ export class SignalRService {
 - Ahead-of-time (AOT) compilation: With AOT, the compiler runs at the build time. render the application immediately
 - Just-in-time (JIT) compilation: This is a standard developviment approach which compiles our Typescript and html files in the browser at runtime (Default ng serve or build).
 - Template reference variables -> <input #reza ...
-- An Attribute directive changes the appearance or behavior of a DOM element and extend the power of the HTML by giving it new syntax. (Structural directives -> *ngIf and *ngFor , Attribute directives -> *ngStyle and *ngClass, Components)
+- An **Attribute directive changes the appearance or behavior of a DOM element** and extend the power of the HTML by giving it new syntax. (Structural directives -> *ngIf and *ngFor , Attribute directives -> *ngStyle and *ngClass, Components)
 ```htm
 <div *ngIf="condition">Content to render when condition is true.</div></ul>
 ```
