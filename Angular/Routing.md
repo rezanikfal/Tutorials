@@ -11,6 +11,28 @@ const routes: Routes =
 ```
 ### PathMatch
 The default path-match strategy is **prefix**, which means that the router checks URL elements from the left to see if the URL matches a specified path.You can specify the path-match strategy __full__ to make sure that the path covers the whole unconsumed URL.
+
+### HTTP POST
+```javascript
+post(url: string, 
+     body: any, 
+     options: { 
+        headers?: HttpHeaders | { [header: string]: string | string[]; }; 
+        observe?: "body|events|response|"; 
+        params?: HttpParams | { [param: string]: string | string[]; }; 
+        reportProgress?: boolean; 
+        responseType: "arraybuffer|json|blob|text"; 
+        withCredentials?: boolean; 
+     }
+): Observable
+```
+- headers : use this to send the HTTP Headers along with the request
+- params: set query strings / URL parameters
+- observe: This option determines the return type.
+- responseType: The value of responseType determines how the response is parsed.
+- reportProgress: Whether this request should be made in a way that exposes progress events.
+- withCredentials: Whether this request should be sent with outgoing credentials (cookies).
+
 ### Lazy Loading
 Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
 ```javascript
