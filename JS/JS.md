@@ -299,6 +299,17 @@ var myObj2 = myObj;
 console.log(myObj === myObj2); //true
 console.log(myObj === myObj3); //false
 ```
+### Object Destructuring
+```javascript
+function Bike(name, age){
+  this.name = name
+  this.age = age
+}
+
+myBike = new Bike('Reza', 22)
+let {name,age} = myBike
+console.log(name) // "Reza"
+```
 ### Delete Properties
 ```javascript
 var myObj = {
