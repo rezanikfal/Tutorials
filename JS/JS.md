@@ -5,7 +5,7 @@
 - Fix to 4 digits: ```(1.65).toFixed(4) // 1.6500```
 - Create random number between 0-199 (including 0 & 199): ```Math.floor((Math.random()*200))```
 - Get e letter in a string: ```myLetter = 'Reza Nikfal'.charAt(6).toUpperCase() //I```
-- Convert ['a', 'reza', 15] to 'a','reza',15: ```['a', "reza", 15].toString()```
+- Convert ['a', 'reza', 15] to "a,reza,15": ```['a', "reza", 15].toString()```
 - **Remove Duplicates** from an array:
 ```javascript
 const noDuplicate = arr.filter((x,i)=>{
