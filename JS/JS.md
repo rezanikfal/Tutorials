@@ -57,6 +57,13 @@ let mySt = ['go', 'google', 'googthfhg','googlehdiusghcdkjasbgci', 'googthfh']
 var longest = mySt.reduce((a, b)=>a.length > b.length ? a : b) // Loop through the array, Each time stores the function result in b
 var longest2 = mySt.sort((a,b)=> b.length-a.length) //return a - b => ascending , return b - a => decending (for Numbers)
 ```
+- Sort a number array:
+```javascript
+let BB = [1,2,3,22,5,6,7,89,3]
+var sort1 = BB.sort() // [1,2,22,3,3,5,6,7,89] Sorts as string
+var sort1 = BB.sort((a,b)=>a-b)) // [1,2,3,3,5,6,7,22,89]
+var sort1 = BB.sort((a,b)=>b-a)) // [89,22,7,6,5,3,3,2,1]
+```
 ### Date object 
 ```javascript
 let pastDay= new Date(2000,1,1,20,11,28)
