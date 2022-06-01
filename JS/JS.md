@@ -1,5 +1,6 @@
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
+- ```B.sort()``` is from Small to big, to reverse it use ```B.sort().reverse()```
 - Print the current web page: ```window.print()```
 - Check if an elements is in an array: ```outcome.includes(x)```
 - Fix to 4 digits: ```(1.65).toFixed(4) // 1.6500```
