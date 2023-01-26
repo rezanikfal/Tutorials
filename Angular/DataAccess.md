@@ -120,3 +120,33 @@ export class ModsHomeComponent implements OnInit {
 ```html
 <app-modal (close)="onClick($event)" *ngIf="modalOpen"></app-modal>
 ```
+
+## @ViewChild, access to the child component from parent:
+In the following sample we run a function in child component from parent:
+### Child (app-modal):
+```javascript
+export class ChildComponent {
+  public childMethod() {
+    console.log('Child method called');
+  }
+}
+```
+### Parent:
+```html
+<app-child #child></app-child>
+```
+```javascript
+import { Component, ViewChild } from '@angular/core';
+import { ChildComponent } from './child.component';
+
+@Component({
+  // ...
+})
+export class ParentComponent {
+  @ViewChild(ChildComponent, {static: false}) child: ChildComponent;
+
+  public parentMethod() {
+    this.child.childMethod();
+  }
+}
+```
