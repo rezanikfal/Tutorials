@@ -153,10 +153,16 @@ export class ParentComponent {
 ## polyfills.ts in Angular project:
 - In general some cross-browser compatibility issues can be resolved by using **polyfills**. Polyfills are JavaScript libraries that enable modern features on older browsers.
 - In **Angular**, polyfills are used to provide support for features that are not available in certain browsers in Angular project, while TypeScript is a superset of JavaScript that provide additional features such as type checking that make Angular development more powerful and efficient.
-- 
+
 ## angular.json in Angular project:
 - A configuration file in an Angular project that defines project-wide settings and options.
 - It contains the configurations for the different build targets, test targets, and serve targets.
 
 ## main.ts in Angular project:
-It is the main entry point for the application. It is responsible for bootstrapping the root module (usually named "AppModule") of the application.
+- It is the main entry point for the application. It is responsible for bootstrapping the root module (usually named "AppModule") of the application.
+
+## @ViewChild vs @ViewChildrent:
+- In Angular, both decorators are used to access elements in a template.
+- @ViewChildren is used to access multiple elements in the template and returns a QueryList.
+- It  matches the specified component, directive or **template reference variable**.
+
