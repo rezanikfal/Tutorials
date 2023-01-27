@@ -157,3 +157,6 @@ export class ParentComponent {
 ## angular.json in Angular project:
 - A configuration file in an Angular project that defines project-wide settings and options.
 - It contains the configurations for the different build targets, test targets, and serve targets.
+
+## main.ts in Angular project:
+It is the main entry point for the application. It is responsible for bootstrapping the root module (usually named "AppModule") of the application.
