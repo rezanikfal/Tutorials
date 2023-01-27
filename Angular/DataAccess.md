@@ -153,3 +153,7 @@ export class ParentComponent {
 ## polyfills.ts in Angular project:
 - In general some cross-browser compatibility issues can be resolved by using **polyfills**. Polyfills are JavaScript libraries that enable modern features on older browsers.
 - In **Angular**, polyfills are used to provide support for features that are not available in certain browsers in Angular project, while TypeScript is a superset of JavaScript that provide additional features such as type checking that make Angular development more powerful and efficient.
+- 
+## angular.json in Angular project:
+- A configuration file in an Angular project that defines project-wide settings and options.
+- It contains the configurations for the different build targets, test targets, and serve targets.
