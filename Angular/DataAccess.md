@@ -161,6 +161,10 @@ export class ParentComponent {
 ## main.ts in Angular project:
 - It is the main entry point for the application. It is responsible for bootstrapping the root module (usually named "AppModule") of the application.
 
+## environment.ts in Angular project:
+- It used to store configuration settings that are specific to a certain environment, such as development, staging, or production. 
+- Each environment file exports an object that contains the configuration settings for that environment. For example, it can contain API endpoints, feature flags, and other settings that are specific to that environment.
+
 ## tsconfig.json in Angular project:
 - It is used to configure the TypeScript compiler. It specifies ECMAScript version, strict type checking, sourceMap, and dirs.
 - Source map files are used to map the code written in a higher-level language (such as TypeScript) to its equivalent code in a lower-level language (such as JavaScript). This mapping allows developers to debug their code using the original source files, rather than the compiled output(It should be disabled with Prod app).
