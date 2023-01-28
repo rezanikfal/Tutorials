@@ -161,6 +161,10 @@ export class ParentComponent {
 ## main.ts in Angular project:
 - It is the main entry point for the application. It is responsible for bootstrapping the root module (usually named "AppModule") of the application.
 
+## tsconfig.json in Angular project:
+- It is used to configure the TypeScript compiler. It specifies ECMAScript version, strict type checking, sourceMap, and dirs.
+- Source map files are used to map the code written in a higher-level language (such as TypeScript) to its equivalent code in a lower-level language (such as JavaScript). This mapping allows developers to debug their code using the original source files, rather than the compiled output(It should be disabled with Prod app).
+
 ## @ViewChild vs @ViewChildrent:
 - In Angular, both decorators are used to access elements in a template.
 - @ViewChildren is used to access multiple elements in the template and returns a QueryList.
