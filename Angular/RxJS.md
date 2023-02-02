@@ -363,3 +363,7 @@ selectedUser$ = this.userSelectedAction$.pipe(
         ))
 );
 ```
+### Concat/Merge/Switch Map
+![Concat](../Pics/Concat.JPG)
+![Merge](../Pics/Merge.JPG)
+![Switch](../Pics/switch.JPG)
