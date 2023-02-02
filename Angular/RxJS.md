@@ -378,6 +378,7 @@ const b$=of('a', 'b', 'c');
 const c$ = forkJoin([a$, b$]).subscribe (console.log); 
 // [4, 'c']
 ```
+![ForkJoin](../Pics/Fork.JPG)
 ### combineLatest:
 - Creation function (not a pipeable operator)
 - Waits for all Observables to emit at least once 
@@ -389,6 +390,7 @@ const b$ = of('a', 'b', 'c');
 const c$ = combineLatest([a$, b$]).subscribe (console.log);
 // [4, 'a'] [4, 'b'] [4, 'c']
 ```
+![combineLatest](../Pics/combine.JPG)
 ### zip:
 - Creation function (not a pipeable operator) 
 - Waits until each Observable emits
@@ -399,3 +401,4 @@ const b$ = of('a', 'b', 'c');
 const c$ = zip (a$, b$).subscribe(console.log);
 // [1, 'a'] [2, 'b'] [3, 'c']
 ```
+![zip](../Pics/zip.JPG)
