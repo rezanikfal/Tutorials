@@ -341,3 +341,25 @@ result.subscribe(x => console.log(x));
 // Results in:
 // true
 ```
+## RxJS Best Practices:
+### React to user action:
+- Declare an action stream:
+```javascript
+private userSelectedSubject = new Subject<number>();
+userSelectedAction$ = this.userSelectedSubject.asObservable();
+```
+- Emit a notification:
+```javascript
+onSelected (userId: number): void { 
+    this.userSelectedSubject.next(userId);
+}
+```
+- React to the notification:
+```javascript
+selectedUser$ = this.userSelectedAction$.pipe(
+    SwitchMap((userId) =>
+        this.http.get<User>(`${this.userUrl}/${userId}`).pipe(
+            catchError(this.handleError)
+        ))
+);
+```
