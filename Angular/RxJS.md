@@ -363,7 +363,39 @@ selectedUser$ = this.userSelectedAction$.pipe(
         ))
 );
 ```
-### Concat/Merge/Switch Map
+## Concat/Merge/Switch Map
 ![Concat](../Pics/Concat.JPG)
 ![Merge](../Pics/Merge.JPG)
 ![Switch](../Pics/switch.JPG)
+## ForkJoin/combineLatest/zip
+### ForkJoin:
+- Creation function (not a pipeable operator) 
+- Waits for all Observables to emit and complete
+- Emits the last value from each Observable
+```javascript
+const a$=of (1, 2, 3, 4);
+const b$=of('a', 'b', 'c');
+const c$ = forkJoin([a$, b$]).subscribe (console.log); 
+// [4, 'c']
+```
+### combineLatest:
+- Creation function (not a pipeable operator)
+- Waits for all Observables to emit at least once 
+- When any Observable emits combineLatest emits the latest value from each Observable
+- Here observable b$ emits the first value ('a') after a$
+```javascript
+const a$ = of (1, 2, 3, 4);
+const b$ = of('a', 'b', 'c');
+const c$ = combineLatest([a$, b$]).subscribe (console.log);
+// [4, 'a'] [4, 'b'] [4, 'c']
+```
+### zip:
+- Creation function (not a pipeable operator) 
+- Waits until each Observable emits
+- Then emits the value from each Observable as a set Repeats
+```javascript
+const a$ = of (1, 2, 3, 4);
+const b$ = of('a', 'b', 'c');
+const c$ = zip (a$, b$).subscribe(console.log);
+// [1, 'a'] [2, 'b'] [3, 'c']
+```
