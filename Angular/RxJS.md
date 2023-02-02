@@ -382,7 +382,7 @@ const c$ = forkJoin([a$, b$]).subscribe (console.log);
 - Creation function (not a pipeable operator)
 - Waits for all Observables to emit at least once 
 - When any Observable emits combineLatest emits the latest value from each Observable
-- Here observable b$ emits the first value ('a') after a$
+- Here observable b$ emits the first value ('a') after all a$ values
 ```javascript
 const a$ = of (1, 2, 3, 4);
 const b$ = of('a', 'b', 'c');
