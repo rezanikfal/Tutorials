@@ -388,6 +388,25 @@ months.splice(4, 1, 'May');
 console.log(months);
 // expected output: Array ["Jan", "Feb", "March", "April", "May"]
 ```
+### padStart/End
+The padStart() / padEnd() applies padding to the start/end of the string. .
+```javascript
+const str1 = '5';
+console.log(str1.padStart(2, '0'));
+// Expected output: "05"
+const fullNumber = '2034399002125581';
+const last4Digits = fullNumber.slice(-4);
+const maskedNumber = last4Digits.padStart(fullNumber.length, '*');
+console.log(maskedNumber);
+// Expected output: "************5581"
+//-----------------------------------------------------------------
+const str1 = 'Breaded Mushrooms';
+console.log(str1.padEnd(25, '.'));
+// Expected output: "Breaded Mushrooms........"
+const str2 = '200';
+console.log(str2.padEnd(5));
+// Expected output: "200  "
+```
 ## Function
 - **function declration** is the common way of creating functions.
 ```javascript
