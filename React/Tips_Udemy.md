@@ -17,3 +17,18 @@ function SearchBar({ onSubmit }) {
 
 export default SearchBar;
 ```
+## Create multiple components from list (Using map) :
+```javascript
+import ImageShow from "./ImageShow";
+
+function ImageList({ images }) {
+    const renderedImage = images.map(x => <ImageShow key={x.id} image={x} />)
+    return (
+        <div>
+            <div>{renderedImage}</div>
+        </div>
+    );
+}
+
+export default ImageList;
+```
