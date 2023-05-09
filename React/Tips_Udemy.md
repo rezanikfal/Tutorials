@@ -32,3 +32,5 @@ function ImageList({ images }) {
 
 export default ImageList;
 ```
+## State Updates cheat sheet:
+https://state-updates.vercel.app/
