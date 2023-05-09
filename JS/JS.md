@@ -515,11 +515,29 @@ Once we click on **delete**, if the ```<span>``` has a callback functions, it wi
 			<span class="delete">delete</span>
 		</li>
 ```
-## setInterval vs setTimeout  
+## SetInterval vs setTimeout  
 setTimeout runs the code/function once after the timeout. setInterval runs the code/function repeatedly, with the length of the timeout between each repeat.
 ```javascript
 var intervalID = setInterval(alert, 1000); // Will alert every second.
 // clearInterval(intervalID); // Will clear the timer.
 
 setTimeout(alert, 1000); // Will alert once, after a second.
+```
+## Primitive and Objects 
+- The primitives are numbers, booleans, strings, symbols, and special values null and undefined
+- The second category is objects. Particularly the plain object, arrays, functions, and more — are all objects.
+	- If an array is your React State, pushing a new value don't changes the state becase before and after pushing, it points to the same ref of the array.
+```javascript
+let a = 1;
+let b = a;
+b = b + 2;
+console.log(a); // 1
+console.log(b); // 3
+```
+```javascript
+let x = [1];
+let y = x;
+y.push(2);
+console.log(x); // [1, 2]
+console.log(y); // [1, 2]
 ```
