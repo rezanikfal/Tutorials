@@ -34,3 +34,6 @@ export default ImageList;
 ```
 ## State Updates cheat sheet:
 https://state-updates.vercel.app/
+
+## Create React Typescript boilerplate:
+`npx create-react-app my-app --template typescript`
