@@ -140,52 +140,20 @@ Array.from(deleteKey).forEach(element => {   //Convert to JS array
 ### Closure
 Unlike other programming languages, in JS, you have access to variable in outer scope:
 ```javascript
-// Once the console.log starts running, the outer scope is done ans no "i" exists. However it logs the i as follows
-for (var i = 0; i < 4; i++) {
-    setTimeout(() => {
-        console.log(i)
-    }, 1000)
-
-} // 0  1  2  3  (let -> var: 4  4  4  4)
-
-// Same story for colours and "this" that can be accessed in the internal function, once it is stored in "that" variable
-var colours = ['red', 'green', 'blue'];
-document.getElementById('reza').addEventListener('click', function() {
-
-    console.log(this); //<span class="delete" id="reza">delete</span>
-    var that = this;
-
-    colours.forEach(function() {
-        console.log(this); //Global scope (i.e. window object)
-        console.log(that); //<span class="delete" id="reza">delete</span>
-    });
-});
-```
-Use a closure to create a private counter (_counter)
-```javascript
-function counter() {
-  var _counter = 0;
-  return {
-    add: function(increment) { _counter += increment; },
-    retrieve: function() { return 'The counter is currently at: ' + _counter; }
-  }
+function greet(name) {
+  return function() {
+    console.log("Hello, " + name + "!");
+  };
 }
 
-var c = counter();
-c.add(5); 
-c.add(9); 
-c.retrieve(); // => The counter is currently at: 14
-```
-Create **multiply(3)(4)**
-```javascript
-function multiply(a) {
-  return function (b) {
-    return b * a
-  }
-}
+const greetJohn = greet("John");
+const greetEmily = greet("Emily");
 
-console.log(multiply(3)(4)); // 12
+greetJohn(); // Output: Hello, John!
+greetEmily(); // Output: Hello, Emily!
 ```
+- The closures allow the inner function to remember and access the name variable, creating personalized greetings for different names even after the outer greet function has completed execution.
+- In this example, we have a greet function that takes a name parameter and returns an inner function. The inner function, when invoked, logs a greeting message to the console using the name parameter from its enclosing scope. We create two closures, greetJohn and greetEmily, by invoking the greet function with different names.
 ### Declaration VS Definition
 ```javascript
 var a; //Declaration
