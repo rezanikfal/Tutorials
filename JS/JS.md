@@ -241,6 +241,13 @@ var myCar2 = {
         console.log('REZA');
     }
 }
+
+//If the object key has special characters like -, @, [, etc. we have to format it as 'objectKey'.
+const myObject = {
+    'reza-12':true,
+    nik_fal:12,
+    fal:'test'
+}
 ```
 ### Constructor Function
 - We use this function to create an **object** 
