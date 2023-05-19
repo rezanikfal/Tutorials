@@ -262,6 +262,26 @@ function bike(name, age) {
 
 let bik1 = bike('Reza', 34)
 ```
+### Object & array rest properties
+```javascript
+const primes = [2, 3, 5, 7, 11];
+const [first, second, ...rest] = primes;
+console.log(first); // 2
+console.log(second); // 3
+console.log(rest); // [5, 7, 11]
+```
+```javascript
+const person = {
+    firstName: 'Sebastian',
+    lastName: 'Markbåge',
+    country: 'USA',
+    state: 'CA',
+};
+const { firstName, lastName, ...rest } = person;
+console.log(firstName); // Sebastian
+console.log(lastName); // Markbåge
+console.log(rest); // { country: 'USA', state: 'CA' }
+```
 - JavaScript provided ```new``` keyword. Once you create the object using this keyword, you can omit the **In common** lines (↑).
 - Also by convention, the function name starts Capital, it is called Constructor Function.
 - We use ```this``` keyword since there is no object declaration in the function.
@@ -438,18 +458,34 @@ return 7;
 };
 typeof Bar();
 ```
-### The arguments object
-**arguments** is an Array-like object accessible inside functions that contains the values of the arguments passed to that function.
+### The arguments object VS Rest parameters
+- The rest parameter syntax allows a function to accept an indefinite number of arguments as an array
+- arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function.
+```javascript
+function sum(...theArgs) {
+  let total = 0;
+  for (const arg of theArgs) {
+    total += arg;
+  }
+  return total;
+}
+
+console.log(sum(1, 2, 3));
+// Expected output: 6
+```
 ```javascript
 function func1(a, b, c) {
-    console.log(arguments[0]); // 1
-    console.log(arguments[1]); // 2
-    console.log(arguments[2]); // 3
-    console.log(Array.from(arguments)); // [1, 2, 33]
-    console.log(arguments.length); // 3
-  }
-  
-func1(1, 2, 33);
+  console.log(arguments[0]);
+  // Expected output: 1
+
+  console.log(arguments[1]);
+  // Expected output: 2
+
+  console.log(arguments[2]);
+  // Expected output: 3
+}
+
+func1(1, 2, 3);
 ```
 The output would be **Reference Error**. A function definition can have only one reference variable as its function name.
 ## call() method
