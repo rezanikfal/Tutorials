@@ -558,3 +558,10 @@ y.push(2);
 console.log(x); // [1, 2]
 console.log(y); // [1, 2]
 ```
+## Create a JS object key from a variable
+To use a variable as an object key, just put it in []:
+```javascript
+a = 'test'
+c={[a]:'Reza'}
+console.log(c); // {test:'Reza'}
+```
