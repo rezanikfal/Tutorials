@@ -565,3 +565,10 @@ a = 'test'
 c={[a]:'Reza'}
 console.log(c); // {test:'Reza'}
 ```
+## Create a JS for loop inline
+To generate an array with a number of elements just to use the index:
+```javascript
+const time = 6
+const boxes = Array(time).fill(0).map((_,i)=>i)
+console.log(boxes); // [0, 1, 2, 3, 4, 5]
+```
