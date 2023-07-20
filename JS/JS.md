@@ -572,3 +572,11 @@ const time = 6
 const boxes = Array(time).fill(0).map((_,i)=>i)
 console.log(boxes); // [0, 1, 2, 3, 4, 5]
 ```
+## pre Element
+It is similar to p tag (paregraph element). However the outcome text font looks like code.
+```html
+<pre>This is a piece of code</pre>
+<p>This is a piece of code</p>
+```
+<pre>This is a piece of code</pre>
+<p>This is a piece of code</p>
