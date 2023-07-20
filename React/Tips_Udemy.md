@@ -1,21 +1,35 @@
-## Use state to control input value :
+## useState, useEffect, useRef Hooks :
+- useState: To Handle **States**
+- useRef: Reference a value that's not needed for rendering
+- useEffect: To perform side effects including fetching data, updating the DOM, ..
 ```javascript
-import { useState } from "react";
+import { useState, useEffect, useRef } from 'react';
+  const ref = useRef<any>();
+  const [input, setInput] = useState('');
+  const [code, setCode] = useState('');
 
-function SearchBar({ onSubmit }) {
-    const [term, setTerm] = useState('')
-    
-    const handleChange = (e) => {
-        setTerm(e.target.value);
+  const startService = async () => {
+    ref.current = await esbuild.startService({
+      worker: true,
+      wasmURL: '/esbuild.wasm',
+    });
+  };
+  useEffect(() => {
+    startService();
+  }, []);
+
+  const onClick = async () => {
+    if (!ref.current) {
+      return;
     }
-    return (
-        <div>
-           <input value={term} onChange={handleChange} />
-        </div>
-    );
-}
 
-export default SearchBar;
+    const result = await ref.current.transform(input, {
+      loader: 'jsx',
+      target: 'es2015',
+    });
+
+    setCode(result.code);
+  };
 ```
 ## Create multiple components from list (Using map) :
 ```javascript
