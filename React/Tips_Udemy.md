@@ -57,7 +57,7 @@ function App() {
 
 export default App;
 ```
-- Now you infinet API calls because after each call we the state will change -> app re-renders -> new ```fetchBooks()``` -> useEffect runs again, ...
+- Infinet API calls -> after each call the state will change -> app re-renders -> new ```fetchBooks()``` -> useEffect runs again, ...
 - to fix this we have to use **useCallback** as below to reference always to the first ```fetchBooks()``` not the new ones.
 - BEFORE:
 ```javascript
