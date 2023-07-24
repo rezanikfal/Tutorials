@@ -69,7 +69,7 @@ function Provider({ children }) {
     setBooks(response.data);
   };
 ```
-- AFTE:
+- AFTER:
 ```javascript
 function Provider({ children }) {
   const [books, setBooks] = useState([]);
