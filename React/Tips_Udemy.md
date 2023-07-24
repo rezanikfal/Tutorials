@@ -1,4 +1,4 @@
-## useState, useEffect, useRef Hooks :
+## useState, useEffect, useRef , useCallback Hooks :
 - useState: To Handle **States**
 - useRef: Reference a value that's not needed for rendering
 - useEffect: To perform side effects including fetching data, updating the DOM, ..
@@ -30,6 +30,55 @@ import { useState, useEffect, useRef } from 'react';
 
     setCode(result.code);
   };
+```
+- useCallback: Let's say you should make a call at the start of an app. So useEffect is the option.
+- We need to make a call once but **ESLint** complains and asks to put the API call function in the brackets..
+```javascript
+import { useEffect, useContext } from 'react';
+import BookCreate from './components/BookCreate';
+import BookList from './components/BookList';
+import BooksContext from './context/books';
+
+function App() {
+  const { fetchBooks } = useContext(BooksContext);
+
+  useEffect(() => {
+    fetchBooks();
+  }, [fetchBooks]);
+
+  return (
+    <div className="app">
+      <h1>Reading List</h1>
+      <BookList />
+      <BookCreate />
+    </div>
+  );
+}
+
+export default App;
+```
+- Now you infinet API calls because after each call we the state will change -> app re-renders -> new ```fetchBooks()``` -> useEffect runs again, ...
+- to fix this we have to use **useCallback** as below to reference always to the first ```fetchBooks()``` not the new ones.
+- BEFORE:
+```javascript
+function Provider({ children }) {
+  const [books, setBooks] = useState([]);
+
+  const fetchBooks = async () => {
+    const response = await axios.get('http://localhost:3001/books');
+    setBooks(response.data);
+  };
+```
+- AFTE:
+```javascript
+function Provider({ children }) {
+  const [books, setBooks] = useState([]);
+
+  const fetchBooks = useCallback(async () => {
+    const response = await axios.get('http://localhost:3001/books');
+
+    setBooks(response.data);
+  }, []);
 ```
 ## Create multiple components from list (Using map) :
 ```javascript
