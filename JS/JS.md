@@ -565,6 +565,16 @@ a = 'test'
 c={[a]:'Reza'}
 console.log(c); // {test:'Reza'}
 ```
+## Wrap the object keys with "":
+Here are some cases where you should wrap the object keys:
+```javascript
+const myObject = {
+  'first-name': 'John',
+  '1': 'One',
+  'class': 'Computer Science',
+  'last name': 'Doe',
+};
+```
 ## Create a JS for loop inline
 To generate an array with a number of elements just to use the index:
 ```javascript
