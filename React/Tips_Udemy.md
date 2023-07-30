@@ -1,3 +1,9 @@
+## Boolean props :
+- The following Boolean props are equivalent.
+```javascript
+<Button primary={true} > test</Button >
+<Button primary > test</Button > 
+```
 ## children prop :
 - The hard-coded **"children"** props a special prop that allows you to pass components, elements, or data as children to a React component.
 - It is the content passed between the opening and closing tags of the component.
