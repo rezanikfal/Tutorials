@@ -4,6 +4,11 @@
 <Button primary={true} > test</Button >
 <Button primary > test</Button > 
 ```
+- If we remove the prop, it will be considered as _undefined_ but we can handle it as **false**.
+```javascript
+<Button primary={false} > test</Button >
+<Button> test</Button > 
+```
 ## children prop :
 - The hard-coded **"children"** props a special prop that allows you to pass components, elements, or data as children to a React component.
 - It is the content passed between the opening and closing tags of the component.
