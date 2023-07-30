@@ -1,3 +1,18 @@
+## children prop :
+- The hard-coded **"children"** props a special prop that allows you to pass components, elements, or data as children to a React component.
+- It is the content passed between the opening and closing tags of the component.
+```javascript
+function App() {
+    return <div>
+        <div><Button>click me!</Button></div>
+    </div>;
+}
+-----------------------
+function Button({children}) {
+    return <button>{children}</button>
+}
+
+```
 ## useState, useEffect, useRef , useCallback Hooks :
 - useState: To Handle **States**
 - useRef: Reference a value that's not needed for rendering
