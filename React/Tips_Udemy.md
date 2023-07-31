@@ -1,3 +1,27 @@
+## Organise a React project :
+- **Components** : Reusable react components that shows a handful of elements
+- **Page**: Still a react components that not intended ti be reused
+```javascript
+src/  
+    ==========
+    components
+    ==========
+        -----
+        forms
+        -----
+            Input.js
+            SearchBar.js
+        --------
+        products
+        --------
+            ProductShow.js
+            ProductList.js
+    =====
+    pages
+    =====
+        LoginPage.js
+        CartPage.js
+```
 ## Boolean props :
 - The following Boolean props are equivalent.
 ```javascript
