@@ -1,6 +1,6 @@
 ## Organise a React project :
 - **Components** : Reusable react components that shows a handful of elements
-- **Page**: Still a react components that not intended ti be reused
+- **Page**: Still a react components that not intended to be reused
 ```javascript
 src/  
     ==========
