@@ -590,3 +590,15 @@ It is similar to p tag (paregraph element). However the outcome text font looks 
 ```
 <pre>This is a piece of code</pre>
 <p>This is a piece of code</p>
+
+## Number()
+- How to make sure just one variable out of multiple is true?
+- Number(undefined) is **NaN** so we have to convert it to boolean using **"!!"**
+```javascript
+const A = true
+const B = undefined
+const C = false
+const D = true
+const sum = Number(A) + Number(!!B) + Number(C) + Number(D)  // 1+0+0+1
+outcome = sum==1 ? true : false   // false
+```
