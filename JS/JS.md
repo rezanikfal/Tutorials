@@ -605,6 +605,8 @@ outcome = sum==1 ? true : false   // false
 ## Nullish coalescing operator(??)
 - If **someValue** is neither **null** nor **undefined**, the operator returns **someValue**.
 - Otherwise the operator returns the **defaultValue**.
+- the Nullish coalescing operator (??) specifically checks for **null or undefined**.
+- It does **NOT** work for other falsy values like false, 0, '' or NaN.
 ```javascript
 const result = someValue ?? defaultValue;
 ```
