@@ -1,3 +1,28 @@
+## Event handler paremeter :
+- When we pass off the handleClick entirely, it receives event object. **onClick={handleClick}.**
+```javascript
+  const handleClick = (event) => {
+    setExpandedIndex(event.target.value);
+  };
+    return (
+      <div key={item.id}>
+        <div onClick={handleClick}>{item.label}</div>
+        {isExpanded && <div>{item.content}</div>}
+      </div>
+    );
+```
+- When we call handleClick manually, it receives the parameter. **onClick={() => handleClick(index)}.**
+```javascript
+  const handleClick = (nextIndex) => {
+    setExpandedIndex(nextIndex);
+  };
+    return (
+      <div key={item.id}>
+        <div onClick={() => handleClick(index)}>{item.label}</div>
+        {isExpanded && <div>{item.content}</div>}
+      </div>
+    );
+```
 ## Design a React project :
 - **States** : User sees something on the screen change
 - **Event handler**: User committed some action
