@@ -602,6 +602,15 @@ const D = true
 const sum = Number(A) + Number(!!B) + Number(C) + Number(D)  // 1+0+0+1
 outcome = sum==1 ? true : false   // false
 ```
+
+## String()
+- It converts anything to string
+- We can use (+'') instead:
+```javascript
+String(undefined)   //'undefined'
+null + ''           // 'null'
+1+''                //'1'
+```
 ## Nullish coalescing operator(??)
 - If **someValue** is neither **null** nor **undefined**, the operator returns **someValue**.
 - Otherwise the operator returns the **defaultValue**.
