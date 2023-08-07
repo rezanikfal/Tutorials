@@ -1,3 +1,24 @@
+## Call a function outside of the `map`:
+- When we pass off the handleClick entirely, it receives event object. **onClick={handleClick}.**
+```javascript
+function Accordion({ items }) {
+    const [expendedIndex, setExpandedIndex] = useState(0)
+    const handleEvent = (i) => {setExpandedIndex(i)}
+
+    const renderedItems = items.map((item, index) => {
+        const isExpanded = expendedIndex === index
+        return (
+            <div key={item.id}>
+                <div style={{ fontWeight: 'bold' }} onClick={() => handleEvent(index)}>{item.label}</div>
+                {isExpanded && <div>{item.content}</div>}
+            </div>
+        )
+    })
+    return <div>
+        {renderedItems}
+    </div>
+}
+```
 ## Event handler paremeter :
 - When we pass off the handleClick entirely, it receives event object. **onClick={handleClick}.**
 ```javascript
