@@ -1,9 +1,9 @@
 ## Call a function outside of the `map`:
-- When we pass off the handleClick entirely, it receives event object. **onClick={handleClick}.**
+- Passing `index` outside of the map
 ```javascript
 function Accordion({ items }) {
     const [expendedIndex, setExpandedIndex] = useState(0)
-    const handleEvent = (i) => {setExpandedIndex(i)}
+    const handleEvent = (i) => {setExpandedIndex(i)}  //Receives the index
 
     const renderedItems = items.map((item, index) => {
         const isExpanded = expendedIndex === index
