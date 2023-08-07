@@ -619,3 +619,10 @@ null + ''           // 'null'
 ```javascript
 const result = someValue ?? defaultValue;
 ```
+## JavaScript `||` and `&&` operators
+- `||` evaluates expressions from left to right and returns the value of the first truthy expression it encounters. If all expressions are falsy, it returns the value of the **last expression**..
+- `&&` operator evaluates expressions from left to right and returns the value of the first falsy expression it encounters. If all expressions are truthy, it returns the value of the **last expression**.
+```javascript
+true && "Hello" && 42 && "";    // ""
+null || "Hello" || 42 || "";    // "Hello"
+```
