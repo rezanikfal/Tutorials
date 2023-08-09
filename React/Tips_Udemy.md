@@ -1,3 +1,15 @@
+## Pass State/EnevtHandler from parent to child :
+- It is a community convension to use `value` and `onChange`:
+```javascript
+function App() {
+    const [selection, setSelection] = useState(null)
+    const handleSelection = (option) => setSelection(option)
+...
+    return <Dropdown options={options} value={selection} onChange={handleSelection} />
+-----------------------------------------------------------------------------------------
+    // function Dropdown({ options, value, onChange }) { ...
+}
+```
 ## Call a function outside of the `map`:
 - Passing `index` outside of the map
 ```javascript
