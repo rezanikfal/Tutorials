@@ -105,7 +105,7 @@ function App() {
 }
 -----------------------
 function Button({children}) {
-    return <button>{children}</button>
+    return <button>{children}</button>   // {children} = click me!
 }
 
 ```
