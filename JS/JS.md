@@ -81,7 +81,9 @@ setInterval(_=>{
 }, 1000)
 ```
 ## DOM
-### Query selector
+### querySelector (Return Nodes)
+- Nodes represent various parts of an HTML document, such as elements, attributes, text, comments,...
+- The Node interface is the primary building block in the DOM
 ```javascript
 var element = document.querySelector('li .name');  // First element
 var element = document.querySelectorAll('li .name');  // All elements array
@@ -99,10 +101,15 @@ var books = document.querySelector('#book-list');
 books.innerHTML = '<h1>The list of Books</h1>' // Replace the whole DOM element with a new one
 books.innerHTML += '<h2>Reza Nikfal</h2>' // Append the new DOM element
 ```
-### HTML Nodes
-Almost everything in HTML page is a Node like elements, attributes, ... with different [types](https://www.w3schools.com/jsref/prop_node_nodetype.asp#midcontentadcontainer)
+### getElementsBy ... (Return HTMLCollection)
+- Almost everything in HTML page is a Node like elements, attributes, ... with different [types](https://www.w3schools.com/jsref/prop_node_nodetype.asp#midcontentadcontainer)
+- HTMLElement represents an HTML element, such as `<div>, <p>, <a>`, and other HTML tags.
+- HTMLElement provides properties and methods specific to HTML elements, such as innerHTML, style, getAttribute(), setAttribute(), and more.
 ```javascript
 const banner = document.getElementById('page-banner')
+const banner = document.getElementsByClassName('myClass')
+const banner = document.getElementsByTagName('p')
+const banner = document.getElementsByName('myInputName')
 
 console.log(banner.nodeType);  // Node Type (i.e. 1 which is an Element)
 console.log(banner.nodeName); // Node Name (i.e. DIV)
