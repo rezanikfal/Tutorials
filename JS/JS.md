@@ -522,15 +522,41 @@ var b = secondWord.toLowerCase().split('').sort().join('')
 console.log(a==b);
 ```
 ## Event Bubbling  
-Once we click on **delete**, if the ```<span>``` has a callback functions, it will be fired. If not the event bubbles up to ```<li>``` element. If it has a callback functions, it will be fired. If not ...
+- Every time an event occurs on an element in the DOM, it has the potential to propagate or "bubble" up through the parent elements in the hierarchy, triggering event handlers on those parent elements.
+- You can prevent it by using a method called **stopPropagation()** on the event object.
 ```html
-<div id="book-list">
-	<h2 class="title">Books to Read</h2>
-	<ul>
-		<li>
-			<span class="name">Name of the Wind</span>
-			<span class="delete">delete</span>
-		</li>
+<body>
+  <table id="outside">
+    <tr>
+      <td id="t1">one</td> //If click here : Click on inside t1
+    </tr>
+    <tr>
+      <td id="t2">two</td> //If click here : Click on inside t2  Outside event
+    </tr>
+  </table>
+</body>
+```
+```javascript
+const el = document.getElementById("outside");
+const e2 = document.getElementById("t1");
+const e3 = document.getElementById("t2");
+
+el.addEventListener("click", outsideFunc);
+e2.addEventListener("click", insideFunc);
+e3.addEventListener("click", insideFunc2);
+
+function insideFunc(e){
+  e.stopPropagation()
+  console.log('Click on inside t1')
+}
+
+function insideFunc2(){
+  console.log('Click on inside t2')
+}
+
+function outsideFunc() {
+console.log('Outside event')
+}
 ```
 ## SetInterval vs setTimeout  
 setTimeout runs the code/function once after the timeout. setInterval runs the code/function repeatedly, with the length of the timeout between each repeat.
