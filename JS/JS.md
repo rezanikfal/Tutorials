@@ -59,6 +59,7 @@ var longest = mySt.reduce((a, b)=>a.length > b.length ? a : b) // Loop through t
 var longest2 = mySt.sort((a,b)=> b.length-a.length) //return a - b => ascending , return b - a => decending (for Numbers)
 ```
 - Sort a number array:
+- **sort()** function converts numbers to string before sorting
 ```javascript
 let BB = [1,2,3,22,5,6,7,89,3]
 var sort1 = BB.sort() // [1,2,22,3,3,5,6,7,89] Sorts as string
