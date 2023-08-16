@@ -209,6 +209,11 @@ var a;
 0 || 0 || null || 1  //1 --Returns the first truty value if no truty value exist, it returns the last value 
 'A' && 'L' && 1 && 0 && null  //0 --Returns the first falsy value if no falsy value exist, it returns the last value
 ```
+```javascript
+var foo = 10;  
+foo == 10 && doSomething(); // is the same thing as if (foo == 10) doSomething(); 
+foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();
+```
 ## Object
 Object is a container that encloses data & behavior together.
 In JS we create objects directly and there is no ```class``` concept.
