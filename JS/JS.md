@@ -354,6 +354,11 @@ console.log(Object.keys(student).toString()); //'name', 'sclass', 'myFucn'
 console.log(Object.keys(student).lenght); // 3
 ```
 ## Array / String
+- Truncate an array using length:
+```javascript
+var myArray = [12 , 222 , 1000 , 124 , 98 , 10 ];  
+myArray.length = 4; // [12 , 222 , 1000 , 124]
+```
 - In JS **array is an object** with number properties.
 - Since numbers are invlid prop name we have to access the prop using ```[]``` notation. 
 - ```length``` is another property alog with the number props in array.
