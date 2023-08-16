@@ -66,6 +66,10 @@ var sort1 = BB.sort() // [1,2,22,3,3,5,6,7,89] Sorts as string
 var sort1 = BB.sort((a,b)=>a-b)) // [1,2,3,3,5,6,7,22,89]
 var sort1 = BB.sort((a,b)=>b-a)) // [89,22,7,6,5,3,3,2,1]
 ```
+- If the functions creates random + or - numbers, it scrambles the array:
+```javascript
+arr.sort(()=>Math.random()-0.5)
+```
 ### Date object 
 ```javascript
 let pastDay= new Date(2000,1,1,20,11,28)
