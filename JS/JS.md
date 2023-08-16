@@ -215,6 +215,14 @@ foo == 10 && doSomething(); // is the same thing as if (foo == 10) doSomething()
 foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();
 ```
 ## Object
+- Serialization and deserialization of JSON. It is converting a JavaScript object into a JSON and vice versa.
+```javascript
+var person = {name :'Saad', age : 26, department : {ID : 15, name : "R&D"} }; 
+var stringFromPerson = JSON.stringify(person); 
+// stringFromPerson is equal to "{"name":"Saad","age":26,"department":{"ID":15,"name":"R&D"}}"   */ 
+var personFromString = JSON.parse(stringFromPerson);  
+// personFromString is equal to person object
+```
 - Loop through an object
 ```javascript
 const person1 = {
