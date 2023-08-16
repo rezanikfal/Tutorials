@@ -446,6 +446,7 @@ var Foo = Function Bar()
 {
 return 7;
 };
+
 typeof Bar();
 ```
 ### The arguments object VS Rest parameters
@@ -462,6 +463,12 @@ function sum(...theArgs) {
 
 console.log(sum(1, 2, 3));
 // Expected output: 6
+```
+```javascript
+function showArgumentsBetter(...args) {
+  console.log(args);
+}
+showArgumentsBetter('apple', 'banana', 'cherry');   //[ 'apple', 'banana', 'cherry' ]
 ```
 ```javascript
 function func1(a, b, c) {
@@ -526,6 +533,11 @@ modifyArray(arr, function() {
 ```javascript
 let test = [1,2,3,4,5]
 console.log(Array.isArray(test)) //true
+```
+## Get the max or the min in an array of numbers
+```javascript
+var  numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411]; 
+var maxInNumbers = Math.max(...numbers);  //122205
 ```
 ## Check if two strings are anagrams 
 **Mary** is an anagram of **Army**. 
