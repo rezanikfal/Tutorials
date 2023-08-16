@@ -343,7 +343,7 @@ delete myObj.prop1
 
 console.log(myObj); //{ prop2:123 }
 ```
-### Loop through Properties
+### Loop through Properties / Values:
 ```javascript
 var student = {
     name : "David Rayy",
@@ -357,6 +357,14 @@ console.log(key);
 console.log(Object.keys(student)); //['name', 'sclass', 'myFucn']
 console.log(Object.keys(student).toString()); //'name', 'sclass', 'myFucn'
 console.log(Object.keys(student).lenght); // 3
+```
+```javascript
+const person1 = {
+  name: 'Alice',
+  age: 30,
+  profession: 'Engineer'
+}; 
+console.log(Object.values(person1)) //[ 'Alice', 30, 'Engineer' ]
 ```
 ## Array / String
 - Truncate an array using length:
