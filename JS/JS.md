@@ -215,8 +215,23 @@ foo == 10 && doSomething(); // is the same thing as if (foo == 10) doSomething()
 foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();
 ```
 ## Object
-Object is a container that encloses data & behavior together.
-In JS we create objects directly and there is no ```class``` concept.
+- Loop through an object
+```javascript
+const person1 = {
+  name: 'Alice',
+  age: 30,
+  profession: 'Engineer'
+};
+
+for (var key in person1) {  
+console.log(key ,',',person1[key]) 
+}
+// name , Alice
+// age , 30
+// profession , Engineer
+```
+- Object is a container that encloses data & behavior together.
+- In JS we create objects directly and there is no ```class``` concept.
 ```javascript
 //creating Objects using Object data type.
 var myCar = new Object()
