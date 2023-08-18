@@ -1,7 +1,7 @@
 ## Asynchronous functionality in JavaScript
 - **Callbacks in JavaScript:**
 - A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
-- Note that we pass ```fetchData(handleData)``` **NOT** ```fetchData(handleData())```
+- Note that we pass callback function ```fetchData(handleData)``` **NOT** ```fetchData(handleData())```
 ```javascript
 function fetchData(callback) {
   setTimeout(() => {
@@ -16,6 +16,20 @@ function handleData(data) {
 
 fetchData(handleData); // Pass the handleData function as a callback
 })
+```
+- We use the **addEventListener method** to attach the handleClick function as a **callback** to the button's 'click' event.
+- Again we pass ```handleClick``` NOT ```handleClick()```
+```javascript
+// Get a reference to the button element
+const button = document.getElementById('myButton');
+
+// Define a click event callback function
+function handleClick() {
+  alert('Button clicked!');
+}
+
+// Attach the click event callback to the button
+button.addEventListener('click', handleClick);
 ```
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
