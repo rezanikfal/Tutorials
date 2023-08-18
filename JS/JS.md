@@ -1,3 +1,22 @@
+## Asynchronous functionality in JavaScript
+- **Callbacks in JavaScript:**
+- A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
+- Note that we pass ```fetchData(handleData)``` **NOT** ```fetchData(handleData())```
+```javascript
+function fetchData(callback) {
+  setTimeout(() => {
+    const data = "Fetched data";
+    callback(data);
+  }, 1000);
+}
+
+function handleData(data) {
+  console.log("Handling data:", data);
+}
+
+fetchData(handleData); // Pass the handleData function as a callback
+})
+```
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
 - ```B.sort()``` is from Small to big, to reverse it use ```B.sort().reverse()```
