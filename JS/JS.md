@@ -271,8 +271,11 @@ console.log(key ,',',person1[key])
 // age , 30
 // profession , Engineer
 ```
+- In JavaScript, an object is a composite data type that allows you to store and organize related data and functions together.
 - Object is a container that encloses data & behavior together.
+- Objects are key-value pairs, where each key is a property name and each value can be any data type, including other objects or functions.
 - In JS we create objects directly and there is no ```class``` concept.
+- Objects can be created using object literals or constructors.
 ```javascript
 //creating Objects using Object data type.
 var myCar = new Object()
@@ -283,7 +286,7 @@ myCar.myMethod = function () {
     console.log('REZA')
 }
 
-//Shorthand for creating Objects 
+//Shorthand for creating Objects (using an object literal)
 var myCar2 = {
     color: 'red',
     age: 5,
@@ -421,6 +424,36 @@ const person1 = {
   profession: 'Engineer'
 }; 
 console.log(Object.values(person1)) //[ 'Alice', 30, 'Engineer' ]
+```
+### Prototypes:
+- The prototype is an object from which the current object inherits properties and methods. 
+- JavaScript first checks if that property or method exists directly on the object. If it doesn't, JavaScript looks up the prototype chain to find the property or method on the prototype of the object.
+- **Memory Efficiency**:
+	- When you define a method directly within a constructor, every instance created by that constructor will have its own copy of the method. This can consume a lot of memory.
+	- By placing methods on the prototype, all instances share a single copy of the method in memory
+```javascript
+// NO prototype
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.fullName = function() {return this.firstName + " " + this.lastName;};
+}
+
+// With prototype
+function Person2(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+Person2.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
+};
+
+const person1 = new Person1("John", "Doe");
+const person2 = new Person2("Jane", "Smith");
+
+console.log(person1.fullName()); // Outputs: "John Doe"
+console.log(person2.fullName()); // Outputs: "Jane Smith"
 ```
 ## Array / String
 - Truncate an array using length:
