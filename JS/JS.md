@@ -247,8 +247,56 @@ var foo = 10;
 foo == 10 && doSomething(); // is the same thing as if (foo == 10) doSomething(); 
 foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();
 ```
-## Object
-- Serialization and deserialization of JSON. It is converting a JavaScript object into a JSON and vice versa.
+# Object
+## Object Oriented Programming in JS
+In JavaScript, objects are a fundamental concept used to store and organize data and functionality. An object can contain both properties (data) and methods (functions) that operate on that data. This combination of data and functions makes objects a versatile way to model real-world entities in code.
+1.  **Objects**: Objects are instances of classes or instances created using constructor functions. They can hold both properties (data) and methods (functions) that operate on the data.
+- When using an **object literal** to create objects in JavaScript, you do not need to use a constructor function (person1). An object literal is a way to define and initialize an object all at once, using curly braces.
+- We can create objects using constructor function and methods using prototype (Person1)
+- We can create objects using using class (Person2)
+2.  **Functions as Methods**: Functions can be added to objects as methods. These methods can access and modify the object's properties. When a method is called on an object, the object becomes the context (referred to as 'this') within the method.
+- Function: A function is a self-contained block of code that performs a specific task. It can be defined globally or within a specific scope, and it can take parameters and return values. When you define a **function as part of an object**, it becomes a method of that object.
+- Method: A method is a function that is associated with an object or a class. When a function is defined within the context of a class or an object instance, it's often referred to as a method. Methods are used to define the behavior or actions that an object or class can perform.
+    
+3.  **Classes**: Classes are a way to define blueprints for creating objects with specific properties and methods. They encapsulate the object's structure and behavior. Classes can include constructor methods, instance methods, and static methods. **Function inside class** is indeed a method of the class.
+```javascript
+const person1 = {
+    name: 'Reza',
+    lastName: 'Nikfal',
+    age: 23,
+    addAge: function () {
+        this.age++
+    }
+}
+person1.addAge()
+console.log(person1.age);
+
+function Person1(name, lastName, age) {
+    this.name = name,
+        this.lastName = lastName,
+        this.age = age
+}
+Person.prototype.addAge = function () {
+    this.age++
+}
+
+class Person2 {
+    constructor(name, lastName, age) {
+        this.name = name,
+            this.lastName = lastName,
+            this.age = age;
+    }
+    addAge() {
+        this.age++;
+    }
+}
+const person2 = new Person1('Reza', 'Nik', 44)
+const person2 = new Person2('Reza', 'Nik', 44)
+person2.addAge(4)
+console.log(person2.age);
+```
+## JS object & JSON
+- Serialization and deserialization of JSON. It is converting a object into a JSON and vice versa.
 ```javascript
 var person = {name :'Saad', age : 26, department : {ID : 15, name : "R&D"} }; 
 var stringFromPerson = JSON.stringify(person); 
