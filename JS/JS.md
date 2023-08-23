@@ -38,6 +38,45 @@ button.addEventListener('click', handleClick);
    - fulfilled: meaning that the operation was completed successfully.
    - rejected: meaning that the operation failed.
 - The ```then``` and ```catch``` methods are used to handle the two possible outcomes of a promise: fulfillment and rejection. The then method is called when the promise is fulfilled, and the catch method is called when the promise is rejected.
+- They provide a structured way to write code that deals with asynchronous tasks, like fetching data from a server, reading files, or any operation that doesn't immediately produce a result.
+-  ```then``` takes one or two callback functions as arguments, 
+   - First callback functions: when the Promise is resolved successfully.
+   - Second callback functions (optional): It is executed when the Promise is rejected (an error occurs).
+- The  ```catch``` method is used to handle the rejection of a Promise. It takes a single callback function as its argument.
+- The  ```finally``` attach a callback that will be executed regardless of whether the promise is resolved or rejected. IT does NOT return anything
+- ```then``` and ```catch``` return new promises, which allows you to chain them together and create a sequence of asynchronous operations. 
+```javascript
+  const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const randomNumber = Math.random();
+      if (randomNumber > 0.5) {
+        resolve(randomNumber); // Fulfilled with the random number
+      } else {
+        reject(new Error("Random number is too low")); // Rejected with an error
+      }
+    }, 1000);
+  });
+  
+  myPromise
+    .then(result => {
+      console.log("Fulfilled:", result);  //Fulfilled: 0.7706461373710447
+    })
+    .catch(error => {
+      console.error("Rejected:", error);  // Rejected: Error: Random number is too low
+    });
+    .finally(() => {
+      console.log("Finally block executed"); // Outputs "Finally block executed" regardless of resolution or rejection
+  });
+
+//OR removing catch
+
+  myPromise
+    .then(result => {
+      console.log("Fulfilled:", result);
+    }, error => {
+      console.error("Rejected:", error);
+    });
+```
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
 - ```B.sort()``` is from Small to big, to reverse it use ```B.sort().reverse()```
