@@ -31,6 +31,13 @@ function handleClick() {
 // Attach the click event callback to the button
 button.addEventListener('click', handleClick);
 ```
+- **Promise:**
+- The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+- A Promise is in one of these states:
+   - pending: initial state, neither fulfilled nor rejected.
+   - fulfilled: meaning that the operation was completed successfully.
+   - rejected: meaning that the operation failed.
+- The ```then``` and ```catch``` methods are used to handle the two possible outcomes of a promise: fulfillment and rejection. The then method is called when the promise is fulfilled, and the catch method is called when the promise is rejected.
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
 - ```B.sort()``` is from Small to big, to reverse it use ```B.sort().reverse()```
