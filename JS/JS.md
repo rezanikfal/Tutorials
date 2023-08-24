@@ -101,6 +101,12 @@ fetch(url)
     console.error('Fetch error:', error);
   });
 ```
+### Event Listeners:
+- For asynchronous operations related to user interactions (e.g., button clicks), you often use event listeners to handle the events and perform actions asynchronously. 
+```javascript
+fetch(url)
+test
+```
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
 - ```B.sort()``` is from Small to big, to reverse it use ```B.sort().reverse()```
