@@ -81,6 +81,8 @@ button.addEventListener('click', handleClick);
 - fetch is a built-in web API **function** in JavaScript that allows you to make network requests.
 - It returns a **Promise** that resolves to the Response object.
 - fetch function only rejects the Promise when there's a network error. It won't reject the Promise for HTTP error statuses (like 404 or 500).
+- fetch internaly uses ```XMLHttpRequest``` to make a API call.
+- ```XMLHttpRequest``` (often abbreviated as **XHR**) is a **browser**-based API in JavaScript that allows you to make HTTP or HTTPS requests to retrieve data from a web server and send data to it.
 ```javascript
 fetch(url)
   .then(response => {
