@@ -1,5 +1,5 @@
 ## Asynchronous functionality in JavaScript
-- **Callbacks in JavaScript:**
+### Callbacks in JavaScript:
 - A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
 - Note that we pass callback function ```fetchData(handleData)``` **NOT** ```fetchData(handleData())```
 ```javascript
@@ -31,7 +31,7 @@ function handleClick() {
 // Attach the click event callback to the button
 button.addEventListener('click', handleClick);
 ```
-- **Promise:**
+### Promise:
 - The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
 - A Promise is in one of these states:
    - pending: initial state, neither fulfilled nor rejected.
@@ -76,6 +76,28 @@ button.addEventListener('click', handleClick);
     }, error => {
       console.error("Rejected:", error);
     });
+```
+### Fetch:
+- fetch is a built-in web API **function** in JavaScript that allows you to make network requests.
+- It returns a **Promise** that resolves to the Response object.
+- fetch function only rejects the Promise when there's a network error. It won't reject the Promise for HTTP error statuses (like 404 or 500).
+```javascript
+fetch(url)
+  .then(response => {
+    // Check if the response status is OK (200)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // Parse the response body as JSON
+  })
+  .then(data => {
+    // Process the data received from the server
+    console.log(data);
+  })
+  .catch(error => {
+    // Handle any errors that occurred during the fetch
+    console.error('Fetch error:', error);
+  });
 ```
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
