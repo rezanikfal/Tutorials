@@ -143,10 +143,20 @@ fetchData(url);
 
 ```
 ### Event Listeners:
-- For asynchronous operations related to user interactions (e.g., button clicks), you often use event listeners to handle the events and perform actions asynchronously. 
+- For asynchronous operations related to user interactions (e.g., button clicks), you often use event listeners to handle the events and perform actions asynchronously.
+- Inside the callback function, you can perform various asynchronous actions, such as making network requests (using fetch)
 ```javascript
-fetch(url)
-test
+const button = document.getElementById('myButton');
+
+button.addEventListener('click', async () => {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+});
 ```
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
