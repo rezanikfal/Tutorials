@@ -315,22 +315,48 @@ Array.from(deleteKey).forEach(element => {   //Convert to JS array
 ```
 ## Variables
 ### Closure
-Unlike other programming languages, in JS, you have access to variable in outer scope:
+- The concept of closures typically comes into play when you have functions defined within other functions, especially when those inner functions capture and retain variables from their outer functions.
+- In the following code, each instance (i.e. ```counter1```, ```counter2```) has its own ```count```:
 ```javascript
-function greet(name) {
-  return function() {
-    console.log("Hello, " + name + "!");
-  };
+function createCounter() {
+  let count = 0;
+
+  function increment() {
+    count++;
+    console.log(count);
+  }
+  return increment;
 }
 
-const greetJohn = greet("John");
-const greetEmily = greet("Emily");
-
-greetJohn(); // Output: Hello, John!
-greetEmily(); // Output: Hello, Emily!
+const counter1 = createCounter();
+const counter2 = createCounter();
 ```
-- The closures allow the inner function to remember and access the name variable, creating personalized greetings for different names even after the outer greet function has completed execution.
-- In this example, we have a greet function that takes a name parameter and returns an inner function. The inner function, when invoked, logs a greeting message to the console using the name parameter from its enclosing scope. We create two closures, greetJohn and greetEmily, by invoking the greet function with different names.
+Another good example is this React Snippet:
+Inside the .map() function, you're using the sumCounter function as the onchangeValue prop of the Counter component. The .map() function creates a closure for each iteration, capturing the specific instance of the sumCounter function and the current value of counterSum for that iteration. In other words, if we create 10 instance of ```<Counter>``` , each one has its own SUM.
+```javascript
+function App() {
+
+  const [counterSum, setCounterSum] = useState(0);
+
+  const sumCounter = (data) => {
+    setCounterSum(counterSum + data);
+  }
+
+  const counters = Array(counterNo).fill(0).map((_, i) =>
+    <Counter key={i} onchangeValue={sumCounter} />
+  );
+
+  return (
+    <>
+      <Button variant="contained">Add new counter</Button>&nbsp;
+      {counters}
+      <h2>SUM: {counterSum}</h2>
+    </>
+  );
+}
+
+export default App;
+```
 ### Declaration VS Definition
 ```javascript
 var a; //Declaration
