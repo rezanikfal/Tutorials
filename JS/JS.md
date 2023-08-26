@@ -44,7 +44,13 @@ button.addEventListener('click', handleClick);
    - Second callback functions (optional): It is executed when the Promise is rejected (an error occurs).
 - The  ```catch``` method is used to handle the rejection of a Promise. It takes a single callback function as its argument.
 - The  ```finally``` attach a callback that will be executed regardless of whether the promise is resolved or rejected. IT does NOT return anything
-- ```then``` and ```catch``` return new promises, which allows you to chain them together and create a sequence of asynchronous operations. 
+- ```then``` and ```catch``` return new promises, which allows you to chain them together and create a sequence of asynchronous operations.
+### async/await:
+- **async/await** is a pair of keywords in JavaScript that simplify the process of working with asynchronous code, particularly Promises.
+   - To use ```await```, you need to declare a function as ```async```.
+   - We use await keyword to pause execution until a Promise is resolved.
+   - For Error Handling, You can use regular try and catch blocks.
+   - You can also use ```Promise.all``` to run multiple asynchronous tasks in parallel
 ```javascript
   const myPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -76,8 +82,22 @@ button.addEventListener('click', handleClick);
     }, error => {
       console.error("Rejected:", error);
     });
+
+//OR async/await
+
+async function fetchData() {
+  try {
+    const result = await myPromise;
+    console.log("Fulfilled:", result);
+  } catch (error) {
+    console.error("Rejected:", error);
+  } 
+}
+
+fetchData();
 ```
-### Fetch:
+### AJAX & Fetch:
+- **AJAX** stands for Asynchronous JavaScript and XML, is a technique used in web development to make asynchronous requests and update parts of a web page without requiring a full page reload.
 - fetch is a built-in web API **function** in JavaScript that allows you to make network requests.
 - It returns a **Promise** that resolves to the Response object.
 - fetch function only rejects the Promise when there's a network error. It won't reject the Promise for HTTP error statuses (like 404 or 500).
@@ -100,6 +120,27 @@ fetch(url)
     // Handle any errors that occurred during the fetch
     console.error('Fetch error:', error);
   });
+
+//OR async/await
+
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+
+    // Check if the response status is OK (200)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json(); // Parse the response body as JSON
+    console.log(data); // Process the data received from the server
+  } catch (error) {
+    console.error('Fetch error:', error); // Handle any errors that occurred during the fetch
+  }
+}
+
+fetchData(url);
+
 ```
 ### Event Listeners:
 - For asynchronous operations related to user interactions (e.g., button clicks), you often use event listeners to handle the events and perform actions asynchronously. 
