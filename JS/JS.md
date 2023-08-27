@@ -12,7 +12,6 @@ console.log(x); // Output: undefined
 x = 5; // Variable assignment
 console.log(x); // Output: 5
 var x; // Variable declaration is hoisted
-})
 ```
 ## Asynchronous functionality in JavaScript
 ### Callbacks in JavaScript:
