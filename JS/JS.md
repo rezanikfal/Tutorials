@@ -13,6 +13,30 @@ x = 5; // Variable assignment
 console.log(x); // Output: 5
 var x; // Variable declaration is hoisted
 ```
+- Another sample of Scope & Hoisting
+```javascript
+function myFunction() {
+  var localVar = "I am a local variable"; // localVar is local to myFunction
+  console.log(localVar); // Output: "I am a local variable"
+}
+
+myFunction(); // Calls the function and logs the value of localVar within the function's scope
+console.log(localVar); // Throws an error: localVar is not defined outside of the function's scope
+```
+- Arrow function expressions, like regular function expressions, are not hoisted.
+```javascript
+greet(); // Throws an error: greet is not a function
+var greet = function() {
+  console.log("Greetings!");
+};
+```
+```javascript
+sayHi(); // Throws an error: Cannot access 'sayHi' before initialization
+
+let sayHi = () => {
+  console.log("Hi there!");
+};
+```
 ## Asynchronous functionality in JavaScript
 ### Callbacks in JavaScript:
 - A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
