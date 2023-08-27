@@ -1,3 +1,19 @@
+## Scope & Hoisting
+### Scope in JavaScript:
+- Scope refers to the context in which variables are declared and accessed in a JavaScript program.
+- **Global Scope**: Variables declared outside of any function or block have global scope, which means they can be accessed from anywhere in the code.
+- **Local Scope:** Variables declared within a function or block have local scope. They are only accessible within that function or block.
+### Hoisting in JavaScript:
+- Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their containing scope during the compilation phase, before the code is executed.
+- **Variable Hoisting:** When a variable is declared using the **var** keyword.
+- **Function Hoisting:** Function declarations are also hoisted to the top of the scope, making them available for use before the actual declaration in the code. 
+```javascript
+console.log(x); // Output: undefined
+x = 5; // Variable assignment
+console.log(x); // Output: 5
+var x; // Variable declaration is hoisted
+})
+```
 ## Asynchronous functionality in JavaScript
 ### Callbacks in JavaScript:
 - A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
