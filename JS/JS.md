@@ -15,12 +15,13 @@ var x; // Variable declaration is hoisted
 ```
 - Another sample of Scope & Hoisting
 ```javascript
+myFunction(); // Function declarations are hoisted to the top of their containing scope.
+
 function myFunction() {
   var localVar = "I am a local variable"; // localVar is local to myFunction
   console.log(localVar); // Output: "I am a local variable"
 }
 
-myFunction(); // Calls the function and logs the value of localVar within the function's scope
 console.log(localVar); // Throws an error: localVar is not defined outside of the function's scope
 ```
 - Arrow function expressions, like regular function expressions, are not hoisted.
