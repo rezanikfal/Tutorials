@@ -1,3 +1,9 @@
+## DOM Manipulation 
+- DOM Manipulation allows you to interact with the Document Object Model (DOM) to dynamically modify HTML and CSS on web pages.
+- The DOM is a programming interface provided by web browsers that represents the structure of an HTML or XML document as a tree-like structure.
+- DOM Manipulation involves using JavaScript to modify the content, structure, and presentation of web pages in real-time.
+- It allows you to create dynamic content that updates without requiring a full page reload.
+- This is the foundation for single-page applications (SPAs) and modern web development.
 ## Scope & Hoisting
 ### Scope in JavaScript:
 - Scope refers to the context in which variables are declared and accessed in a JavaScript program.
@@ -944,6 +950,8 @@ var intervalID = setInterval(alert, 1000); // Will alert every second.
 setTimeout(alert, 1000); // Will alert once, after a second.
 ```
 ## Primitive and Objects 
+- **Primitive Types** in JavaScript are the most basic data types that represent single values. 
+- **Non-primitive** types, also known as composite types, are more complex data structures that can hold multiple values.
 - The primitives are numbers, booleans, strings, symbols, and special values null and undefined
 - The second category is objects. Particularly the plain object, arrays, functions, and more — are all objects.
 	- If an array is your React State, pushing a new value don't changes the state becase before and after pushing, it points to the same ref of the array.
