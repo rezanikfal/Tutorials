@@ -465,6 +465,35 @@ foo == 10 && doSomething(); // is the same thing as if (foo == 10) doSomething()
 foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();
 ```
 # Object
+## "This" keyword
+-  In JavaScript, the value of the this keyword refers to the context within which a function is executed. It can be thought of as the "owner" or the "container" of the current function's scope.
+-  Using an arrow function, retains the context of this from the surrounding scope.
+```javascript
+var obj = {
+    id: 1,
+    printId: ()=>{
+        console.log(this); // Window object
+    }
+};
+obj.printId()
+```
+```javascript
+var obj = {
+    id: 10,
+    printId: function () {
+        console.log(this.id); // 10
+    }
+};
+
+obj.printId()
+```
+```javascript
+function globalFunction() {
+    console.log(this); // Window object
+  }
+  
+  globalFunction();
+```
 ## Object Oriented Programming in JS
 In JavaScript, objects are a fundamental concept used to store and organize data and functionality. An object can contain both properties (data) and methods (functions) that operate on that data. This combination of data and functions makes objects a versatile way to model real-world entities in code.
 1.  **Objects**: Objects are instances of classes or instances created using constructor functions. They can hold both properties (data) and methods (functions) that operate on the data.
