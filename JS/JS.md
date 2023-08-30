@@ -376,6 +376,11 @@ function createCounter() {
 
 const counter1 = createCounter();
 const counter2 = createCounter();
+
+counter1(); // This should log 1
+counter1(); // This should log 2
+
+counter2(); // This should log 1 (separate count from counter1)
 ```
 Another good example is this React Snippet:
 Inside the .map() function, you're using the sumCounter function as the onchangeValue prop of the Counter component. The .map() function creates a closure for each iteration, capturing the specific instance of the sumCounter function and the current value of counterSum for that iteration. In other words, if we create 10 instance of ```<Counter>``` , each one has its own SUM.
