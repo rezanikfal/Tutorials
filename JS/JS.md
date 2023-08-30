@@ -641,6 +641,18 @@ function Bike(name, age) {
 
 let bik1 = new Bike('Reza', 34)
 ```
+### Spread vs Rest operators
+- Both have the same (...) sign
+- Rest means convert individual elements to an array in function declaration.
+- Spread means convert an array of elements to individual elements in function call.
+```javascript
+let displayColors = function (message, ...colors){
+console.log(colors);  //  (Rest) ['Orange', 'Yellow', 'Indigo']
+}
+
+let colorArray = ['Orange', 'Yellow', 'Indigo'];
+displayColors ("my Message", ...colorArray) // (Spread) displayColors (message, 'Orange', 'Yellow', 'Indigo')
+```
 ### Access to Propertits
 - To access the properties, we can use ```.``` or ```[]``` notation.
 - The bracket notation is for properties with **invalid** name or with **Variable** name.
