@@ -562,6 +562,11 @@ class Person2 {
     }
 
 //Basically methods looks like the ES6 version of JS functions in Objects:
+//  addAge:function() {
+//      this.age++;
+//  }
+
+//So this one works as well:
     addAge = function() {
         this.age++;
     }
