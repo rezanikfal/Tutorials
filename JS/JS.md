@@ -44,6 +44,19 @@ let sayHi = () => {
   console.log("Hi there!");
 };
 ```
+### var - let - const:
+- **var** to declare variables, they have function-level scope. This means that variables declared with var are accessible throughout the entire function, including any nested functions or closures.
+- On the other hand, if you use **let** or **const** to declare variables within a block (such as a loop or a conditional) inside a function, those variables will have block-level scope.
+- To achieve better variable isolation within closures, it's recommended to use **let** or **const** for variable declarations, as they provide more controlled scoping behavior.
+```javascript
+for(var i=1; i<=5; i++){
+setTimeout(function(){console.log(i)},1000)  // 6 6 6 6 6
+}
+-------------------------
+for(let i=1; i<=5; i++){
+setTimeout(function(){console.log(i)},1000)  // 1 2 3 4 5
+}
+```
 ## Asynchronous functionality in JavaScript
 ### Callbacks in JavaScript:
 - A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
