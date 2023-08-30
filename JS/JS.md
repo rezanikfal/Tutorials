@@ -560,6 +560,11 @@ class Person2 {
     addAge() {
         this.age++;
     }
+
+//Basically methods looks like the ES6 version of JS functions in Objects:
+    addAge = function() {
+        this.age++;
+    }
 }
 const person2 = new Person1('Reza', 'Nik', 44)
 const person2 = new Person2('Reza', 'Nik', 44)
