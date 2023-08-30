@@ -465,6 +465,31 @@ foo == 10 && doSomething(); // is the same thing as if (foo == 10) doSomething()
 foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();
 ```
 # Object
+## ES6 and object literal
+-  In ES6 there is 2 shortcuts for object properties and functions **(Notice the function)**:
+```javascript
+let firstname = "Chandler";
+let lastname = "Bings";
+let age = 55;
+
+//ES-5
+let person = {
+    firstname: firstname,
+    lastname: lastname,
+    isSenior: function () {
+        return age > 30
+    }
+};
+
+//ES-6
+let person = {
+    firstname,
+    lastname,
+    isSenior() {
+        return age > 30
+    }
+};
+```
 ## "This" keyword
 -  In JavaScript, the value of the this keyword refers to the context within which a function is executed. It can be thought of as the "owner" or the "container" of the current function's scope.
 -  Using an arrow function, retains the context of this from the surrounding scope.
