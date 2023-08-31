@@ -30,6 +30,14 @@ function myFunction() {
 
 console.log(localVar); // Throws an error: localVar is not defined outside of the function's scope
 ```
+- Class won't be hoisted like functions
+```javascript
+let p1 = new Person();  //ERROR:  Cannot access 'Person' before initialization
+class Person { }
+----------------------------------
+employee(); //Works fine because of hoisting
+function employee() { }
+```
 - Arrow function expressions, like regular function expressions, are not hoisted.
 ```javascript
 greet(); // Throws an error: greet is not a function
