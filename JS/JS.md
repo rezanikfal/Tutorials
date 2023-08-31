@@ -585,6 +585,25 @@ const person2 = new Person2('Reza', 'Nik', 44)
 person2.addAge(4)
 console.log(person2.age);
 ```
+### 3 types of methods in class
+```javascript
+class Person {
+    constructor(name) {  // constructor methos which is called during object creation
+        this.pName = name
+    }
+    static myMethod(test) {  //Can be directly called with the help of class not the object
+        console.log("Hello" + test);
+    }
+    greet() {  // prototype method that can be called with each object
+        console.log(this.pName);
+    }
+}
+
+const p1 = new Person("Reza")
+Person.myMethod(" Ali") // no need to an inatance of class (object)
+p1.greet()
+console.log(typeof (p1));  // Class creats an object
+```
 ## JS object & JSON
 - Serialization and deserialization of JSON. It is converting a object into a JSON and vice versa.
 ```javascript
