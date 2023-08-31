@@ -466,6 +466,15 @@ foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();
 ```
 # Object
 ## ES6 and object literal
+-  Using space and variable as object key:
+```javascript
+let In = "last name";
+let person = {
+    "first name": "Chandler",
+    [In]: "Bing"
+};
+console.log(person["first name"]); //"Chandler" (cannot use person.first name)
+```
 -  In ES6 there is 2 shortcuts for object properties and functions **(Notice the function)**:
 ```javascript
 let firstname = "Chandler";
