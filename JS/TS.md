@@ -20,3 +20,14 @@ const mixed : (string|boolean)[] = []
   "exclude": ["node_modules"]
 }
 ```
+## non-null assertion operator (!) 
+- Adding an exclamation mark (!) at the end of a variable is used to assert that a variable is non-null and not undefined.
+```javascript
+let someValue: string | undefined = "Hello, TypeScript";
+
+// This will result in a compilation error because someValue might be undefined.
+console.log(someValue.length);
+
+// To assert that someValue is not undefined, you can use the non-null assertion operator.
+console.log(someValue!.length); // No compilation error
+```
