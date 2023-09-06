@@ -32,14 +32,48 @@ console.log(someValue.length);
 console.log(someValue!.length); // No compilation error
 ```
 ## Interface
-- We use Interface to enforce a certain structure within classes or objects.
-- 
+- We use Interface to enforce a certain structure within **classes** or **objects**.
+- Interface with **objects**:
 ```javascript
-let someValue: string | undefined = "Hello, TypeScript";
+export interface IsPerson {
+  name: string;
+  age?: number;
+  speak(a: string): void;
+  spend(a: number): number;
+}
 
-// This will result in a compilation error because someValue might be undefined.
-console.log(someValue.length);
+const me: IsPerson = {
+  name: 'shaun',
+  //age: 30,
+  speak(text: string): void {
+    console.log(text);
+  },
+  spend(amount: number): number {
+    console.log('I spent ', amount);
+    return amount;
+  },
+};
+```
+- Class is a blue print of an object. When it ```implements``` an interface, it must have all of the interface properties and methods.
+- Interface with **classes**:
+```javascript
+interface HasFormatter {
+  amount: number;
+  format(): string;
+}
 
-// To assert that someValue is not undefined, you can use the non-null assertion operator.
-console.log(someValue!.length); // No compilation error
+class Invoice implements HasFormatter {
+  constructor(
+    readonly client: string, 
+    private details: string, 
+    public amount: number,
+  ){}
+
+  format() {
+    return `${this.client} owes £${this.amount} for ${this.details}`;
+  }
+}
+
+let docOne: HasFormatter;
+docOne = new Invoice('yoshi', 'web work', 250);
 ```
