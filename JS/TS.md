@@ -66,6 +66,7 @@ const me: IsPerson = {
 };
 ```
 - Class is a blue print of an object. When it ```implements``` an interface, it must have all of the interface properties and methods.
+- Explain readonly ...
 - Interface with **classes**:
 ```javascript
 interface HasFormatter {
@@ -77,10 +78,10 @@ class Invoice implements HasFormatter {
   constructor(
     readonly client: string, 
     private details: string, 
-    public amount: number,
+    public amount: number, //removing this field and format method, causes error because of the interface
   ){}
 
-  format() {
+  format() {  
     return `${this.client} owes £${this.amount} for ${this.details}`;
   }
 }
