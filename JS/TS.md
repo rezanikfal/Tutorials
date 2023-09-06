@@ -31,6 +31,17 @@ console.log(someValue.length);
 // To assert that someValue is not undefined, you can use the non-null assertion operator.
 console.log(someValue!.length); // No compilation error
 ```
+## Access modifier (public, private, read only): 
+- Default behavior of object elements is **public**.
+```javascript
+let someValue: string | undefined = "Hello, TypeScript";
+
+// This will result in a compilation error because someValue might be undefined.
+console.log(someValue.length);
+
+// To assert that someValue is not undefined, you can use the non-null assertion operator.
+console.log(someValue!.length); // No compilation error
+```
 ## Interface
 - We use Interface to enforce a certain structure within **classes** or **objects**.
 - Interface with **objects**:
