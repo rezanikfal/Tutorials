@@ -33,14 +33,28 @@ console.log(someValue!.length); // No compilation error
 ```
 ## Access modifier (public, private, read only): 
 - Default behavior of object elements is **public**.
+- We can access **readonly** from the inside and outside of the class but not change it.
+- Instead of defining variables and assigning value we can use access modifier:
 ```javascript
-let someValue: string | undefined = "Hello, TypeScript";
+class Invoice {
+  client: string;
+  details: string;
+  amount: number;
 
-// This will result in a compilation error because someValue might be undefined.
-console.log(someValue.length);
-
-// To assert that someValue is not undefined, you can use the non-null assertion operator.
-console.log(someValue!.length); // No compilation error
+  constructor(c: string, d: string, a: number){
+    this.client = c;
+    this.details = d;
+    this.amount = a;
+  }
+```
+```javascript
+class Invoice {
+  constructor(
+    readonly client: string, 
+    private details: string, 
+    public amount: number
+  ){}
+}
 ```
 ## Interface
 - We use Interface to enforce a certain structure within **classes** or **objects**.
@@ -66,7 +80,6 @@ const me: IsPerson = {
 };
 ```
 - Class is a blue print of an object. When it ```implements``` an interface, it must have all of the interface properties and methods.
-- We can access **readonly** from the inside and outside of the class but not change it.
 - Interface with **classes**:
 ```javascript
 interface HasFormatter {
