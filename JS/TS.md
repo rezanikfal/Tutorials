@@ -128,3 +128,41 @@ class Invoice implements HasFormatter {
 let docOne: HasFormatter;
 docOne = new Invoice('yoshi', 'web work', 250);
 ```
+## Generics \<T\>
+- It allow you to create reusable and flexible functions, classes, and interfaces..
+- Generics with **Interface**:
+```javascript
+interface Box<T> {
+  value: T;
+}
+
+// Create instances of the Box interface with different types
+const stringBox: Box<string> = { value: "Hello" };
+const numberBox: Box<number> = { value: 42 };
+const booleanBox: Box<boolean> = { value: true };
+```
+- This allows you to create **classes** that can work with a variety of data types:
+```javascript
+class Box<T> {
+  constructor(public value: T) {}
+
+  getValue(): T {
+    return this.value;
+  }
+}
+
+const stringBox = new Box<string>("Hello");
+const numberBox = new Box<number>(42);
+
+console.log(stringBox.getValue()); // Output: Hello
+console.log(numberBox.getValue()); // Output: 42
+```
+- This allows you to write **functions** that can operate on a variety of data types:
+```javascript
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+let output = identity("hello"); // output is of type 'string'
+let output2 = identity(42);     // output2 is of type 'number'
+```
