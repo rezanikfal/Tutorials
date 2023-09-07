@@ -3,6 +3,32 @@
 ```javascript
 const mixed : (string|boolean)[] = []
 ```
+## enum Types
+- enums cannot be defined inside a class.
+- An enum, short for enumeration, is a way to represent a set of named constants.
+- You can assign a value to it or not:
+```javascript
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+console.log(Direction.Up);    // Output: 0
+console.log(Direction.Down);  // Output: 1
+console.log(Direction.Left);  // Output: 2
+console.log(Direction.Right); // Output: 3
+```
+```javascript
+enum LogLevel {
+    Error = "ERROR",
+    Warning = "WARNING",
+    Info = "INFO",
+    Debug = "DEBUG"
+}
+console.log(LogLevel.Info); // Output: INFO
+```
 ## tsconfig.json
 - It is a configuration file used in TypeScript projects to specify compiler options and settings for TypeScript code.
 - To create just ```project_Folder> tsc --init```
