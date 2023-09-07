@@ -66,7 +66,7 @@ const me: IsPerson = {
 };
 ```
 - Class is a blue print of an object. When it ```implements``` an interface, it must have all of the interface properties and methods.
-- Explain readonly ...
+- We can access **readonly** from the inside and outside of the class but not change it.
 - Interface with **classes**:
 ```javascript
 interface HasFormatter {
