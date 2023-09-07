@@ -34,7 +34,7 @@ console.log(someValue!.length); // No compilation error
 ## Access modifier (public, private, read only): 
 - Default behavior of object elements is **public**.
 - We can access **readonly** from the inside and outside of the class but not change it.
-- Instead of defining variables and assigning value we can use access modifier:
+- A shorthand way of declaring and initializing class properties to create objects using classes is using the access modifier directly in the constructor parameters.:
 ```javascript
 class Invoice {
   client: string;
