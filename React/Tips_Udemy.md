@@ -8,6 +8,7 @@
 - default formatter -> Prettier - Code formatter
 - format on save -> checked
 - ESLint run -> onSave
+
 ## React Project Structure
 - **Public**
   - index.html : In React and other SPAs the entry point is typically this HTML file that loads a JavaScript application
@@ -15,6 +16,16 @@
   - index.js :   ```ReactDOM.render()``` renders the root component of the React application into the specified DOM element.
   -  This is where the virtual DOM is connected to the actual DOM.
   -  <App /> is the root component being rendered, and it's being injected into the HTML element with the id of ```root```.
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function App() {
+  return <h1>Hello React</h1>
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+```
 ## Pass State/EnevtHandler from parent to child :
 - It is a community convension to use `value` and `onChange`:
 ```javascript
