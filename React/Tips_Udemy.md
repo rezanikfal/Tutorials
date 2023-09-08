@@ -1,3 +1,13 @@
+## Environment Setting
+### VS-Code Extensions:
+- ESLint
+- Material Icon Theme
+- Prettier - Code formatter
+### VS-Code Settings:
+- auto save -> onFocusChange
+- default formatter -> Prettier - Code formatter
+- format on save -> checked
+- ESLint run -> onSave
 ## Pass State/EnevtHandler from parent to child :
 - It is a community convension to use `value` and `onChange`:
 ```javascript
