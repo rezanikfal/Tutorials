@@ -1,3 +1,7 @@
+### npm vs npx:
+- ```npm``` is a package manager to install, manage, and share JS packages.
+- ```npx``` is used to execute packages directly from the ```npm``` registry without having to first install them globally or locally.
+- Use ```npx``` when you want to run a package as a one-time command like create-react-app.
 ## Environment Setting
 ### VS-Code Extensions:
 - ESLint
