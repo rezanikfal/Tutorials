@@ -10,6 +10,7 @@
 - The DOM is a programming interface provided by web browsers that represents the structure of an HTML or XML document as a tree-like structure.
 - DOM Manipulation involves using JavaScript to modify the content, structure, and presentation of web pages in real-time.
 - It allows you to create dynamic content that updates without requiring a full page reload.
+- Without JavaScript and DOM manipulation, making updates to a web page would typically require a full page reload. This was the early days of the internet.
 - This is the foundation for single-page applications (SPAs) and modern web development.
 ## Scope & Hoisting
 ### Scope in JavaScript:
