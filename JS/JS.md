@@ -1,3 +1,10 @@
+## Browser Web APIs
+- browser provides a wide range of Web APIs (Application Programming Interfaces) that allow web applications to interact with the browser and the underlying operating system.
+- JS as the scripting language plays a crucial role to utilizes these APIs to enhance the functionality of web applications
+	- DOM Manipulation APIs (like window)
+   	- Network APIs (fetch, XMLHttpRequest)
+   	- Storage APIs (Web Storage)
+   	- Geolocation API
 ## DOM Manipulation 
 - DOM Manipulation allows you to interact with the Document Object Model (DOM) to dynamically modify HTML and CSS on web pages.
 - The DOM is a programming interface provided by web browsers that represents the structure of an HTML or XML document as a tree-like structure.
