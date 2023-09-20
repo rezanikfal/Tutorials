@@ -17,6 +17,7 @@ const A:[number, string][] = [[1,'Reza'], [2,'Fariba'], [3,'Maneli']]
 ## enum Types
 - enums cannot be defined inside a class.
 - An enum, short for enumeration, is a way to represent a set of named constants.
+- Both the enum name and values are **Pascal Case**.
 - You can assign a value to it or not:
 ```javascript
 enum Direction {
