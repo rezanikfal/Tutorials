@@ -3,7 +3,7 @@
 ```javascript
 const mixed : (string|boolean)[] = []
 ```
-- we can separate big numbers with ```_```.
+- we can separate big numbers with ```_``` to be be more readable.
 ```javascript
 const A = 12_324_545.242
 console.log(A) //12324545.242 
