@@ -8,6 +8,12 @@ const mixed : (string|boolean)[] = []
 const A = 12_324_545.242
 console.log(A) //12324545.242 
 ```
+- **Tuples** allows you to store a fixed-size collection of elements of different types.
+- It is mostly helpful for **key-value** pairs. 
+```javascript
+const A:[number, string] = [1,'Reza']
+const A:[number, string][] = [[1,'Reza'], [2,'Fariba'], [3,'Maneli']]
+```
 ## enum Types
 - enums cannot be defined inside a class.
 - An enum, short for enumeration, is a way to represent a set of named constants.
