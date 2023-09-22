@@ -14,6 +14,18 @@ console.log(A) //12324545.242
 const A:[number, string] = [1,'Reza']
 const A:[number, string][] = [[1,'Reza'], [2,'Fariba'], [3,'Maneli']]
 ```
+## any VS unknown
+- While both any and unknown allow for dynamic typing, unknown enforces stricter type checks and requires type assertions.
+```javascript
+let variable2: unknown;
+let variable1: any;
+
+variable1.toFixed() // This is allowed
+
+if (typeof variable2 === "number") {
+  variable2.toFixed(); // This is allowed after the type check
+}
+```
 ## enum Types
 - enums cannot be defined inside a class.
 - An enum, short for enumeration, is a way to represent a set of named constants.
