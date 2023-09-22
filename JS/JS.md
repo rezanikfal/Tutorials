@@ -346,6 +346,18 @@ var books = document.querySelector('#book-list');
 books.innerHTML = '<h1>The list of Books</h1>' // Replace the whole DOM element with a new one
 books.innerHTML += '<h2>Reza Nikfal</h2>' // Append the new DOM element
 ```
+
+```javascript
+<h1>
+  <div class="myhOne">Some content</div>
+</h1>
+
+const hh = document.querySelectorAll('h1 .myhOne ')
+------------------------------------------------------
+<h1 class="myhOne">Some content</h1>
+
+const hh = document.querySelectorAll('h1.myhOne ')
+```
 ### getElementsBy ... (Return HTMLCollection)
 - Almost everything in HTML page is a Node like elements, attributes, ... with different [types](https://www.w3schools.com/jsref/prop_node_nodetype.asp#midcontentadcontainer)
 - HTMLElement represents an HTML element, such as `<div>, <p>, <a>`, and other HTML tags.
