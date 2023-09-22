@@ -26,6 +26,16 @@ if (typeof variable2 === "number") {
   variable2.toFixed(); // This is allowed after the type check
 }
 ```
+## Type assertion
+- Sometimes we know more then typescript so we can assert the type.
+```javascript
+const inputBox = document.getElementById("reza"); // Type: HTMLElement | null
+inputBox.value // Error
+-------------------------------------------
+const inputBox = <HTMLInputElement>document.getElementById("reza");
+const inputBox = document.getElementById("reza") as HTMLInputElement;
+inputBox.value // Has the property
+```
 ## enum Types
 - enums cannot be defined inside a class.
 - An enum, short for enumeration, is a way to represent a set of named constants.
