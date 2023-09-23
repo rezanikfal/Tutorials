@@ -402,26 +402,21 @@ Array.from(deleteKey).forEach(element => {   //Convert to JS array
 ```
 ## Variables
 ### Closure
-- The concept of closures typically comes into play when you have functions defined within other functions, especially when those inner functions capture and retain variables from their outer functions.
-- In the following code, each instance (i.e. ```counter1```, ```counter2```) has its own ```count```:
+- Closure allows a function to have access to variables and parameters from its outer function, even after the outer function has finished executing.
+- In this example, ```outerFunction``` defines a variable ```outerVariable``` and a nested function ```innerFunction```. ```innerFunction``` has access to ```outerVariable``` due to the closure. When ```outerFunction``` is called and ```innerFunction``` is returned, closureExample effectively **remembers** the environment in which it was created, which includes the ```outerVariable```. So, even when closureExample is called outside of ```outerFunction```, it still has access to ```outerVariable```.:
 ```javascript
-function createCounter() {
-  let count = 0;
+function outerFunction() {
+  let outerVariable = 10;
 
-  function increment() {
-    count++;
-    console.log(count);
+  function innerFunction() {
+    console.log(outerVariable);
   }
-  return increment;
+
+  return innerFunction;
 }
 
-const counter1 = createCounter();
-const counter2 = createCounter();
-
-counter1(); // This should log 1
-counter1(); // This should log 2
-
-counter2(); // This should log 1 (separate count from counter1)
+let closureExample = outerFunction();
+closureExample(); // Outputs: 10
 ```
 Another good example is this React Snippet:
 Inside the .map() function, you're using the sumCounter function as the onchangeValue prop of the Counter component. The .map() function creates a closure for each iteration, capturing the specific instance of the sumCounter function and the current value of counterSum for that iteration. In other words, if we create 10 instance of ```<Counter>``` , each one has its own SUM.
