@@ -203,6 +203,31 @@ class Invoice implements HasFormatter {
 let docOne: HasFormatter;
 docOne = new Invoice('yoshi', 'web work', 250);
 ```
+## Index signature
+- It allows objects to have properties whose keys are not known at compile time.
+```javascript
+interface StringArray {
+    [index: number]: string;
+}
+
+let myArray: StringArray;
+myArray = ["Bob", "Alice"];
+
+let firstElement: string = myArray[0];
+```
+```javascript
+interface Dictionary {
+    [key: string]: number;
+}
+
+let myDict: Dictionary = {
+    "one": 1,
+    "two": 2,
+    "three": 3
+};
+
+let valueOfTwo: number = myDict["two"];
+```
 ## Generics \<T\>
 - It allow you to create reusable and flexible functions, classes, and interfaces..
 - Generics with **Interface**:
