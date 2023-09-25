@@ -576,8 +576,8 @@ console.log(person1.age);
 
 function Person1(name, lastName, age) {
     this.name = name,
-        this.lastName = lastName,
-        this.age = age
+    this.lastName = lastName,
+    this.age = age
 }
 Person.prototype.addAge = function () {
     this.age++
@@ -585,9 +585,9 @@ Person.prototype.addAge = function () {
 
 class Person2 {
     constructor(name, lastName, age) {
-        this.name = name,
-            this.lastName = lastName,
-            this.age = age;
+       this.name = name,
+       this.lastName = lastName,
+       this.age = age
     }
     addAge() {
         this.age++;
