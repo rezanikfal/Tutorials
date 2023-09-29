@@ -629,6 +629,8 @@ console.log(typeof (p1));  // Class creats an object
 ```
 ## JS object & JSON
 - Serialization and deserialization of JSON. It is converting a object into a JSON and vice versa.
+- Serialization involves converting a data structure into a format that can be easily stored or transmitted like a string.
+- ```JSON.stringify()``` in JavaScript, is serializing the data from an object (which exists in memory as a complex data structure) into a format that can be easily saved to a file (JSON).
 ```javascript
 var person = {name :'Saad', age : 26, department : {ID : 15, name : "R&D"} }; 
 var stringFromPerson = JSON.stringify(person); 
