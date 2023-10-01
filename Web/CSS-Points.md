@@ -27,4 +27,4 @@ Example:
 </svg>
 ```
 ### Snapshot of the SVG
-<img src="./Pics/SVG.png" width="300">
+<img src="../Pics/SVG.png" width="300">
