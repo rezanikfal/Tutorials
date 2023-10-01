@@ -32,5 +32,5 @@ Example:
 ### CSS absolute / relative Units
 - **px** (Pixels): This is the most commonly used unit. One pixel is a single dot on a screen.
 - **em**: This unit is also relative to the font size of the parent element.
-- **rem** (Root EM): Similar to em, but it's always relative to the font size of the root element (usually the <html> tag),
+- **rem** (Root EM): Similar to em, but it's always relative to the font size of the root element (usually the ```<html>``` tag),
 - By default the font size in in browsers is 16px so rem = 16px
