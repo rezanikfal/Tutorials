@@ -264,6 +264,10 @@ var A = [1, [2], [3, [[4]]],[5,6]]
 console.log(A.flat(2)); //[1, 2, 3, [4], 5, 6]
 console.log(A.flat(Infinity)); //[1, 2, 3, 4, 5, 6]
 ```
+- The **Array.from** generates a sequence of numbers using this trick:
+```javascript
+Array.from({ length: 5 }, (v, i) => i).map(x=>console.log(x))
+```
 - The **trim()** removes extra white spaces from both sides of a string
 ```javascript
 const Str = "  Reza NNikf   www  "
