@@ -1,6 +1,6 @@
 ### CSS Tricks
-- ```.class1 > div``` targets a div element that is a **direct** child of an element with the class ```class1```
-- ```.class1 div``` targets any div element that is a **descendant ** of an element with the class ```class1```
+- ```.class1 > div``` targets a div element that is a **direct** child of an element with the ```class1```.
+- ```.class1 div``` targets any div element that is a **descendant** of an element with the ```class1```.
 ```html
 <div class="class1">
   <div>First div</div> <!-- This div is targeted by .class1 > div -->
