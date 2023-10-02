@@ -1,3 +1,14 @@
+### CSS Tricks
+- ```.class1 > div``` targets a div element that is a **direct** child of an element with the class ```class1```
+- ```.class1 div``` targets any div element that is a **descendant ** of an element with the class ```class1```
+```html
+<div class="class1">
+  <div>First div</div> <!-- This div is targeted by .class1 > div -->
+  <div> <!-- This div is targeted by .class1 > div -->
+    <div>Targeted by .class1 div</div> <!-- This div is targeted by .class1 div -->
+  </div>
+</div>
+```    
 ## box-sizing
 - **box-sizing: border-box**;
 - The width and height properties include the padding and border, but not the margin.
@@ -38,3 +49,4 @@ Example:
 - **em**: This unit is also relative to the font size of the parent element.
 - **rem** (Root EM): Similar to em, but it's always relative to the font size of the root element (usually the ```<html>``` tag),
 - By default the font size in in browsers is 16px so rem = 16px
+
