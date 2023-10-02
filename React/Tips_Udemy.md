@@ -143,6 +143,23 @@ function Button({children}) {
 ```
 ## useState, useEffect, useRef , useCallback Hooks :
 - useState: To Handle **States**
+### Controlled and uncontrolled components
+- a controlled component refers to a component whose behavior is controlled by the **state** of the application.
+- In contrast, uncontrolled component is controlled by **DOM**.
+```javascript
+// Uncontrolled
+<div>
+    <label>Item Name</label>
+    <input type="text" />
+</div>
+
+// Controlled
+const [name, setName] = useState('');
+<div>
+    <label>Item Name</label>
+    <input type="text" value={name} onChange={e => setName(e.target.value)} />
+</div>
+```
 - useRef: Reference a value that's not needed for rendering
 - useEffect: To perform side effects including fetching data, updating the DOM, ..
 ```javascript
