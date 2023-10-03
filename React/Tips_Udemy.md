@@ -160,6 +160,21 @@ const [name, setName] = useState('');
     <input type="text" value={name} onChange={e => setName(e.target.value)} />
 </div>
 ```
+- **Derived state** refers to state values that are calculated or derived based on the existing state or props.
+- No need to create a new state in this situation.
+```javascript
+function ItemsList({ items }) {
+    // Any change on items (state) make a change on the totalPrice (Derived state)
+    const totalPrice = items.reduce((acc, item) => acc = acc + item.price * item.quantity, 0)
+    return (
+        <div>
+            <h3>Items List</h3>
+            {items.map(x => <SingleItem key={x.id} item={x} />)}
+            <div className="total">Total Price: ${totalPrice}</div>
+        </div>
+    )
+}
+```
 - useRef: Reference a value that's not needed for rendering
 - useEffect: To perform side effects including fetching data, updating the DOM, ..
 ```javascript
