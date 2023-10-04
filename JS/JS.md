@@ -314,6 +314,15 @@ var sort1 = BB.sort((a,b)=>b-a)) // [89,22,7,6,5,3,3,2,1]
 ```javascript
 arr.sort(()=>Math.random()-0.5)
 ```
+- **reduce()** function is used to process an array and return a **single value**.
+- It iterates over each element of the array and accumulates a final result.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0);
+console.log(sum); // Output: 15
+```
 ### Date object 
 ```javascript
 let pastDay= new Date(2000,1,1,20,11,28)
