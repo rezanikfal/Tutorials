@@ -8,7 +8,39 @@
     <div>Targeted by .class1 div</div> <!-- This div is targeted by .class1 div -->
   </div>
 </div>
-```    
+```
+### Create List from ```divs``` (React)
+```javascript
+export default function SingleItem({ item }) {
+    return (
+        <div className="item">
+            <div>{item.name}</div>
+            <div>{item.quantity}</div>
+            <div>${item.price}</div>
+            <div>${item.price * item.quantity}</div>
+        </div>
+    )
+}
+```
+```css
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item > div {
+  flex: 1;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.item:nth-child(even) {
+  background-color: blanchedalmond;
+}
+```
+<img src="../Pics/List.jpg" width="550"> 
+
 ## box-sizing
 - **box-sizing: border-box**;
 - The width and height properties include the padding and border, but not the margin.
