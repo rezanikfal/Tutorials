@@ -18,6 +18,7 @@ export default function SingleItem({ item }) {
             <div>{item.quantity}</div>
             <div>${item.price}</div>
             <div>${item.price * item.quantity}</div>
+            <div className="close">X</div>
         </div>
     )
 }
@@ -37,6 +38,12 @@ export default function SingleItem({ item }) {
 
 .item:nth-child(even) {
   background-color: blanchedalmond;
+}
+
+.item .close {
+  flex: 0.3;
+  font-weight: bold;
+  cursor: pointer;
 }
 ```
 <img src="../Pics/List.jpg" width="550"> 
