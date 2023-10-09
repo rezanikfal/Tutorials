@@ -48,6 +48,40 @@ export default function SingleItem({ item }) {
 ```
 <img src="../Pics/List.jpg" width="550"> 
 
+### Flebox ```flex: 1``` VS ```justify-content```
+```html
+<div className='allTabs'>
+  <div>Tab-1</div>
+</div>
+```
+```css
+.allTabs {
+  display: flex;
+}
+
+.allTabs > div {
+  flex: 1;
+  text-align: center;
+  background-color: bisque;
+  border: 1px solid coral;
+}
+```
+
+<img src="../Pics/Tab2.jpg" width="550">
+
+```css
+.allTabs {
+  display: flex;
+  justify-content: space-around;
+}
+
+.allTabs > div {
+  background-color: bisque;
+  border: 1px solid coral;
+}
+```
+<img src="../Pics/Tab1.jpg" width="550"> 
+
 ## box-sizing
 - **box-sizing: border-box**;
 - The width and height properties include the padding and border, but not the margin.
