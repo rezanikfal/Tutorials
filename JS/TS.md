@@ -122,6 +122,41 @@ class Invoice {
 }
 ```
 ## Getter & Setter: 
+- It exists in JS but because **Private** Modifier exists just on TS, Getter & Setter makes more sense in TS.
+- It converts **methods** to get or set a private var to **property** like.
+```javascript
+class Account {
+  constructor(
+    public id: number,
+    public owner: string,
+    private _balance: number
+  ) {}
+
+  balanceValue() {
+    return this._balance;
+  }
+
+  get balanceValueG() {
+    return this._balance;
+  }
+
+  balanceUpdate(update: number) {
+    this._balance = update;
+  }
+
+  set balanceUpdateS(update: number) {
+    this._balance = update;
+  }
+}
+
+const myAccount = new Account(1, "Reza", 1000);
+
+myAccount.balanceUpdate(2000);     //Method to set
+myAccount.balanceUpdateS = 3000;   //Setter
+
+console.log(myAccount.balanceValue());   //Method to get
+console.log(myAccount.balanceValueG);    //Getter
+```
 - To access a **private property** from the outside of class we have to define a function as below:
 ```javascript
 class Person {
