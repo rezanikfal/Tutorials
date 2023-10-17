@@ -42,6 +42,33 @@ function App() {
     // function Dropdown({ options, value, onChange }) { ...
 }
 ```
+## Get the control from the browser and put under the State Control :
+```javascript
+import { useState } from "react";
+
+function SearchBar({ onSubmit }) {
+  const [term, setTerm] = useState("");
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    onSubmit(term);
+  };
+
+  const handleChange = (e) => {
+    setTerm(e.target.value);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleFormSubmit}>
+        <input value={term} onChange={handleChange} />
+      </form>
+    </div>
+  );
+}
+
+export default SearchBar;
+```
 ## Call a function outside of the `map`:
 - Passing `index` outside of the map
 ```javascript
