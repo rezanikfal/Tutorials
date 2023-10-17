@@ -69,7 +69,7 @@ function SearchBar({ onSubmit }) {
 
 export default SearchBar;
 ```
-### A trick just to get numbers as input value :
+### A trick just to get numbers as input value (And upper case) :
 ```javascript
   const handleChange = (e) => {
     setTerm(e.target.value.replace(/[a-z]/, ""));
