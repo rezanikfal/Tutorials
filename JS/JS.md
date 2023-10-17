@@ -1198,7 +1198,7 @@ true && "Hello" && 42 && "";    // ""
 null || "Hello" || 42 || "";    // "Hello"
 ```
 ## Form + input
-- If we wrap a input tag in HTML with ```<form>```, by clicking enter it submits the input value as query string to URL and refreshes the window
+- If we wrap a input tag in HTML with ```<form>```, by enter key it submits the input value as query string to the URL and refreshes the page.
 - For the following it refreshes the page with this: ```myapp.com?email=XXXXXX & password=XXXX```
 ```html
 <form>
