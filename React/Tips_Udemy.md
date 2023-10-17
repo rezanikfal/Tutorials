@@ -69,6 +69,12 @@ function SearchBar({ onSubmit }) {
 
 export default SearchBar;
 ```
+### A trick just to get numbers as input value :
+```javascript
+  const handleChange = (e) => {
+    setTerm(e.target.value.replace(/[a-z]/, ""));
+  };
+```
 ## Call a function outside of the `map`:
 - Passing `index` outside of the map
 ```javascript
