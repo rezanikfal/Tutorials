@@ -100,7 +100,20 @@ function Accordion({ items }) {
 - Lets say we render a big list of elements using ```map```.
 - If we use Keys, after any change React just compares the keys before and after update.
 - Then React understands what was the change and does a minimal rendering.
-  
+- 
+### Keys should be applied on the TOP MOST ITEM:
+```javascript
+const renderedImage = images.map(image=>{
+<ImageShow key = {image.id}/>
+}
+```
+ ```javascript
+const renderedImage = images.map(image=>{
+<div key = {image.id}>
+   <ImageShow />
+</div>
+}
+``` 
 ## Event handler paremeter :
 - When we pass off the handleClick entirely, it receives event object. **onClick={handleClick}.**
 ```javascript
