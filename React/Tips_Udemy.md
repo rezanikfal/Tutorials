@@ -96,6 +96,11 @@ function Accordion({ items }) {
     </div>
 }
 ```
+### Why Keys:
+- Lets say we render a big list of elements using ```map```.
+- If we use Keys, after any change React just compares the keys before and after update.
+- Then React understands what was the change and does a minimal rendering.
+  
 ## Event handler paremeter :
 - When we pass off the handleClick entirely, it receives event object. **onClick={handleClick}.**
 ```javascript
