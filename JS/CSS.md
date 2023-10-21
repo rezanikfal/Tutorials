@@ -52,6 +52,8 @@ export default function SingleItem({ item }) {
 ```html
 <div className='allTabs'>
   <div>Tab-1</div>
+  <div>Tab-2</div>
+  <div>Tab-3</div>
 </div>
 ```
 ```css
