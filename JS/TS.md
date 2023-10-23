@@ -301,3 +301,53 @@ function identity<T>(arg: T): T {
 let output = identity("hello"); // output is of type 'string'
 let output2 = identity(42);     // output2 is of type 'number'
 ```
+## Decorators
+- Decorators are just functions that are executed at runtime, typically when a class or its members are defined.
+- They receive information about the target they are decorating and can be used to modify their behavior.
+- There are Class, Method, Property, Parameter Decorators:
+```javascript
+function myDecorator(target: any) {
+  target.prototype.customProperty = 'Some value added by the decorator';
+}
+
+@myDecorator
+class MyClass { }
+
+const instance = new MyClass();
+console.log(instance.customProperty); // Output: 'Some value added by the decorator'
+}
+```
+- Some examples from Angular (Class Decorators)
+```javascript
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.css']
+})
+export class ExampleComponent { }
+```
+```javascript
+@Injectable({
+  providedIn: 'root'
+})
+export class ExampleService { }
+```
+```javascript
+@NgModule({
+  declarations: [ExampleComponent],
+  imports: [CommonModule],
+  exports: [ExampleComponent]
+})
+export class ExampleModule { }
+```
+- Some examples from Angular (Property Decorators)
+```javascript
+export class ExampleComponent {
+  @Input() inputData: string;
+  @Output() outputEvent = new EventEmitter<void>();
+
+  emitOutput() {
+    this.outputEvent.emit();
+  }
+}
+```
