@@ -5,6 +5,9 @@
    	- Network APIs (fetch, XMLHttpRequest)
    	- Storage APIs (Web Storage)
    	- Geolocation API
+## npm VS npx
+- When you install a package using **npm**, it gets added to a node_modules directory within your project.
+- In REACT (```npx create-react-app my-app```), **npx** will download the latest version of create-react-app, use it to create the my-app project, and then discard it.
 ## DOM Manipulation 
 - DOM Manipulation allows you to interact with the Document Object Model (DOM) to dynamically modify HTML and CSS on web pages.
 - The DOM is a programming interface provided by web browsers that represents the structure of an HTML or XML document as a tree-like structure.
