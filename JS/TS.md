@@ -238,7 +238,7 @@ class Invoice implements HasFormatter {
 let docOne: HasFormatter;
 docOne = new Invoice('yoshi', 'web work', 250);
 ```
-## Index signature
+## Index signature (Kye unknown)
 - It allows objects to have properties whose keys are not known at compile time.
 ```javascript
 interface StringArray {
@@ -263,7 +263,7 @@ let myDict: Dictionary = {
 
 let valueOfTwo: number = myDict["two"];
 ```
-## Generics \<T\>
+## Generics \<T\> (Value unknown)
 - It allow you to create reusable and flexible functions, classes, and interfaces..
 - Generics with **Interface**:
 ```javascript
