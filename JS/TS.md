@@ -238,7 +238,7 @@ class Invoice implements HasFormatter {
 let docOne: HasFormatter;
 docOne = new Invoice('yoshi', 'web work', 250);
 ```
-## Index signature (Kye unknown)
+## Index signature (Key unknown)
 - It allows objects to have properties whose keys are not known at compile time.
 ```javascript
 interface StringArray {
