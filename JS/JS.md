@@ -318,6 +318,10 @@ var sort1 = BB.sort((a,b)=>b-a)) // [89,22,7,6,5,3,3,2,1]
 arr.sort(()=>Math.random()-0.5)
 ```
 - **reduce()** function is used to process an array and return a **single value**.
+```javascript
+const A  = [2,3,4,3,4,5,6,7,6,5,76,7,9,7,6,4]
+A.reduce((acc, x, i)=>i==A.length-1?(x+acc)/(i+1):x+acc,0) // 9.625
+```
 - It iterates over each element of the array and accumulates a final result.
 ```javascript
 const numbers = [1, 2, 3, 4, 5];
