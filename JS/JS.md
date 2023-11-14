@@ -460,6 +460,8 @@ a = 12;
 console.log(typeof(a)) // number
 a = 'Reza';
 console.log(typeof(a)) // string
+a = null;
+console.log(typeof(a)) // object
 ```
 ### Hoisting
 Before running, JS first checks all the code and variables. So if you derive variables after initializing, it works fine.
