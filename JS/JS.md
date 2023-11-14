@@ -805,6 +805,9 @@ for (const key in student) {
 console.log(key);
 } //name sclass myFucn
 //----------------------------------
+var newK = Object.keys(student);
+console.log(newK); //['name', 'sclass', 'myFucn']
+//----------------------------------
 console.log(Object.keys(student)); //['name', 'sclass', 'myFucn']
 console.log(Object.keys(student).toString()); //'name', 'sclass', 'myFucn'
 console.log(Object.keys(student).lenght); // 3
