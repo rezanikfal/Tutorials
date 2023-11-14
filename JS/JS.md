@@ -423,46 +423,22 @@ Array.from(deleteKey).forEach(element => {   //Convert to JS array
 ## Variables
 ### Closure
 - Closure allows a function to have access to variables and parameters from its outer function, even after the outer function has finished executing.
-- In this example, ```outerFunction``` defines a variable ```outerVariable``` and a nested function ```innerFunction```. ```innerFunction``` has access to ```outerVariable``` due to the closure. When ```outerFunction``` is called and ```innerFunction``` is returned, closureExample effectively **remembers** the environment in which it was created, which includes the ```outerVariable```. So, even when closureExample is called outside of ```outerFunction```, it still has access to ```outerVariable```.:
+- In this example, setupCounter returns an inner function that increments and logs the count variable. Each time you call counter(), it remembers the state of count from the closure and increments it accordingly:
 ```javascript
-function outerFunction() {
-  let outerVariable = 10;
+function setupCounter() {
+  let count = 0;
 
-  function innerFunction() {
-    console.log(outerVariable);
-  }
-
-  return innerFunction;
+  return function() {
+    count++;
+    console.log(count);
+  };
 }
 
-let closureExample = outerFunction();
-closureExample(); // Outputs: 10
-```
-Another good example is this React Snippet:
-Inside the .map() function, you're using the sumCounter function as the onchangeValue prop of the Counter component. The .map() function creates a closure for each iteration, capturing the specific instance of the sumCounter function and the current value of counterSum for that iteration. In other words, if we create 10 instance of ```<Counter>``` , each one has its own SUM.
-```javascript
-function App() {
+const counter = setupCounter();
 
-  const [counterSum, setCounterSum] = useState(0);
-
-  const sumCounter = (data) => {
-    setCounterSum(counterSum + data);
-  }
-
-  const counters = Array(counterNo).fill(0).map((_, i) =>
-    <Counter key={i} onchangeValue={sumCounter} />
-  );
-
-  return (
-    <>
-      <Button variant="contained">Add new counter</Button>&nbsp;
-      {counters}
-      <h2>SUM: {counterSum}</h2>
-    </>
-  );
-}
-
-export default App;
+counter(); // Output: 1
+counter(); // Output: 2
+counter(); // Output: 3
 ```
 ### Declaration VS Definition
 ```javascript
