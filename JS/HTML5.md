@@ -62,3 +62,4 @@
 <input type="color">
 <input type="range">
 ```
+<img src="../Pics/input.jpg" width="300">
