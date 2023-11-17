@@ -40,3 +40,25 @@
 <meta name="description" content="This is a brief description of your webpage.">
 <meta name="keywords" content="SEO, meta tags, web development">
 ```
+### HTML 5 entity
+- For example HTML collapses spaces, to address this and other special characters we use entity.
+- These entities are written using the ```&``` character followed by a specific keyword and ending with a semicolon ```;```.
+```html
+<p>the words: Hello&nbsp;&nbsp;&nbsp;World</p>  // Hello   World
+<p>less than symbol: &lt;</p>  // less than symbol: <
+```
+### input values
+```html
+<input type="text">
+<input type="password">
+<input type="email">
+<input type="url">
+<input type="number">
+<input type="date">
+<input type="checkbox">
+<input type="radio">
+<input type="file">
+<input type="search">
+<input type="color">
+<input type="range">
+```
