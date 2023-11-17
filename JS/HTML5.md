@@ -3,7 +3,6 @@
 - HTML5 introduces new semantic elements like ```<article>, <section>, <header>, <nav>, <footer>```.
 - HTML5 Introduces the ```<canvas>``` element for drawing graphics and the ```<svg>```.
 - HTML5 Introduces the **localStorage** and **sessionStorage** APIs vs HTML 4.01 **cookies**.
-- 
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -29,4 +28,15 @@
 
 </body>
 </html>
+```
+### meta tag (single tag)
+- SEO meta tags are HTML tags that provide information about a web page to search engines and website visitors.
+- The most important one:
+  - Meta **title** Tag
+  - Meta **name/content** Tag
+  - Meta **Keywords** Tag
+```html
+<title>Your Page Title</title>
+<meta name="description" content="This is a brief description of your webpage.">
+<meta name="keywords" content="SEO, meta tags, web development">
 ```
