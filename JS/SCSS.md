@@ -1,3 +1,33 @@
+### Variables
+- In SCSS (Sass), variables are used to store information that you want to reuse throughout your stylesheet.
+```css
+$primary-color: #3498db;
+$font-size: 16px;
+$border-radius: 4px;
+
+body {
+  background-color: $primary-color;
+  font-size: $font-size;
+}
+```
+- Global vs Local variables:
+```css
+$global-var: #333;
+
+.container {
+  $local-var: #f00; // Local variable
+  background-color: $local-var; // Accessible within the .container scope
+}
+
+.other-element {
+  background-color: $local-var; // Error! $local-var is not accessible here
+  color: $global-var; // Accessible because $global-var is global
+}
+```
+
+
+
+
 ### CSS Tricks
 - ```.class1 > div``` targets a div element that is a **direct** child of an element with the ```class1```.
 - ```.class1 div``` targets any div element that is a **descendant** of an element with the ```class1```.
