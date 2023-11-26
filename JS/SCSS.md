@@ -74,7 +74,7 @@ nav {
 ```
 ### Numeric operations (```$debug``` and ```sass:math```)
 - The ```@debug``` directive in Sass allows you to output debugging information to the console.
-- YOu can use ```@debug``` to check if you math calculation is correct.
+- You can use ```@debug``` to check if you math calculation is correct.
 - Unlike other mathematical operations (```+ - *```), division in Sass is done with the math.div() function
 ```css
 @use "sass:math";
@@ -103,6 +103,26 @@ $colors: (
 ```css
 $primary-color: map-get($colors, primary);
 $secondary-color: map-get($colors, secondary);
+```
+### ```@each``` and ```@for``` Directive
+- The ```@each``` directive is used for iterating over lists or maps.
+- The ```@for``` directive is used for numerical iteration.
+- Notice this syntax: ```#{$variable}```
+```css
+$colors: (red, blue, green);
+
+@each $color in $colors {
+  .#{$color}-box {
+    background-color: $color;
+  }
+}
+```
+```css
+@for $i from 1 through 3 {
+  .box-#{$i} {
+    width: 50px * $i;
+  }
+}
 ```
 
 
