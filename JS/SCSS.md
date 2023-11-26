@@ -180,5 +180,23 @@ body {
   color: green;
 }
 ```
+### @mixin 
+-  mixins are reusable pieces of code that can be included in other parts of your stylesheets.
+```css
+// Define a mixin
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+// Use the mixin in a selector
+.button {
+  @include border-radius(5px);
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+}
+```
 
 <img src="../Pics/List.jpg" width="550"> 
