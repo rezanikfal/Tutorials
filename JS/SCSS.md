@@ -250,5 +250,3 @@ $breakpoints: (
   color: #3498db;
 }
 ```
-
-<img src="../Pics/List.jpg" width="550"> 
