@@ -45,56 +45,34 @@ body {
   font-size: $font-size;
 }
 ```
-
-
-
-
-### CSS Tricks
-- ```.class1 > div``` targets a div element that is a **direct** child of an element with the ```class1```.
-- ```.class1 div``` targets any div element that is a **descendant** of an element with the ```class1```.
-```html
-<div class="class1">
-  <div>First div</div> <!-- This div is targeted by .class1 > div -->
-  <div> <!-- This div is targeted by .class1 > div -->
-    <div>Targeted by .class1 div</div> <!-- This div is targeted by .class1 div -->
-  </div>
-</div>
-```
-### Create List from ```divs``` (React)
-```javascript
-export default function SingleItem({ item }) {
-    return (
-        <div className="item">
-            <div>{item.name}</div>
-            <div>{item.quantity}</div>
-            <div>${item.price}</div>
-            <div>${item.price * item.quantity}</div>
-            <div className="close">X</div>
-        </div>
-    )
-}
-```
+### Nesting
+-  Nesting in Sass or SCSS is a way to write CSS rules in a more hierarchical and structured manner.
 ```css
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+nav {
+  background-color: #333;
 
-.item > div {
-  flex: 1;
-  text-align: center;
-  margin: 0.5rem 0;
-}
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-.item:nth-child(even) {
-  background-color: blanchedalmond;
-}
+    li {
+      display: inline-block;
+      margin-right: 10px;
 
-.item .close {
-  flex: 0.3;
-  font-weight: bold;
-  cursor: pointer;
+      a {
+        text-decoration: none;
+        color: white;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
 ```
+
+
+
 <img src="../Pics/List.jpg" width="550"> 
