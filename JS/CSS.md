@@ -32,6 +32,10 @@ ul li:first-child {
 ul li:nth-child(odd) {
   background-color: #f0f0f0;
 }
+
+ul li:nth-child(3n+1) {  // should be "n" and n starts from 0. So here it impacts the elements No. 1, 4, 7, ...
+  background-color: #f0f0f0;
+}
 ```
 ### calc() function
 - Using ```calc()``` you can create dynamic elements.
