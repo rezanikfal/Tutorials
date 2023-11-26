@@ -152,7 +152,33 @@ body {
   }
 }
 ```
+### Parent Selector 
+-  Sass/SCSS does provide a ```&``` that can be used to refer to the parent selector in certain contexts.
+```css
+.parent {
+  color: blue;
 
+  .child {
+    color: red;
 
+    &:hover {
+      color: green;
+    }
+  }
+}
+```
+```css
+.parent {
+  color: blue;
+}
+
+.parent .child {
+  color: red;
+}
+
+.parent .child:hover {
+  color: green;
+}
+```
 
 <img src="../Pics/List.jpg" width="550"> 
