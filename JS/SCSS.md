@@ -180,7 +180,7 @@ body {
   color: green;
 }
 ```
-### @mixin 
+### @mixin directive 
 -  mixins are reusable pieces of code that can be included in other parts of your stylesheets.
 ```css
 // Define a mixin
@@ -196,6 +196,18 @@ body {
   background-color: #3498db;
   color: white;
   padding: 10px 20px;
+}
+```
+### @function directive 
+-  Functions return values, whereas mixins generate CSS.
+```css
+@function calculate-width($columns, $column-width, $gutter-width) {
+  @return $columns * $column-width + ($columns - 1) * $gutter-width;
+}
+
+// Use the function
+.container {
+  width: calculate-width(12, 60px, 20px);
 }
 ```
 
