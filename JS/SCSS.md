@@ -198,6 +198,25 @@ body {
   padding: 10px 20px;
 }
 ```
+- a mixin can take an entire block of styles, known as a ```content``` block.
+```css
+$breakpoints: (
+  "xs": 0,
+  "sm": 480px,
+  "md": 720px
+);
+
+@mixin media-min-width {
+  @media (min-width: #{map-get($breakpoints, "xs")}) {
+    @content;
+  }
+}
+
+// Usage without specifying a parameter (defaults to "xs")
+@include media-min-width {
+  font-family: sans-serif;
+}
+```
 ### @function directive 
 -  Functions return values, whereas mixins generate CSS.
 ```css
