@@ -124,6 +124,20 @@ $colors: (red, blue, green);
   }
 }
 ```
+- Equals to:
+```css
+.box-1 {
+  width: 50px;
+}
+
+.box-2 {
+  width: 100px;
+}
+
+.box-3 {
+  width: 150px;
+}
+```
 
 
 
