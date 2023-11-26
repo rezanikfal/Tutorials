@@ -72,6 +72,24 @@ nav {
   }
 }
 ```
+### Numeric operations (```$debug``` and ```sass:math```)
+- The ```@debug``` directive in Sass allows you to output debugging information to the console.
+- YOu can use ```@debug``` to check if you math calculation is correct.
+- Unlike other mathematical operations (```+ - *```), division in Sass is done with the math.div() function
+```css
+@use "sass:math";
+
+@debug 15px / 30px; // 15px/30px
+@debug math.div(15px, 3) //5px
+@debug math.div(15px, 3px) //5
+@debug (10px + 5px) / 30px; // 0.5
+@debug math.$pi; // 3.1415926536
+@debug math.ceil(4.2); // 5
+@debug math.floor(4.9); // 4
+@debug math.max(1px, 4px); // 4px
+@debug math.round(4.9); // 5
+@debug math.is-unitless(100); // true
+```
 
 
 
