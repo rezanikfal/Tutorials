@@ -1,8 +1,9 @@
-### CSS Variables
+### CSS Variables / root / first-child / nth-child
 - CSS vars are often used to store colors, font sizes, spacing, or other values that are used repeatedly in a stylesheet.
 - CSS variables are defined using the ```--``` prefix followed by a name.
 - The ```var()``` function is used to reference the values of the variables.
 - CSS vars follows the scope.
+- The ```:root``` pseudo-class in CSS is a selector that matches the highest-level parent element, which is typically the <html> element.
 ```css
 /* Declare variables */
 :root {
@@ -19,6 +20,17 @@ body {
 
 h1 {
   margin-bottom: var(--spacing);
+}
+```
+- The ```:first-child``` pseudo-class selects the first child element of its parent.
+- The ```:nth-child()``` pseudo-class allows you to select elements based on their position in a parent container.
+```css
+ul li:first-child {
+  font-weight: bold;
+}
+
+ul li:nth-child(odd) {
+  background-color: #f0f0f0;
 }
 ```
 ### CSS Tricks
