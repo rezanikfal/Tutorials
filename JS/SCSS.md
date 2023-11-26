@@ -82,7 +82,7 @@ nav {
 @debug 15px / 30px; // 15px/30px
 @debug math.div(15px, 3) //5px
 @debug math.div(15px, 3px) //5
-@debug (10px + 5px) / 30px; // 0.5
+@debug 10px + 5px; // 15px
 @debug math.$pi; // 3.1415926536
 @debug math.ceil(4.2); // 5
 @debug math.floor(4.9); // 4
