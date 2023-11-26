@@ -33,6 +33,26 @@ ul li:nth-child(odd) {
   background-color: #f0f0f0;
 }
 ```
+### calc() function
+- Using ```calc()``` you can create dynamic elements.
+- You can combine 2 different units like ```px``` and ```em```.
+- You can use variables with calc.
+```css
+:root{
+--standard-font-size: 20px;
+--h1-font-size: calc(var(--standard-font-size) * 2)
+}
+.container {
+  width: calc(100% - 20px);
+  margin: calc(10px + 5%);
+  font-size: calc(16px + 2vmin);
+}
+.element {
+  width: calc((100vw - 2 * 20px) / 3);
+  height: calc(50vh - 40px);
+  padding: calc(2em + 2px);
+}
+```
 ### CSS Tricks
 - ```.class1 > div``` targets a div element that is a **direct** child of an element with the ```class1```.
 - ```.class1 div``` targets any div element that is a **descendant** of an element with the ```class1```.
