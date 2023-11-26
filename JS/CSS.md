@@ -48,7 +48,7 @@ ul li:nth-child(odd) {
   font-size: calc(16px + 2vmin);
 }
 .element {
-  width: calc((100vw - 2 * 20px) / 3);
+  width: calc((100vw - 2 * 20px) / 3);  // the element width gets updated with resizing the browser window.
   height: calc(50vh - 40px);
   padding: calc(2em + 2px);
 }
