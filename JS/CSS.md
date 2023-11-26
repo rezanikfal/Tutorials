@@ -1,3 +1,26 @@
+### CSS Variables
+- CSS vars are often used to store colors, font sizes, spacing, or other values that are used repeatedly in a stylesheet.
+- CSS variables are defined using the ```--``` prefix followed by a name.
+- The ```var()``` function is used to reference the values of the variables.
+- CSS vars follows the scope.
+```css
+/* Declare variables */
+:root {
+  --main-color: #3498db;
+  --font-size: 16px;
+  --spacing: 10px;
+}
+
+/* Use variables in styles */
+body {
+  color: var(--main-color);
+  font-size: var(--font-size);
+}
+
+h1 {
+  margin-bottom: var(--spacing);
+}
+```
 ### CSS Tricks
 - ```.class1 > div``` targets a div element that is a **direct** child of an element with the ```class1```.
 - ```.class1 div``` targets any div element that is a **descendant** of an element with the ```class1```.
