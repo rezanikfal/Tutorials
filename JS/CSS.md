@@ -54,8 +54,11 @@ ul li:nth-child(odd) {
 }
 ```
 ### CSS Tricks
-- ```.class1 > div``` targets a div element that is a **direct** child of an element with the ```class1```.
-- ```.class1 div``` targets any div element that is a **descendant** of an element with the ```class1```.
+- ```.class1 > div``` targets a ```div``` element that is a **direct** child of an element with the ```class1```.
+- ```.class1 div``` targets any ```div``` element that is a **descendant** of an element with the ```class1```.
+- ```.class1 + div``` targets ```div``` elements that are **immediately** preceded (sibling) by an element with the class ```class1```.
+- ```.class1.class2``` targets elements that have both classes applied.
+- ```.class1 .class2``` targets elements with ```class2``` that are descendants of elements with ```class1```.
 ```html
 <div class="class1">
   <div>First div</div> <!-- This div is targeted by .class1 > div -->
@@ -63,6 +66,17 @@ ul li:nth-child(odd) {
     <div>Targeted by .class1 div</div> <!-- This div is targeted by .class1 div -->
   </div>
 </div>
+```
+- Here just **Fist** will be impacted.
+```html
+.divClass + div {
+  font-size: 50px;
+  font-style: italic;
+}
+
+<div class="divClass"></div>
+<div>First</div>
+<div>Second</div>
 ```
 ### Create List from ```divs``` (React)
 ```javascript
