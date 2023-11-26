@@ -26,7 +26,7 @@ $global-var: #333;
 ```
 ### Partials 
 -  partials are files that contain snippets of CSS or SCSS code meant to be included in other SCSS file.
--  Partial files are typically named with a **leading underscore** (e.g., _partial.scss), and they are not meant to be compiled into standalone CSS files.
+-  Partial files are typically named with a **leading underscore** (e.g., ```_partial.scss```), and they are not meant to be compiled into standalone CSS files.
 ```css
 // _variables.scss
 
