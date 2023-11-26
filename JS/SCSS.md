@@ -228,5 +228,27 @@ $breakpoints: (
   width: calculate-width(12, 60px, 20px);
 }
 ```
+### @extend directive 
+-   It is used to share styles between selectors. It allows one selector to **inherit** the styles of another selector.
+```css
+// Define a common set of styles
+.common-style {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+// Use @extend to share styles
+.button {
+  @extend .common-style;
+  background-color: blue;
+  color: white;
+}
+
+.link {
+  @extend .common-style;
+  text-decoration: none;
+  color: #3498db;
+}
+```
 
 <img src="../Pics/List.jpg" width="550"> 
