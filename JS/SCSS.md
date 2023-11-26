@@ -206,14 +206,13 @@ $breakpoints: (
   "md": 720px
 );
 
-@mixin media-min-width {
-  @media (min-width: #{map-get($breakpoints, "xs")}) {
+@mixin media-min-width($breakpoint) {
+  @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
     @content;
   }
 }
 
-// Usage without specifying a parameter (defaults to "xs")
-@include media-min-width {
+@include media-min-width("xs")  {
   font-family: sans-serif;
 }
 ```
