@@ -104,10 +104,11 @@ $colors: (
 $primary-color: map-get($colors, primary);
 $secondary-color: map-get($colors, secondary);
 ```
-### ```@each``` and ```@for``` Directive
+### ```@each``` and ```@for``` and ```@if``` Directive
 - The ```@each``` directive is used for iterating over lists or maps.
 - The ```@for``` directive is used for numerical iteration.
 - Notice this syntax: ```#{$variable}```
+- ```@if``` directive is for conditional statements.
 ```css
 $colors: (red, blue, green);
 
@@ -136,6 +137,19 @@ $colors: (red, blue, green);
 
 .box-3 {
   width: 150px;
+}
+```
+```css
+$theme: light;
+
+body {
+  @if $theme == light {
+    background-color: white;
+    color: black;
+  } @else {
+    background-color: black;
+    color: white;
+  }
 }
 ```
 
