@@ -87,7 +87,35 @@ export default function SingleItem({ item }) {
 ## box-sizing
 - **box-sizing: border-box**;
 - The width and height properties include the padding and border, but not the margin.
-- By default **box-sizing : content-box**, the width and height properties only apply to the content of the element. This means that any padding or border you add to the element will increase its total size
+- By default **box-sizing : content-box**, the width and height properties only apply to the content of the element. This means that any **padding or border you add to the element will increase its total size**
+```css
+.bBox {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 10px solid red;
+  margin: 30px;
+  background-color: aqua;
+}
+```
+<img src="../Pics/cBox.jpg" width="300">
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+.bBox {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 10px solid red;
+  margin: 30px;
+  background-color: aqua;
+}
+```
+<img src="../Pics/bbox.jpg" width="300">
+
 ## Create / Edit SVG
 - Go to [Boxy SVG](https://boxy-svg.com/app "Boxy SVG").
 - Create a path using ```Cubic Bezier```.
