@@ -90,6 +90,20 @@ nav {
 @debug math.round(4.9); // 5
 @debug math.is-unitless(100); // true
 ```
+### map
+- In Sass, a map is a data structure that allows you to store key-value pairs.
+- You can create a map using the ```()``` syntax:
+```css
+$colors: (
+  primary: #3498db,
+  secondary: #e74c3c,
+  accent: #27ae60
+);
+```
+```css
+$primary-color: map-get($colors, primary);
+$secondary-color: map-get($colors, secondary);
+```
 
 
 
