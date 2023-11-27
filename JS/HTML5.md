@@ -63,3 +63,38 @@
 <input type="range">
 ```
 <img src="../Pics/input.jpg" width="300">
+
+- To create a group of radio buttons, you give them the same name attribute.
+```html
+<input type="radio" name="gender" value="male">
+<input type="radio" name="gender" value="female">
+<input type="radio" name="gender" value="other">
+```
+
+### HTML 5 entity
+- For example HTML collapses spaces, to address this and other special characters we use entity.
+- These entities are written using the ```&``` character followed by a specific keyword and ending with a semicolon ```;```.
+```html
+<p>the words: Hello&nbsp;&nbsp;&nbsp;World</p>  // Hello   World
+<p>less than symbol: &lt;</p>  // less than symbol: <
+```
+    
+### iframe
+- An <iframe> (inline frame) is an HTML element that allows you to embed another websites within the current HTML document.
+```html
+    <iframe
+      src="https://www.example.com"
+      width="600"
+      height="400"
+      frameborder="5px"
+    ></iframe>
+    <iframe
+      width="800"
+      height="800"
+      src="https://www.youtube.com/embed/kfyW8rdzieo?si=Chj_LSsFg01BA-W-"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+```
