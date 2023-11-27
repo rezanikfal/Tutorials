@@ -1,3 +1,11 @@
+### CSS Specificity
+- In CSS, specificity is a set of rules that determine which styles are applied to an element.
+- It is resolving style conflicts when multiple CSS rules target the same element. It is calculated based on:   
+  1- Inline Styles   
+  2- ID Selectors, Selector Specificity: (1, 0, 0)   
+  3- Class Selectors, Attribute Selectors, and Pseudo-Classes, Selector Specificity: (0, 1, 0)   
+  4- Element Type Selectors and Pseudo-Elements, Selector Specificity: (0, 0, 1)   
+  5- *{} is the lowest   
 ### CSS Variables / root / first-child / nth-child
 - CSS vars are often used to store colors, font sizes, spacing, or other values that are used repeatedly in a stylesheet.
 - CSS variables are defined using the ```--``` prefix followed by a name.
