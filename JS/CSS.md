@@ -55,6 +55,29 @@ ul li:nth-child(3n+1) {  // should be "n" and n starts from 0. So here it impact
   content: " After";
 }
 ```
+### attr() function
+- The ```attr()``` function is used to retrieve and use the value of an HTML attribute and incorporate it into the styling of an element.
+- You can add any other attributes using this format: ```data-*```
+```css
+<a id="Reza" href="https://www.example.com" class="external-link">Visit Example</a>
+
+.external-link::after {
+  content: attr(id);
+  /* Visit ExampleReza */
+}
+.external-link::after {
+  content: " (" attr(href) ")";
+  /* Visit Example (https://www.example.com) */
+}
+
+<div data-text="Hello, World!" class="dynamic-content"></div>
+
+.dynamic-content::before {
+  content: attr(data-text);
+  /* Hello, World! */
+}
+
+```
 ### calc() function
 - Using ```calc()``` you can create dynamic elements.
 - You can combine 2 different units like ```px``` and ```em```.
