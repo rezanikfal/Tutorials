@@ -101,7 +101,8 @@ ul li:nth-child(3n+1) {  // should be "n" and n starts from 0. So here it impact
 ### CSS Tricks
 - ```.class1 > div``` targets a ```div``` element that is a **direct** child of an element with the ```class1```.
 - ```.class1 div``` targets any ```div``` element that is a **descendant** of an element with the ```class1```.
-- ```.class1 + div``` targets ```div``` elements that are **immediately** preceded (sibling) by an element with the class ```class1```.
+- ```.class1 + div``` targets ```div``` element that is **immediately sibling** preceded by an element with the class ```class1```.
+- ```.class1 ~ div``` targets **all** ```div``` elements that are **siblings** preceded by an element with the class ```class1```.
 - ```.class1.class2``` targets elements that have **both** classes applied.
 - ```.class1 .class2``` targets elements with ```class2``` that are **descendants** of elements with ```class1```.
 ```html
