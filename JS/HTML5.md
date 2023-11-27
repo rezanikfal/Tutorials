@@ -98,3 +98,6 @@
       allowfullscreen
     ></iframe>
 ```
+    
+### &lt;pre&gt; tag
+- text inside a ```<pre>``` element is displayed in a way that preserves both spaces and line breaks.
