@@ -98,6 +98,37 @@ ul li:nth-child(3n+1) {  // should be "n" and n starts from 0. So here it impact
   padding: calc(2em + 2px);
 }
 ```
+### Attribute selectors
+- These attribute selectors provide a powerful way to target and style elements based on the attributes they possess
+- We use ```[]``` for this type of selectors.
+```css
+<div data-text="Reza" class="dynamic-content">Hello World</div>
+
+[data-text] {
+  font-size: 50px;
+}
+
+/* Selects elements with a specified attribute and value. */
+[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Selects elements with a specified attribute containing a specified value. */
+[href*="example.com"] {
+  color: blue;
+}
+
+/* Selects elements with a specified attribute value that starts with a specified value. */
+[class^="prefix"] {
+  font-weight: bold;
+}
+
+/* Selects elements with a specified attribute value that ends with a specified value. */
+[src$=".png"] {
+  border: 1px solid red;
+}
+```
 ### CSS Tricks
 - ```.class1 > div``` targets a ```div``` element that is a **direct** child of an element with the ```class1```.
 - ```.class1 div``` targets any ```div``` element that is a **descendant** of an element with the ```class1```.
