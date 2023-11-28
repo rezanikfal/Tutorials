@@ -15,6 +15,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   bootstrap: [AppComponent]
 })
 ```
+### BrowserModule 
+```javascript
+import { BrowserModule } from '@angular/platform-browser';
+```
+- ```BrowserModule``` includes services and directives that are specific to the browser environment. It helps Angular to understand and work with features related to the DOM, such as bindings, event handling, etc.
 ### Form Component:
 ```username: new FormControl('Default Value', [ Default Validator], [Custom Validators]),```
 ```javascript
