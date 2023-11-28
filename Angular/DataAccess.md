@@ -160,15 +160,51 @@ export class ParentComponent {
 
 ## main.ts in Angular project:
 - It is the main entry point for the application. It is responsible for bootstrapping the root module (usually named "AppModule") of the application.
+- It's the first file that gets executed when your application is launched.
 
 ## environment.ts in Angular project:
 - It used to store configuration settings that are specific to a certain environment, such as development, staging, or production. 
 - Each environment file exports an object that contains the configuration settings for that environment. For example, it can contain API endpoints, feature flags, and other settings that are specific to that environment.
+- During development, Angular CLI uses environment.ts by default. When you build your application for production using the ng build --prod command, Angular CLI uses environment.prod.ts (a separate file) instead.
+```javascript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api', // Example API endpoint for development
+  // Other environment-specific configuration variables
+};
 
+// environment.prod.ts
+
+export const environment = {
+  production: true,
+  apiUrl: 'https://production-api.example.com', // Example production API endpoint
+  // Other production-specific configuration variables
+};
+```
 ## tsconfig.json in Angular project:
-- It is used to configure the TypeScript compiler. It specifies ECMAScript version, strict type checking, sourceMap, and dirs.
+- It is used to configure the TypeScript compiler. It specifies how TypeScript files should be compiled into JavaScript and provides various options for the compilation process.
 - Source map files are used to map the code written in a higher-level language (such as TypeScript) to its equivalent code in a lower-level language (such as JavaScript). This mapping allows developers to debug their code using the original source files, rather than the compiled output(It should be disabled with Prod app).
-
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2018", "dom"],
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["app/*"]
+    }
+  },
+```
 ## @ViewChild vs @ViewChildrent:
 - In Angular, both decorators are used to access elements in a template.
 - @ViewChildren is used to access multiple elements in the template and returns a QueryList.
