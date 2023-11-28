@@ -155,8 +155,8 @@ export class ParentComponent {
 - In **Angular**, polyfills are used to provide support for features that are not available in certain browsers in Angular project, while TypeScript is a superset of JavaScript that provide additional features such as type checking that make Angular development more powerful and efficient.
 
 ## angular.json in Angular project:
-- A configuration file in an Angular project that defines project-wide settings and options.
-- It contains the configurations for the different build targets, test targets, and serve targets.
+- A configuration file in an Angular project that defines various settings for the **Angular CLI** .
+- It contains the configurations for the different build targets, test targets, and serve targets, **assets**, and global styles and scripts.
 
 ## main.ts in Angular project:
 - It is the main entry point for the application. It is responsible for bootstrapping the root module (usually named "AppModule") of the application.
