@@ -50,7 +50,7 @@ ul li:nth-child(3n+1) {  // should be "n" and n starts from 0. So here it impact
 - They are denoted by a double colon (::) followed by the name of the pseudo-element.
 - Some of the main pseudo-elements: ```::before```, ```::after```, ```::first-line```, ```::first-letter``` and ```::selection```
 - ```::before``` and ```::after``` works just with ```content```. You don't have access to it from JS. They are not part of DOM.
-- pseudo-elements are used to style a specific part of an element, while pseudo-selectors are used to select elements based on their state or position.
+- pseudo-elements are used to style a specific part of an element, while **pseudo-classas** are used to select elements based on their state or position.
 ```css
 <p class="pClass">This text should be red when selected.</p>
 
