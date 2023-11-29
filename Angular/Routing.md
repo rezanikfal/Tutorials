@@ -110,7 +110,8 @@ _routerLinkActive_ applies a class  on the activated link (like making the activ
 <a [routerLink]="['/crisis-center', { foo: 'foo' }]">Crisis Center</a>
 ```
 ### Programmatic Navigation
-Injecting the _Router_ service and make use of it to navigate to another URL:
+- Injecting the _Router_ service and make use of it to navigate to another URL
+- The ```navigate``` method is used for navigating based on a provided array of commands or a URL string.
 ```javascript
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -131,16 +132,17 @@ export class SignoutComponent implements OnInit {
     });
   }
 }
-
 ```
-Also we can rout to a defined rout and params Programmaticly:
 ```javascript
-ngOnInit() {
-  this.authService.signout().subscribe(() => {
-    this.router.navigate(['/heroes', { id: heroId }]);
-  });
+navigateWithParams() {
+  this.router.navigate(['/user', 123], { queryParams: { name: 'John' } });
+}
+
+navigateWithParams() {
+  this.router.navigateByUrl('/user/123?name=John');
 }
 ```
+
 ### Guard
 A class that we implement to restrict access to some routes inside your application. Inside the guard we decide about accessing the user to a route. it returns __Boolean__. there are 3 types (a single guard can implement all three types simultaneously):
 - __canActivate__: User can visit this route
