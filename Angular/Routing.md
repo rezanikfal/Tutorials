@@ -142,7 +142,25 @@ navigateWithParams() {
   this.router.navigateByUrl('/user/123?name=John');
 }
 ```
+### routerLink
+- the routerLink directive is used to create links to different views in your application.
+- cdsv
+```html
+<!-- Simple Navigation -->
+<a routerLink="/home">Home</a>
 
+<!-- Navigate to a route with a parameter like /user/123 -->
+<a [routerLink]="['/user', userId]">User Details</a>
+
+<!-- Navigate to a route with query parameters like /user?term=angular -->
+<a routerLink="/search" [queryParams]="{ term: 'angular' }">Search</a>
+
+<!-- Apply a CSS class when it is active -->
+<a routerLink="/home" routerLinkActive="active-link">Home</a>
+
+<!-- Navigate relative to the current route -->
+<a routerLink="./child">Child Component</a>
+```
 ### Guard
 A class that we implement to restrict access to some routes inside your application. Inside the guard we decide about accessing the user to a route. it returns __Boolean__. there are 3 types (a single guard can implement all three types simultaneously):
 - __canActivate__: User can visit this route
