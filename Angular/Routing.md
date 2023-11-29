@@ -89,26 +89,6 @@ Instead of duplicating path, just redirect to the home path. Make sure pathMatch
 { path: '',  redirectTo: '/home', pathMatch: 'full' }
 { path: '/home', component: home }
 ```
-### RouterLink
-_routerLinkActive_ applies a class  on the activated link (like making the activated link BOLD). Since the link is "/" it applies to all routes so we should us _routerLinkActiveOptions_ as follows (it looks like __PathMatch:'full'__):
-```htm
-<a
-  class="ui item"
-  routerLink="/"
-  [routerLinkActiveOptions]="{ exact: true }"
-  routerLinkActive="active"
->
-  Sign In
-</a>
-<a class="ui item" routerLink="/signup" routerLinkActive="active">
-  Sign Up
-</a>
-
-<a [routerLink]="['/hero', hero.id]">
-  <span class="badge">{{ hero.id }}</span>{{ hero.name }}
-</a>
-<a [routerLink]="['/crisis-center', { foo: 'foo' }]">Crisis Center</a>
-```
 ### Programmatic Navigation
 - Injecting the _Router_ service and make use of it to navigate to another URL
 - The ```navigate``` method is used for navigating based on a provided array of commands or a URL string.
@@ -142,7 +122,7 @@ navigateWithParams() {
   this.router.navigateByUrl('/user/123?name=John');
 }
 ```
-### routerLink
+### RouterLink
 - the ```routerLink``` directive is used to create links to different views in your application.
 - ```href``` is a standard HTML attribute, it triggers a full-page reload, and it is typically used for static links.
 - ```routerLink``` performs navigation within your Angular application. This is handling navigation within a single-page application (SPA) built with Angula.
