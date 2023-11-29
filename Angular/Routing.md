@@ -214,3 +214,67 @@ goToItems() {
   this.router.navigate(['items'], { relativeTo: this.route });
 }
 ```
+### Resolver:
+- A resolver is a **service** that pre-fetches some data before the route is activated.
+- Resolvers are used to ensure that the required data for a component is available before the component is displayed.
+
+```javascript
+// resolver.service.ts
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { DataService } from './data.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MyResolver implements Resolve<any> {
+  constructor(private dataService: DataService) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+    // You can perform any data-fetching logic here
+    return this.dataService.getData();
+  }
+}
+```
+```javascript
+// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MyComponent } from './my.component';
+import { MyResolver } from './resolver.service';
+
+const routes: Routes = [
+  {
+    path: 'my-route',
+    component: MyComponent,
+    resolve: {
+      resolvedData: MyResolver
+    }
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```
+```javascript
+// my.component.ts
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-my',
+  template: '<div>{{ resolvedData | json }}</div>'
+})
+export class MyComponent {
+  constructor(private route: ActivatedRoute) {
+    // Access the resolved data from the route
+    this.route.data.subscribe(data => {
+      this.resolvedData = data.resolvedData;
+    });
+  }
+}
+```
