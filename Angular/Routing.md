@@ -89,7 +89,7 @@ Instead of duplicating path, just redirect to the home path. Make sure pathMatch
 { path: '',  redirectTo: '/home', pathMatch: 'full' }
 { path: '/home', component: home }
 ```
-### RouterLink VS HTML href
+### RouterLink
 _routerLinkActive_ applies a class  on the activated link (like making the activated link BOLD). Since the link is "/" it applies to all routes so we should us _routerLinkActiveOptions_ as follows (it looks like __PathMatch:'full'__):
 ```htm
 <a
@@ -143,8 +143,9 @@ navigateWithParams() {
 }
 ```
 ### routerLink
-- the routerLink directive is used to create links to different views in your application.
-- cdsv
+- the ```routerLink``` directive is used to create links to different views in your application.
+- ```href``` is a standard HTML attribute, it triggers a full-page reload, and it is typically used for static links.
+- ```routerLink``` performs navigation within your Angular application. This is handling navigation within a single-page application (SPA) built with Angula.
 ```html
 <!-- Simple Navigation -->
 <a routerLink="/home">Home</a>
