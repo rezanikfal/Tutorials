@@ -117,6 +117,10 @@ export class SignoutComponent implements OnInit {
 ```
 ```javascript
 navigateWithParams() {
+  this.router.navigate(['/']);
+}
+
+navigateWithParams() {
   this.router.navigate(['/user', 123], { queryParams: { name: 'John' } });
 }
 
