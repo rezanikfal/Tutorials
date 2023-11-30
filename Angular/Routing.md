@@ -154,6 +154,9 @@ this.router.navigate(['/products'], { fragment: 'section1' })
 
 <!-- Navigate relative to the current route -->
 <a routerLink="['./child']" >Child Component</a>
+
+<!-- Navigate to a variable route (myVar = '/child')-->
+<a routerLink="[myVar]" >Child Component</a>
 ```
 ### Guard
 A class that we implement to restrict access to some routes inside your application. Inside the guard we decide about accessing the user to a route. it returns __Boolean__. there are 3 types (a single guard can implement all three types simultaneously):
