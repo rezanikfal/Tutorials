@@ -157,6 +157,11 @@ this.router.navigate(['/products'], { fragment: 'section1' })
 
 <!-- Navigate to a variable route (myVar = '/child')-->
 <a routerLink="[myVar]" >Child Component</a>
+
+<!-- Example of using named outlets in a navigation link -->
+<a [routerLink]="[{ outlets: { sidebarOutlet: ['sidebar'], contentOutlet: ['content'] } }]">
+  Go to Sidebar and Content
+</a>
 ```
 ### Guard
 A class that we implement to restrict access to some routes inside your application. Inside the guard we decide about accessing the user to a route. it returns __Boolean__. there are 3 types (a single guard can implement all three types simultaneously):
@@ -294,4 +299,50 @@ export class MyComponent {
     });
   }
 }
+```
+### router-outlet:
+- It is a directive that serves as a placeholder where the router dynamically injects the component that corresponds to the current route.
+- In Angular, each module can have its own router-outlet.
+- It is possible to have multiple router-outlet elements in a single Angular module.
+
+```javascript
+// feature.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MainComponent } from './main.component';
+import { SidebarComponent } from './sidebar.component';
+import { ContentComponent } from './content.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: MainComponent,
+    children: [
+      {
+        path: 'sidebar',
+        component: SidebarComponent,
+        outlet: 'sidebarOutlet', // This outlet is named 'sidebarOutlet'
+      },
+      {
+        path: 'content',
+        component: ContentComponent,
+        outlet: 'contentOutlet', // This outlet is named 'contentOutlet'
+      },
+      // Other routes for the main component without specifying an outlet
+    ],
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class FeatureRoutingModule {}
+```
+```javascript
+<!-- main.component.html -->
+<h2>Main Component</h2>
+<router-outlet></router-outlet> <!-- This is the default outlet -->
+<router-outlet name="sidebarOutlet"></router-outlet> <!-- Named outlet for the sidebar -->
+<router-outlet name="contentOutlet"></router-outlet> <!-- Named outlet for the content -->
 ```
