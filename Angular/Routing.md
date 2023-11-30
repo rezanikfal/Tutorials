@@ -127,6 +127,10 @@ navigateWithParams() {
 navigateWithParams() {
   this.router.navigateByUrl('/user/123?name=John');
 }
+
+navigateWithfragment() {   //It redirects to an element with id "section1" (fragment) like this: /products#section1 
+this.router.navigate(['/products'], { fragment: 'section1' })
+}
 ```
 ### RouterLink
 - the ```routerLink``` directive is used to create links to different views in your application.
