@@ -146,6 +146,9 @@ this.router.navigate(['/products'], { fragment: 'section1' })
 <!-- Navigate to a route with query parameters like /user?term=angular -->
 <a routerLink="/search" [queryParams]="{ term: 'angular' }">Search</a>
 
+<!-- Navigate to a route with query parameters and fragment like /user?term=angular#sec1 -->
+<a routerLink="/search" [queryParams]="{ term: 'angular' }" fragment="sec1">>Search</a>
+
 <!-- Apply a CSS class when it is active -->
 <a routerLink="/home" routerLinkActive="active-link">Home</a>
 
