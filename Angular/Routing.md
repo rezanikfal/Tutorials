@@ -144,16 +144,16 @@ this.router.navigate(['/products'], { fragment: 'section1' })
 <a [routerLink]="['/user', userId]">User Details</a>
 
 <!-- Navigate to a route with query parameters like /search?term=angular -->
-<a routerLink="/search" [queryParams]="{ term: 'angular' }">Search</a>
+<a routerLink="['/search']" [queryParams]="{ term: 'angular' }">Search</a>
 
 <!-- Navigate to a route with query parameters and fragment like /search?term=angular#sec1 -->
-<a routerLink="/search" [queryParams]="{ term: 'angular' }" fragment="sec1">>Search</a>
+<a routerLink="['/search']" [queryParams]="{ term: 'angular' }" fragment="sec1">>Search</a>
 
 <!-- Apply a CSS class when it is active -->
-<a routerLink="/home" routerLinkActive="active-link">Home</a>
+<a routerLink="['/home']" routerLinkActive="active-link">Home</a>
 
 <!-- Navigate relative to the current route -->
-<a routerLink="./child">Child Component</a>
+<a routerLink="['./child']" >Child Component</a>
 ```
 ### Guard
 A class that we implement to restrict access to some routes inside your application. Inside the guard we decide about accessing the user to a route. it returns __Boolean__. there are 3 types (a single guard can implement all three types simultaneously):
