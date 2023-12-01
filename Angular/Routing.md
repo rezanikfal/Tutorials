@@ -12,6 +12,7 @@ const routes: Routes =
 ```
 - Both ```path: ''``` and ```path: '/'``` represent the base URL of your application.
 - ```Path: '\'``` is not valid.
+- **RouterModule** is the main module responsible for setting up and managing the routes. It provides the **forRoot** method to configure the root-level routes.
 ### route parameters
 - When you see a colon (:) followed by a name (e.g., :id) in a route path, it indicates that this part of the route is a parameter, and its value will be dynamic.
 ```javascript
