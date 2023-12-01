@@ -215,7 +215,7 @@ const routes: Routes = [
 ];
 ```
 ### ActivatedRoute:
-- ActivatedRoute service provides information about the route associated with a component that is loaded at a particular moment.
+- **ActivatedRoute** service provides information about the route associated with a component that is loaded at a particular moment.
 - The ```snapshot``` property provides provides a simple and straightforward way to access the route parameters during component initialization. But It doesn't respond to changes in route parameters after the component is initialized.
 - ```this.route.data``` is an observable that allows you to subscribe to changes in the route data. It provides a reactive way to handle changes with the route.
 ```javascript
