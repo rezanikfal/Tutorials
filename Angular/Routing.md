@@ -7,10 +7,17 @@ const routes: Routes =
 [{ path: 'my/path/', component: MyComponent },
 { path: 'products', pathMatch: 'full', component: ProductListComponent},
 { path: '',  redirectTo: '/products', pathMatch: 'full' },
+{ path: 'users/:id', component: UserProfileComponent },
 { path: '**', component: WildcardComponent }]
 ```
 - Both ```path: ''``` and ```path: '/'``` represent the base URL of your application.
 - ```Path: '\'``` is not valid.
+### route parameters
+- When you see a colon (:) followed by a name (e.g., :id) in a route path, it indicates that this part of the route is a parameter, and its value will be dynamic.
+```javascript
+// Navigating to the user profile with ID 123
+this.router.navigate(['/users', '123']);
+``` 
 ### PathMatch
 The default path-match strategy is **prefix**, which means that the router checks URL elements from the left to see if the URL matches a specified path.You can specify the path-match strategy __full__ to make sure that the path covers the whole unconsumed URL.
 
