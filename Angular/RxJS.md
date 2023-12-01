@@ -31,7 +31,7 @@ Sample API call: <https://en.wikipedia.org/w/api.php?action=query&list=search&sr
 - **styles.js:**
   - Contains the styles (CSS) specific to your Angular application.
 - **vendor.js:**
-  - Includes code from third-party libraries, Angular dependencies, and other external modules used in your application.
+  - Includes code from **third-party** libraries, **Angular dependencies**, and other **external modules** used in your application.
 - **main.js (Our Angular components, services, pipes, ...):**
   - Contains the transpiled and bundled code from your main.ts file, which is the entry point of your Angular application.
 
