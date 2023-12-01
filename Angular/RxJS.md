@@ -1,6 +1,26 @@
 # RxJS:
 ## Http Call Details using RxJS (Angular 9):
 Sample API call: <https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Nelson%20Mandela&utf8=&format=json>
+### main.ts:
+- The ```main.ts``` file in an Angular application is the entry point of your application.
+- Angular knows about the ```main.ts``` file being the entry point because it's specified in the project configuration in the ```angular.json``` file.
+- ```enableProdMode``` is used to enable production mode, which can enhance the performance of your application.
+- ```platformBrowserDynamic``` is used to dynamically bootstrap the application in a browser environment.
+- ```AppModule``` is the root module of application. It's defined in the ```@NgModule``` decorator in the app.module.ts file.
+```javascript
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module'; // Import your root module
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+```
 ### app.module.ts:
 ```javascript
 import { HttpClientModule } from '@angular/common/http';
