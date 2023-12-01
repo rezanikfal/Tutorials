@@ -214,6 +214,42 @@ const routes: Routes = [
   },
 ];
 ```
+### ActivatedRoute:
+- ActivatedRoute service provides information about the route associated with a component that is loaded at a particular moment.
+- The ```snapshot``` property provides provides a simple and straightforward way to access the route parameters during component initialization. But It doesn't respond to changes in route parameters after the component is initialized.
+- ```this.route.data``` is an observable that allows you to subscribe to changes in the route data. It provides a reactive way to handle changes with the route.
+```javascript
+// The snapshot property provides a snapshot of the route information at the moment the component was created.
+const snapshot = this.route.snapshot;
+
+// The params property is an observable that allows you to subscribe to changes in route parameters.
+this.route.params.subscribe(params => {
+  // Handle changes to route parameters
+});
+const userId = this.route.snapshot.params['id'];
+
+// The queryParams property provides an observable for changes to the query parameters of the route.
+this.route.queryParams.subscribe(queryParams => {
+  // Handle changes to query parameters
+});
+const searchQuery = this.route.snapshot.queryParams['search'];
+
+// The fragment property provides an observable for changes to the URL fragment identifier.
+this.route.fragment.subscribe(fragment => {
+  // Handle changes to the fragment identifier
+});
+const pageSection = this.route.snapshot.fragment;
+
+// The data property provides access to the data object associated with the route (like resolver).
+    this.route.data.subscribe(data => {
+      // Access the resolved data
+      this.pageTitle = data.title;
+    }); 
+const pageTitle = this.route.snapshot.data['title'];
+
+// The outlet property provides the name of the outlet.
+const outletName = this.route.snapshot.outlet;
+```
 ### Get information from a route/Get Id/Snapshot/Relative route:
 As your application grows more complex, you may want to create routes that are relative to a component other than your root component. These types of nested routes are called child routes.
 ```javascript
