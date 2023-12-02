@@ -55,6 +55,64 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 ```
+### Pass data between sibling componentrs:
+- It's a good practice to expose observables instead of subjects to external components. This is because subjects allow direct access to the next method, which could be misused and lead to unintended behavior.
+- If we use ```BehaviorSubject```, we can retrive the data with no subscription (Sync): ```this.mySubject2.value```
+- Accessing value is synchronous, meaning it retrieves the current value immediately.
+```javascript
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ShareServiceService {
+  constructor() {}
+
+  private mySubject = new Subject();
+
+  myData = this.mySubject.asObservable();
+
+  setData(data: any) {
+    this.mySubject.next(data);
+  }
+}
+```
+```javascript
+import { Component } from '@angular/core';
+import { ShareServiceService } from '../share-service.service';
+
+@Component({
+  selector: 'app-copm1',
+  templateUrl: './copm1.component.html',
+  styleUrl: './copm1.component.css',
+})
+export class Copm1Component {
+  constructor(private share: ShareServiceService) {}
+
+  triggerSubject() {
+    this.share.setData('Hi');
+  }
+}
+```
+```javascript
+import { Component } from '@angular/core';
+import { ShareServiceService } from '../share-service.service';
+
+@Component({
+  selector: 'app-copm2',
+  templateUrl: './copm2.component.html',
+  styleUrl: './copm2.component.css',
+})
+export class Copm2Component {
+  data: any;
+  constructor(private share: ShareServiceService) {}
+
+  ngOnInit() {
+    this.data = this.share.myData; // To render the data on HTML, use {{ data | async }}
+  }
+}
+```
 ### app.module.ts:
 ```javascript
 import { HttpClientModule } from '@angular/common/http';
