@@ -55,7 +55,7 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 ```
-### Pass data between sibling componentrs:
+### Pass data between sibling components:
 - It's a good practice to expose observables instead of subjects to external components. This is because subjects allow direct access to the next method, which could be misused and lead to unintended behavior.
 - If we use ```BehaviorSubject```, we can retrive the data with no subscription (Sync): ```this.mySubject2.value```
 - Accessing value is synchronous, meaning it retrieves the current value immediately.
