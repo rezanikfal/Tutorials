@@ -113,6 +113,89 @@ export class Copm2Component {
   }
 }
 ```
+### ViewChild and ViewChildren:
+- They are decorators that are used to query and access
+  -  Child components
+  -  Elements within a component's view
+- They are often used in combination with the **ngAfterViewInit**
+- ```ngAfterViewInit``` is a lifecycle hook that is called after the view of the component and its child views have been initialized
+-  ```#appComp1``` is a **template reference variable**.
+- The ```@ViewChild``` decorator allows you to query and access the **first** instance of a child component
+- ```@ViewChildren``` decorator allows you to query and access multiple instances of child components or directives in the template.
+
+```javascript
+// comp1.component.ts
+import { Component } from '@angular/core';
+import { ShareServiceService } from '../share-service.service';
+
+@Component({
+  selector: 'app-copm1',
+  templateUrl: './copm1.component.html',
+  styleUrl: './copm1.component.css',
+})
+export class Copm1Component {
+  constructor(private share: ShareServiceService) {}
+
+  triggerSubject() {
+    console.log('Hello');
+  }
+}
+```
+
+```html
+<!-- app.component.html -->
+<app-copm1 #appComp1></app-copm1>
+<app-copm2></app-copm2>
+<div #divHello>Hello</div>
+```
+
+```javascript
+// app.component.ts
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Copm1Component } from './copm1/copm1.component';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent implements AfterViewInit {
+  @ViewChild('appComp1') app1!: Copm1Component; // You can use the appComp1 class name also: @ViewChild(Copm1Component)
+  @ViewChild('divHello') myDiv!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.app1.triggerSubject();
+    const divElement: HTMLDivElement = this.myDiv.nativeElement;
+    divElement.innerHTML = 'Reza';
+  }
+}
+```
+```html
+<!-- app.component.html -->
+    <app-child></app-child>
+    <app-child></app-child>
+```
+```javascript
+// app.component.ts
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Copm1Component } from './copm1/copm1.component';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent implements AfterViewInit {
+  @ViewChildren(ChildComponent) childComponents: QueryList<ChildComponent>;
+
+  ngAfterViewInit(): void {
+    // Access and manipulate each child component after their views have been initialized
+    this.childComponents.forEach(child => {
+      child.someMethod();
+    });
+  }
+}
+```
 ### app.module.ts:
 ```javascript
 import { HttpClientModule } from '@angular/common/http';
