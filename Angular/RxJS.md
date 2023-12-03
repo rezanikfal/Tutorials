@@ -1,7 +1,4 @@
 # RxJS:
-## Http Call Details using RxJS (Angular 9):
-Sample API call: <https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Nelson%20Mandela&utf8=&format=json>
-
 ### Show an Angular web page on the browser:
 - When a user enters a URL in the browser and hits Enter, a request is sent to the server.
 - The server processes the request and responds with the initial HTML content, which usually includes the **index.html** file.
