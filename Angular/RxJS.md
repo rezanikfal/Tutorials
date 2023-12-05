@@ -244,6 +244,30 @@ import { MyDirective } from './my.directive';
       This is a div with MyDirective applied.
     </div>
 ```
+### @ContentChild:
+```javascript
+// appMyDirective
+import { ContentChild, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appMyDirective]',
+})
+export class MyDirective {
+  @ContentChild('contentElement') contentElement: ElementRef;
+  @ContentChild(SomeComponent) someComponent: SomeComponent;
+
+ ngAfterContentInit() {
+  // Other logic...
+  }
+}
+```
+```html
+<div appMyDirective>
+  <!-- This is the content that MyDirective can access -->
+  <p #contentElement>This is a specific content element.</p>
+  <app-some-component></app-some-component>
+</div>
+```
 ### app.module.ts:
 ```javascript
 import { HttpClientModule } from '@angular/common/http';
