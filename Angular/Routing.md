@@ -44,7 +44,8 @@ post(url: string,
 - withCredentials: Whether this request should be sent with outgoing credentials (cookies).
 
 ### Lazy Loading
-Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
+- Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
+- We can directly Lazily load a component ouside of the current moduel i.e. ```LazyComponent``` in the Lazy module(22).
 ```javascript
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -53,6 +54,11 @@ const routes: Routes =
 {
   path: 'lazy',
   loadChildren: () => import('./lazy-route/lazy.module').then(mod => mod.LazyModule),
+},
+{ 
+  path: 'lazy2',
+  component: LazyComponent,
+  loadChildren: () => import('./lazy/lazy.module22').then(m => m.LazyModule22)
 }];
 ```
 #### Lazy loading in Email Client App
