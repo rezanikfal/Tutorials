@@ -210,6 +210,23 @@ export class AppComponent implements AfterViewInit {
   <h2>Reza</h2>
 </app-copm2>
 ```
+### ng-template:
+- It is a directive to declare fragments of the DOM that can be **rendered conditionally** or reused.
+```javascript
+<div *ngIf="isCondition; else elseBlock">
+  Content when condition is true
+</div>
+<ng-template #elseBlock>
+  Content when condition is false
+</ng-template>
+```
+```javascript
+<div [ngSwitch]="value">
+  <ng-template [ngSwitchCase]="case1">Content for case 1</ng-template>
+  <ng-template [ngSwitchCase]="case2">Content for case 2</ng-template>
+  <ng-template ngSwitchDefault>Fallback content</ng-template>
+</div>
+```
 ### Directive:
 - A class with a ```@Directive``` decorator. Directives are a way to extend the behavior of HTML elements or attributes in the DOM.
 - To create a directive use: ```ng g d reza```
