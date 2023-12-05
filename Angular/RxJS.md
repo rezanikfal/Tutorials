@@ -210,7 +210,40 @@ export class AppComponent implements AfterViewInit {
   <h2>Reza</h2>
 </app-copm2>
 ```
+### Directive:
+- A class with a ```@Directive``` decorator. Directives are a way to extend the behavior of HTML elements or attributes in the DOM.
+- To create a directive use: ```ng g d reza```
+- To use directive, we should user its **selector**
+```javascript
+// my.directive.ts
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
+@Directive({
+  selector: '[hilighter]',
+})
+export class MyDirective {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+    this.renderer.setStyle(this.el.nativeElement, 'background-color', 'yellow');
+  }
+}
+```
+```javascript
+// app.module.ts
+import { MyDirective } from './my.directive';
+...
+@NgModule({
+  declarations: [
+    AppComponent,
+    MyDirective,
+  ],
+...
+```
+```html
+// app.component.html
+    <div hilighter>
+      This is a div with MyDirective applied.
+    </div>
+```
 ### app.module.ts:
 ```javascript
 import { HttpClientModule } from '@angular/common/http';
