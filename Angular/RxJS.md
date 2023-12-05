@@ -11,6 +11,8 @@
 - The dynamic content of the Angular application is injected into the index.html file, replacing the placeholder tags such as <app-root>.
 ### index.html:
 - It includes the following script files:
+  - The **defer** attribute tells the browser not to wait for the script. Instead, the browser will continue to process the HTML, build DOM.
+  - The script loads “in the background”, and then runs when the DOM is fully built.
 ```javascript
 <body>
   <!-- ... -->
