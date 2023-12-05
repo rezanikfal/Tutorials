@@ -232,7 +232,11 @@ export class AppComponent implements AfterViewInit {
 ### Directive:
 - A class with a ```@Directive``` decorator. Directives are a way to extend the behavior of HTML elements or attributes in the DOM.
 - To create a directive use: ```ng g d reza```
-- To use directive, we should user its **selector**
+- To use directive, we should user its **selector**.
+- Here the selector is **attribute selector**. Here is selectors on CSS/Angular:
+  - ```selector : 'your-option'``` element selector ```<your-option></your-option>```
+  - ```selector : '[your-option]'``` attributes selector ```<div your-option></div> ```
+  - ```selector : '.your-option'``` class selector ```<div class="your-option"></div>```
 ```javascript
 // my.directive.ts
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
