@@ -193,6 +193,24 @@ export class AppComponent implements AfterViewInit {
   }
 }
 ```
+### ng-content:
+- ng-content is a content projection mechanism to project content from the **parent component** into a **designated area in the child component**'s template.
+- It is often used to create flexible and reusable components that can accept dynamic content.
+```html
+<!-- comp2.component.html -->
+<p>copm2 works!</p>
+<div style="text-align: center">
+  <ng-content></ng-content>
+</div>
+```
+```html
+<!-- app.component.html -->
+<app-copm1 #appComp1></app-copm1>
+<app-copm2>
+  <h2>Reza</h2>
+</app-copm2>
+```
+
 ### app.module.ts:
 ```javascript
 import { HttpClientModule } from '@angular/common/http';
