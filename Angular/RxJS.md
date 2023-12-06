@@ -198,19 +198,41 @@ export class AppComponent implements AfterViewInit {
 ### ng-content:
 - ng-content is a content projection mechanism to project content from the **parent component** into a **designated area in the child component**'s template.
 - It is often used to create flexible and reusable components that can accept dynamic content.
+- The **select** attribute in ng-content is used to filter the projected content based on a CSS selector
 ```html
 <!-- comp2.component.html -->
 <p>copm2 works!</p>
 <div style="text-align: center">
-  <ng-content></ng-content>
+  <ng-content select='header'></ng-content>
+  <ng-content select='#card-sub-header'></ng-content>
+  <ng-content select='.card-body'></ng-content>
+  <ng-content select='[title]'></ng-content>
 </div>
 ```
 ```html
 <!-- app.component.html -->
 <app-copm1 #appComp1></app-copm1>
 <app-copm2>
-  <h2>Reza</h2>
+    <div #header ngProjectAs='header'>Card Header</div>
+    <span id='card-sub-header'>Card Sub Header</span>
+    <div class="card-body">
+        This is a card Body!!!
+    </div>
+    <footer title="card-footer">
+        Card Footer.
+    </footer>
 </app-copm2>
+```
+### @ContentChild:
+- To get the reference of the projected content in the Child Component to do some manipulation (say adding some style).
+```javascript
+  @ContentChild('header') cardHeaderData!: ElementRef
+
+  ngAfterContentInit() {
+    this.cardHeaderData.nativeElement.style.color = 'blue';
+    this.cardHeaderData.nativeElement.style.backgroundColor = 'yellow';
+    this.cardHeaderData.nativeElement.style.fontSize = '24px';
+  }
 ```
 ### ng-template:
 - It is a directive to declare fragments of the DOM that can be **rendered conditionally** or reused.
@@ -266,30 +288,6 @@ import { MyDirective } from './my.directive';
     <div hilighter>
       This is a div with MyDirective applied.
     </div>
-```
-### @ContentChild:
-```javascript
-// appMyDirective
-import { ContentChild, ElementRef } from '@angular/core';
-
-@Directive({
-  selector: '[appMyDirective]',
-})
-export class MyDirective {
-  @ContentChild('contentElement') contentElement: ElementRef;
-  @ContentChild(SomeComponent) someComponent: SomeComponent;
-
- ngAfterContentInit() {
-  // Other logic...
-  }
-}
-```
-```html
-<div appMyDirective>
-  <!-- This is the content that MyDirective can access -->
-  <p #contentElement>This is a specific content element.</p>
-  <app-some-component></app-some-component>
-</div>
 ```
 ### app.module.ts:
 ```javascript
