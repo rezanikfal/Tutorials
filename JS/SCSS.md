@@ -216,6 +216,17 @@ $breakpoints: (
   font-family: sans-serif;
 }
 ```
+```css
+@mixin myMixin($color) {
+  border: 5px solid $color;
+  @content;
+}
+
+@include myMixin(blue) {
+  margin: 60px;
+}
+
+```
 ### @function directive 
 -  Functions return values, whereas mixins generate CSS.
 ```css
