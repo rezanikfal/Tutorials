@@ -251,6 +251,31 @@ export class AppComponent implements AfterViewInit {
   <ng-template ngSwitchDefault>Fallback content</ng-template>
 </div>
 ```
+### NgZone:
+- ```NgZone``` is a service in Angular that provides a zone and change detection mechanism.
+- We can use it to Handling External Events.
+- ```runOutsideAngular``` can be beneficial for performance by avoiding unnecessary change detection cycles.
+```javascript
+import { Component, NgZone } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  template: '<button (click)="runOutsideZone()">Run Outside Zone</button>',
+})
+export class ExampleComponent {
+  constructor(private ngZone: NgZone) {}
+
+  runOutsideZone() {
+    this.ngZone.runOutsideAngular(() => {
+      // Code here will run outside the Angular zone
+      setTimeout(() => {
+        // This code will not trigger change detection
+        console.log('Operation completed outside Angular zone');
+      }, 1000);
+    });
+  }
+}
+```
 ### Directive:
 - A class with a ```@Directive``` decorator. Directives are a way to extend the behavior of HTML elements or attributes in the DOM.
 - To create a directive use: ```ng g d reza```
