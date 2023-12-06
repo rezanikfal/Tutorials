@@ -289,9 +289,15 @@ import { MyDirective } from './my.directive';
       This is a div with MyDirective applied.
     </div>
 ```
-### app.module.ts:
+### app.module.ts VS test.module.ts:
+- ```BrowserModule``` is for applications that run in a web browser. It includes essential services and features that are specific to browser environments.
+- ```CommonModule``` contains common directives like ```*ngIf```,  ```*ngFor```, and other ```utility directives``` and ```pipes```.
+- ```BrowserModule``` implicitly imports ```CommonModule``` under the hood. 
 ```javascript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -303,6 +309,18 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [],
   bootstrap: [AppComponent]
 })
+```
+```javascript
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule
+  ]
+})
+export class TestModule { }
 ```
 ### Service:
 pluck returns a new __Observable__ of property values from the source values.
