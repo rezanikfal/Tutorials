@@ -1,3 +1,5 @@
+## Angular Micro Frontends with Module Federation
+- The idea behind Micro Frontends is **Build once, deploy everywhere**.
 ## Browser Web APIs
 - browser provides a wide range of Web APIs (Application Programming Interfaces) that allow web applications to interact with the browser and the underlying operating system.
 - JS as the scripting language plays a crucial role to utilizes these APIs to enhance the functionality of web applications
