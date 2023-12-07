@@ -157,41 +157,6 @@ myAccount.balanceUpdateS = 3000;   //Setter
 console.log(myAccount.balanceValue());   //Method to get
 console.log(myAccount.balanceValueG);    //Getter
 ```
-- To access a **private property** from the outside of class we have to define a function as below:
-```javascript
-class Person {
-    private _name: string;
-    getName(): string {
-        return this._name;
-    }
-}
-const person = new Person();
-console.log(person.getName()); // get the peivate _name
-```
-- Getters and setters are special methods that allow you to control access to the properties of a class.
-- They provide a way to get and set the values of private variables while also allowing you to add additional logic or validation.
-- Using getters and setters, we have access to the **name** like a normal property.
-```javascript
-class Person {
-    private _name: string;
-
-    get name(): string {
-        return this._name;
-    }
-
-    set name(newName: string) {
-        if (newName.length >= 2) {
-            this._name = newName;
-        } else {
-            console.log("Name must be at least 2 characters long.");
-        }
-    }
-}
-
-const person = new Person();
-person.name = "John"; // Calls the setter
-console.log(person.name); // Calls the getter
-```
 ## Interface
 - We use Interface to enforce a certain structure within **classes** or **objects**.
 - Interface with **objects**:
