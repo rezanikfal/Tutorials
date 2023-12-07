@@ -123,6 +123,21 @@ button.addEventListener('click', handleClick);
 - The  ```catch``` method is used to handle the rejection of a Promise. It takes a single callback function as its argument.
 - The  ```finally``` attach a callback that will be executed regardless of whether the promise is resolved or rejected. IT does NOT return anything
 - ```then``` and ```catch``` return new promises, which allows you to chain them together and create a sequence of asynchronous operations.
+```javascript
+function newFunc(val) {
+  return new Promise((res, rej) => {
+    if (val > 10) {
+      res("Success");
+    } else {
+      rej("err");
+    }
+  });
+}
+
+newFunc(5)
+  .then((x) => console.log(x))
+  .catch((x) => console.log(x)); //err
+```
 ### async/await:
 - **async/await** is a pair of keywords in JavaScript that simplify the process of working with asynchronous code, particularly Promises.
    - To use ```await```, you need to declare a function as ```async```.
