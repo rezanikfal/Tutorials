@@ -442,23 +442,15 @@ Array.from(deleteKey).forEach(element => {   //Convert to JS array
 ```
 ## Variables
 ### Closure
-- Closure allows a function to have access to variables and parameters from its outer function, even after the outer function has finished executing.
-- In this example, setupCounter returns an inner function that increments and logs the count variable. Each time you call counter(), it remembers the state of count from the closure and increments it accordingly:
+- A closure gives you access to an outer function's scope from an inner function. So basically after execution of the outer function, the inner function can remember the scope (e.g. if there are any variables in the outer function the inner function can access them)
 ```javascript
-function setupCounter() {
-  let count = 0;
-
-  return function() {
-    count++;
-    console.log(count);
-  };
+function adder(a) {
+  return function (b) {
+    return a + b
+  }
 }
-
-const counter = setupCounter();
-
-counter(); // Output: 1
-counter(); // Output: 2
-counter(); // Output: 3
+add5 = adder(5)
+console.log(add5(10)) //15
 ```
 ### Declaration VS Definition
 ```javascript
