@@ -18,7 +18,9 @@ margin-top: 20px;
 }
 ```
 ### :host
-To apply CSS on the component host. Here is the component html:
+- To apply CSS on the component host. Here is the component html.
+- ```:host``` allows you to explicitly target the component's **root** element and apply styles directly to it.
+- 
 ```htm
 <div>
     <h1>Test</h1>
