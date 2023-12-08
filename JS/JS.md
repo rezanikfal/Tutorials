@@ -1,4 +1,5 @@
 ## Angular Micro Frontends with Module Federation
+- Module Federation enables you to build large-scale applications by dividing them into smaller, independently deployable and developable pieces.
 - The idea behind Micro Frontends is **Build once, deploy everywhere**.
 ## Browser Web APIs
 - browser provides a wide range of Web APIs (Application Programming Interfaces) that allow web applications to interact with the browser and the underlying operating system.
