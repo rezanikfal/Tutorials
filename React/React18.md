@@ -1,6 +1,6 @@
 ### props immutability :
-- It ensures that components don't change their props.
-- React is designed around the concept of one-way data flow. Data (props) flows down from parent components to child components.
+- It ensures that components don't change their props. Change comes from Parent.
+- React is designed around the concept of one-way data flow. Data (props) flows down from parent.
 - Component remains isolated and more reusable.
 - Immutable props allow React to quickly determine if a component needs to re-render.
 ## React Project Structure
