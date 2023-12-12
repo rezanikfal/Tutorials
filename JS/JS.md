@@ -305,7 +305,7 @@ const allProducts = [
 ]
 
  if (allProducts.some((x) => x.id == 1)) { ...} //true
-product = allProducts.find((p) => p.id == x.id); // {name: 'orange', price: 2, id: 2}
+product = allProducts.find((p) => p.id == 2); // {name: 'orange', price: 2, id: 2}
 ```
 - The **flat()** method creates a new array with all sub-array elements:
 ```javascript
