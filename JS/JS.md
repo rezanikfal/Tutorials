@@ -282,6 +282,29 @@ console.log(str.substring(1, 3)); // expected output: "oz"
 const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice(2, 4)); // expected output: Array ["camel", "duck"]
 ```
+- The **some()** to check if there are ```id:1``` at least in one object in the array of objects:
+```javascript
+const allProducts = [
+    {
+        "name": "apple",
+        "price": 1,
+        "id": 1,
+        "prics": null
+    },
+    {
+        "name": "orange",
+        "price": 2,
+        "id": 2
+    },
+    {
+        "name": "banana",
+        "price": 3,
+        "id": 3
+    }
+]
+
+ if (allProducts.some((x) => x.id == 1)) { ...}
+```
 - The **flat()** method creates a new array with all sub-array elements:
 ```javascript
 var A = [1, [2], [3, [[4]]],[5,6]]
