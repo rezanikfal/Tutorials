@@ -283,6 +283,7 @@ const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice(2, 4)); // expected output: Array ["camel", "duck"]
 ```
 - The **some()** to check if there are ```id:1``` at least in one object in the array of objects:
+- The **find()** to return the object member with ```id:2```:
 ```javascript
 const allProducts = [
     {
@@ -303,7 +304,8 @@ const allProducts = [
     }
 ]
 
- if (allProducts.some((x) => x.id == 1)) { ...}
+ if (allProducts.some((x) => x.id == 1)) { ...} //true
+product = allProducts.find((p) => p.id == x.id); // {name: 'orange', price: 2, id: 2}
 ```
 - The **flat()** method creates a new array with all sub-array elements:
 ```javascript
