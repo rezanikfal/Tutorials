@@ -307,6 +307,18 @@ const allProducts = [
  if (allProducts.some((x) => x.id == 1)) { ...} //true
 product = allProducts.find((p) => p.id == 2); // {name: 'orange', price: 2, id: 2}
 ```
+- **Alternative to Break on ForEach loop**
+- ```every()``` will stop iterating the moment the callback function returns **false**.
+- ```some()``` will stop iterating the moment the callback function returns **true**.
+```javascript
+const array = [1, 2, 3, 4, 5];
+
+array.some((element, index) => {
+  if (element === 3) return true; // Stops iterating when element is 3
+  console.log(element);
+  return false;
+});
+```
 - The **flat()** method creates a new array with all sub-array elements:
 ```javascript
 var A = [1, [2], [3, [[4]]],[5,6]]
