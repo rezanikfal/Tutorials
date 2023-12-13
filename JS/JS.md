@@ -284,6 +284,7 @@ console.log(animals.slice(2, 4)); // expected output: Array ["camel", "duck"]
 ```
 - Create all substrings using **slice()** :
 ```javascript
+const myStr = "abqzwtolcbtrst"
 stringLength = myStr.length;
 for (let index = 0; index < stringLength; index++) {
   for (let i = 1; i < stringLength + 1; i++) {
