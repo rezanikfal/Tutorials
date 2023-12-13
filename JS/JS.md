@@ -282,6 +282,15 @@ console.log(str.substring(1, 3)); // expected output: "oz"
 const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice(2, 4)); // expected output: Array ["camel", "duck"]
 ```
+- Create all substrings using **slice()** :
+```javascript
+stringLength = myStr.length;
+for (let index = 0; index < stringLength; index++) {
+  for (let i = 1; i < stringLength + 1; i++) {
+    subStr = myStr.slice(index, i);
+  }
+}
+```
 - The **some()** to check if there are ```id:1``` at least in one object in the array of objects:
 - The **find()** to return the object member with ```id:2```:
 ```javascript
