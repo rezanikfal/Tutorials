@@ -1,5 +1,6 @@
 ### Create React project using ```Vite``` :
 - ```npm create vite@4.1.0```
+- ```npm install```
 - ```npm run dev```
 ### props immutability :
 - It ensures that components don't change their props. Change comes from Parent.
