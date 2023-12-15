@@ -3,7 +3,7 @@
 - React is designed around the concept of one-way data flow. Data (props) flows down from parent.
 - Component remains isolated and more reusable.
 - Immutable props allow React to quickly determine if a component needs to re-render.
-## React Project Structure
+### React Project Structure
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -14,7 +14,7 @@ function App() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
-## useState
+### useState
 ```javascript
 import { useState } from "react";
 
@@ -31,7 +31,7 @@ export default function Counter() {
   );
 }
 ```
-## Controlled component
+### Controlled component
 - Creating a controlled component in React involves managing the **form** data with **state**
 ```javascript
 import { useState } from "react";
@@ -42,6 +42,38 @@ export default function Counter() {
   return (
     <div>
       <input type="text" value={name} onChange={(e) => handleChange(e)} />
+    </div>
+  );
+}
+```
+### Submit Form - preventDefault
+- To set a state (typs is Object), we should use **spread** operator.
+```javascript
+import { useState } from "react";
+
+export default function InputName() {
+  const [name, setName] = useState({ fN: "", lN: "" });
+
+  function changeF(e) {
+    setName({ ...name, fN: e.target.value });
+  }
+
+  function changeL(e) {
+    setName({ ...name, lN: e.target.value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(name);
+  }
+
+  return (
+    <div>
+      <form>
+        <input type="text" onChange={(e) => changeF(e)} value={name.fN} />
+        <input type="text" onChange={(e) => changeL(e)} value={name.lN} />
+        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      </form>
     </div>
   );
 }
