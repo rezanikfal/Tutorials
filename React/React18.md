@@ -1,7 +1,8 @@
 ### Create React project using ```Vite``` :
-- ```npm create vite@4.1.0```
-- ```npm install```
-- ```npm run dev```
+- It askes the project name / framework / language while creating the ```vite```:
+  - ```npm create vite@4.1.0```
+  - ```npm install```
+  - ```npm run dev```
 ### props immutability :
 - It ensures that components don't change their props. Change comes from Parent.
 - React is designed around the concept of one-way data flow. Data (props) flows down from parent.
