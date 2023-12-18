@@ -282,6 +282,14 @@ console.log(str.substring(1, 3)); // expected output: "oz"
 const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
 console.log(animals.slice(2, 4)); // expected output: Array ["camel", "duck"]
 ```
+- Using **slice()** to create a shallow copy of the array because it is Reference Type (Non-Primitive):
+```javascript
+const numbers = [1, 2, 10, 8, 3, 5];
+const numbers2 = numbers.slice().sort((a, b) => a - b);
+
+console.log(numbers); /[1, 2, 10, 8, 3, 5]
+console.log(numbers2); /[1, 2, 3, 5, 8, 10]
+```
 - Create all substrings using **slice()** :
 ```javascript
 const myStr = "abqzwtolcbtrst"
