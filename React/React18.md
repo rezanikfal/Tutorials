@@ -51,6 +51,26 @@ export default function Counter() {
   );
 }
 ```
+### CSS Modules
+- CSS Modules offer a way to encapsulate styles for individual components in React
+- Naming: ```Button.jsx``` ```Button.module.css```
+- The actual class name in the DOM will be automatically generated to be unique.
+```css
+/* Button.module.css */
+.button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+}
+```
+```javascript
+import React from 'react';
+import styles from './Button.module.css';
+
+const Button = ({ children }) => {
+  return <button className={styles.button}>{children}</button>;
+};
+```
 ### Submit Form - preventDefault
 - To set a state (typs is Object), we should use **spread** operator.
 ```javascript
