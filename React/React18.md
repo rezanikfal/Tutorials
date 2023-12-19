@@ -71,6 +71,31 @@ const Button = ({ children }) => {
   return <button className={styles.button}>{children}</button>;
 };
 ```
+### Global CSS
+- We can apply global CSS to ```App.jsx``` (impacts all components):
+- Naming: ```App.css```
+- Import: ```import "./App.css";```
+```css
+/* App.css */
+body {
+  margin: 0;
+}
+```
+```javascript
+// App.jsx
+import "./App.css";
+import PageHeader from "./components/PageHeader/PageHeader";
+
+function App() {
+  return (
+    <div className="App">
+      <PageHeader />
+    </div>
+  );
+}
+
+export default App;
+```
 ### Submit Form - preventDefault
 - To set a state (typs is Object), we should use **spread** operator.
 ```javascript
