@@ -154,3 +154,38 @@ const onSubmit = async (term) => {
   setImages(result.data.results);
 };
 ```
+### Send an input term to the parent component
+```javascript
+//PARENT
+function App() {
+  const onSubmit = (term) => {
+    console.log(term)
+  };
+  return (
+    <>
+      <ImageSearch onSubmit={onSubmit} />
+    </>
+  );
+}
+```
+```javascript
+//CHILD
+export function ImageSearch({ onSubmit }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(searchTerm);  //Sending data up to the parent
+  }
+  function handleChange(e) {
+    setSearchTerm(e.target.value);
+  }
+  return (
+    <>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input value={searchTerm}  onChange={(e) => handleChange(e)} />
+      </form>
+    </>
+  );
+}
+```
