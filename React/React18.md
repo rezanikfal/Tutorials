@@ -130,7 +130,7 @@ export default function InputName() {
 ```
 ### axios
 - First install the npm library ``` npm install axios ```.
-- Axios provides a simple-to-use API for sending asynchronous HTTP requests to REST endpoints and performing CRUD.
+- **making** axios call function and **using** it both are **Async** operations.
 ```javascript
 const getImage = async () => {
   const response = await axios.get("https://api.unsplash.com/search/photos", {
@@ -145,4 +145,12 @@ const getImage = async () => {
   return response;
 };
 export default getImage;
+```
+```javascript
+import getImage from "./api/unsplash";
+
+const onSubmit = async (term) => {
+  const result = await getImage(term);
+  setImages(result.data.results);
+};
 ```
