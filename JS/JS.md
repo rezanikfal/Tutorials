@@ -807,6 +807,26 @@ function Bike(name, age) {
 
 let bik1 = new Bike('Reza', 34)
 ```
+### Remove / Change properties in an object
+```javascript
+const fruit ={
+  color: 'red',
+  name: 'apple',
+}
+const updatedFruit = {
+ ...fruit,
+ color: 'newColor',
+};
+console.log(updatedFruit)  // { color: 'newColor', name: 'apple' }
+```
+```javascript
+const fruit ={
+  color: 'red',
+  name: 'apple',
+}
+const { color, ...rest } = fruit;
+console.log(rest)   // { name: 'apple' }
+```
 ### Spread vs Rest operators
 - Both have the same (...) sign
 - Rest means convert individual elements to an array in function declaration.
