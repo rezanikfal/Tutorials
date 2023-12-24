@@ -274,6 +274,18 @@ const noDuplicate = arr.filter((x,i)=>{
 })
 ```
 - The **substring()** method returns the part of the string (substring is all **lower case**):
+- Using **slice()** to add a new elements to an array at any index:
+```javascript
+const colors = ['red', 'green'];
+const index = 1
+const updatedColors = [
+  ...colors.slice(0, index),
+  'blue',
+  ...colors.slice(index),
+];
+
+  //[ 'red', 'blue', 'green' ]
+```
 - The **slice()** method returns the part of an array/string - **The Second Number is not included in both methods**:
 ```javascript
 const str = 'Mozilla';
