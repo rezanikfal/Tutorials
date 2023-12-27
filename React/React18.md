@@ -189,7 +189,7 @@ export function ImageSearch({ onSubmit }) {
   );
 }
 ```
-### Get a reference to a HTML element
+### ```useRef``` Get a reference to a HTML element
 - To create a ref using the ```useRef``` hook from React. Attach this ref to the input element you want to focus.
 ```javascript
 import { useState, useRef } from "react";
@@ -200,4 +200,21 @@ import { useState, useRef } from "react";
   }
 ....
 <input ref={inputRef} />
+```
+### ```useEffect``` 
+- second argmuent is ```[]```: Called after **first** render and never called again .
+- second argmuent is nothing: Called after first render and called after **every** rerender.
+- second argmuent is ```[counter]```: Called after first render and called after rerenders if ```counter``` variable **changed**.
+  
+```javascript
+function App() {
+  const [books, setBooks] = useState([]);
+
+  const fetchBooks = async () => {
+    const books = await axios.get("http://localhost:3001/books");
+    setBooks(books.data);
+  };
+
+  useEffect(() => {fetchBooks()}, []);  //OR
+  useEffect(() => fetchBooks, []);
 ```
