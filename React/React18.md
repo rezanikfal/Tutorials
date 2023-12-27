@@ -189,7 +189,7 @@ export function ImageSearch({ onSubmit }) {
   );
 }
 ```
-### ```useRef``` Get a reference to a HTML element
+### ```useRef``` to get a reference from a HTML element
 - To create a ref using the ```useRef``` hook from React. Attach this ref to the input element you want to focus.
 ```javascript
 import { useState, useRef } from "react";
