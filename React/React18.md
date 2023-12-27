@@ -201,7 +201,7 @@ import { useState, useRef } from "react";
 ....
 <input ref={inputRef} />
 ```
-### ```useEffect``` 
+### ```useEffect``` hook
 - second argmuent is ```[]```: Called after **first** render and never called again .
 - second argmuent is nothing: Called after first render and called after **every** rerender.
 - second argmuent is ```[counter]```: Called after first render and called after rerenders if ```counter``` variable **changed**.
