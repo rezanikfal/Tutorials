@@ -218,3 +218,128 @@ function App() {
   useEffect(() => {fetchBooks()}, []);  //OR
   useEffect(() => fetchBooks, []);
 ```
+### ```useContext``` hook
+- Context provides a way to pass data through the component tree.
+- Basic Context:  
+```javascript
+// PARENT Component
+
+const Counter = () => {
+
+// Define the following states/functions
+  const value = {
+    count,
+    increment,
+    decrement,
+    reset,
+  };
+
+  return (
+    <CounterContext.Provider value={value}>
+      <ShowCount />
+    </CounterContext.Provider>
+  );
+};
+
+export default Counter;
+```
+```javascript
+// CounterContext.js
+
+import { createContext } from "react";
+
+const CounterContext = createContext(null);
+export default CounterContext;
+```
+```javascript
+// CHILD Component
+
+import { useContext } from "react";
+import CounterContext from "./CounterContext";
+
+const CounterBtn = () => {
+  const { increment,decrement, reset } = useContext(CounterContext);
+  return (
+    <div>
+      <button onClick={() => increment()}>Increment</button>
+      <button onClick={() => decrement()}>Decrement</button>
+      <button onClick={() => reset()}>Reset</button>
+    </div>
+  );
+};
+
+export default CounterBtn;
+```
+- Real world Context using custom hook:
+```javascript
+// PARENT Component
+import ShowCount from "./ShowCount";
+import { CounterPovider } from "./CounterContext";
+
+const Counter = () => {
+  return (
+    <CounterPovider>
+      <ShowCount />
+    </CounterPovider>
+  );
+};
+
+export default Counter;
+```
+```javascript
+// CounterContext.jsx
+import { createContext, useContext, useState } from "react";
+
+export const CounterContext = createContext(null);
+
+export const CounterPovider = ({ children }) => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+  const decrement = () => {
+    setCount(count - 1);
+  };
+  const reset = () => {
+    setCount(0);
+  };
+
+  const value = {
+    count,
+    increment,
+    decrement,
+    reset,
+  };
+
+  return (
+    <CounterContext.Provider value={value}>
+      {children}
+    </CounterContext.Provider>
+  );
+};
+
+export const useCounter = () => {  // Custom Hook
+  const context = useContext(CounterContext);
+  return context;
+};
+```
+```javascript
+// CHILD Component
+
+import { useContext } from "react";
+import CounterContext from "./CounterContext";
+
+const CounterBtn = () => {
+  const { increment, decrement, reset } = useCounter();
+  return (
+    <div>
+      <button onClick={() => increment()}>Increment</button>
+      <button onClick={() => decrement()}>Decrement</button>
+      <button onClick={() => reset()}>Reset</button>
+    </div>
+  );
+};
+
+export default CounterBtn;
+```
