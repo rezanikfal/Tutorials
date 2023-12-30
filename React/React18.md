@@ -394,8 +394,8 @@ const isExpanded = true;
 -  It improves performance and maintainability of the React code. 
 ```javascript
 function MyComponent() {
-  const handleClick = (nexIndex) => {
-    setExpandedIndex(nexIndex)
+  const handleClick = (nextIndex) => {
+    setExpandedIndex(nextIndex)
   };
   const renderedItem =items.map((item, index) => (
         <li key={item.id} onClick={()=>handleClick(index)}>
