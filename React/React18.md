@@ -390,3 +390,22 @@ const isExpanded = true;
  {isExpanded && <div>{item.content}</div>}
 }
 ```
+### Define Event Handler outside of a mapping function
+-  It improves performance and maintainability of the React code. 
+```javascript
+function MyComponent() {
+  const handleClick = (nexIndex) => {
+    setExpandedIndex(nexIndex)
+  };
+  const renderedItem =items.map((item, index) => (
+        <li key={item.id} onClick={()=>handleClick(index)}>
+          {item.name}
+        </li>
+      ))
+  return (
+    <ul>
+      {renderedItem}
+    </ul>
+  );
+}
+```
