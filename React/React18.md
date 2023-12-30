@@ -218,6 +218,26 @@ function App() {
   useEffect(() => {fetchBooks()}, []);  //OR
   useEffect(() => fetchBooks, []);
 ```
+### ```children``` prop
+- It represents whatever is written **between the opening and closing** tags of a component.
+- This is particularly useful for creating generic, reusable components.
+- The children prop is automatically provided by React to every component.
+  
+```javascript
+function Card({children}) {
+  return <div className="card">{children}</div>;
+}
+```
+```javascript
+function App() {
+  return (
+    <Card>
+      <h1>Hello, World!</h1>
+      <p>This is inside the card.</p>
+    </Card>
+  );
+}
+```
 ### ```useContext``` hook
 - Context provides a way to pass data through the component tree.
 - Basic Context:  
