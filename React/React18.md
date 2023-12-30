@@ -381,3 +381,12 @@ const CounterBtn = () => {
 
 export default CounterBtn;
 ```
+### Conditional Rendering
+- Note that boolean value is ignored on JSX rendering
+```javascript
+const isExpanded = true;
+  return{
+ <div>{item.label}</div>
+ {isExpanded && <div>{item.content}</div>}
+}
+```
