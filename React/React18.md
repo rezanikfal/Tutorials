@@ -238,6 +238,24 @@ function App() {
   );
 }
 ```
+### Organaize React Project
+- Best practice is using **Page-Component** style.
+- **Page** shows one single page and not intended to be resused.
+- **Component** is reuseable in nature, like a button or itemShow component.
+```ts
+src/
+  Components
+      forms
+        Input.jsx
+        SearchBAr.jsx
+      products
+        ProductShow.jsx
+        ProductList.jsx
+  pages
+        LoginPage.jsx
+        CartPage.jsx
+        ProductPage.jsx
+```
 ### ```useContext``` hook
 - Context provides a way to pass data through the component tree.
 - Basic Context:  
