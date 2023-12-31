@@ -66,6 +66,20 @@ export default function Counter() {
 
 <input type='text' name='firstName', place..
 ```
+### Non-primitive State
+- When updating non-primitive states like **objects or arrays**, we need to ensure that you are returning a new object or array:
+```javascript
+const [user, setUser] = useState({ name: 'Alice', age: 30 });
+setUser(prevUser => {
+  return { ...prevUser, name: 'Bob' };
+});
+```
+- This version does not work at all (same reference, no state change!):
+```javascript
+setUser(prevUser => {
+  return { name: 'Bob', age: 30 };
+});
+```
 ### Controlled component
 - Creating a controlled component in React involves managing the **form** data with **state**
 ```javascript
