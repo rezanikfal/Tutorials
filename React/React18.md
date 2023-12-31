@@ -55,6 +55,17 @@ export default function Counter() {
     setCount(count => count + 1);
   }
 ```
+### Forms handle change
+- In case we have multiple fields in a form (firstName, lastName, age, ...)
+- We can handle change like this (**name** attribute should be added to the ```input``` element):
+```javascript
+  const handleChange = (e) => ({
+    ...form,
+    [e.target.name]:e.target.value
+  })
+
+<input type='text' name='firstName', place..
+```
 ### Controlled component
 - Creating a controlled component in React involves managing the **form** data with **state**
 ```javascript
