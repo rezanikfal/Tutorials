@@ -433,6 +433,13 @@ setInterval(_=>{
     console.log(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
 }, 1000)
 ```
+### Optional chaining operator (?) 
+- ```myObject?.list``` means that the ```list``` property will be accessed from myObject only if myObject **is not** null or undefined
+- If myObject **is** null or undefined, then it will not attempt to access list and will return **undefined** instead.
+- In this example, it return myObject?.list. If myObject is **null** or **undefined**, It will return the default value:
+```javascript
+```myObject?.list``` || 'Select an Item'
+```
 ## DOM
 ### querySelector (Return Nodes)
 - Nodes represent various parts of an HTML document, such as elements, attributes, text, comments,...
