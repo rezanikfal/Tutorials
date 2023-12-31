@@ -36,6 +36,25 @@ export default function Counter() {
   );
 }
 ```
+### useState Async behavior
+- In the following, **setCount** just runs **once**.
+```javascript
+  const handleClick = () => {
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+  }
+```
+- Due to the asynchronous nature of state updates in React.
+- React batches state updates for performance reasons.
+- Here we have access to the last value and it works correctly:
+```js
+  const handleClick = () => {
+    setCount(count => count + 1);
+    setCount(count => count + 1);
+    setCount(count => count + 1);
+  }
+```
 ### Controlled component
 - Creating a controlled component in React involves managing the **form** data with **state**
 ```javascript
