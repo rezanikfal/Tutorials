@@ -267,6 +267,7 @@ button.addEventListener('click', async () => {
 - Get e letter in a string: ```myLetter = 'Reza Nikfal'.charAt(6).toUpperCase() //I```
 - Convert ['a', 'reza', 15] to "a,reza,15": ```['a', "reza", 15].toString()```
 - **FKT** rule, Filter Keeps True!
+- **lorem**22 creates dummy text with 22 words in **VsCode**. It works in JS & HTMl
 - **Remove Duplicates** from an array:
 ```javascript
 const noDuplicate = arr.filter((x,i)=>{
