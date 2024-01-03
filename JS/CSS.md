@@ -320,10 +320,14 @@ Example:
 
 ### Position
 - ```Position: static``` is normal flow and default.
-- ```Position: relative``` can be moved using ```top```, ```right```, ... based on its origin (top left) on static position.
+- ```Position: relative``` can be moved using ```top```, ```right```, ... based on itselfe or its origin (top left) on static position.
 - To position one element inside another, the inner should be **absolute**, the outer should normally be **relative**.
 - Element with ```position: absolute``` is removed from the normal document flow and other elements **ignore** it.
-- ```Position: absolute``` looks for a **none-static parent** for reference. Otherwise, it takes the reference point from the ```<body>``` element.
+- ```position: absolute``` looks for a **none-static parent** for reference. Otherwise, it takes the reference point from the ```<body>``` element.
+- ```position: fixed``` are positioned relative to the viewport, which is the visible area of the browser window.
+- ```position: fixed```: ```top```, ```right```, ```bottom```, and ```left``` properties are calculated relative to the edges of the viewport.
+- ```position: sticky``` behave similarly to relative elements by default, remaining within the normal document flow.
+- ```position: sticky```: As soon as the elemens hit the top of the page (on scroll), it behaves like ```fixed```.
 - 
 
-<img src="../Pics/display.jpg" width="600">
+<img src="../Pics/position.jpg" width="600">
