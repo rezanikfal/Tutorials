@@ -317,3 +317,13 @@ Example:
 - ```display: inline``` typically don't respond to width and height
 - ```display: inline-block``` flows inline like text but allow setting width and height.
 <img src="../Pics/display.jpg" width="600">
+
+### Position
+- ```Position: static``` is normal flow and default.
+- ```Position: relative``` can be moved using ```top```, ```right```, ... based on its origin (top left) on static position.
+- To position one element inside another, the inner should be **absolute**, the outer should normally be **relative**.
+- Element with ```position: absolute``` is removed from the normal document flow and other elements **ignore** it.
+- ```Position: absolute``` looks for a **none-static parent** for reference. Otherwise, it takes the reference point from the ```<body>``` element.
+- 
+
+<img src="../Pics/display.jpg" width="600">
