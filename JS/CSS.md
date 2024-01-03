@@ -308,3 +308,12 @@ Example:
 - **rem** (Root EM): Similar to em, but it's always relative to the font size of the root element (usually the ```<html>``` tag),
 - By default the font size in in browsers is 16px so rem = 16px
 
+### Display
+- ```display: block``` start on a new line (orce a line break before and after) and take up 100% of the available horizontal space by default.
+- ```display: block``` by default: ```<div>```, ```<p>```, ```<h1>```, ```<ul>```, ```<li>```
+- You can apply width and height to ```display: block```
+- ```display: inline``` don't cause line breaks and only take up necessary space.
+- ```display: inline``` by default: ```<span>```, ```<a>```, ```<img>```, ```<strong>```
+- ```display: inline``` typically don't respond to width and height
+- ```display: inline-block``` flows inline like text but allow setting width and height.
+<img src="../Pics/display.jpg" width="300">
