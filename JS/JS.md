@@ -958,7 +958,7 @@ const person2 = new Person2("Jane", "Smith");
 console.log(person1.fullName()); // Outputs: "John Doe"
 console.log(person2.fullName()); // Outputs: "Jane Smith"
 ```
-### Check if a key in an object
+### Check if a key exists in an object
 ```javascript
 const person1 = {
   name: 'Alice',
