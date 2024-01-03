@@ -958,6 +958,17 @@ const person2 = new Person2("Jane", "Smith");
 console.log(person1.fullName()); // Outputs: "John Doe"
 console.log(person2.fullName()); // Outputs: "Jane Smith"
 ```
+### Check if a key in an object
+```javascript
+const person1 = {
+  name: 'Alice',
+  age: 30,
+  profession: 'Engineer'
+};
+
+const myKey = 'name' in person1  //true
+const myKey = 'name1' in person1  //false
+```
 ## Array / String
 - Truncate an array using length:
 ```javascript
