@@ -327,7 +327,6 @@ Example:
 - ```position: fixed``` are positioned relative to the viewport, which is the visible area of the browser window.
 - ```position: fixed```: ```top```, ```right```, ```bottom```, and ```left``` properties are calculated relative to the edges of the viewport.
 - ```position: sticky``` behave similarly to relative elements by default, remaining within the normal document flow.
-- ```position: sticky```: As soon as the elemens hit the top of the page (on scroll), it behaves like ```fixed```.
-- 
+- ```position: sticky```: As soon as the elemens hit the top of the page (on scroll), it behaves like ```fixed```. 
 
 <img src="../Pics/position.jpg" width="600">
