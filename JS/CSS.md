@@ -316,4 +316,4 @@ Example:
 - ```display: inline``` by default: ```<span>```, ```<a>```, ```<img>```, ```<strong>```
 - ```display: inline``` typically don't respond to width and height
 - ```display: inline-block``` flows inline like text but allow setting width and height.
-<img src="../Pics/display.jpg" width="300">
+<img src="../Pics/display.jpg" width="600">
