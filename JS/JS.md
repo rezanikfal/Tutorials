@@ -257,6 +257,15 @@ button.addEventListener('click', async () => {
 ## Methods/Properties
 - Check if a var is number: ```typeof(x) == "number"```
 - ```B.sort()``` is from Small to big, to reverse it use ```B.sort().reverse()```
+- the new ```toSorted()``` method (introduced in ES2023) to create a new sorted array without modifying the origina`
+```javascript
+const people = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 20 }
+];
+const sortedPeople = people.toSorted((a, b) => a.age - b.age); //The originl people stays the same
+```
 - Print the current web page: ```window.print()```
 - Check if an elements is in an array: ```outcome.includes(x)```
 - Fix to 4 digits: ```(1.65).toFixed(4) // 1.6500```
