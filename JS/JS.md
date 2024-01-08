@@ -313,6 +313,11 @@ for (let index = 0; index < stringLength; index++) {
   }
 }
 ```
+```javascript
+AA=['a', 'r', 'W', 'w', 'A']
+AA.sort() //['A', 'W', 'a', 'r', 'w']
+AA.sort((a,b)=>a.localeCompare(b)) //['a', 'A', 'r', 'w', 'W']
+```
 - The **some()** to check if there are ```id:1``` at least in one object in the array of objects:
 - The **find()** to return the object member with ```id:2```:
 ```javascript
