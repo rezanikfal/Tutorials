@@ -93,3 +93,30 @@
     
 ### &lt;pre&gt; tag
 - text inside a ```<pre>``` element is displayed in a way that preserves both spaces and line breaks.
+    
+### Table
+- ```<table><thead><tbody>```: Encloses the entire **table/header/body** structure.
+- ```<tr>```: Defines a table **row**.
+- ```<th>```: Defines a table **header** cell (bold and centered by default).
+- ```<td>```: Defines a table **data** cell.
+```html
+<table>
+  <caption>Fruit Prices</caption>
+  <thead>
+    <tr>
+      <th>Fruit</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Apple</td>
+      <td>$1.50</td>
+    </tr>
+    <tr>
+      <td>Banana</td>
+      <td>$0.75</td>
+    </tr>
+  </tbody>
+</table>
+```
