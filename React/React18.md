@@ -453,3 +453,10 @@ function MyComponent() {
   );
 }
 ```
+## React Routing
+- To install the npm package: ```npm install react-router-dom```.
+- The following tutorial is for **React Router ver 6.4+**
+```javascript
+function MyComponent() {
+
+```
