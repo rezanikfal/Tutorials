@@ -330,3 +330,18 @@ Example:
 - ```position: sticky```: As soon as the elemens hit the top of the page (on scroll), it behaves like ```fixed```. 
 
 <img src="../Pics/position.jpg" width="600">
+
+### Modal wondow CSS (transform)
+- ```transform: translate(10px, 20px) rotate(45deg) scale(2);```
+- ```translate(x, y)```: Moves, ```rotate(angle)```: Rotates, ```scale(x, y)```: Scales
+```css
+.modalWindow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+```
