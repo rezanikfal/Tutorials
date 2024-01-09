@@ -456,7 +456,29 @@ function MyComponent() {
 ## React Routing
 - To install the npm package: ```npm install react-router-dom```.
 - The following tutorial is for **React Router ver 6.4+**
+### Initial Setup
+#### Create RouterProvider
+- ```BrowserRouter``` provides the routing layout. We always need a general layout that contains all other pages/layouts/child pages.
+- ```index``` is the page that shows up in the layout with path = "/". So its path is the same as layout path.
+- We can refactor the ```router``` to another file (i.e. router.jsx)
 ```javascript
-function MyComponent() {
+import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
+import RootLayout from "./pages/RootLayout";
+import Home from "./pages/Home";
+import About from "./pages/About";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+    </Route>
+  )
+);
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+export default App;
 ```
