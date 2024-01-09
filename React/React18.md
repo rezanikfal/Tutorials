@@ -554,3 +554,35 @@ function About() {
   );
 }
 ```
+### Add 404 Page Not Found
+- It is a simple page with wild card route
+```javascript
+//App.jsx
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />}>
+        <Route path="contact" element={<Contact />} />
+        <Route path="help" element={<Help />} />
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+    </Route>
+  )
+);
+```
+```javascript
+//PageNotFound.jsx
+import { Link } from "react-router-dom";
+
+function PageNotFound() {
+  return (
+    <div>
+      <h2>404 Page Not Found</h2>
+      <Link to="/">Go to Home Page</Link>
+    </div>
+  );
+}
+
+export default PageNotFound;
+```
