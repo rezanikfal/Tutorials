@@ -462,6 +462,7 @@ function MyComponent() {
 - ```index``` is the page that shows up in the layout with path = "/". So its path is the same as layout path.
 - We can refactor the ```router``` to another file (i.e. router.jsx)
 ```javascript
+//App.jsx
 import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import Home from "./pages/Home";
@@ -481,4 +482,30 @@ function App() {
 }
 
 export default App;
+```
+#### Create Layout
+- Layout is like a parent for its children pages/layouts.
+- In the layout we show the ```NavLinks``` or ```Links``` to navigate to the routes
+- When you click on the ```NavLinks```, **active** class will be added automatically for styling purpouses.
+```javascript
+//RootLayout.jsx
+import { NavLink, Outlet } from "react-router-dom";
+
+function RootLayout() {
+  return (
+    <div>
+      <header>
+        <nav>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="about">About</NavLink>
+        </nav>
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+
+export default RootLayout;
 ```
