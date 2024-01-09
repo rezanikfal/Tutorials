@@ -509,3 +509,48 @@ function RootLayout() {
 
 export default RootLayout;
 ```
+### Add Sub-routes
+- Sub-routes have a layout (i.e. About). This layout or page has its own Layout (i.e. RootLayout)
+```javascript
+//App.jsx
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />}>
+        <Route path="contact" element={<Contact />} />
+        <Route path="help" element={<Help />} />
+      </Route>
+    </Route>
+  )
+);
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+export default App;
+```
+```javascript
+//about.jsx
+import { NavLink, Outlet } from "react-router-dom";
+
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet amet
+        aspernatur perferendis aut eligendi adipisci? Ut facilis iste doloribus
+        ipsam voluptate sequi, eaque, dolor tempora tempore nisi accusamus
+        impedit odio.
+      </p>
+      <nav className="main-nav">
+        <NavLink to="contact">Contact</NavLink>
+        <NavLink to="help">Help</NavLink>
+      </nav>
+      <Outlet />
+    </div>
+  );
+}
+```
