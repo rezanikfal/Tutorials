@@ -600,3 +600,52 @@ export default PageNotFound;
 <a class="" href="/about">About</a>
 <a class="active" href="/about" aria-current="page">About</a>
 ```
+### Loader
+- Loaders provide a streamlined way to fetch data before rendering a component associated with a specific route
+```javascript
+//careerService.js
+import axios from "axios";
+
+export const careerApi = async () => {
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/todos"
+  );
+  return response.data;
+};
+```
+```javascript
+//App.jsx
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      ...
+      <Route path="careers" element={<CareersLayout />}>
+        <Route index element={<Careers />} loader={careerApi} />
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+    </Route>
+  )
+);
+```
+```javascript
+//Careers.jsx
+import { NavLink, useLoaderData } from "react-router-dom";
+
+function Careers() {
+  const data = useLoaderData();
+  const renderedData = data && data.map((el) => {
+      return (
+        <div key={el.id}>
+          <NavLink to="/">{el.title}</NavLink>
+        </div>
+      );
+    });
+  return (
+    <div>
+        {renderedData}
+    </div>
+  );
+}
+
+export default Careers;
+```
