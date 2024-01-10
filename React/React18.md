@@ -600,7 +600,7 @@ export default PageNotFound;
 <a class="" href="/about">About</a>
 <a class="active" href="/about" aria-current="page">About</a>
 ```
-### Loader
+### Loader - useLoaderData hook
 - Loaders provide a streamlined way to fetch data before rendering a component associated with a specific route
 ```javascript
 //careerService.js
@@ -648,4 +648,31 @@ function Careers() {
 }
 
 export default Careers;
+```
+### Dynamic segment (:id) - useParams hook
+- Access to the id using **useParams hook**
+```javascript
+//App.jsx
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      ...
+      <Route path="careers" element={<CareersLayout />}>
+        <Route index element={<Careers />} loader={careerApi} />
+        <Route path=":id" element={<CareersDetail />} />
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+    </Route>
+  )
+);
+```
+```javascript
+//careerDetails.jsx
+import { useParams } from "react-router-dom";
+
+function CareersDetail() {
+  const { id } = useParams();
+  return <div>{id}</div>;
+}
+export default CareersDetail;
 ```
