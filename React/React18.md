@@ -733,3 +733,48 @@ export default CareersDetail;
       );
     });
 ```
+### Dynamic segment (:id) - Error handling (useRouteError hook)
+- Handle an error if the id does not exist
+```javascript
+//App.jsx
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      ...
+      <Route path="careers" element={<CareersLayout />}>
+        <Route index element={<Careers />} loader={careerApi} />
+        <Route path=":id" element={<CareersDetail />} loader={careerApiById} errorElement={<CareersError />}/>
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+    </Route>
+  )
+);
+```
+```javascript
+//careerService.js
+export const careerApiById = async ({ params }) => {
+  const { id } = params;
+  const response = await axios
+    .get("https://jsonplaceholder.typicode.com/todos/" + id)
+    .catch((err) => {
+      throw Error(err.message);
+    });
+  return response.data;
+};
+```
+```javascript
+//CareersError.jsx
+import { useRouteError } from "react-router-dom";
+
+function CareersError() {
+  const error = useRouteError();
+  return (
+    <div>
+      <h3>Error!</h3>
+      <p>Error Message: {error.message}</p>
+    </div>
+  );
+}
+
+export default CareersError;
+```
