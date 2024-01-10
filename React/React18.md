@@ -586,3 +586,17 @@ function PageNotFound() {
 
 export default PageNotFound;
 ```
+### Style activated route
+- We need just add class **active** to the CSS.
+```css
+ /* index.css */
+.active {
+  color: blue;
+  font-weight: bold;
+}
+```
+- Same element before and after click (react handles the class)
+```html
+<a class="" href="/about">About</a>
+<a class="active" href="/about" aria-current="page">About</a>
+```
