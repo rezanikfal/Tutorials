@@ -676,3 +676,60 @@ function CareersDetail() {
 }
 export default CareersDetail;
 ```
+### Dynamic segment (:id) - Loader
+- Access to the id using **loader**
+```javascript
+//App.jsx
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      ...
+      <Route path="careers" element={<CareersLayout />}>
+        <Route index element={<Careers />} loader={careerApi} />
+        <Route path=":id" element={<CareersDetail />} loader={careerApiById} />
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+    </Route>
+  )
+);
+```
+```javascript
+//careerService.js
+export const careerApiById = async ({ params }) => {
+  const { id } = params;
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/todos/" + id
+  );
+  return response.data;
+};
+```
+```javascript
+//CareersDetail.jsx
+import { useLoaderData, useParams } from "react-router-dom";
+
+function CareersDetail() {
+  const detailData = useLoaderData();
+  return (
+    <div>
+      <h3>{detailData.title}</h3>
+      <p>user id: {detailData.userId}</p>
+    </div>
+  );
+}
+
+export default CareersDetail;
+```
+```javascript
+//Careers.jsx
+  const data = useLoaderData();
+
+  const renderedData =
+    data &&
+    data.map((el) => {
+      return (
+        <div key={el.id}>
+          <NavLink to={el.id.toString()}>{el.title}</NavLink>
+        </div>
+      );
+    });
+```
