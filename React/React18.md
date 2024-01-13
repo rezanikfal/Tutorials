@@ -453,6 +453,83 @@ function MyComponent() {
   );
 }
 ```
+### useReducer hook
+- It's an alternative for ```useState```.
+- It's useful when there are multiple state in a component that related to each other.
+- It's also useful when future value of a state depends on its current state.
+- We replace all the useStates with One useReducer as follows:
+```javascript
+const [count, setCount] = useState(10);
+const [numberAdded, setNumberAdded] = useState(0)
+```
+```javascript
+const [state, dispatch] = useReducer(reducer, {
+  count: 10,
+  numberAdded: 0,
+});
+```
+- Reducer Function defines how the state should change in response to each action.
+- Reducer is defined outside of the react component function
+```javascript
+const INCREMENT_COUNT = "increment";
+const CHANGE_INPUT = "change-input";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case INCREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+    case CHANGE_INPUT:
+      return {
+        ...state,
+        numberAdded: action.payload,
+      };
+    default:
+      return state;
+  }
+``` 
+- Then for any react event listener, we ```dispatch``` the appropriate ```action```:
+- Some actions may have ```payload```
+```javascript
+export default function Counter() {
+  const [state, dispatch] = useReducer(reducer, {
+    count: 10,
+    numberAdded: 0,
+  });
+
+  const handleIncrement = () => {
+    dispatch({
+      type: INCREMENT_COUNT,
+    });
+  };
+
+  const handleChange = (e) => {
+    dispatch({
+      type: CHANGE_INPUT,
+      payload: parseInt(e.target.value) || 0,
+    });
+  };
+
+  return (
+    <div>
+      <p>Count is {state.count}</p>
+      <div>
+        <button onClick={handleIncrement}>Increment</button>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="number"
+          value={state.numberAdded || ""}
+          onChange={handleChange}
+        />
+        <button>Add Number</button>
+      </form>
+    </div>
+  );
+}
+``` 
 ## React Routing
 - To install the npm package: ```npm install react-router-dom```.
 - The following tutorial is for **React Router ver 6.4+**
