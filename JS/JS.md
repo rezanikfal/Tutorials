@@ -1028,7 +1028,7 @@ foo: "Maneli"
 length: 6
 ```
 ### splice
-The splice() method changes the contents of an array by removing or replacing existing elements.
+- The splice() method changes the contents of an array by removing or replacing existing elements.
 ```javascript
 const months = ['Jan', 'March', 'April', 'June'];
 months.splice(1, 0, 'Feb');
@@ -1040,6 +1040,14 @@ months.splice(4, 1, 'May');
 // replaces 1 element at index 4
 console.log(months);
 // expected output: Array ["Jan", "Feb", "March", "April", "May"]
+```
+- The splice() real-world application is removing a specific element of an array:
+```javascript
+const months = ['Jan', 'March', 'April', 'June'];
+const index = months.indexOf('April');
+months.splice(index,1);
+console.log(months);
+// expected output: Array ['Jan', 'March', 'June']
 ```
 ### padStart/End
 The padStart() / padEnd() applies padding to the start/end of the string. .
