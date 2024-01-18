@@ -79,6 +79,40 @@ for(let i=1; i<=5; i++){
 setTimeout(function(){console.log(i)},1000)  // 1 2 3 4 5
 }
 ```
+### Memoization:
+- Memoization is a technique where you store the results of expensive function calls and return the cached result when the same inputs occur again.
+```javascript
+const memoize = (fn) => {
+  const cache = {};
+  return function(...args) {
+    const n = args[0];  // assuming single argument for simplicity
+    if (n in cache) {
+      console.log('Fetching from cache:', n);
+      return cache[n];
+    } else {
+      console.log('Calculating result:', n);
+      let result = fn(n);
+      cache[n] = result;
+      return result;
+    }
+  };
+};
+
+const factorial = memoize(
+  (x) => {
+    if (x === 0) {
+      return 1;
+    } else {
+      return x * factorial(x - 1);
+    }
+  }
+);
+
+// Usage examples
+console.log(factorial(5));  // first time calculating
+console.log(factorial(5));  // second time, from cache
+console.log(factorial(6));  // calculating for a new value
+```
 ## Asynchronous functionality in JavaScript
 ### Callbacks in JavaScript:
 - A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
