@@ -282,6 +282,30 @@ function App() {
   );
 }
 ```
+### Create Portal
+- When you use ```ReactDOM.createPortal```, you're telling React to render the child component not in its normal position in the React tree
+- instead render the child component in a different location in the DOM.
+- We can add the portal container in the ```index.html```.
+```html
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <div id="modal-container"></div>
+  </body>
+```
+```javascript
+import ReactDOM from "react-dom";
+
+function ProductModal() {
+  return ReactDOM.createPortal(
+    <div>
+      <div className="modalBackground"></div>
+      <div className="modalWindow">ProductModal</div>
+    </div>,
+    document.querySelector("#modal-container")
+  );
+}
+```
 ### Organaize React Project
 - Best practice is using **Page-Component** style.
 - **Page** shows one single page and not intended to be resused.
