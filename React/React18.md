@@ -262,6 +262,20 @@ function App() {
   useEffect(() => {fetchBooks()}, []);  //OR
   useEffect(() => fetchBooks, []);
 ```
+#### ```useEffect``` cleanup function
+- In React, within the useEffect hook, returning a function is a mechanism for performing cleanup actions.
+- With an empty dependency array [], cleanup function returned single time, when the component is unmounted.
+- With a dependency array like ```[counter]```, cleanup function will be called before the effect runs again (due to a change in counter).
+- With a dependency cleanup function will be called when the component is unmounted.
+```javascript
+function ProductModal() {
+  useEffect(() => {
+    document.body.classList.add("noScroll");
+    return () => document.body.classList.remove("noScroll");
+  }, []);
+...
+}
+```
 ### ```children``` prop
 - It represents whatever is written **between the opening and closing** tags of a component.
 - This is particularly useful for creating generic, reusable components.
