@@ -1017,6 +1017,31 @@ const person1 = {
 const myKey = 'name' in person1  //true
 const myKey = 'name1' in person1  //false
 ```
+### Convert Object Values/Keys to array
+```javascript
+Object.values(myObj)
+Object.keys(myObj)
+```
+- convert an array to an object
+```javascript
+arr = [1, 1, 1, 2, 3, 34, 4, 5, 5, 6, 6, 7, 7, 1, 3, 3, 3, 2, 2, 2, 3, 34, 4];
+obj = {};
+arr.forEach((e) => {
+  if (obj[e]) {
+    obj[e].count++;
+  } else {
+    obj[e] = { val: e, count: 1 };
+  }
+});
+console.log(Object.keys(obj));
+//[
+//  { val: 1, count: 4 },
+//  { val: 2, count: 4 },
+//  { val: 3, count: 5 },
+//  ...
+//];
+
+```
 ## Array / String
 - Truncate an array using length:
 ```javascript
