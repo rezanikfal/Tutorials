@@ -302,7 +302,7 @@ const sortedPeople = people.toSorted((a, b) => a.age - b.age); //The originl peo
 ```
 - Print the current web page: ```window.print()```
 - Check if an elements is in an array: ```outcome.includes(x)```
-- Fix to 4 digits: ```(1.65).toFixed(4) // '1.6500'```. It returns **string**. For number: ```parseFloat((1.65).toFixed(2))```
+- Fix to 4 digits: ```(1.65).toFixed(4) // '1.6500'```. It returns **string**. For number: ```parseFloat((1.65876845).toFixed(4))```
 - The ```Math.ceil()``` static method always rounds up: ```Math.ceil(-7.004) // -7```
 - The ```Math.floor()``` static method always rounds down: ```Math.floor(5.95) // 5```
 - The Math.round() static method returns the value of a number rounded to the nearest integer: ```Math.round(5.95), Math.round(5.5), Math.round(5.05) // 6 6 5```
