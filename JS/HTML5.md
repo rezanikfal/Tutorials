@@ -99,23 +99,31 @@
 - ```<tr>```: Defines a table **row**.
 - ```<th>```: Defines a table **header** cell (bold and centered by default).
 - ```<td>```: Defines a table **data** cell.
+- ```colSpan```: It allows you to **merge multiple cells** horizontally to create a single cell.
 ```html
 <table>
   <caption>Fruit Prices</caption>
   <thead>
     <tr>
       <th>Fruit</th>
+      <th>Number</th>
       <th>Price</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Apple</td>
+      <td>10</td>
       <td>$1.50</td>
     </tr>
     <tr>
       <td>Banana</td>
+      <td>5</td>
       <td>$0.75</td>
+    </tr>
+    <tr>
+      <td colSpan={2}>Total</td>
+      <td>$2.25</td>
     </tr>
   </tbody>
 </table>
