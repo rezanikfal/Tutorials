@@ -303,8 +303,8 @@ const sortedPeople = people.toSorted((a, b) => a.age - b.age); //The originl peo
 - Print the current web page: ```window.print()```
 - Check if an elements is in an array: ```outcome.includes(x)```
 - Fix to 4 digits: ```(1.65).toFixed(4) // 1.6500```
-- The Math.ceil() static method always rounds up: ```Math.ceil(-7.004) // -7```
-- he Math.floor() static method always rounds down: ```Math.floor(5.95) // 5```
+- The ```Math.ceil()``` static method always rounds up: ```Math.ceil(-7.004) // -7```
+- The ```Math.floor()``` static method always rounds down: ```Math.floor(5.95) // 5```
 - The Math.round() static method returns the value of a number rounded to the nearest integer: ```Math.round(5.95), Math.round(5.5), Math.round(5.05) // 6 6 5```
 - Create random number between 0-199 (including 0 & 199): ```Math.floor((Math.random()*200))```
 - Get e letter in a string: ```myLetter = 'Reza Nikfal'.charAt(6).toUpperCase() //I```
