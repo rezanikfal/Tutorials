@@ -317,6 +317,16 @@ const noDuplicate = arr.filter((x,i)=>{
     return arr.indexOf(x) == i
 })
 ```
+- **Remove Duplicates** from an array using **Set**:
+  - The ```new Set()``` constructor in JavaScript is used to create a Set which is a collection of unique values.
+```javascript
+const numbers = [1, 2, 2, 3, 4, 4, 5];
+const uniqueNumbers = new Set(numbers);
+console.log(uniqueNumbers); // Set(5) {1, 2, 3, 4, 5}
+
+const uniqueNumbersArray = [...uniqueNumbers];
+console.log(uniqueNumbersArray); // [1, 2, 3, 4, 5]
+```
 - The **substring()** method returns the part of the string (substring is all **lower case**):
 - Using **slice()** to add a new elements to an array at any index:
 ```javascript
