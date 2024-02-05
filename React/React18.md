@@ -715,6 +715,20 @@ export default PageNotFound;
 <a class="" href="/about">About</a>
 <a class="active" href="/about" aria-current="page">About</a>
 ```
+### useNavigate (to navigate somewhere on Submit)
+```javascript
+import { useNavigate } from "react-router-dom";
+const navigate = useNavigate();
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  navigate("/products");
+};
+
+<form onSubmit={handleSubmit}>
+  ...
+</form>
+```
 ### Loader - useLoaderData hook
 - Loaders provide a streamlined way to fetch data before rendering a component associated with a specific route
 ```javascript
