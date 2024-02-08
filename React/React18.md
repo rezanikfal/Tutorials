@@ -308,6 +308,8 @@ export default function App() {
   );
 }
 ```
+<img src="../Pics/children.jpg" width="550">
+
 ### Create Portal
 - When you use ```ReactDOM.createPortal```, you're telling React to render the child component not in its normal position in the React tree
 - instead render the child component in a different location in the DOM.
