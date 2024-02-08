@@ -279,20 +279,32 @@ function ProductModal() {
 ### ```children``` prop
 - It represents whatever is written **between the opening and closing** tags of a component.
 - This is particularly useful for creating generic, reusable components.
-- The children prop is automatically provided by React to every component.
+- The **children** prop is automatically provided by React to every component.
   
 ```javascript
-function Card({children}) {
-  return <div className="card">{children}</div>;
-}
+// Card component
+const Card = (props) => {
+  return (
+    <div className="card">
+      <h1>{props.title}</h1>
+      <p>{props.description}</p>
+      {props.children}
+    </div>
+  );
+};
 ```
 ```javascript
-function App() {
+// App component
+export default function App() {
   return (
-    <Card>
-      <h1>Hello, World!</h1>
-      <p>This is inside the card.</p>
-    </Card>
+    <div className="App">
+      <Card title="Title1" description="Description">
+      <Card title="Title1" description="Description">
+        <div>
+          <button>Click here</button>
+        </div>
+      </Card>
+    </div>
   );
 }
 ```
