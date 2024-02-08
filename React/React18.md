@@ -310,6 +310,44 @@ export default function App() {
 ```
 <img src="../Pics/children.jpg" width="550">
 
+### Suspense
+- It's been used to show **Loading...** on fetch data (React 18).
+- React Suspense allows you to postpone rendering until the data is available.
+```javascript
+import Coins from "./Coins";
+import { Suspense } from "react";
+export default function App() {
+  return (
+    <div className="App">
+      <h1>Coin List </h1>
+      <Suspense fallback={<h1> Loading... </h1>}>
+        <Coins />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+```javascript
+import useSWR from "swr";
+const fetcher = (...args) => fetch(...args).then((resp) => resp.json());
+
+export default function Coins() {
+  const { data } = useSWR(
+    "https://api2.binance.com/api/v3/ticker/24hr",
+    fetcher,
+    { suspense: true }
+  );
+
+  return (
+    <div className="App">
+      {data?.map((coin) => {
+        return <h1> {coin.lastPrice} </h1>;
+      })}
+    </div>
+  );
+}
+```
 ### Create Portal
 - When you use ```ReactDOM.createPortal```, you're telling React to render the child component not in its normal position in the React tree
 - instead render the child component in a different location in the DOM.
