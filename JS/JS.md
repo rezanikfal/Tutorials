@@ -79,6 +79,21 @@ for(let i=1; i<=5; i++){
 setTimeout(function(){console.log(i)},1000)  // 1 2 3 4 5
 }
 ```
+### Simple Regular Expression:
+- **n1**: a integer number that does not start with "0"
+  - **^** asserts the start of the string.
+  - **[1-9]** matches a starting single digit.
+  - **\d*** matches zero or more digits following the initial digit.
+  - **$** asserts the end of the string.
+```javascript
+/^[1-9]\d*$/.test(n1)
+```
+- **n2**: matches letters & space with no digits or spacial chars
+  - **[a-zA-Z ]** matches any single character and space.
+  - **+** means one or more of the preceding element.
+```javascript
+/^[a-zA-Z ]+$/.test(n2)
+```
 ### Memoization:
 - Memoization is a technique where you store the results of expensive function calls and return the cached result when the same inputs occur again.
 ```javascript
