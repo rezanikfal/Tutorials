@@ -266,6 +266,29 @@ import { useState, useRef } from "react";
 ....
 <input ref={inputRef} />
 ```
+- Using ```useRef```, we can access the values as well like ```userRef.current.value```.
+- Using ```useRef``` we are keeping track of values that don't need to cause a re-render when they change.
+```javascript
+function App() {
+  const userRef = useRef();
+  const passwordRef = useRef();
+
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
+    console.log(userRef.current.value);
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit2}>
+        <input ref={userRef} type="text" />
+        <input ref={passwordRef} type="password" />
+        <button type="submit">Click me</button>
+      </form>
+    </>
+  );
+}
+```
 ### ```useEffect``` hook
 - second argmuent is ```[]```: Called after **first** render and never called again .
 - second argmuent is nothing: Called after first render and called after **every** rerender.
