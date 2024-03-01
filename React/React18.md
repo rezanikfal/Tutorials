@@ -233,6 +233,27 @@ export function ImageSearch({ onSubmit }) {
   );
 }
 ```
+### onSubmit={handleSubmit} vs onSubmit={handleSubmit()}
+- With ```onSubmit={handleSubmit}```, we pass a reference to the function. However with ```handleSubmit()``` we pass its return value.
+- ```handleSubmit``` will be called later, at the time the form is submitted.
+- React automatically passes the event object (e) to the ```handleSubmit```.
+- It prevents unnecessary function calls during any rendering.
+```javascript
+function App() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Hello");
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <button type="submit">Click me</button>
+      </form>
+    </>
+  );
+}
+```
 ### ```useRef``` to get a reference from a HTML element
 - To create a ref using the ```useRef``` hook from React. Attach this ref to the input element you want to focus.
 ```javascript
