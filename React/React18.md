@@ -55,6 +55,30 @@ export default function Counter() {
     setCount(count => count + 1);
   }
 ```
+- if you try to log your state right after calling setState, you might be seeing the state value before the update has been applied.
+- You can use the ```useEffect``` hook, which allows you to perform side effects in function components.
+```js
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+    console.log(count); // This will log the old count value, not the updated one
+  };
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  );
+}
+```
+```js
+useEffect(() => {
+  console.log(count); // This will log the updated count value after re-render
+}, [count]); // Dependency array tells React to run the effect after every change to `count`
+```
 ### Forms handle change
 - In case we have multiple fields in a form (firstName, lastName, age, ...)
 - We can handle change like this (**name** attribute should be added to the ```input``` element):
