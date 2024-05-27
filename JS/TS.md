@@ -228,6 +228,15 @@ let myDict: Dictionary = {
 
 let valueOfTwo: number = myDict["two"];
 ```
+## object type
+- The **Record** utility type is used to construct an object type whose keys are of a certain type and whose values are of another type.
+```javascript
+const color: Record<string, string> = {
+  red: "#FF0000",
+  green: "#00FF00",
+  blue: "#0000FF"
+};
+```
 ## Generics \<T\> (Value unknown)
 - It allow you to create reusable and flexible functions, classes, and interfaces..
 - Generics with **Interface**:
