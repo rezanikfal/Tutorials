@@ -38,3 +38,26 @@ app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
 });
 ```
+## API Requests
+```javascript
+import express from "express";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+app.get("/", (req, res) => {
+  res.status(500).send("Hello");
+});
+
+app.get("/api/users", (req, res) => {
+  res.status(200).send([
+    { id: 1, username: "reza", displayName: "Reza" },
+    { id: 2, username: "maneli", displayName: "Maneli" },
+    { id: 3, username: "fariba", displayName: "Fariba" },
+    { id: 4, username: "david", displayName: "David" },
+  ]);
+});
+
+app.listen(PORT, () => {
+  console.log(`Running on port ${PORT}`);
+});
+```
