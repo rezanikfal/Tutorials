@@ -78,3 +78,14 @@ app.get("/api/users/:id", (req, res) => {
   return res.send(findUser);
 });
 ```
+### Post Request
+```javascript
+app.use(express.json());
+
+app.post("/api/users", (req, res) => {
+  const body = req.body;
+  const newUser = { id: mockData[mockData.length - 1].id + 1, ...body };
+  mockData.push(newUser);
+  return res.status(201).send(newUser);
+});
+```
