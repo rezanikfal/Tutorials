@@ -102,3 +102,33 @@ app.post("/api/users", (req, res) => {
   return res.status(201).send(newUser);
 });
 ```
+### Delete Request
+```javascript
+import express from "express";
+
+const app = express();
+
+app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
+
+const mockData = [
+  { id: 1, username: "reza", displayName: "Reza" },
+  { id: 2, username: "maneli", displayName: "Maneli" },
+  { id: 3, username: "fariba", displayName: "Fariba" },
+  { id: 4, username: "david", displayName: "David" },
+];
+
+app.delete("/api/users/:id", (req, res) => {
+  const selectdeId = req.params.id;
+  const selectedNumericId = parseInt(selectdeId);
+  console.log(selectedNumericId);
+  if (isNaN(selectedNumericId)) return res.sendStatus(400);
+  const selectdeRecordIndex = mockData.findIndex(
+    (x) => x.id === selectedNumericId
+  );
+  if (selectdeRecordIndex === -1) return res.sendStatus(404);
+  mockData.splice(selectdeRecordIndex, 1);
+  return res.sendStatus(200);
+});
+```
