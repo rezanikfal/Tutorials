@@ -80,7 +80,20 @@ app.get("/api/users/:id", (req, res) => {
 ```
 ### Post Request
 ```javascript
+import express from "express";
+
+const app = express();
+
 app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
+
+const mockData = [
+  { id: 1, username: "reza", displayName: "Reza" },
+  { id: 2, username: "maneli", displayName: "Maneli" },
+  { id: 3, username: "fariba", displayName: "Fariba" },
+  { id: 4, username: "david", displayName: "David" },
+];
 
 app.post("/api/users", (req, res) => {
   const body = req.body;
