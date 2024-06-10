@@ -429,6 +429,11 @@ var A = [1, [2], [3, [[4]]],[5,6]]
 console.log(A.flat(2)); //[1, 2, 3, [4], 5, 6]
 console.log(A.flat(Infinity)); //[1, 2, 3, 4, 5, 6]
 ```
+- **Transpose 2 dim array**
+```javascript
+const grid = [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]
+const trans = grid[0].map((_, i) => grid.map(row => row[i]))
+```
 - The **Array.from** generates a sequence of numbers using this trick:
 ```javascript
 Array.from({ length: 5 }, (v, i) => i).map(x=>console.log(x))
