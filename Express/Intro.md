@@ -132,3 +132,23 @@ app.delete("/api/users/:id", (req, res) => {
   return res.sendStatus(200);
 });
 ```
+### Middleware & Put Request
+```javascript
+const userIndex = (req, res, next) => {
+  const id = req.params.id;
+  const parsedId = parseInt(id);
+  if (isNaN(parsedId)) return res.status(400).send({ err: "Bad request id" });
+  const findIndex = mockData.findIndex((x) => x.id === parsedId);
+  if (findIndex === -1) return res.status(404).send({ err: "invalid id" });
+  req.findIndex = findIndex;
+  next();
+};
+
+app.put("/api/users/:id", userIndex, (req, res) => {
+  const findIndex = req.findIndex;
+  const body = req.body;
+  const updatedRecord = { id: mockData[findIndex].id, ...body };
+  mockData.splice(findIndex, 1, updatedRecord);
+  return res.status(200).send(updatedRecord);
+});
+```
