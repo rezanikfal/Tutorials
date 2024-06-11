@@ -497,6 +497,12 @@ const sum = numbers.reduce((accumulator, currentValue) => {
 }, 0);
 console.log(sum); // Output: 15
 ```
+- **repeat()** method of _string_ to create a specified number of copies
+```javascript
+const mood = 'Happy! ';
+console.log(`I feel ${mood.repeat(3)}`);
+// Expected output: "I feel Happy! Happy! Happy! "
+```
 ### Date object 
 ```javascript
 let pastDay= new Date(2000,1,1,20,11,28)
