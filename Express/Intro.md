@@ -78,6 +78,21 @@ app.get("/api/users/:id", (req, res) => {
   return res.send(findUser);
 });
 ```
+### Query string and redirection
+We can use `req.query` to get access to the query params
+```javascript
+// URL: http://localhost:3000?data=11&reza=100
+
+app.get("/", (req, res) => {
+  const query = new URLSearchParams(req.query).toString();
+  res.redirect("/api/users?" + query);
+});
+
+app.get("/api/users", (req, res) => {
+  console.log(req.query);
+  res.status(200).send(mockData);
+});
+```
 ### Post Request
 ```javascript
 import express from "express";
