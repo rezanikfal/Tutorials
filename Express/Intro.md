@@ -93,6 +93,15 @@ app.get("/api/users", (req, res) => {
   res.status(200).send(mockData);
 });
 ```
+```javascript
+// URL: http://localhost:3000/api/users?filter=username&value=i
+
+app.get("/api/users", (req, res) => {
+  const { filter, value } = req.query;
+  const filteredUsers = mockData.filter((x) => x[filter].includes(value));
+  res.status(200).send(filteredUsers);
+});
+```
 ### Post Request
 ```javascript
 import express from "express";
