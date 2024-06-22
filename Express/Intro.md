@@ -176,3 +176,26 @@ app.put("/api/users/:id", userIndex, (req, res) => {
   return res.status(200).send(updatedRecord);
 });
 ```
+### Validate  Query params
+```javascript
+// http://localhost:3000/api/users?filter=username&value=i
+import { query, validationResult } from "express-validator";
+
+app.get(
+  "/api/users",
+  query("filter")
+    .notEmpty()
+    .withMessage("It is empty")
+    .isString() // Query params is always string
+    .withMessage("not string")
+    .isLength({ min: 3, max: 10 })
+    .withMessage("Length should be between 3-10"),
+  (req, res) => {
+    const results = validationResult(req);
+    console.log(results);
+    const { filter, value } = req.query;
+    const filteredUsers = mockData.filter((x) => x[filter].includes(value));
+    res.status(200).send(filteredUsers);
+  }
+);
+```
