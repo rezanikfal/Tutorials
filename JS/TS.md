@@ -91,6 +91,10 @@ console.log(someValue.length);
 // To assert that someValue is not undefined, you can use the non-null assertion operator.
 console.log(someValue!.length); // No compilation error
 ```
+- To use ```@ViewChild``` decorator to get a reference to a DOM element, We must assure TypeScript that myRef will definitely be assigned a value when the view initializes.
+```javascript
+@ViewChild('myRef') myRef!: ElementRef;
+```
 ## Access modifier (public, private, read only): 
 - Default behavior of object elements is **public**.
 - We can access **readonly** from the inside and outside of the class but not change it. We can change it just in **constructor**.
