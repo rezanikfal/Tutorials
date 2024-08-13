@@ -24,6 +24,17 @@ import { BrowserModule } from '@angular/platform-browser';
 - ```BrowserModule``` A built-in Angular module that is essential for running Angular applications in a web browser to work the DOM, such as bindings, event handling, etc.
 - ```CommonModule``` included within ```BrowserModule``` and provides common directives like ```ngIf```, ```ngFor```, ```DatePipe```, etc.
 - When you create a new Feature Module as below, no need to the ```BrowserModule```. 
+```javascript
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule
+  ]
+})
+export class MyMod1Module { }```
 ### NgModule
 ```javascript
 import { NgModule } from '@angular/core';
