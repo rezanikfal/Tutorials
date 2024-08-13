@@ -34,7 +34,8 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class MyMod1Module { }```
+export class MyMod1Module { }
+```
 ### NgModule
 ```javascript
 import { NgModule } from '@angular/core';
