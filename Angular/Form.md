@@ -46,10 +46,13 @@ import { NgModule } from '@angular/core';
 ```javascript
 import { FormGroup, FormControl } from '@angular/forms';
 export class AppCardComponent implements OnInit {
+cardForm!: FormGroup;
+
+ ngOnInit(): void {
   cardForm = new FormGroup({
     name: new FormControl('')
   });
-  ngOnInit(): void {}
+ }
 }
 ```
 ```htm
