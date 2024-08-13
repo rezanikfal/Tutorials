@@ -2,6 +2,8 @@
 ## Form Group/Control:
 ### app.module.ts:
 ```javascript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -15,11 +17,17 @@ import { ReactiveFormsModule } from '@angular/forms';
   bootstrap: [AppComponent]
 })
 ```
-### BrowserModule 
+### BrowserModule & CommonModule (included)
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
 ```
-- ```BrowserModule``` includes services and directives that are specific to the browser environment. It helps Angular to understand and work with features related to the DOM, such as bindings, event handling, etc.
+- ```BrowserModule``` A built-in Angular module that is essential for running Angular applications in a web browser to work the DOM, such as bindings, event handling, etc.
+- ```CommonModule``` included within ```BrowserModule``` and provides common directives like ```ngIf```, ```ngFor```, etc.
+### NgModule
+```javascript
+import { NgModule } from '@angular/core';
+```
+- ```NgModule``` is a decorator that marks a class as an Angular module and provides metadata about the module.
 ### Form Component:
 ```username: new FormControl('Default Value', [ Default Validator], [Custom Validators]),```
 ```javascript
