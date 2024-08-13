@@ -8,8 +8,8 @@
 -  The project is then served locally, and you can view the application in your web browser (usually at http://localhost:4200 by default).
 -  Once the application is loaded in the browser, Angular bootstraps the **root** module and **injects dependencies** as needed.
     - Angular looks for the root module, usually defined in the ```main.ts``` file using the ```platformBrowserDynamic().bootstrapModule(AppModule)``` method.
-    - Services that are provided in the root module (providedIn: 'root') are singleton services, meaning they are instantiated once and shared across the entire application.
-    - The root module contains a root component (usually AppComponent). Angular starts with this component and recursively initializes and renders its child components
+    - Services that are provided in the root module (```providedIn: 'root'```) are singleton services, meaning they are instantiated once and shared across the entire application.
+    - The root module contains a root component (usually ```AppComponent```). Angular starts with this component and recursively initializes and renders its child components
     - Change Detection, Event Binding, Rendering ->Application Ready
     -  After bootstrapping, the application starts interacting with the user, handling events, making HTTP requests, and updating the view as necessary.
 ## Naming Convention  
