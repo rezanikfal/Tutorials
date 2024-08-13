@@ -1,5 +1,7 @@
 ## How the Angular app runs
 -  run ```ng serve``` or ```ng build```.
+    - **ng serve** is primarily used during development to run the Angular application locally.
+    - **ng build** is used to compile the Angular application into static files that can be deployed to a production server
 -  The CLI loads the configuration files (e.g., ```angular.json```, ```tsconfig.json```) to understand the structure and settings of the project.
 -  TypeScript Compilation, Angular compiles the HTML and TypeScript, CLI uses Webpack to bundle all the JavaScript, HTML, CSSto be served by a web server.
 -  Production build (```ng build --prod```) does additional optimizations occur, such as minification, tree shaking (removing unused code).
