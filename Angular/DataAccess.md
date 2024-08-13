@@ -60,7 +60,8 @@ export class Mod1Comp1Component implements OnInit {
   constructor(private el:ElementRef){}
   
   ngOnInit(): void {
-    console.log(this.el.nativeElement);
+    console.log(this.el.nativeElement); // access to the root
+    console.log(this.el.nativeElement.querySelector('p')); //Access to p tag
   }
 }
 ```
@@ -79,6 +80,20 @@ export class MyComp1Component implements AfterViewInit {
 - By injecting ```ElementRef``` into a component or directive, you're getting direct access to the DOM.
 - So ```ElementRef``` access is available as soon as the component is instantiated.
 - ```ViewChild``` requires the Angular view to be fully initialized before it can find the references which happens during the ```ngAfterView```.
+- After getting access we can update the html element from .ts file:
+```javascript
+import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
+
+export class MyComp1Component implements AfterViewInit {
+  @ViewChild('rez') rez!: ElementRef;
+  constructor(private renderer: Renderer2) {}
+  ngAfterViewInit() {
+    const pElement = this.rez.nativeElement;
+    pElement.style.color = 'blue';
+    this.renderer.setStyle(pElement, 'margin-top', '50px');
+ }
+}
+```
 ## Pass Data from parent to child using INPUT directive:
 ### Child:
 ```javascript
