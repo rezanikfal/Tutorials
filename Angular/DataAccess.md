@@ -80,7 +80,7 @@ export class MyComp1Component implements AfterViewInit {
 - By injecting ```ElementRef``` into a component or directive, you're getting direct access to the DOM.
 - So ```ElementRef``` access is available as soon as the component is instantiated.
 - ```ViewChild``` requires the Angular view to be fully initialized before it can find the references which happens during the ```ngAfterView```.
-- After getting access we can update the html element from .ts file:
+- After getting access we can update the html element from .ts file directly or using ```Renderer2```:
 ```javascript
 import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
 
