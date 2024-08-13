@@ -22,12 +22,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 ```
 - ```BrowserModule``` A built-in Angular module that is essential for running Angular applications in a web browser to work the DOM, such as bindings, event handling, etc.
-- ```CommonModule``` included within ```BrowserModule``` and provides common directives like ```ngIf```, ```ngFor```, etc.
+- ```CommonModule``` included within ```BrowserModule``` and provides common directives like ```ngIf```, ```ngFor```, ```DatePipe```, etc.
+- When you create a new Feature Module as below, no need to the ```BrowserModule```. 
 ### NgModule
 ```javascript
 import { NgModule } from '@angular/core';
 ```
-- ```NgModule``` is a decorator that marks a class as an Angular module and provides metadata about the module.
+- ```NgModule``` is a decorator that marks a class as an Angular module and provides metadata about the module (i.e. declarations, imports, ...).
 ### Form Component:
 ```username: new FormControl('Default Value', [ Default Validator], [Custom Validators]),```
 ```javascript
