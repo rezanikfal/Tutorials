@@ -109,6 +109,10 @@ export class AppCardComponent implements OnInit {
     ....
 ```
 ## Create *Reusable* Form Controls:
+- Create a normal ```formGroup``` with ```FormControl(s)``` in the parent component.
+- Create a the reusable ```FormControl``` component with **just the html**.
+- The child template includes the type of control (input, radio, ...), error handeling, ... .
+- Pass the ```FormControl``` from parent to child as ```@Input``` and use it in the child template. 
 ### Parent Componenet:
 ```javascript
 import { Component, OnInit } from '@angular/core';
