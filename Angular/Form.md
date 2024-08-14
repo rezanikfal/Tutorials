@@ -201,28 +201,60 @@ export class InputComponent implements OnInit {
   }
 ```
 ## Dynamic Forms using FormBuilder/FormArray:  
-Using __Getter__ to get a form array to push __formCotrols__ in:   
-- Inject form builder:
+Lets say we need a form with name and email of the user and nultiple (unknown number) addresses for him. Here is the process:
+- Using Getter to get a form array to push **formCotrols** in:   
+- Inject  ```FormBuilder```:
 ```javascript
-  constructor(private fb: FormBuilder) {}
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+export class YourComponent {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      name: [''],           // Single form control
+      email: [''],          // Single form control
+      addresses: this.fb.array([])  // Form array for multiple addresses
+    });
+  }
+
+  get addresses() {
+    return this.form.get('addresses') as FormArray;
+  }
+}
 ```
-- Create Form Group/Array (using fb or directly):
+- You can dynamically add form controls to the FormArray using the push method.:
 ```javascript
-  cardForm = new FormGroup({
-    alterEmails: this.fb.array([]),
+addAddress() {
+  const addressGroup = this.fb.group({
+    street: [''],
+    city: [''],
+    state: [''],
+    zip: ['']
   });
+
+  this.addresses.push(addressGroup);
+}
 ```
-- Create getter:
+- Here is the ```FormArray``` template (similar form controls for each address):
 ```javascript
-  get alterEmails(){
-    return this.cardForm.get('alterEmails') as FormArray
-  }
-  ```
-- Use getter to create Form Controls:
-```javascript
-  addAlterEmails() {
-    this.alterEmails.push(this.fb.control(''));
-  }
+  <div formArrayName="addresses">
+    <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+      <label for="street">Street:</label>
+      <input id="street" formControlName="street">
+
+      <label for="city">City:</label>
+      <input id="city" formControlName="city">
+
+      <label for="state">State:</label>
+      <input id="state" formControlName="state">
+
+      <label for="zip">Zip:</label>
+      <input id="zip" formControlName="zip">
+
+      <button type="button" (click)="removeAddress(i)">Remove Address</button>
+    </div>
+  </div>
   ```
 ### app.component.ts:
 ```javascript
