@@ -256,50 +256,6 @@ addAddress() {
     </div>
   </div>
   ```
-### app.component.ts:
-```javascript
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-})
-export class AppComponent implements OnInit {
-  // alterEmails: FormArray;
-  get alterEmails(){
-    return this.cardForm.get('alterEmails') as FormArray
-  }
-
-  addAlterEmails() {
-    this.alterEmails.push(this.fb.control(''));
-  }
-
-  constructor(private fb: FormBuilder) {}
-
-  cardForm = new FormGroup({
-    alterEmails: this.fb.array([]),
-  });
-
-  ngOnInit(): void {
-    // Alternative for Getter
-    // this.alterEmails = <FormArray>this.cardForm.get('alterEmails');
-  }
-}
-```
-### Form Markup:
-```htm
-<form [formGroup]="cardForm">
-  <button type="button" (click)='addAlterEmails()'>Add Email</button>
-  <div formArrayName='alterEmails' *ngFor="let item of alterEmails.controls; let i=index">
-    <input type="text" [formControlName] = 'i'>
-  </div>
-</form>
-
-<div>{{ cardForm.value | json }}</div>
-}
-```
 ## Custom Validator (Synchrones):
 We use dependency injection to be unified with the Async Custom Validator. ```implements Validator```
 ### form.component.ts:
