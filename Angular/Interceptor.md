@@ -5,8 +5,11 @@
 - The ```withCredentials``` option is particularly useful when the backend service requires authentication.
   - To handle CORS, setting withCredentials to true tells the browser to include credentials with requests to a different origin.
   - If your backend uses cookies for authentication or session management, you need ```withCredentials: true```
+### HttpHeaders
+- HTTP headers are crucial in requests, as they provide the server with information about the client and the nature of the request..
+- ```HttpHeaders``` are key-value pairs that provide additional context about the request, such as the content type, authorization credentials, or custom metadata.
 ```javascript
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -16,9 +19,15 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-  getData() {
+  sendData(data: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer your-token-here'
+    });
+
     return this.http.get('https://api.example.com/data', {
-      withCredentials: true
+      withCredentials: true,
+      headers 
     });
   }
 }
