@@ -1,18 +1,28 @@
+### Cross-Origin Resource Sharing (CORS)
+- By default, web browsers enforce the Same-Origin Policy (SOP).
+- CORS is a security feature implemented by web browsers that allows or restricts web applications running at one origin (domain) to request resources from a different origin.
 ### withCredentials
-Adding this option `withCredentials: true` keeps the cookie even you refresh the page
+- The ```withCredentials``` option is particularly useful when the backend service requires authentication.
+  - To handle CORS, setting withCredentials to true tells the browser to include credentials with requests to a different origin.
+  - If your backend uses cookies for authentication or session management, you need ```withCredentials: true```
 ```javascript
-  signup(credentials: SignupCredentials) {
-    return this.http
-      .post<SignupResponse>(`${this.rootUrl}/auth/signup`, credentials, {
-        withCredentials: true
-      })
-      .pipe(
-        tap(() => {
-          this.signedin$.next(true);
-        })
-      );
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DataService {
+
+  constructor(private http: HttpClient) {}
+
+  getData() {
+    return this.http.get('https://api.example.com/data', {
+      withCredentials: true
+    });
   }
-  ```
+}
+```
  ### HTTP Interceptor
 - We can use Interceptor to automate the _withCredentials_ adding process
 - By default _HttpClient_ does not store any Cookie and dump it after getting respond from server. Using __Interceptor__ we can control the request / response and keep the Cookies in this case.
