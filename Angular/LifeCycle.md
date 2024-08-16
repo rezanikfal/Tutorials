@@ -47,8 +47,47 @@ export class MyComponent implements DoCheck {
 }
 ```
 - ngAfterContentInit()
-  - The AfterContent hooks concern _ContentChildren_, the child components that Angular projected into the component. Children usually to be projected at some \<ng-content> element of a component.
-  - This method is called only __once__ during the component’s lifecycle, after the first ngDoCheck.
+  - The ```ngAfterContentInit``` lifecycle hook in Angular is a method that is invoked once after Angular has completed initializing all the content projected into the component.
+  - This method is called only **once** during the component’s lifecycle, after the first ```ngDoCheck```.
+  - ```{ static: true }``` The query is resolved during the component's initialization phase, before Angular's change detection runs. ```{ static: false }``` is after change detection.
+ ```javascript
+// Parent
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <app-child>
+      <p #projectedContent>This is some projected content!</p>
+    </app-child>
+  `
+})
+export class ParentComponent {}
+```
+```javascript
+// Child
+import { Component, AfterContentInit, ContentChild, ElementRef } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `
+    <div>
+      <ng-content></ng-content> <!-- This is where the content from the parent is projected -->
+    </div>
+  `
+})
+export class ChildComponent implements AfterContentInit {
+
+  @ContentChild('projectedContent', { static: true }) content: ElementRef;
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit - Projected content is initialized');
+    // Access the projected content
+    console.log(this.content.nativeElement.textContent); // Outputs: This is some projected content!
+  }
+}
+
+```
 - ngAfterContentChecked()
   - This method is called once during the component’s lifecycle after ngAfterContentInit and then after __every__ subsequent ngDoCheck.
 - ngAfterViewInit()
