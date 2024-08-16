@@ -24,10 +24,28 @@ export class MyComp2Component implements OnInit, OnChanges {
 }
 ```
 - ngOnInit()  
-  - This method is called only __once__ during the component lifecycle, after the first ngOnChanges call. At this point, within this method, you can have access not only to data-bound properties but also the component’s input properties.
-  - constructor is best left to be used for dependency injection and our initialization logic should be put on ngOnInit.
+  - This method is called only __once__ during the component lifecycle, after the first ```ngOnChanges``` call. At this point, within this method, you can have access not only to data-bound properties but also the component’s input properties.
+  - Constructor is best left to be used for dependency injection and our initialization logic should be put on ```ngOnInit```.
 - ngDoCheck()
-  -  It detects changes that Angular can’t or won’t detect. It is called in __every__ change detection, immediately after the ngOnChanges and ngOnInit hooks.this hook is really costly.It is called when __change detection runs__.
+  -  It detects changes that Angular can’t or won’t detect. It is called in **every** change detection, immediately after the ```ngOnChanges``` and ```ngOnInit``` hooks.this hook is really costly.It is called **when change detection run**s.
+  -  Since ```ngDoCheck``` doesn't automatically provide previous and current values, you have to manually store the previous state of any variables
+```javascript
+export class MyComponent implements DoCheck {
+  myVar: string = 'Initial Value';
+  previousMyVar: string = '';  // Property to store the previous value
+
+  ngDoCheck() {
+    // Custom change detection logic
+    if (this.myVar !== this.previousMyVar) {
+      console.log('myVar changed from', this.previousMyVar, 'to', this.myVar);
+      // Update the previous value
+      this.previousMyVar = this.myVar;
+
+      // Perform any other actions needed when myVar changes
+    }
+  }
+}
+```
 - ngAfterContentInit()
   - The AfterContent hooks concern _ContentChildren_, the child components that Angular projected into the component. Children usually to be projected at some \<ng-content> element of a component.
   - This method is called only __once__ during the component’s lifecycle, after the first ngDoCheck.
