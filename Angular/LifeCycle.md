@@ -2,7 +2,27 @@
 The components have their whole lifecycle managed by Angular, from creation to destruction. Lifecycle hooks allow us to act in key moments.
 ## List of hooks
 - ngOnChanges()  
-  - This method is called once on component’s creation and then __every time__ changes are detected in one of the component’s input properties.You can handle any specific logic in the component based on the received input property. It is called when a __value bound to an input has changed__.
+  - The ```ngOnChanges``` lifecycle hook is specifically designed to respond to changes in ```@Input``` properties.
+  - ```SimpleChanges``` is an Angular interface that represents the collection of changes to the input properties of a component. 
+```javascript
+import { Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+
+@Component({
+  selector: 'app-my-comp2',
+  templateUrl: './my-comp2.component.html',
+  styleUrl: './my-comp2.component.scss',
+})
+export class MyComp2Component implements OnInit, OnChanges {
+  @Input() var1!: number;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes['var1'].currentValue);
+    console.log(changes['var1'].previousValue);
+    console.log(changes['var1'].firstChange); //Property
+    console.log(changes['var1'].isFirstChange()); //Method same as property
+  }
+}
+```
 - ngOnInit()  
   - This method is called only __once__ during the component lifecycle, after the first ngOnChanges call. At this point, within this method, you can have access not only to data-bound properties but also the component’s input properties.
   - constructor is best left to be used for dependency injection and our initialization logic should be put on ngOnInit.
