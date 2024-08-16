@@ -89,10 +89,10 @@ export class ChildComponent implements AfterContentInit {
 
 ```
 - ngAfterContentChecked()
-  - This method is called once during the component’s lifecycle after ngAfterContentInit and then after __every__ subsequent ngDoCheck.
+  -  ```ngAfterContentChecked``` is used to respond to changes in the projected content.
 - ngAfterViewInit()
-  - The AfterView hooks concern _ViewChildren_, the child components whose element tags appear within the component's template.
-  - This method is called only __once__ during the component’s lifecycle, after ngAfterContentChecked. after Angular has already composed the component’s views 
+  - The ```ngAfterViewInit``` lifecycle hook in Angular is called once after the component's view, and its child views, have been fully initialized..
+  - This method is called only **once** during the component’s lifecycle, after ```ngAfterContentChecked```. after Angular has already composed the component’s views 
   - This hook is quite useful when you need to load content on your view that depends on its view’s components.
 - ngAfterViewChecked()
   - This method is called once after ngAfterViewInit and then after __every__ subsequent ngAfterContentChecked. 
