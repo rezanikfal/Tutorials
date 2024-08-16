@@ -113,7 +113,8 @@ export class ExampleComponent implements AfterViewInit {
 }
 ```
 - ngAfterViewChecked()
-  - This method is called once after ngAfterViewInit and then after __every__ subsequent ngAfterContentChecked. 
+  - This method is called once after ngAfterViewInit and then after __every__ subsequent ngAfterContentChecked.
+  - It is called after every change detection cycle for the component's view and its child views.
 - ngOnDestroy()
   - Lastly, this method is called only __once__ during the component’s lifecycle, right before Angular destroy it. 
   - you should put all your cleanup logic for that component. 
