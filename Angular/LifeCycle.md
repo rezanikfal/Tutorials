@@ -87,6 +87,23 @@ export class ChildComponent implements AfterContentInit {
   }
 }
 ```
+- ng-content
+  - The child component uses ```<ng-content>``` to act as a placeholder for this content.
+  - If the child component has multiple areas where dynamic content might be inserted, you can use the ```select``` attribute in ```<ng-content>``` to specify which content should go where.
+  - If no content is passed from the parent for a particular ```<ng-content>``` block, the child component will simply ignore that block
+```html
+<div class="card">
+  <div class="card-header">
+    <ng-content select="[card-header]"></ng-content>
+</div>
+------------------------------
+<app-card>
+  <div card-header>
+    My Card Header
+  </div>
+...
+<app-card>
+```
 - ngAfterContentChecked()
   -  ```ngAfterContentChecked``` is used to respond to changes in the projected content.
 - ngAfterViewInit()
