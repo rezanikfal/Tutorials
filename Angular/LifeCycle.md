@@ -26,6 +26,14 @@ export class MyComp2Component implements OnInit, OnChanges {
 - ngOnInit()  
   - This method is called only __once__ during the component lifecycle, after the first ```ngOnChanges``` call. At this point, within this method, you can have access not only to data-bound properties but also the component’s input properties.
   - Constructor is best left to be used for dependency injection and our initialization logic should be put on ```ngOnInit```.
+  - Here is typically used to:
+      - Fetching Data from a Service
+      - Initial Setup or Configuration (like create ```FormGroups```)
+      - Subscribing to Observables
+      - Handling Route Parameters
+      - Initializing Data from Inputs
+      - **NOT** heavy Computation
+      - **NOT** DOM Manipulation (it should be done in ```ngAfterViewInit``` if really needed)
 - ngDoCheck()
   -  It detects changes that Angular can’t or won’t detect. It is called in **every** change detection, immediately after the ```ngOnChanges``` and ```ngOnInit``` hooks.this hook is really costly.It is called **when change detection run**s.
   -  Since ```ngDoCheck``` doesn't automatically provide previous and current values, you have to manually store the previous state of any variables
