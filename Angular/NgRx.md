@@ -277,7 +277,7 @@ export const selectUserDetails = createSelector(
 
 ``` 
 - **Component Update**: Only components impacted by the state change are re-rendered.
-  - In an Angular component, you typically use the select method of the NgRx store to subscribe to a piece of state.
+  - In an Angular component, you typically use the **select method of the NgRx** store to subscribe to a piece of state.
   - The component subscribes to the observable returned by the select method, and this observable emits new values whenever the selected part of the state changes.
 ```javascript
 import { Component } from '@angular/core';
