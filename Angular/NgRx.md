@@ -257,6 +257,7 @@ export function reducer(state: any, action: any) {
   -  selectors play a crucial role after state change detection.
   - Selectors allow you to "slice" the state by selecting only the parts of the state that a particular component or service needs:
   - Selectors can be composed from other selectors, allowing you to create complex state selections:
+  - Selectors are often **memoized**, meaning that they remember the result of their last execution. So no input change, no re-calculate, more performance.
 ```javascript
 import { createSelector } from '@ngrx/store';
 
