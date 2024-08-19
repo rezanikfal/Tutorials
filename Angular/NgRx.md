@@ -206,8 +206,99 @@ export class CounterModule {}
     Redux takes a given state (object) and passes it to each reducer in a loop. And it expects a brand new object from the reducer if there are any changes. And it also expects to get the old object back if there are no changes.Redux simply checks whether the old object is the same as the new object by comparing the memory locations of the two objects. So if you mutate the old object’s property inside a reducer, the “new state” and the “old state” will both point to the same object. Hence Redux thinks nothing has changed! So this won’t work.
   - **Change detection**      
     The main benefit is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.
-    
-- NgRx libraries installation (other elements of the store should be installed individually):
+### NgRx process summary:
+- **Action Dispatching**: Actions are dispatched to indicate changes in the application.
+  - An action is an object that has a **type** and an optional **payload**.
+  - Actions are the only way to interact with the NgRx store.
+```javascript
+import { createAction, props } from '@ngrx/store';
+
+export const updateName = createAction(
+  '[User] Update Name',
+  props<{ name: string }>()
+);
+```
+- **Reducer Execution**: Reducers create a new, immutable state based on the action and the current state.
+  - when the updateName action is dispatched, the reducer creates a new state object with the updated name:
+```javascript
+import { createReducer, on } from '@ngrx/store';
+import { updateName } from './user.actions';
+
+export const initialState = {
+  user: {
+    name: 'John Doe',
+    age: 30
+  },
+  settings: {
+    theme: 'dark'
+  }
+};
+
+const userReducer = createReducer(
+  initialState,
+  on(updateName, (state, { name }) => ({
+    ...state,
+    user: {
+      ...state.user,
+      name: name
+    }
+  }))
+);
+
+export function reducer(state: any, action: any) {
+  return userReducer(state, action);
+}
+
+``` 
+- **State Replacement**: The new state replaces the old state in the NgRx store.
+- **State Change Detection**: NgRx detects state changes by comparing the old and new state references.
+  - NgRx will notify any components that are subscribed to the affected parts of the state (using selectors).
+  -  selectors play a crucial role after state change detection.
+  - Selectors allow you to "slice" the state by selecting only the parts of the state that a particular component or service needs:
+  - Selectors can be composed from other selectors, allowing you to create complex state selections:
+```javascript
+import { createSelector } from '@ngrx/store';
+
+export const selectUser = (state: AppState) => state.user;
+
+export const selectUserName = createSelector(
+  selectUser,
+  (user) => user.name
+);
+``` 
+```javascript
+export const selectUserDetails = createSelector(
+  selectUserName,
+  selectUserAge,
+  (name, age) => ({ name, age })
+);
+
+``` 
+- **Component Update**: Only components impacted by the state change are re-rendered.
+  - In an Angular component, you typically use the select method of the NgRx store to subscribe to a piece of state.
+  - The component subscribes to the observable returned by the select method, and this observable emits new values whenever the selected part of the state changes.
+```javascript
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectUserName } from './user.selectors';
+
+@Component({
+  selector: 'app-user',
+  template: `
+    <div>{{ userName$ | async }}</div>
+  `
+})
+export class UserComponent {
+  userName$: Observable<string>;
+
+  constructor(private store: Store) {
+    this.userName$ = this.store.select(selectUserName);
+  }
+}
+``` 
+- **Rendering the UI**: The UI updates to reflect the new state.
+### NgRx libraries installation (other elements of the store should be installed individually):
 ```code
 ng add @ngrx/store@latest
 ```
