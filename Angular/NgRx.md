@@ -208,6 +208,7 @@ export class CounterModule {}
     The main benefit is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.
 ### NgRx process summary:
 - **Action Dispatching**: Actions are dispatched to indicate changes in the application.
+  - Actions are plain JavaScript objects that describe what happened and are dispatched to the store.
   - An action is an object that has a **type** and an optional **payload**.
   - Actions are the only way to interact with the NgRx store.
 ```javascript
