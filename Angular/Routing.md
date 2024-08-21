@@ -396,3 +396,114 @@ export class FeatureRoutingModule {}
 <router-outlet name="sidebarOutlet"></router-outlet> <!-- Named outlet for the sidebar -->
 <router-outlet name="contentOutlet"></router-outlet> <!-- Named outlet for the content -->
 ```
+## Add routing to a Module
+We can easily add routing to a module without a new **routing.ts** file:
+### Before Routing
+```javascript
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { CounterComponent } from './counter/counter/counter.component';
+import { PostsComponent } from './posts/posts/posts.component';
+import { HeaderComponent } from './header/header/header.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CounterComponent,
+    PostsComponent,
+    HeaderComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+### After Routing
+```javascript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from "@angular/router";
+import { AppComponent } from './app.component';
+import { CounterComponent } from './counter/counter/counter.component';
+import { PostsComponent } from './posts/posts/posts.component';
+import { HeaderComponent } from './header/header/header.component';
+
+const routes:Routes=[
+  {
+    path:'', component:PostsComponent
+  },
+  {
+    path:'counter', component:CounterComponent
+  }
+]
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CounterComponent,
+    PostsComponent,
+    HeaderComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+### Adding routs to "a" tag
+```html
+<ul class="navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#" [routerLink]="['/']">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" href="#" [routerLink]="['/counter']">Counter</a>
+  </li>
+</ul>
+```
+### After Lazy Loading
+```javascript
+const routes:Routes=[
+  {
+    path:'', component:PostsComponent
+  },
+  {
+    path: 'counter', 
+    loadChildren: () => import('./counter/counter.module').then(m => m.CounterModule)
+  }
+]
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    PostsComponent,
+    HeaderComponent
+  ],
+```
+### Components Folder to Module with routing (for Lazy Loading)
+first add the ```counter.module.ts``` to the folder and:
+```javascript
+import { NgModule } from '@angular/core'
+import { CounterComponent } from './counter/counter.component'
+import { RouterModule, Routes } from '@angular/router'
+import { CommonModule } from '@angular/common'
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: CounterComponent,
+  },
+]
+
+@NgModule({
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [CounterComponent],
+})
+export class CounterModule {}
+```
