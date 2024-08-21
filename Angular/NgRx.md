@@ -1,8 +1,3 @@
-# Redux Structure
-<img src="../Pics/redux1.PNG" width="950">
-<img src="../Pics/redux3.PNG" width="600">
-<img src="../Pics/redux2.PNG" width="800">
-
 ### Redux terms:
 - **Action:** It is used to decide how to change data in the Redux Store
 - **Distpatch:** Takes an actions and forwards it on to all the different **Reducers**.
@@ -10,53 +5,17 @@
 - **Store:** A repository that contains all the recent data. To Create the **Store** we should take the **Reducrers**, wire them up and create a coherent unit to accept actions. 
 - Redux by comparing the Old and new state can understand the state change status. That is why reducer does not touch the current state. It creates a copy of the current **mutable** state and returns it to the store.
 
-## Immutability in JS
-JS is not a good language for Immutability. **Arrays** and **objects** are mutable in JS:
+# NgRx Introduction
+- NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
+  - **Single source of truth**  
+    In the case of a redux/ngrx architecture, this means that the state of your whole application is stored in an object tree within a single store.
+  - **State is read-only**  
+    You are never going to change the state directly instead you are going to dispatch actions.
+  - **Changes are made with pure functions**  
+    The operation triggered by dispatching an action is going to be a pure function (any function that doesn’t alter input data) called reducers. The reducer function takes an object that represents the “old” state, then creates a brand new object by copying all the old object’s details into a it and **overriding** old properties with new ones.  
+  - **Change detection**      
+    The main benefit is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.
 
-```javascript
-const a = ["a", "f", "y", "r", "b"];
-console.log(a);  //["a", "f", "y", "r", "b"];
-const b =a.sort();
-console.log(a);  //["a", "b", "f", "r", "y"]
-```
-```javascript
-const a = ["a", "f", "y", "r", "b"];
-console.log(a);  //["a", "f", "y", "r", "b"];
-const b =[...a].sort();
-console.log(a);  //["a", "f", "y", "r", "b"];
-```
-
-Functions like **map**, **slice**, **filter** are non-destructive as well.
-```javascript
-const a = ["a", "f", "y", "r", "b"];
-const c = a.map(data=>data).sort()
-console.log(c);  //["a", "b", "f", "r", "y"];
-console.log(a);  //["a", "f", "y", "r", "b"];
-```
-
-Objects Immutability.
-```javascript
-const state = {
-name: 'Jon Snow',
-occupation: 'Lord Commander',
-skills: [] // knows nothing...
-}
-const newState = {
-...state,
-occupation: 'King in the North',
-skills: [...state.skills, 'Fighting', 'Test']
-};
-
-console.log(newState)
-//{
-//  name:"Jon Snow",
-//  occupation:"King in the North",
-//  skills:[
-//    "Fighting",
-//    "Test"
-//    ]
-//}
-```
 ## Smart vs Dumb Component
 - Smart: Know about state, business ligic and how to manage the state 
 - Dumb: Don't know about state (stateless) & business logic. Dumb components only responsibility is to present something to the DOM.
@@ -84,129 +43,6 @@ function subtractWithRandom(a, b) {
     return total;
 }
 ```
-## Add routing to a Module
-We can easily add routing to a module without a new **routing.ts** file:
-### Before Routing
-```javascript
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { CounterComponent } from './counter/counter/counter.component';
-import { PostsComponent } from './posts/posts/posts.component';
-import { HeaderComponent } from './header/header/header.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    CounterComponent,
-    PostsComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-### After Routing
-```javascript
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from "@angular/router";
-import { AppComponent } from './app.component';
-import { CounterComponent } from './counter/counter/counter.component';
-import { PostsComponent } from './posts/posts/posts.component';
-import { HeaderComponent } from './header/header/header.component';
-
-const routes:Routes=[
-  {
-    path:'', component:PostsComponent
-  },
-  {
-    path:'counter', component:CounterComponent
-  }
-]
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    CounterComponent,
-    PostsComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes)
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-### Adding routs to "a" tag
-```html
-<ul class="navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#" [routerLink]="['/']">Posts</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#" href="#" [routerLink]="['/counter']">Counter</a>
-  </li>
-</ul>
-```
-### After Lazy Loading
-```javascript
-const routes:Routes=[
-  {
-    path:'', component:PostsComponent
-  },
-  {
-    path: 'counter', 
-    loadChildren: () => import('./counter/counter.module').then(m => m.CounterModule)
-  }
-]
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    PostsComponent,
-    HeaderComponent
-  ],
-```
-### Components Folder to Module with routing (for Lazy Loading)
-first add the ```counter.module.ts``` to the folder and:
-```javascript
-import { NgModule } from '@angular/core'
-import { CounterComponent } from './counter/counter.component'
-import { RouterModule, Routes } from '@angular/router'
-import { CommonModule } from '@angular/common'
-
-export const routes: Routes = [
-  {
-    path: '',
-    component: CounterComponent,
-  },
-]
-
-@NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes)],
-  declarations: [CounterComponent],
-})
-export class CounterModule {}
-```
-# NgRx Introduction
-- NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
-  - **Single source of truth**  
-    In the case of a redux/ngrx architecture, this means that the state of your whole application is stored in an object tree within a single store.
-  - **State is read-only**  
-    You are never going to change the state directly instead you are going to dispatch actions.
-  - **Changes are made with pure functions**  
-    The operation triggered by dispatching an action is going to be a pure function (any function that doesn’t alter input data) called reducers. The reducer function takes an object that represents the “old” state, then creates a brand new object by copying all the old object’s details into a it and **overriding** old properties with new ones.  
-    Redux takes a given state (object) and passes it to each reducer in a loop. And it expects a brand new object from the reducer if there are any changes. And it also expects to get the old object back if there are no changes.Redux simply checks whether the old object is the same as the new object by comparing the memory locations of the two objects. So if you mutate the old object’s property inside a reducer, the “new state” and the “old state” will both point to the same object. Hence Redux thinks nothing has changed! So this won’t work.
-  - **Change detection**      
-    The main benefit is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.
-### Mutable vs Immutable  && Primitive vs Non-Primitive:
 ### NgRx process summary:
 - **Action Dispatching**: Actions are dispatched to indicate changes in the application.
   - Actions are plain JavaScript objects that describe what happened and are dispatched to the store.
