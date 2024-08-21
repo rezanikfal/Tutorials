@@ -149,7 +149,13 @@ import {VoteService} from './vote.service';
   providers: [VoteService]
 })
 ```
-The second way (more preferred in Angular 6) is to use **@Injectable** decorator and specify **providedIn** property
+```javascript
+import { Injectable } from '@angular/core';
+@Injectable() 
+export class VoteService { }
+```
+- The second way (more preferred in Angular 6) is to use **@Injectable** decorator and specify **providedIn** property
+- **No** need to register to the **providers array of @NgModule**
 ```javascript
 import { Injectable } from '@angular/core';
 @Injectable({   
