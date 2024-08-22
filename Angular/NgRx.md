@@ -1,7 +1,7 @@
 ### Redux terms:
 - **Action:** It is used to decide how to change data in the Redux Store
 - **Distpatch:** Takes an actions and forwards it on to all the different **Reducers**.
-- **Reducer:** Get the **Action** that might have data (Action **Payload**) and the most recent set of data, return updated data that could be same as the current.
+- **Reducer:** It takes two arguments: the current state and an action. The action often contains a type (a string that indicates the kind of action being performed) and an optional payload. The reducer processes these inputs and returns a new state.
 - **Store:** A repository that contains all the recent data. To Create the **Store** we should take the **Reducrers**, wire them up and create a coherent unit to accept actions. 
 - Redux by comparing the Old and new state can understand the state change status. That is why reducer does not touch the current state. It creates a copy of the current **mutable** state and returns it to the store.
 
