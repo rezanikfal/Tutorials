@@ -1,6 +1,22 @@
-## Create Custom Pipe:
+## Angular Pipe:
 They are a simple way to transform values in an Angular template.
-### Angular CLI for Pipe:
+### Default Angular Pipes:
+- There are multiple pre-defined pipes including:
+  - **DatePipe**: Formats a date value according to locale rules.
+  - **UpperCasePipe**: Transforms text to all upper case.
+  - **LowerCasePipe**: Transforms text to all lower case.
+  - **CurrencyPipe**: Transforms a number to a currency string, formatted according to locale rules.
+  - **DecimalPipe**: Transforms a number into a string with a decimal point, formatted according to locale rules.
+  - **PercentPipe**: Transforms a number to a percentage string, formatted according to locale rules.
+  - **AsyncPipe**: Subscribe and unsubscribe to an asynchronous source such as an observable.
+  - **JsonPipe**: Display a component object property to the screen as JSON for debugging. 
+```html
+myDate = '12/12/1977' 
+<p>{{ myDate }}</p>  // 12/12/1977
+<p>{{ myDate | date }}</p>  // Dec 12, 1977
+<p>{{ myDate | date : "full" }}</p>  // Monday, December 12, 1977 at 12:00:00 AM GMT-06:00
+```
+### Angular CLI for Custom Pipe:
 ```ng generate pipe Pipe-Name```
 - A brand new custom pipe:
   - ```value: unknown``` means the input value of pipe
@@ -129,75 +145,3 @@ A pure pipe is only called when Angular detects a change in the value or the par
        }
       }
   ```
-### Use Date Pipe in Angular Component:
-- We should add the ```Pipe``` to the ```providers: [DatePipe]``` array. That is the old way of creating an injectable (before Angular 6).
-- ```app.module.ts```:
-```javascript
-import { DatePipe } from '@angular/common';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    AngularpipeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [DatePipe],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-- We should import and inject the pipe and use the ```transform``` method to apply the Pipe:
-```javascript
-import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
-
-@Component({
-  selector: 'app-angularpipe',
-  templateUrl: './angularpipe.component.html',
-  styleUrls: ['./angularpipe.component.scss']
-})
-export class AngularpipeComponent implements OnInit {
-
-  datePipeString : string;
-
-  constructor(private datePipe: DatePipe) { 
-    this.datePipeString = datePipe.transform(Date.now(),'yyyy-MM-dd');
-    console.log(this.datePipeString);
-    //2019-07-22
-  }
-}
-```
-### Two ways for creating an Injectable:
-To create a service all we need to do is create a class
-```javascript
-export class VoteService {}
-```
-And register it in providers array of **@NgModule**
-```javascript
-import {VoteService} from './vote.service';
-...
-@NgModule({
-  imports:      [ BrowserModule],
-  declarations: [ AppComponent],
-  bootstrap:    [ AppComponent],
-  providers: [VoteService]
-})
-```
-```javascript
-import { Injectable } from '@angular/core';
-@Injectable() 
-export class VoteService { }
-```
-- The second way (more preferred in Angular 6) is to use **@Injectable** decorator and specify **providedIn** property
-- **No** need to register to the **providers array of @NgModule**
-```javascript
-import { Injectable } from '@angular/core';
-@Injectable({   
-  providedIn: 'root', 
-}) 
-export class VoteService { }
-```
-‘root’ means that we want provide the service at the root level (AppModule)
