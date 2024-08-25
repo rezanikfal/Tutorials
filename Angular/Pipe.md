@@ -1,32 +1,69 @@
 ## Create Custom Pipe:
 They are a simple way to transform values in an Angular template.
-### Typescript (Pipe)
+### Angular CLI for Pipe:
 ```ng generate pipe Pipe-Name```
+- A brand new custom pipe:
+  - ```value: unknown``` means the input value of pipe
+  - ``` ...args: unknown[]``` means unlimited extra parameters
 ```javascript
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'trimOutletName'
+  name: 'updateString'
 })
-export class TrimOutletNamePipe implements PipeTransform {
-  transform(title: string, outletName: string): any {
-    return title.replace(` - ${outletName}`, '');
+export class UpdateStringPipe implements PipeTransform {
+
+  transform(value: unknown, ...args: unknown[]): unknown {
+    return null;
+  }
+
+}
+```
+- A Simple pipe:
+```javascript
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'updateString',
+})
+export class UpdateStringPipe implements PipeTransform {
+  transform(value: string, preValue: string, postValue: number): string {
+    return `${preValue}-${value}:${postValue}`;
   }
 }
 ```
-### Html (Component)
+- How to use in the template :
 ```html
-<h3>World News</h3>
-<div class="list-group">
-  <a
-    *ngFor="let article of articles"
-    class="list-group-item list-group-item-action"
-    [href]="article.url"
-    target="_blank"
-  >
-    {{ article.title | trimOutletName: article.source.name }}
-  </a>
-</div>
+<p>{{ title | updateString : "My" : 1 }}</p> // My-interview:1
+<p>{{ title }}</p> //interview
+```
+### Make a Pipe Injectable:
+- We can make a pipe injectable in Angular to allow it to be used beyond just template
+- In other words we can extend its functionality to services, components, or even other pipes.
+```javascript
+import { Injectable, Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'updateString',
+})
+@Injectable({
+  providedIn: 'root',
+})
+export class UpdateStringPipe implements PipeTransform {
+  transform(value: string, preValue: string, postValue: number): string {
+    return `${preValue}-${value}:${postValue}`;
+  }
+}
+```
+```javascript
+export class MyComp1Component implements OnInit {
+@Input() title = '';
+  constructor(
+    private updateString: UpdateStringPipe
+  ) {}
+  ngOnInit() {
+    this.title = this.updateString.transform(this.title, 'My', 1);
+  }
 ```
 ## Async Pipe:
 Replacing a regular subscription with __Async__ pipe.
