@@ -83,7 +83,7 @@ export class MyComp1Component implements OnInit {
 ```
 
 
-- The `@Pipe` decorator in Angular essentially registers the class with the DI system similarly to how @Injectable does.
+- The `@Pipe` decorator in Angular essentially registers the class with the DI (Dependency Injection) system similarly to how @Injectable does.
 - So for **built-in** and **custom** pipes we can put them in the `providers` array of a component and inject them to the same component:
 ```javascript
 @Component({
@@ -92,6 +92,10 @@ export class MyComp1Component implements OnInit {
   styleUrl: './my-comp1.component.scss',
   providers: [DatePipe, TimeTwoPipe],
 })
+  constructor(
+    private datePipe: DatePipe,
+    private timeTwoPipe: TimeTwoPipe
+  ) {}
   ngOnInit() {
     console.log(this.timeTwoPipe.transform(12)); // custom
     console.log(this.datePipe.transform(this.myDate)); // built-in
