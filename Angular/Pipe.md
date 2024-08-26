@@ -81,9 +81,7 @@ export class MyComp1Component implements OnInit {
     this.title = this.updateString.transform(this.title, 'My', 1);
   }
 ```
-
-
-- The `@Pipe` decorator in Angular essentially registers the class with the DI (Dependency Injection) system similarly to how @Injectable does.
+- The `@Pipe` decorator in Angular essentially registers the class with the DI (Dependency Injection) system similarly to how `@Injectable` does.
 - So for **built-in** and **custom** pipes we can put them in the `providers` array of a component and inject them to the same component:
 ```javascript
 @Component({
