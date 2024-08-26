@@ -17,10 +17,10 @@ myDate = '12/12/1977'
 <p>{{ myDate | date : "full" }}</p>  // Monday, December 12, 1977 at 12:00:00 AM GMT-06:00
 ```
 ### Angular CLI for Custom Pipe:
-```ng generate pipe Pipe-Name```
+`ng generate pipe Pipe-Name`
 - A brand new custom pipe:
-  - ```value: unknown``` means the input value of pipe
-  - ``` ...args: unknown[]``` means unlimited extra parameters
+  - `value: unknown` means the input value of pipe
+  -  `...args: unknown[]` means unlimited extra parameters
 ```javascript
 import { Pipe, PipeTransform } from '@angular/core';
 
@@ -79,6 +79,22 @@ export class MyComp1Component implements OnInit {
   ) {}
   ngOnInit() {
     this.title = this.updateString.transform(this.title, 'My', 1);
+  }
+```
+
+
+- The `@Pipe` decorator in Angular essentially registers the class with the DI system similarly to how @Injectable does.
+- So for **built-in** and **custom** pipes we can put them in the `providers` array of a component and inject them to the same component:
+```javascript
+@Component({
+  selector: 'app-my-comp1',
+  templateUrl: './my-comp1.component.html',
+  styleUrl: './my-comp1.component.scss',
+  providers: [DatePipe, TimeTwoPipe],
+})
+  ngOnInit() {
+    console.log(this.timeTwoPipe.transform(12)); // custom
+    console.log(this.datePipe.transform(this.myDate)); // built-in
   }
 ```
 ## Async Pipe:
