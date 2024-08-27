@@ -3,6 +3,8 @@ To create a module with routing we should run ```ng g m Reza --routing``` the ou
 - ```reza-routing.module.ts```
 - ```reza.module.ts```
 ## Routing module in Root and user-defined modules
+- Routing modules is basically duplicating a module file to define routes
+- We can create the routing in the main module file as well
 - User-defined modules
 ```javascript
 import { NgModule } from '@angular/core';
@@ -16,6 +18,7 @@ const routes: Routes = [];
 })
 export class MyMod11RoutingModule { }
 ```
+- The `forChild()` method is used to define routes specific to this **particular feature module**.
 - Root modules
 ```javascript
 import { NgModule } from '@angular/core';
@@ -29,6 +32,7 @@ const routes: Routes = [];
 })
 export class AppRoutingModule { }
 ```
+- `RouterModule.forRoot(routes)` is used to configure the main (root) routing for your **entire application**.
 - Define Routes:
 ```javascript
 const routes: Routes =
