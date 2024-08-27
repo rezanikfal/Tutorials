@@ -2,6 +2,34 @@
 To create a module with routing we should run ```ng g m Reza --routing``` the outcome is 2 files as follows in ```reza``` folder:
 - ```reza-routing.module.ts```
 - ```reza.module.ts```
+## Routing module in Root and user-defined modules
+- User-defined modules
+```javascript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class MyMod11RoutingModule { }
+```
+- Root modules
+```javascript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+- Define Routes:
 ```javascript
 const routes: Routes =
 [{ path: 'my/path/', component: MyComponent },
