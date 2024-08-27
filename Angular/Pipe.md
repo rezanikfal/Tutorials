@@ -53,6 +53,33 @@ export class UpdateStringPipe implements PipeTransform {
 <p>{{ title | updateString : "My" : 1 }}</p> // My-interview:1
 <p>{{ title }}</p> //interview
 ```
+### Custom Pipe vs Services:
+- If you create a pipe in a user defined module, it will go to the `declarations` array of the module.
+- A custome pipe in a user defined module is just accessable in the same module.
+- A custome pipe in the root module is accessable to the entile application.
+- A service if `providedIn: 'root'` is accessable to the entile application no matter in which module it exists.
+- Createing a service using CLI does not make any changes on the `module.ts` file 
+```javascript
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MyCustomPipe } from './my-custom.pipe';
+
+@NgModule({
+  declarations: [
+    MyCustomPipe,  // Declare the pipe here
+    // Other components, directives, pipes, etc.
+  ],
+  imports: [
+    CommonModule,
+    // Other modules
+  ],
+  exports: [
+    MyCustomPipe  // Optionally export it to make it available in other modules
+  ]
+})
+export class MyCustomModule { }
+
+```
 ### Make a Pipe Injectable:
 - We can make a pipe injectable in Angular to allow it to be used beyond just template
 - In other words we can extend its functionality to services, components, or even other pipes.
