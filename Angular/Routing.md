@@ -53,7 +53,15 @@ this.router.navigate(['/users', '123']);
 ``` 
 ### PathMatch
 The default path-match strategy is **prefix**, which means that the router checks URL elements from the left to see if the URL matches a specified path.You can specify the path-match strategy __full__ to make sure that the path covers the whole unconsumed URL.
+### HttpRequest 
+- The `http.request` method in Angular's `HttpClient` is a powerful and flexible way to make HTTP requests.
+```javascript
+    const uploadReq = new HttpRequest('POST', '/upload', formData, {
+      reportProgress: true,
+    });
 
+    return this.http.request(uploadReq);
+```
 ### HTTP POST
 ```javascript
 post(url: string, 
