@@ -56,13 +56,40 @@ const routes: Routes = [
 ];
 ```
 - `Path: '\'` is not valid.
-- **RouterModule** is the main module responsible for setting up and managing the routes. It provides the **forRoot** method to configure the root-level routes.
-### route parameters
+### Route dynamic parameters
 - When you see a colon (:) followed by a name (e.g., :id) in a route path, it indicates that this part of the route is a parameter, and its value will be dynamic.
+- Retrieve the Parameter in the Component
 ```javascript
-// Navigating to the user profile with ID 123
-this.router.navigate(['/users', '123']);
-``` 
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
+})
+export class UserProfileComponent implements OnInit {
+
+  userId: string;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    // Subscribe to the route parameters to get the 'id' value
+    this.route.paramMap.subscribe(params => {
+      this.userId = params.get('id');
+      // You can use this userId to fetch user data from a service, for example:
+      // this.userService.getUserById(this.userId).subscribe(...);
+    });
+  }
+
+}
+```
+- Navigating to the Route:
+```javascript
+this.router.navigate(['/users', userId]);
+<a [routerLink]="['/users', userId]">View Profile</a>
+```
 ### PathMatch
 The default path-match strategy is **prefix**, which means that the router checks URL elements from the left to see if the URL matches a specified path.You can specify the path-match strategy __full__ to make sure that the path covers the whole unconsumed URL.
 ### HttpRequest 
