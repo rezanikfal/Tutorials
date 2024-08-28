@@ -42,8 +42,20 @@ const routes: Routes =
 { path: 'users/:id', component: UserProfileComponent },
 { path: '**', component: WildcardComponent }]
 ```
-- Both ```path: ''``` and ```path: '/'``` represent the base URL of your application.
-- ```Path: '\'``` is not valid.
+- Let's say the parent path is `localhost:4200/abc`, Here is the **Relative** and **Absolute** Path:
+```javascript
+//Relative
+const routes: Routes = [
+  { path: '', component: HomeComponent },  //localhost:4200/abc
+  { path: 'home', component: HomeComponent },  //localhost:4200/abc/home
+  { path: 'about', component: AboutComponent }  //localhost:4200/abc/about
+];
+//Absolute
+const routes: Routes = [
+  { path: '/about', component: AboutComponent }  //localhost:4200/about
+];
+```
+- `Path: '\'` is not valid.
 - **RouterModule** is the main module responsible for setting up and managing the routes. It provides the **forRoot** method to configure the root-level routes.
 ### route parameters
 - When you see a colon (:) followed by a name (e.g., :id) in a route path, it indicates that this part of the route is a parameter, and its value will be dynamic.
