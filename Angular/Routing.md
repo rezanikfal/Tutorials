@@ -56,6 +56,20 @@ const routes: Routes = [
 ];
 ```
 - `Path: '\'` is not valid.
+## Routing relative to:
+- If you are in a page, you can navigate relative to the current page.
+- Let's say you are in `localhost:4200/paperless/paperless` :
+```javascript
+// confirmation.component.ts
+import { Router, ActivatedRoute } from '@angular/router';
+constructor(private _route:ActivatedRoute, private router:Router)
+....
+this.router.navigate(['../confirmation'],{relativeTo:this._route}) // redirects to localhost:4200/paperless/confirmation
+this.router.navigate(['./confirmation'],{relativeTo:this._route}) // redirects to localhost:4200/paperless/paperless/confirmation
+this.router.navigate(['/confirmation'],{relativeTo:this._route}) // redirects to localhost:4200/confirmation
+this.router.navigate(['confirmation'],{relativeTo:this._route}) // redirects to localhost:4200/paperless/paperless/confirmation
+
+```
 ### Route dynamic parameters
 - When you see a colon (:) followed by a name (e.g., :id) in a route path, it indicates that this part of the route is a parameter, and its value will be dynamic.
 - Retrieve the Parameter in the Component
