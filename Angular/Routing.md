@@ -351,6 +351,7 @@ this.route.queryParams.subscribe(queryParams => {
 const searchQuery = this.route.snapshot.queryParams['search'];
 
 // The fragment property provides an observable for changes to the URL fragment identifier.
+// https://example.com/page#section2  ("section2" is the fragment)
 this.route.fragment.subscribe(fragment => {
   // Handle changes to the fragment identifier
 });
