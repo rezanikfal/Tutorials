@@ -274,10 +274,26 @@ this.router.navigate(['/products'], { fragment: 'section1' })
 A class that we implement to restrict access to some routes inside your application. Inside the guard we decide about accessing the user to a route. it returns __Boolean__. there are 3 types (a single guard can implement all three types simultaneously):
 - __canActivate__: User can visit this route
 - __canActivateChild__: User can visit this child route
+- __CanDeactivate__: It’s commonly used to prevent users from accidentally navigating away from a component.
 - __canLoad__: User can load this __lazily-loaded__ module and access the routes inside of it
 
 To generate guard using CLI:   
 ```ng g guard auth/Auth```  
+- A sample function based **guard** (canActivate)
+```javascript
+import { CanActivateFn } from '@angular/router';
+
+export const authGuard: CanActivateFn = (route, state) => {
+  const isAuthenticated = !!localStorage.getItem('authToken'); // Example: Check if auth token exists
+
+  if (isAuthenticated) {
+    return true; // Allow navigation
+  } else {
+    alert('You must be logged in to access this page!'); // Simple alert instead of redirection
+    return false; // Prevent navigation
+  }
+};
+```
 Using __canLoad__ Guard in __app-routing.module.ts__ for lazily-loaded Inbox Module:
 ```javascript
 import { NgModule } from '@angular/core';
