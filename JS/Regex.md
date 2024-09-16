@@ -51,5 +51,8 @@ const regex =  new RegExp('hello', 'i'); // Regex with 'i' flag
 const matches = text.match(regex); // ["Hello", "Hello"]
 
 const matches = text.match(regex); // ["Hello"]
-
 ```
+## Meta Characters
+### Wild Card (`.`) Dot
+- Matches any single character except a newline (\n).
+- `/a.b/` matches `a_b`, `a7b`, `a-b`, etc., where "_" can be any character.
