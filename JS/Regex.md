@@ -40,3 +40,16 @@ console.log(newText); // Output: "TypeScript is awesome. TypeScript is versatile
 const languages = text.split(regex);
 console.log(languages); // ['', ' is awesome. ', ' is versatile.']
 ```
+### g and i flags:
+- `g` : The `g` flag stands for "global" and is used to search for all matches in the string.
+- `i` : It ignores case and it is used to make the regex **case-insensitive**.
+```javascript
+const text = "Hello world! Hello everyone!";
+const regex = /hello/g; // Regex with 'g' flag
+const regex = /hello/i; // Regex with 'i' flag
+
+const matches = text.match(regex); // ["Hello", "Hello"]
+
+const matches = text.match(regex); // ["Hello"]
+
+```
