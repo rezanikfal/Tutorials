@@ -56,3 +56,6 @@ const matches = text.match(regex); // ["Hello"]
 ### Wild Card (`.`) Dot
 - Matches any single character except a newline (\n).
 - `/a.b/` matches `a_b`, `a7b`, `a-b`, etc., where "_" can be any character.
+### Escaping Meta Characters (`\`)
+- `\.` matches a literal period . instead of **any character**.
+- `\*` matches a literal asterisk *.
