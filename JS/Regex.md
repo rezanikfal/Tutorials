@@ -68,6 +68,4 @@ const matches = text.match(regex); // ["Hello"]
 const text = "gray is grey!";
 const regex = /gr[ea]y/g; // Regex with 'g' flag
 const matches = text.match(regex); // ["gray", "grey"]
-
-const matches = text.match(regex); // ["Hello"]
 ```
