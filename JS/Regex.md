@@ -46,7 +46,7 @@ console.log(languages); // ['', ' is awesome. ', ' is versatile.']
 ```javascript
 const text = "Hello world! Hello everyone!";
 const regex = /hello/g; // Regex with 'g' flag
-const regex = /hello/i; // Regex with 'i' flag
+const regex =  new RegExp('hello', 'i'); // Regex with 'i' flag
 
 const matches = text.match(regex); // ["Hello", "Hello"]
 
