@@ -59,3 +59,15 @@ const matches = text.match(regex); // ["Hello"]
 ### Escaping Meta Characters (`\`)
 - `\.` matches a literal period . instead of **any character**.
 - `\*` matches a literal asterisk *.
+### Control Characters
+- `\n`: Matches a newline character.
+- `\t`: Matches a tab character.
+### Character Sets (`[]`)
+- `[ea]`: Matches any one of the characters e or a.
+```javascript
+const text = "gray is grey!";
+const regex = /gr[ea]y/g; // Regex with 'g' flag
+const matches = text.match(regex); // ["gray", "grey"]
+
+const matches = text.match(regex); // ["Hello"]
+```
