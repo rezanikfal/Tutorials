@@ -69,3 +69,8 @@ const text = "gray is grey!";
 const regex = /gr[ea]y/g; // Regex with 'g' flag
 const matches = text.match(regex); // ["gray", "grey"]
 ```
+### Character Ranges Using (`-`)
+- the hyphen (`-`) meta character is used within square brackets (`[]`) to define a range of characters.
+  - `[a-z]` matches any lowercase letter from 'a' to 'z'.
+  - `[a-zA-Z0-9]` matches any alphanumeric character (any letter or digit).
+  - `[b-f][2-5]` matches `c3` but not `b` or `f6`.
