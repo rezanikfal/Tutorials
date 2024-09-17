@@ -74,3 +74,4 @@ const matches = text.match(regex); // ["gray", "grey"]
   - `[a-z]` matches any lowercase letter from 'a' to 'z'.
   - `[a-zA-Z0-9]` matches any alphanumeric character (any letter or digit).
   - `[b-f][2-5]` matches `c3` but not `b` or `f6`.
+  - `[a\-z]` matches only `a`, `-`, and `z`.
