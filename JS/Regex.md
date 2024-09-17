@@ -79,3 +79,11 @@ const matches = text.match(regex); // ["gray", "grey"]
 - At the beginning of a character set ([]) to indicate exclusion of that set of characters.
   - `[^a-z]` matches any character except a lowercase letter from 'a' to 'z'.
   - To match any character except a vowel: `/[^aeiouAEIOU]/`
+### Shorthand Character Sets
+- `\d` → `[0-9]`
+- `\D` → `[^0-9]`
+- `\w` → `[a-zA-Z0-9_]`
+- `\W` → `[^a-zA-Z0-9_]`
+- `\s` → `spaces, tabs, line breaks`
+- `\S` → `non-whitespace character`
+- `.` → `Matches any character except newline`
