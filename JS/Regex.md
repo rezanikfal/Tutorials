@@ -45,12 +45,12 @@ console.log(languages); // ['', ' is awesome. ', ' is versatile.']
 - `i` : It ignores case and it is used to make the regex **case-insensitive**.
 ```javascript
 const text = "Hello world! Hello everyone!";
-const regex = /hello/g; // Regex with 'g' flag
-const regex =  new RegExp('hello', 'i'); // Regex with 'i' flag
+const regex1 = /hello/gi; // Regex with 'g' flag
+const regex2 =  new RegExp('hello', 'i'); // Regex with 'i' flag
 
-const matches = text.match(regex); // ["Hello", "Hello"]
+const matches = text.match(regex1); // ["Hello", "Hello"]
 
-const matches = text.match(regex); // ["Hello"]
+const matches = text.match(regex2); // ["Hello"]
 ```
 ## Meta Characters
 ### Wild Card (`.`) Dot
