@@ -87,4 +87,14 @@ const matches = text.match(regex); // ["gray", "grey"]
 - `\s` → `spaces, tabs, line breaks`
 - `\S` → `non-whitespace character`
 - `.` → `Matches any character except newline`
-## Video 13
+## Cheat Sheet
+### Character classes
+- `.`	any character except newline
+- `\w \d \s`	word, digit, whitespace
+- `\W \D \S`	not word, digit, whitespace
+- `[abc]`	any of a, b, or c
+- `[^abc]`	not a, b, or c
+- `[a-g]`	character between a & g
+### Anchors
+- `^abc$` start / end of the string
+- `\b` word boundary
