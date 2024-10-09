@@ -41,3 +41,20 @@ describe('Suite description', () => {
   - Find and click the “Reset” button.
 - **Assert**:
   - Expect that the displayed count now reads “5”.
+- In Behavior-Driven Development (BDD), the three phases of a test are called `Given, When and Then`.
+- toBe (compare the actual value) vs toEqual (deep equality of two objects):
+```JavaScript
+// Fails, the two objects are not identical
+expect({ name: 'Linda' }).toBe({ name: 'Linda' });
+
+// Passes, the two objects are not identical but deeply equal
+expect({ name: 'Linda' }).toEqual({ name: 'Linda' });
+```
+- Jasmine provides four functions: `beforeEach`, `afterEach`, `beforeAll` and `afterAll` for **Repetitive Setup**:
+```JavaScript
+describe('Suite description', () => {
+  beforeAll(() => {
+    console.log('Called before all specs are run');
+  });
+});
+```
