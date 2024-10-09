@@ -53,8 +53,12 @@ expect({ name: 'Linda' }).toEqual({ name: 'Linda' });
 - Jasmine provides four functions: `beforeEach`, `afterEach`, `beforeAll` and `afterAll` for **Repetitive Setup**:
 ```JavaScript
 describe('Suite description', () => {
-  beforeAll(() => {
-    console.log('Called before all specs are run');
+  afterEach(() => {
+    console.log('Called after each spec is run');
+  });
+
+  it('Spec 1', () => {
+    console.log('Spec 1');
   });
 });
 ```
