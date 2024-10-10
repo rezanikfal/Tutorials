@@ -67,3 +67,5 @@ describe('Suite description', () => {
   - The integration test includes (“integrates”) the dependencies.
   - the unit test replaces the dependencies with fakes in order to isolate the code under test.
 - `test doubles`, `stubs(stubbing)`, `mocks(mocking)`, and **fakes** or **faking** are similar terms.
+- Dependency is a **function** ➔ the fake must have the same **parameters** and **return** value.
+- Dependency is a **object** ➔ the fake must have the same **methods** and **properties** value.
