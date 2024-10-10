@@ -1,4 +1,4 @@
-## Angular Testing
+### Introduction
 - In terms of Jasmine, a test consists of one or more `suites`.
 - A suite is declared with a `describe` block:
 ```JavaScript
@@ -62,3 +62,8 @@ describe('Suite description', () => {
   });
 });
 ```
+### Faking dependencies
+- You need to decide between an integration test and a unit test.
+  - The integration test includes (“integrates”) the dependencies.
+  - the unit test replaces the dependencies with fakes in order to isolate the code under test.
+- `test doubles`, `stubs(stubbing)`, `mocks(mocking)`, and **fakes** or **faking** are similar terms.
