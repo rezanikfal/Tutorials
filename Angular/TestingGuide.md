@@ -69,3 +69,6 @@ describe('Suite description', () => {
 - `test doubles`, `stubs(stubbing)`, `mocks(mocking)`, and **fakes** or **faking** are similar terms.
 - Dependency is a **function** ➔ the fake must have the same **parameters** and **return** value.
 - Dependency is a **object** ➔ the fake must have the same **methods** and **properties**.
+- The fake needs to be **equivalent to the original** as far as the code under test is concerned.
+- The biggest **danger** of creating a fake is that it does not properly mimic the original and gets out of sync later when the original is changed.
+- To prevent any possible divergence, we can use TypeScript to enforce that the fake has a **matching type**.
