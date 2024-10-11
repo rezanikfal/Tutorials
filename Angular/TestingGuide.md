@@ -62,6 +62,20 @@ describe('Suite description', () => {
   });
 });
 ```
+- if you want Jasmine to run only this test suite and skip all others, change `describe` to `fdescribe`:
+- If you want Jasmine to run only one spec, change `it` to `fit`:
+```JavaScript
+fdescribe('Example spec', () => {
+  it('one spec', () => { /* … */ });
+  it('another spec', () => { /* … */ });
+});
+```
+```JavaScript
+describe('Example spec', () => {
+  fit('one spec', () => { /* … */ });
+  it('another spec', () => { /* … */ });
+});
+```
 ### Faking dependencies
 - You need to decide between an integration test and a unit test.
   - The integration test includes (“integrates”) the dependencies.
