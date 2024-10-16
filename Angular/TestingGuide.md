@@ -158,3 +158,4 @@ const incrementButton = debugElement.query(
   By.css('[data-testid="increment-button"]')
 );
 ```
+`https://testing-angular.com/testing-components/#triggering-event-handlers`
