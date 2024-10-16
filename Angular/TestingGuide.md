@@ -86,3 +86,64 @@ describe('Example spec', () => {
 - The fake needs to be **equivalent to the original** as far as the code under test is concerned.
 - The biggest **danger** of creating a fake is that it does not properly mimic the original and gets out of sync later when the original is changed.
 - To prevent any possible divergence, we can use TypeScript to enforce that the fake has a **matching type**.
+### Testing Components
+#### TestBed
+- Angular team provides the TestBed to ease unit testing. It comes with a testing Module that is configured like normal Modules.
+```JavaScript
+TestBed.configureTestingModule({
+  imports: [ /*… */ ],
+  declarations: [ /*… */ ],
+  providers: [ /*… */ ],
+});
+```
+- Testing a single **component**. It should be compiled after declaration in the Testing Module:
+```JavaScript
+TestBed
+  .configureTestingModule({
+    declarations: [CounterComponent],
+  })
+  .compileComponents();
+```
+- The **ComponentFixture** holds the Component and provides an interface to both the **Component** instance and the **rendered DOM**.
+- beforeEach is marked as an **async** function. It is because compileComponents is an asynchronous operation.
+- In testing code, we have to trigger the **change detection** manually.
+```JavaScript
+describe('CounterComponent', () => {
+  let fixture: ComponentFixture<CounterComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [CounterComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(CounterComponent);
+    fixture.detectChanges();
+  });
+
+  it('…', () => {
+    /* … */
+  });
+});
+```
+- The fixture references the Component instance via the **componentInstance**.
+- It is mainly used to set **Inputs** and subscribe to **Outputs**, for example:
+```JavaScript
+// This is a ComponentFixture<CounterComponent>
+const component = fixture.componentInstance;
+// Set Input
+component.startCount = 10;
+// Subscribe to Output
+component.countChange.subscribe((count) => {
+  /* … */
+});
+```
+- The fixture’s **debugElement** property returns the Component’s host element.
+- The **DebugElement** offers handy properties like properties, attributes, classes and styles to examine the DOM element itself.
+```JavaScript
+const { debugElement } = fixture;
+const { nativeElement } = debugElement;
+console.log(nativeElement.tagName);
+console.log(nativeElement.textContent);
+console.log(nativeElement.innerHTML);
+```
+
