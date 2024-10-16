@@ -125,6 +125,7 @@ describe('CounterComponent', () => {
   });
 });
 ```
+#### fixture
 - The fixture references the Component instance via the **componentInstance**.
 - It is mainly used to set **Inputs** and subscribe to **Outputs**, for example:
 ```JavaScript
@@ -146,4 +147,14 @@ console.log(nativeElement.tagName);
 console.log(nativeElement.textContent);
 console.log(nativeElement.innerHTML);
 ```
-
+- Every **DebugElement** features the methods **query** and **queryAll** for finding descendant elements (using `By.css('…')`)
+#### Test ids
+- The test ids help to find the element by a feature that never changes and that bears no additional meaning.
+```htm
+<button (click)="increment()" data-testid="increment-button">+</button>
+```
+```JavaScript
+const incrementButton = debugElement.query(
+  By.css('[data-testid="increment-button"]')
+);
+```
