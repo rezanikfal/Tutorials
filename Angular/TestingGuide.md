@@ -158,4 +158,24 @@ const incrementButton = debugElement.query(
   By.css('[data-testid="increment-button"]')
 );
 ```
-`https://testing-angular.com/testing-components/#triggering-event-handlers`
+#### Triggering event handlers
+- `DebugElement` has a useful method for firing events: `triggerEventHandler`.
+- Test that click inceriments the count:
+```JavaScript
+  it('increments the count', () => {
+    // Act
+    const incrementButton = debugElement.query(
+      By.css('[data-testid="increment-button"]')
+    );
+    incrementButton.triggerEventHandler('click', null);
+    // Re-render the Component
+    fixture.detectChanges();
+
+    // Assert
+    const countOutput = debugElement.query(
+      By.css('[data-testid="count"]')
+    );
+    expect(countOutput.nativeElement.textContent).toBe('1');
+  });
+```
+
