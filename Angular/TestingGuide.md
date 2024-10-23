@@ -182,6 +182,21 @@ const incrementButton = debugElement.query(
 - `triggerEventHandler` is used in **unit testing** to trigger an event directly on an Angular without needing the full overhead of a real DOM event.
 #### Test input element:
 ![image](https://github.com/user-attachments/assets/7cb8ac09-8fec-4d5c-b803-e2e34e6a2f35)
+```htm
+<h1>
+  Count is: <span data-testid="value-result">{{ count }}</span>
+</h1>
+
+<button data-testid="increment-button" (click)="onClick()">Add One</button>
+<div>
+  <input data-testid="reset-input" type="number" />
+  <button data-testid="reset-button" (click)="onReset()">Reset</button>
+</div>
+```
+```JavaScript
+const incrementButton = debugElement.query(
+  By.css('[data-testid="increment-button"]')
+);
 ```JavaScript
   it('resets the count', () => {
     const resetValue = 123;
