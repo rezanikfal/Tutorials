@@ -223,3 +223,4 @@ const incrementButton = debugElement.query(
     expect(Number(result)).toBe(resetValue);
   });
 ```
+//Testing Components with children//
