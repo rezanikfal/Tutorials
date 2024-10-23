@@ -178,5 +178,33 @@ const incrementButton = debugElement.query(
     expect(countOutput.nativeElement.textContent).toBe('1');
   });
 ```
+- `dispatchEvent` is a native DOM API method that you use to manually dispatch events (such as `click`, `input`, etc.) on a DOM element.
+- `triggerEventHandler` is used in **unit testing** to trigger an event directly on an Angular without needing the full overhead of a real DOM event.
+#### Test input element:
+![image](https://github.com/user-attachments/assets/7cb8ac09-8fec-4d5c-b803-e2e34e6a2f35)
+```JavaScript
+  it('resets the count', () => {
+    const resetValue = 123;
 
-`https://testing-angular.com/testing-components/#filling-out-forms`
+    const resetInput = fixture.debugElement.query(
+      By.css('[data-testid="reset-input"]')
+    ).nativeElement;
+
+    const btn = fixture.debugElement.query(
+      By.css('[data-testid="reset-button"]')
+    );
+
+    resetInput.value = resetValue;
+    resetInput.dispatchEvent(new Event('input'));
+
+    btn.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    const result = fixture.debugElement.query(
+      By.css('[data-testid="value-result"]')
+    ).nativeElement.textContent;
+    console.log(btn);
+
+    expect(Number(result)).toBe(resetValue);
+  });
+```
