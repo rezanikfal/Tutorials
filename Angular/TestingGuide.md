@@ -194,10 +194,6 @@ const incrementButton = debugElement.query(
 </div>
 ```
 ```JavaScript
-const incrementButton = debugElement.query(
-  By.css('[data-testid="increment-button"]')
-);
-```JavaScript
   it('resets the count', () => {
     const resetValue = 123;
 
@@ -228,3 +224,56 @@ const incrementButton = debugElement.query(
 - A unit test of `ParentComponent` does not render its children.
   - We need to test that the template contains the children.
   - Also, we need to check that `ParentComponent` and its children are wired up correctly using `Inputs` and `Outputs`.
+#### NO_ERRORS_SCHEMA:
+- By default, Angular expects to know and validate all elements and attributes in a component's template, such as standard HTML elements or Angular components/directives.
+- When you use `NO_ERRORS_SCHEMA`, Angular will ignore those errors, allowing you to include custom elements (like web components).
+```htm
+<!-- app.component.html -->
+<app-simple-counter></app-simple-counter>
+```
+```JavaScript
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+describe('app component', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should be renderted', () => {
+    expect(component).toBeTruthy();
+  });
+});
+```
+- Check if the parent renders the child.
+```JavaScript
+  it('renders the simple counter', () => {
+    const simpleCounter = fixture.debugElement.query(
+      By.css('app-simple-counter')
+    );
+    expect(simpleCounter).toBeTruthy();
+  });
+```
+- Check if the parent passes the `Input` value to the child:
+```htm
+<!-- app.component.html -->
+<app-simple-counter [testValue]="myValue"></app-simple-counter>
+```
+```JavaScript
+  it('passes a start count', () => {
+    const simpleCounter = fixture.debugElement.query(
+      By.css('app-simple-counter')
+    );
+    expect(simpleCounter.properties['testValue']).toBe(111);
+  });
+```
