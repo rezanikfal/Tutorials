@@ -224,3 +224,7 @@ const incrementButton = debugElement.query(
   });
 ```
 //Testing Components with children//
+### Testing Components with children
+- A unit test of `ParentComponent` does not render its children.
+  - We need to test that the template contains the children.
+  - Also, we need to check that `ParentComponent` and its children are wired up correctly using `Inputs` and `Outputs`.
