@@ -277,3 +277,38 @@ describe('app component', () => {
     expect(simpleCounter.properties['testValue']).toBe(111);
   });
 ```
+- Check if the parent receives the `Output` value from the child:
+- `toHaveBeenCalledWith` works just with spys. A spy allows you to monitor and verify whether the `console.log` function is called and with what arguments.
+- Spy provides:   **Avoiding Side Effects** / **Control Over the Function** / **Test Isolation**
+```htm
+<!-- app.component.html -->
+<app-simple-counter (countChange)="onCountChange($event)" [testValue]="myValue"></app-simple-counter>
+```
+```JavaScript
+export class SimpleCounterComponent implements OnInit {
+  @Output() countChange = new EventEmitter();
+  count = 10;
+
+  ngOnInit() {
+    this.countChange.emit('REZA');
+  }
+-------------------------------------------------------
+// app.component.ts
+  onCountChange(count: any): void {
+    console.log('countChange event from CounterComponent', count);
+  }
+```
+```JavaScript
+  it('gets the outpu value from child', () => {
+    spyOn(console, 'log');
+    const simpleCounter = fixture.debugElement.query(
+      By.css('app-simple-counter')
+    );
+    const name = 'Maneli';
+    simpleCounter.triggerEventHandler('countChange', name);
+    expect(console.log).toHaveBeenCalledWith(
+      'countChange event from CounterComponent',
+      name
+    );
+  });
+```
