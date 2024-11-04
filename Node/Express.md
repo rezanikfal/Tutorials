@@ -45,3 +45,6 @@ Access-Control-Allow-Origin: https://example.com
   - **Token Usage**: The client stores the token (often in `localStorage`) and includes it in the headers of subsequent requests.
   - **Token Validation**: When the server receives a request, it checks the token for validity (Is it expired or is it tampered)
   - **Access Control:** If the token is valid, the server allows access to the requested resource.
+### Nodemon 
+- A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
+- To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
