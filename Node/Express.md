@@ -1,6 +1,35 @@
 ### Request-Response cycle
 - **Client** sends a request to a server, and the server processes this request and sends back a **response**.
 - **Request** can include methods like `GET`, `POST`, `PUT`, or `DELETE`, as well as **headers** and any required **data** (in the case of a `POST` or `PUT`).
+### Client vs Server's Perspective on Request/Response
+- **Client** sends a `request` and **Server** receives a `request`. It includes:
+  - HTTP Method (e.g., GET, POST, PUT, DELETE)
+  - URL/URI
+  - Headers (Authorization tokens, Content-Type, User-Agent, etc.)
+  - Body (Optional)
+- **Client** receives a `response` and **Server** sends a `response`. It includes:
+  - Status Code
+  - Headers
+  - Body (Optional)
+### Request Headers vs Response Headers
+- **Request Headers**: Sent by the client to provide details about the request and the client environment (like `Authorization`, `User-Agent`).
+```javascript
+GET /api/resource HTTP/1.1
+Host: example.com
+User-Agent: Mozilla/5.0
+Accept: application/json
+Authorization: Bearer <token>
+Content-Type: application/json
+```
+- **Response Header**s: Sent by the server to inform the client about the response and provide handling instructions (like `Content-Type`).
+```javascript
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 1234
+Set-Cookie: sessionId=abcd1234; Path=/; HttpOnly
+Cache-Control: no-store
+Access-Control-Allow-Origin: https://example.com
+```
 ### Status Codes
 - Outcome of an HTTP request. For clients to understand if a request was successful or if there was an issue.
   - **2xx** Success Codes: Indicate the request was **successful**.
