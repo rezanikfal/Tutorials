@@ -113,7 +113,50 @@ const renderedImage = images.map(image=>{
    <ImageShow />
 </div>
 }
-``` 
+```
+### axios
+- We make API calls in your React application using **Axios**
+- For `Get` call: `const response = await axiosInstance.post('/users', userData, config);`
+- For `Post/Put` call: `const response = await axiosInstance.post('/users', config);`
+- `config` is an object like:
+ ```javascript
+    const config = {
+      headers: {
+        Authorization: 'Bearer your-token', // Example of adding an Authorization header
+        'Custom-Header': 'customValue',     // Any other custom headers
+      },
+      params: {
+        albumId: term, // For query parameters like https://test.com/photos?albumId=11
+      },
+    };
+```
+- Sample code:
+ ```javascript
+const searchImage = async (term) => {
+  const imagesObject = await axios.get(
+    "https://jsonplaceholder.typicode.com/photos",
+    {
+      params: {
+        albumId: term,
+      },
+    }
+  );
+
+  return imagesObject.data;
+};
+```
+ ```javascript
+import { useState } from "react";
+import searchImage from "./api/searchImage";
+
+function App() {
+  const [searchTermArray, setSearchTermArray] = useState([]);
+  const handleSearch = async (term) => {
+    const imageArray = await searchImage(term);
+    setSearchTermArray(imageArray);
+  };
+ return ...
+```
 ## State Update Cheat Sheet :
 ### Adding Elements to an Array
 - You can add elements to the start of an array by using the spread syntax.
