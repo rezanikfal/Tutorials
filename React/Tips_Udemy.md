@@ -48,6 +48,7 @@ my-react-app/
 
 ```
 ### Vite
+- `npm create vite@4.1.0` for creating an react app (you can choose another version).
 - When using `Vite` for a React project, the setup is indeed different compared to `Create React App`.
 - The extensions must be `.jsx` and `index.js` is replaced by `main.jsx`.
 ```javascript
