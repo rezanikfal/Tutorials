@@ -30,6 +30,42 @@ function App() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
+- `Create React App` files structure.
+```javascript
+my-react-app/
+│
+├── public/
+│   ├── index.html
+│   ├── ...
+│
+├── src/
+│   ├── index.js
+│   ├── App.js
+│   ├── ...
+│
+├── package.json
+└── ...
+
+```
+### Vite
+- When using `Vite` for a React project, the setup is indeed different compared to `Create React App`.
+- The extensions must be `.jsx` and `index.js` is replaced by `main.jsx`.
+```javascript
+my-vite-app/
+│
+├── index.html
+│
+├── src/
+│   ├── main.jsx
+│   ├── App.jsx
+│   ├── ...
+│
+├── public/  (Optional, for static assets)
+│   ├── ...
+│
+├── package.json
+└── ...
+```
 ## Pass State/EnevtHandler from parent to child :
 - It is a community convension to use `value` and `onChange`:
 ```javascript
