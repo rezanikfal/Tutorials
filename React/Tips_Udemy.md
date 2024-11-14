@@ -195,7 +195,7 @@ function App() {
  return ...
 ```
 ## State Updates cheat sheet:
-<a href="https://state-updates.vercel.app" target="_blank">https://state-updates.vercel.app/</a>
+https://state-updates.vercel.app
 ## Event handler paremeter :
 - When we pass off the handleClick entirely, it receives event object. **onClick={handleClick}.**
 ```javascript
