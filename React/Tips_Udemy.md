@@ -274,7 +274,7 @@ function Button({children}) {
 }
 
 ```
-## useState, useEffect, useRef , useCallback Hooks :
+## useState
 - useState: To Handle **States**
 ### Controlled and uncontrolled components
 - a controlled component refers to a component whose behavior is controlled by the **state** of the application.
@@ -308,7 +308,7 @@ function ItemsList({ items }) {
     )
 }
 ```
-- useRef: Reference a value that's not needed for rendering
+## useEffect
 - useEffect: To perform side effects including fetching data, updating the DOM, ..
 ```javascript
 import { useState, useEffect, useRef } from 'react';
