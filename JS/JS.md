@@ -121,6 +121,18 @@ console.log(memoizedAdd(1, 2)); // Outputs: "Calculating..." then 3
 console.log(memoizedAdd(1, 2)); // Outputs: 3 (cached result, no "Calculating...")
 console.log(memoizedAdd(2, 3)); // Outputs: "Calculating..." then 5
 ```
+- `JSON.stringify()` is a method in JavaScript used to convert a JavaScript object or value into a JSON string.
+```javascript
+const obj = { name: "Alice", age: 25, hobbies: ["reading", "traveling"] };
+const jsonString = JSON.stringify(obj);
+console.log(jsonString);
+// Output: '{"name":"Alice","age":25,"hobbies":["reading","traveling"]}'
+
+const nestedArray = [1, [2, 3], ["a", "b"]];
+const jsonString = JSON.stringify(nestedArray);
+console.log(jsonString);
+// Output: '[1,[2,3],["a","b"]]'
+```
 ## Asynchronous functionality in JavaScript
 ### Callbacks in JavaScript:
 - A callback is a function that is passed as an argument to another function and is intended to be executed later, often after an asynchronous operation has completed.
