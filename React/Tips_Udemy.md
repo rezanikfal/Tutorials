@@ -309,7 +309,21 @@ function ItemsList({ items }) {
 }
 ```
 ## useEffect
-- useEffect: To perform side effects including fetching data, updating the DOM, ..
+- useEffect: To perform **side effects** including fetching data, updating the DOM, ..
+- In programming, a side effect refers to any operation that:
+  - Modifies something outside of the current function's scope.
+  - Examples include updating the DOM, fetching data from an API, setting a timer, logging to the console, or modifying global variables.
+  - Here, handleClick is a side effect because it directly updates the DOM outside of React's control.
+```javascript
+function Example() {
+  const handleClick = () => {
+    document.getElementById("text").innerText = "Text Updated!";
+  };
+
+  return <button onClick={handleClick}>Update Text</button>;
+}
+```
+- To take the control of the DOM element, we should use `useState` as explained before.
 ```javascript
 import { useState, useEffect, useRef } from 'react';
   const ref = useRef<any>();
