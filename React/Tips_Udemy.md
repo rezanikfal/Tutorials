@@ -137,8 +137,7 @@ function Accordion({ items }) {
 - Lets say we render a big list of elements using ```map```.
 - If we use Keys, after any change React just compares the keys before and after update.
 - Then React understands what was the change and does a minimal rendering.
-- 
-### Keys should be applied on the TOP MOST ITEM:
+- `Keys` should be applied on the TOP MOST ITEM:
 ```javascript
 const renderedImage = images.map(image=>{
 <ImageShow key = {image.id}/>
@@ -149,6 +148,49 @@ const renderedImage = images.map(image=>{
 <div key = {image.id}>
    <ImageShow />
 </div>
+}
+```
+### CSS File
+- You can import a CSS file directly into a component file. This approach ensures that the styles in the CSS file are available **globally**:
+ ```javascript
+// MyComponent.js
+import React from 'react';
+import './MyComponent.css'; // Import the CSS file
+
+function MyComponent() {
+  return (
+    <div className="my-component">
+      <h1>Hello, World!</h1>
+    </div>
+  );
+}
+
+export default MyComponent;
+```
+- **CSS Modules** automatically generate unique class names to ensure styles are scoped locally to the component.
+- With CSS Modules we **cannot** use `className={styles.my-component}`.
+ ```javascript
+// MyComponent.js
+import React from 'react';
+import styles from './MyComponent.module.css'; // Import the CSS Module
+
+function MyComponent() {
+  return (
+    <div className={styles.myComponent}>
+      <h1 className={styles.heading}>Hello, World!</h1>
+    </div>
+  );
+}
+
+export default MyComponent;
+```
+ ```css
+.myComponent {
+  background-color: lightblue;
+}
+
+.heading {
+  color: darkblue;
 }
 ```
 ### axios
