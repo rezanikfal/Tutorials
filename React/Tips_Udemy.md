@@ -353,8 +353,36 @@ import { useState, useEffect, useRef } from 'react';
     setCode(result.code);
   };
 ```
-## useCallback@@@@
-- useCallback: Let's say you should make a call at the start of an app. So useEffect is the option.
+### Cleanup Function
+- `useEffect` can return a cleanup function (e.g., subscriptions, event listeners) to prevent memory leaks.
+- This cleanup function runs **before** the effect is re-executed on subsequent renders or when the component is unmounted.
+```javascript
+useEffect(() => {
+  const subscription = someService.subscribe(data => {
+    // Handle data
+  });
+
+  return () => {
+    // Cleanup the subscription
+    subscription.unsubscribe();
+  };
+}, []); // Subscribes on mount and unsubscribes on unmount
+```
+### Dependencies Array:
+- If the dependencies array is empty ([]), the effect runs only once after the initial render.
+- If the dependencies array contains values, the effect runs whenever any of those values change.
+- If there is no dependencies array, the effect runs after every render.
+## useCallback
+- `useCallback` is used to memoize functions, making them efficient and preventing unnecessary re-renders.
+- The callback is only recreated when one of the `dependencies` changes. If you leave the `dependencies` array empty (`[]`), the callback will only be created once.
+```javascript
+import { useCallback } from 'react';
+
+const memoizedCallback = useCallback(() => {
+  // Function logic here
+}, [dependencies]);
+```
+- Let's say you should make a call at the start of an app. So `useEffect` is the option.
 - We need to make a call once but **ESLint** complains and asks to put the API call function in the brackets..
 ```javascript
 import { useEffect, useContext } from 'react';
@@ -403,20 +431,3 @@ function Provider({ children }) {
     setBooks(response.data);
   }, []);
 ```
-## Create multiple components from list (Using map) :
-```javascript
-import ImageShow from "./ImageShow";
-
-function ImageList({ images }) {
-    const renderedImage = images.map(x => <ImageShow key={x.id} image={x} />)
-    return (
-        <div>
-            <div>{renderedImage}</div>
-        </div>
-    );
-}
-
-export default ImageList;
-```
-## Create React Typescript boilerplate:
-`npx create-react-app my-app --template typescript`
