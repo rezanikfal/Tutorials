@@ -47,6 +47,48 @@ my-react-app/
 └── ...
 
 ```
+## Serving React Project 
+### Developement
+- We should run this on the terminal: `npm run dev`
+- The app is not bundled or minified like in a production build.
+- You see all components and React libs to make the app **Developer-Friendly**, usable by **React DevTools** and **Not Optimized**.
+- Sample of files:
+```javascript
+Network Tab
+│
+├── localhost (index.html)
+├── client
+├── main.jsx
+├── @react-refresh
+├── env.mjs
+├── jsx-dev-runtime
+├── react.js?v=b4276e97
+├── react-dom_client.js?v=b4276e97
+├── App.jsx
+├── react_jsx-dev-runtime.js?v=b4276e97
+├── localhost
+├── chunk-CORUIQPR.js?v=b4276e97
+├── chunk-6TJCVOLN.js?v=b4276e97
+├── ImagesList.jsx
+├── SearchBar.jsx
+├── searchImage.js
+├── SingleImage.jsx
+├── axios.js?v=b4276e97
+├── Othervite.svg
+```
+### Production (same progect)
+- We should run this on the terminal: `npm run build`
+- The build process creates a dist directory containing the production-ready files (one or more JS files)
+- Vite processes your application files, **compiles** and **optimizes** the code, and outputs the final assets in the `dist` folder.
+- Sample of files:
+```javascript
+Network Tab (dist folder)
+│
+├── localhost (index.html)
+├── index-888a862b.js
+├── Othervite.svg
+
+```
 ### Vite
 - `npm create vite@4.1.0` for creating an react app (you can choose another version).
 - When using `Vite` for a React project, the setup is indeed different compared to `Create React App`.
