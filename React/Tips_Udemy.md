@@ -77,7 +77,8 @@ Network Tab
 ├── Othervite.svg
 ```
 ### Production (same progect)
-- We should run this on the terminal: `npm run build`
+- We should run this on the terminal: `npm run build`.
+- To run the Production Version of the App in the browser, you need to preview it using a local web server: `npx vite preview`.
 - The build process creates a dist directory containing the production-ready files (one or more JS files)
 - Vite processes your application files, **compiles** and **optimizes** the code, and outputs the final assets in the `dist` folder.
 - Sample of files:
