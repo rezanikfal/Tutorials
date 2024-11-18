@@ -314,19 +314,44 @@ src/
 <Button> test</Button > 
 ```
 ## children prop :
-- The hard-coded **"children"** props a special prop that allows you to pass components, elements, or data as children to a React component.
-- It is the content passed between the opening and closing tags of the component.
+- `children`: A special prop that lets you pass any content into a component. Useful for creating flexible and reusable components.
 ```javascript
 function App() {
     return <div>
-        <div><Button>click me!</Button></div>
+      <Button>click me!</Button>
     </div>;
 }
 -----------------------
 function Button({children}) {
     return <button>{children}</button>   // {children} = click me!
 }
+```
+- `React.Children.map`: A utility to safely iterate over `children`. It’s similar to `Array.map` but specifically designed for React’s `children`.
+- `React.cloneElement`: A method to clone an element and add or modify its props.
+```javascript
+import React from "react";
 
+function StyledWrapper({ children }) {
+  return (
+    <div>
+      {React.Children.map(children, (child, index) =>
+        React.cloneElement(child, { className: "styled-child", key: index })
+      )}
+    </div>
+  );
+}
+
+// Usage
+function App() {
+  return (
+    <StyledWrapper>
+      <p>Text 1</p>
+      <p>Text 2</p>
+    </StyledWrapper>
+  );
+}
+
+export default App;
 ```
 ## useState
 - useState: To Handle **States**
