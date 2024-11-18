@@ -313,6 +313,39 @@ src/
 <Button primary={false} > test</Button >
 <Button> test</Button > 
 ```
+## React Portal:
+- Used to render a child component into a **different part of the DOM tree** outside of its parent component's hierarchy, while still being part of the React component tree.
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+function Modal({ children }) {
+  // Rendering the children into a DOM node outside the regular hierarchy
+  return ReactDOM.createPortal(
+    children,
+    document.getElementById("modal-root") // The target DOM node
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <h1>Main App Content</h1>
+      <Modal>
+        <div className="modal-content">This is a modal rendered via a portal!</div>
+      </Modal>
+    </div>
+  );
+}
+
+export default App;
+```
+```html
+<body>
+  <div id="root"></div>
+  <div id="modal-root"></div> <!-- The portal target -->
+</body>
+```
 ## children prop :
 - `children`: A special prop that lets you pass any content into a component. Useful for creating flexible and reusable components.
 ```javascript
