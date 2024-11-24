@@ -22,7 +22,25 @@
 │   │   ├── index.js
 ├── package.json
 ```
-#### App.js (store):
+#### index.js (store):
+- Redux Toolkit provides a function called `configureStore` that simplifies store configuration.
+- We make use of `index.js` in store to Centralize Exports for Better Organization.
+```javascript
+import { configureStore } from "@reduxjs/toolkit";
+import { songsReducer, addSong, removeSong } from "./slices/songsSlice";
+import { moviesReducer, addMovie, removeMovie } from "./slices/moviesSlice";
+import { reset } from "./actions";
+
+const store = configureStore({
+  reducer: {
+    songs: songsReducer,
+    movies: moviesReducer
+  }
+});
+
+export { store, reset, addSong, removeSong, addMovie, removeMovie };
+```
+#### App.js (Parent Component):
 ```javascript
 import "./styles.css";
 import { useDispatch } from "react-redux";
@@ -50,7 +68,9 @@ export default function App() {
   );
 }
 ```
-#### SongPlaylist.jsx:
+#### SongPlaylist.jsx (Cild Component)::
+- The `useSelector` hook allows components to read data from the Redux store.
+- The `useDispatch` hook is used to send actions to the Redux store.
 ```javascript
 import { useDispatch, useSelector } from "react-redux";
 import { createRandomSong } from "../data";
@@ -94,6 +114,7 @@ function SongPlaylist() {
 export default SongPlaylist;
 ```
 #### songsSlice.js:
+- **Slices** are the core of Redux Toolkit. A slice manages a specific part of the state and automatically generates **actions** and **reducers**.
 ```javascript
 import { createSlice } from "@reduxjs/toolkit";
 import { reset } from "../actions";
@@ -122,27 +143,13 @@ export const { addSong, removeSong } = songsSlice.actions;
 export const songsReducer = songsSlice.reducer;
 ```
 #### actions.js:
+- Create an actions that impact more than one sclice.
 ```javascript
 import { createAction } from "@reduxjs/toolkit";
 export const reset = createAction("app/reset");
 ```
-#### index.js (store):
-```javascript
-import { configureStore } from "@reduxjs/toolkit";
-import { songsReducer, addSong, removeSong } from "./slices/songsSlice";
-import { moviesReducer, addMovie, removeMovie } from "./slices/moviesSlice";
-import { reset } from "./actions";
-
-const store = configureStore({
-  reducer: {
-    songs: songsReducer,
-    movies: moviesReducer
-  }
-});
-
-export { store, reset, addSong, removeSong, addMovie, removeMovie };
-```
 #### index.js (app):
+- To provide the Redux store to your React app, wrap your app with the Provider component from React-Redux.
 ```javascript
 import "bulma/css/bulma.css";
 import { createRoot } from "react-dom/client";
