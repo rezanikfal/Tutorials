@@ -68,7 +68,7 @@ export default function App() {
   );
 }
 ```
-#### SongPlaylist.jsx (Cild Component)::
+#### SongPlaylist.jsx (Child Component)::
 - The `useSelector` hook allows components to read data from the Redux store.
 - The `useDispatch` hook is used to send actions to the Redux store.
 ```javascript
