@@ -27,6 +27,7 @@
 #### index.js (store):
 - Redux Toolkit provides a function called `configureStore` that simplifies store configuration.
 - We make use of `index.js` in store to Centralize Exports for Better Organization.
+- After combining the reducers, `configureStore` passes the resulting root reducer to Redux's `createStore` function (under the hood) to create the `store`.
 ```javascript
 import { configureStore } from "@reduxjs/toolkit";
 import { songsReducer, addSong, removeSong } from "./slices/songsSlice";
@@ -118,7 +119,8 @@ export default SongPlaylist;
 - **Slices** are the core of Redux Toolkit. A slice manages a specific part of the state and automatically generates **actions** and **reducers**.
 - **reducer function** vs **action creator**:
   - `addSong` is a reducer function
-  - Redux Toolkit also automatically generates an **action creator** with the same name
+  - Redux Toolkit also automatically generates an **action creator** with the same name.
+  - Here is how we export action creators: `export const { addSong, removeSong } = songsSlice.actions;`
   - When you call `addSong('New Song')`, it creates and returns an action object. 
   - `dispatch` sends the action object (created by addSong('New Song')) to the Redux store.
 ```javascript
@@ -155,8 +157,8 @@ const songsSlice = createSlice({
   }
 });
 
-export const { addSong, removeSong } = songsSlice.actions;
-export const songsReducer = songsSlice.reducer;
+export const { addSong, removeSong } = songsSlice.actions;  // Goes to the components to be dispatched
+export const songsReducer = songsSlice.reducer;             // Goes to the index.js store
 ```
 - Creating a **standalone action creator** named `reset` using `createAction` that impact more than one sclice.
 - To create action with payload we always follow this format:
