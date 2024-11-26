@@ -47,7 +47,7 @@ export { store, reset, addSong, removeSong, addMovie, removeMovie };
 ```javascript
   {
     songs: [song1, song2, song3],
-    movies: [movie1, movie2, movie3, movie4],
+    movies: [movie1, movie2, movie3, movie4]
   }
 ```
 #### App.js (Parent Component):
