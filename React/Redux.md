@@ -43,6 +43,13 @@ const store = configureStore({
 
 export { store, reset, addSong, removeSong, addMovie, removeMovie };
 ```
+- Store will be like this:
+```javascript
+  {
+    songs: [song1, song2, song3],
+    movies: [movie1, movie2, movie3, movie4],
+  }
+```
 #### App.js (Parent Component):
 ```javascript
 import "./styles.css";
