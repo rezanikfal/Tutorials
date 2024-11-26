@@ -113,8 +113,22 @@ function SongPlaylist() {
 
 export default SongPlaylist;
 ```
-#### songsSlice.js:
 - **Slices** are the core of Redux Toolkit. A slice manages a specific part of the state and automatically generates **actions** and **reducers**.
+- **reducer function** vs **action creator**:
+  - `addSong` is a reducer function
+  - Redux Toolkit also automatically generates an **action creator** with the same name
+  - When you call `addSong('New Song')`, it creates and returns an action object. 
+  - `dispatch` sends the action object (created by addSong('New Song')) to the Redux store.
+```javascript
+// Action Object
+{
+  type: 'song/addSong',  // The action type (slice name/reduce name)
+  payload: 'New Song'    // The data you passed to the action creator
+}
+```
+  - The Redux store matches the type of the dispatched action `(song/addSong)` with the reducer in the slice.
+  - The addSong reducer (defined in the reducers object) is executed to update the state
+#### songsSlice.js:
 ```javascript
 import { createSlice } from "@reduxjs/toolkit";
 import { reset } from "../actions";
@@ -142,11 +156,22 @@ const songsSlice = createSlice({
 export const { addSong, removeSong } = songsSlice.actions;
 export const songsReducer = songsSlice.reducer;
 ```
+- Creating a **standalone action creator** named `reset` using `createAction` that impact more than one sclice.
+- To create action with payload we always follow this format:
+```javascript
+export const reset = createAction("app/reset", (customPayload) => {
+  return {
+    payload: customPayload, // Attach the custom payload
+  };
+});
+```
+- By `dispatch(reset({ reason: "user logged out" }));`:
+  - We dispatch a shared action like `reset` in Redux, any slice that has a reducer handling that action (via `extraReducers`) will respond to it.
+  - This allows you to trigger updates to multiple states in the store **simultaneously**.
 #### actions.js:
-- Create an actions that impact more than one sclice.
 ```javascript
 import { createAction } from "@reduxjs/toolkit";
-export const reset = createAction("app/reset");
+export const reset = createAction("app/reset"); // No action payload
 ```
 #### index.js (app):
 - To provide the Redux store to your React app, wrap your app with the Provider component from React-Redux.
