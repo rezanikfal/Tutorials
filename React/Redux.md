@@ -43,6 +43,8 @@ const store = configureStore({
 
 export { store, reset, addSong, removeSong, addMovie, removeMovie };
 ```
+- The key `songs` will be used in the **Redux store**, and its corresponding state will be managed by the `songsReducer` or `songSlice.reducer`.
+- The key `songs`is **NOT** related to the **slice name**. Slice name will be used for action creators.
 - Store will be like this:
 ```javascript
   {
@@ -137,8 +139,44 @@ export default SongPlaylist;
   payload: 'New Song'    // The data you passed to the action creator
 }
 ```
-  - The Redux store matches the type of the dispatched action `(song/addSong)` with the reducer in the slice.
-  - The addSong reducer (defined in the reducers object) is executed to update the state
+- The Redux store matches the type of the dispatched action `(song/addSong)` with the reducer in the slice.
+- The addSong reducer (defined in the reducers object) is executed to update the state
+- Redux Toolkit leverages **Immer** for immutable state updates under the hood.
+- Since the initialState is a string (**a primitive type**), the reducer must explicitly **return** the new value as the updated state:
+```javascript
+addMyValue(state, action) {
+  return action.payload;
+}
+```
+- if the state is an object(**a reference type**):
+```javascript
+addMyValue(state, action) {
+  // Immer allows you to "mutate" the state directly
+  state.value = action.payload;
+}
+```
+```javascript
+// Without Immer
+addMyValue(state, action) {
+  // Without Immer, return a new state object explicitly
+  return {
+    ...state, // Spread the existing state
+    value: action.payload, // Update the specific field
+  };
+}
+```
+---
+
+### Summary of Key Differences
+
+| **Action**                  | **With Immer**                              | **Without Immer**                       |
+|-----------------------------|---------------------------------------------|-----------------------------------------|
+| Modifying an Object Field   | `state.field = value;`                     | `return { ...state, field: value };`   |
+| Adding to an Array          | `state.push(value);`                       | `return [...state, value];`            |
+| Removing from an Array      | `state.splice(index, 1);`                  | `return state.filter((_, i) => i !== index);` |
+| Replacing Primitive State   | `return value;`                            | `return value;`                        |
+
+---
 #### songsSlice.js:
 ```javascript
 import { createSlice } from "@reduxjs/toolkit";
