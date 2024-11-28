@@ -222,7 +222,7 @@ export const reset = createAction("app/reset", (customPayload) => {
 import { createAction } from "@reduxjs/toolkit";
 export const reset = createAction("app/reset"); // No action payload
 ```
-#### index.js (app):
+#### main.jsx/index.js (app):
 - To provide the Redux store to your React app, wrap your app with the Provider component from React-Redux.
 ```javascript
 import "bulma/css/bulma.css";
