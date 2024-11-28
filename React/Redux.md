@@ -240,3 +240,76 @@ root.render(
   </Provider>
 );
 ```
+### Using extraReducer
+- An `extraReducer` in Redux Toolkit is a way to handle actions in slices that are not defined within .
+- When an action is dispatched in Redux Toolkit, **every** slice in the application receives the action (global nature of Redux actions).
+- Only those slices that explicitly handle the action (e.g., in `reducers` or `extraReducers`) will react to it.
+- Here is a sample of reacting to action `addCar` from `carsSlice` in `formSlice`.
+  - When a user enters a car, by dispathing `addCar` we add the car to selected cars (managed by `carsSlice`).
+  - Also we should reset the form (managed by `carsSlice`). We make use of `addCar` action that **already dispatched** to do this. Instead of dispathing `changeName`/`changeCost` actions.
+  - So, When we do **multiple dispatch** to handle an event, There is a chance to re-use the main dispatch to cover others. 
+```javascript
+import { createSlice } from '@reduxjs/toolkit';
+import { addCar } from './carsSlice';
+
+const formSlice = createSlice({
+  name: 'form',
+  initialState: {
+    name: '',
+    cost: 0,
+  },
+  reducers: {
+    changeName(state, action) {
+      state.name = action.payload;
+    },
+    changeCost(state, action) {
+      state.cost = action.payload;
+    },
+  },
+  extraReducers(builder) {
+    builder.addCase(addCar, (state, action) => {
+      state.name = '';
+      state.cost = 0;
+    });
+  },
+});
+
+export const { changeName, changeCost } = formSlice.actions;
+export const formReducer = formSlice.reducer;
+```
+```javascript
+import { createSlice, nanoid } from '@reduxjs/toolkit';
+
+const carsSlice = createSlice({
+  name: 'cars',
+  initialState: {
+    searchTerm: '',
+    data: [],
+  },
+  reducers: {
+    changeSearchTerm(state, action) {
+      state.searchTerm = action.payload;
+    },
+    addCar(state, action) {
+      // Assumption:
+      // action.payload === { name: 'ab', cost: 140 }
+      state.data.push({
+        name: action.payload.name,
+        cost: action.payload.cost,
+        id: nanoid(),
+      });
+    },
+    removeCar(state, action) {
+      // Assumption:
+      // action.payload === the id of the car we want to remove
+      const updated = state.data.filter((car) => {
+        return car.id !== action.payload;
+      });
+      state.data = updated;
+    },
+  },
+});
+
+export const { changeSearchTerm, addCar, removeCar } = carsSlice.actions;
+export const carsReducer = carsSlice.reducer;
+```
