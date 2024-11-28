@@ -249,6 +249,7 @@ root.render(
   - Also we should reset the form (managed by `carsSlice`). We make use of `addCar` action that **already dispatched** to do this. Instead of dispathing `changeName`/`changeCost` actions.
   - So, When we do **multiple dispatch** to handle an event, There is a chance to re-use the main dispatch to cover others. 
 ```javascript
+//FORM Slice
 import { createSlice } from '@reduxjs/toolkit';
 import { addCar } from './carsSlice';
 
@@ -278,6 +279,7 @@ export const { changeName, changeCost } = formSlice.actions;
 export const formReducer = formSlice.reducer;
 ```
 ```javascript
+//CAR Slice
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const carsSlice = createSlice({
