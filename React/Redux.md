@@ -3,6 +3,41 @@
 - The **Redux Toolkit** package is intended to be the standard way to write Redux logic.
 - To install the Redux toolkit:
   `npm install @reduxjs/toolkit react-redux`
+### Design Redux Store
+- Identify the core features of the application.
+- When a content on the screen is changing, we need a `state`.
+- Avoid Derived States, derive it using `selectors` instead of storing it.
+- Use a **Flat State** Structure:
+```javascript
+// Nested State (Bad)
+const state = {
+  user: {
+    profile: {
+      name: 'John',
+      age: 30,
+    },
+    settings: {
+      theme: 'dark',
+      notifications: true,
+    },
+  },
+};
+```
+```javascript
+// Flat State (Good)
+const state = {
+  userProfile: {
+    name: 'John',
+    age: 30,
+  },
+  userSettings: {
+    theme: 'dark',
+    notifications: true,
+  },
+};
+```
+- Group similar state changes together (e.g., all task-related actions in the tasks slice).
+- Consider creating slices for each domain (Group).
 ### Project structure
 ```javascript
 ├── public/
