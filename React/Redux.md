@@ -36,7 +36,7 @@ const state = {
   },
 };
 ```
-- Normalized Form vs Denormalized Form Data Structure
+- **Normalized** Form vs **Denormalized** Form Data Structure
 ```javascript
 // Denormalized
 const allData = [
