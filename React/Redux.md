@@ -351,6 +351,8 @@ export const { changeSearchTerm, addCar, removeCar } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
 ```
 ### Async Thunks
+- **Async Thunk Functions** are older techniques for fetching data.
+- **RTK (Redux Toolkit) Query** is seen as the newer and fancier way to fetch data.
 #### Reducer Best Practices in React Redux:
 - The Redux store expects reducers to return the new state immediately (It is crucial for Redux to detect state changes efficiently.).
 - Reducers are pure functions. So they return a value that depends solely on the input (state and action).
