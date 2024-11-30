@@ -432,3 +432,15 @@ function UsersList() {
 
 export default UsersList;
 ```
+- When you dispatch a createAsyncThunk like fetchUsers, it returns a promise that resolves to an action.
+- Using `.unwrap()` simplifies error handling (whitout `.unwrap()` both success & error scenarios go to `then()`)
+```javascript
+dispatch(fetchUsers())
+  .unwrap()
+  .then((data) => {
+    console.log('Fetched data:', data); // Logs the payload
+  })
+  .catch((error) => {
+    console.error('Error fetching data:', error); // Logs the error object
+  });
+```
