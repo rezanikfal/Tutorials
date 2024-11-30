@@ -350,3 +350,8 @@ const carsSlice = createSlice({
 export const { changeSearchTerm, addCar, removeCar } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
 ```
+### Async Thunks
+#### Reducer Best Practices in React Redux:
+- The Redux store expects reducers to return the new state immediately (It is crucial for Redux to detect state changes efficiently.).
+- Reducers are pure functions. So they return a value that depends solely on the input (state and action).
+- Asynchronous operations should be handled outside the reducer (e.g. Middleware like `redux-thunk`).
