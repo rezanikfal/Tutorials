@@ -355,3 +355,80 @@ export const carsReducer = carsSlice.reducer;
 - The Redux store expects reducers to return the new state immediately (It is crucial for Redux to detect state changes efficiently.).
 - Reducers are pure functions. So they return a value that depends solely on the input (state and action).
 - Asynchronous operations should be handled outside the reducer (e.g. Middleware like `redux-thunk`).
+#### Create Async Thunks middleware:
+```javascript
+// store/thunks/fetchUser.js
+
+mport { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const fetchUsers = createAsyncThunk('users/fetch', async () => {
+  const response = await axios.get('http://localhost:3005/users');
+
+  return response.data;
+});
+
+export { fetchUsers };
+```
+- handling the different states of the asynchronous operation (`pending`, `fulfilled`, `rejected`).
+```javascript
+// store/slices/usersSlice.js
+
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchUsers } from '../thunks/fetchUsers';
+
+const usersSlice = createSlice({
+  name: 'users',
+  initialState: {
+    data: [],
+    isLoading: false,
+    error: null,
+  },
+  extraReducers(builder) {
+    builder.addCase(fetchUsers.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(fetchUsers.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+  },
+});
+
+export const usersReducer = usersSlice.reducer;
+```
+- Integrating with a Redux store to fetch and display a list of users.
+```javascript
+// store/components/usersList.js
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../store';
+
+function UsersList() {
+  const dispatch = useDispatch();
+  const { isLoading, data, error } = useSelector((state) => {
+    return state.users;
+  });
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching data...</div>;
+  }
+
+  return <div>{data.length}</div>;
+}
+
+export default UsersList;
+```
