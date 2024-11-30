@@ -7,7 +7,7 @@
 - Identify the core features of the application.
 - When a content on the screen is changing, we need a `state`.
 - Avoid Derived States, derive it using `selectors` instead of storing it.
-- Use a **Flat State** Structure:
+- Use a **Flat State** Structure (Normalized Form):
 ```javascript
 // Nested State (Bad)
 const state = {
@@ -36,6 +36,50 @@ const state = {
   },
 };
 ```
+- Normalized Form vs Denormalized Form Data Structure
+```javascript
+// Denormalized
+const allData = [
+  {
+    id: 50,
+    name: 'Myra',
+    albumes: [
+      { id: 1, title: 'Albume #1' },
+      { id: 2, title: 'Albume #2' }
+    ]
+  },
+  {
+    id: 51,
+    name: 'Alex',
+    albumes: [
+      { id: 3, title: 'Albume #3' },
+      { id: 4, title: 'Albume #4' }
+    ]
+  }
+];
+```
+```javascript
+// Normalized (Recommended)
+const listOfAlbums = [
+  { id: 1, title: 'Album #1', userId: 50 },
+  { id: 2, title: 'Album #2', userId: 50 },
+  { id: 3, title: 'Album #3', userId: 51 },
+  { id: 4, title: 'Album #4', userId: 51 }
+]
+
+const listOfUsers = [
+   { id: 50, name: 'Myra' },
+   { id: 51, name: 'Alex' }
+]
+```
+| **Aspect**          | **Normalized**                     | **Denormalized**                     |
+|----------------------|-------------------------------------|---------------------------------------|
+| **Structure**        | Data split into entities by `id`.  | Data embedded in a single structure. |
+| **Redundancy**       | Low                                | High                                  |
+| **Ease of Access**   | Requires lookups                  | Direct                                |
+| **Updates**          | Efficient                         | Inefficient                           |
+| **Scalability**      | High                              | Low                                   |
+| **Use Case**         | Complex relationships             | Simple or independent data            |
 - Group similar state changes together (e.g., all task-related actions in the tasks slice).
 - Consider creating slices for each domain (Group).
 ### Project structure
