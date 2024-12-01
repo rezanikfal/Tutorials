@@ -490,3 +490,135 @@ dispatch(fetchUsers())
     console.error('Error fetching data:', error); // Logs the error object
   });
 ```
+### RTK Query
+- RTK Query helps manage API calls and state for an application in a structured way.
+- It provides an abstraction layer for making API requests and caching responses.
+- Setting Up the API Slice:
+```javascript
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { faker } from '@faker-js/faker';
+
+const albumsApi = createApi({
+  reducerPath: 'albums',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'http://localhost:3005',
+  }),
+  endpoints(builder) {
+    return {
+      addAlbum: builder.mutation({
+        query: (user) => {
+          return {
+            url: '/albums',
+            method: 'POST',
+            body: {
+              userId: user.id,
+              title: faker.commerce.productName(),
+            },
+          };
+        },
+      }),
+      fetchAlbums: builder.query({
+        query: (user) => {
+          return {
+            url: '/albums',
+            params: {
+              userId: user.id,
+            },
+            method: 'GET',
+          };
+        },
+      }),
+    };
+  },
+});
+
+export const { useFetchAlbumsQuery, useAddAlbumMutation } = albumsApi;
+export { albumsApi };
+```
+- Integrating with Redux Store:
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { usersReducer } from './slices/usersSlice';
+import { albumsApi } from './apis/albumsApi';
+
+export const store = configureStore({
+  reducer: {
+    users: usersReducer,
+    [albumsApi.reducerPath]: albumsApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(albumsApi.middleware);
+  },
+});
+
+setupListeners(store.dispatch);
+
+export { useFetchAlbumsQuery, useAddAlbumMutation } from './apis/albumsApi';
+```
+- Using Hooks in Component:
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { usersReducer } from './slices/usersSlice';
+import { albumsApi } from './apis/albumsApi';
+
+export const store = configureStore({
+  reducer: {
+    users: usersReducer,
+    [albumsApi.reducerPath]: albumsApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(albumsApi.middleware);
+  },
+});
+
+setupListeners(store.dispatch);
+
+export { useFetchAlbumsQuery, useAddAlbumMutation } from './apis/albumsApi';
+```
+- Using Hooks in Component:
+```javascript
+import { useFetchAlbumsQuery, useAddAlbumMutation } from '../store';
+import Skeleton from './Skeleton';
+import ExpandablePanel from './ExpandablePanel';
+import Button from './Button';
+
+function AlbumsList({ user }) {
+  const { data, error, isLoading } = useFetchAlbumsQuery(user);
+  const [addAlbum, results] = useAddAlbumMutation();
+
+  const handleAddAlbum = () => {
+    addAlbum(user);
+  };
+
+  let content;
+  if (isLoading) {
+    content = <Skeleton times={3} />;
+  } else if (error) {
+    content = <div>Error loading albums.</div>;
+  } else {
+    content = data.map((album) => {
+      const header = <div>{album.title}</div>;
+
+      return (
+        <ExpandablePanel key={album.id} header={header}>
+          List of photos in the album
+        </ExpandablePanel>
+      );
+    });
+  }
+
+  return (
+    <div>
+      <div>
+        Albums for {user.name}
+        <Button onClick={handleAddAlbum}>+ Add Album</Button>
+      </div>
+      <div>{content}</div>
+    </div>
+  );
+}
+
+export default AlbumsList;
+```
