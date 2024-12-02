@@ -517,8 +517,7 @@ dispatch(fetchUsers())
 #### endpoints
 - The `endpoints(builder)` function is the backbone of an RTK Query API slice.
 - It defines the **queries** and **mutations** your application can perform and allows for flexible configurations.
-- Each endpoint defined here is used to generate **hooks** like `useFetchAlbumssQuery` or `useAddAlbumMutation`, making it easy to integrate these operations into React components.
-#### Api Slice:
+#### API Slice:
 - Here is the api slice file (`albumsApi.js`) for **Albumes** data:
 ```javascript
 // store/apis/albumsApi.js
@@ -585,28 +584,11 @@ setupListeners(store.dispatch);
 
 export { useFetchAlbumsQuery, useAddAlbumMutation } from './apis/albumsApi';
 ```
-- Using Hooks in Component:
-```javascript
-import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
-import { usersReducer } from './slices/usersSlice';
-import { albumsApi } from './apis/albumsApi';
-
-export const store = configureStore({
-  reducer: {
-    users: usersReducer,
-    [albumsApi.reducerPath]: albumsApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(albumsApi.middleware);
-  },
-});
-
-setupListeners(store.dispatch);
-
-export { useFetchAlbumsQuery, useAddAlbumMutation } from './apis/albumsApi';
-```
-- Using Hooks in Component:
+#### RTK Query Hooks:
+- Each endpoint defined here is used to generate **hooks** like `useFetchAlbumssQuery` or `useAddAlbumMutation`.
+- They are making it easy to integrate these api call operations into React components.
+- Notice how the `user` as the dynamic data passed to **queries** and **mutations** to specify which user's albums to fetch or update.
+- The `user` will be used in the `query` property of the `endpoints` function in the API Slice.
 ```javascript
 import { useFetchAlbumsQuery, useAddAlbumMutation } from '../store';
 import Skeleton from './Skeleton';
