@@ -492,10 +492,6 @@ dispatch(fetchUsers())
 ```
 ### RTK Query
 - RTK Query helps manage API calls and state for an application in a structured way.
-#### endpoints
-- The `endpoints(builder)` function is the backbone of an RTK Query API slice.
-- It defines the **queries** and **mutations** your application can perform and allows for flexible configurations.
-- Each endpoint defined here is used to generate **hooks** like `useFetchAlbumssQuery` or `useAddAlbumMutation`, making it easy to integrate these operations into React components.
 #### reducerPath
 - The `reducerPath` in RTK Query defines the key in the Redux store where the API state is stored.
 - You must add its reducer to the store under the specified `reducerPath`.
@@ -518,6 +514,12 @@ dispatch(fetchUsers())
 ```
 #### baseQuery
 - `baseQuery` is the mechanism for handling how requests are made in RTK Query. Use `fetchBaseQuery` for simple REST APIs.
+#### endpoints
+- The `endpoints(builder)` function is the backbone of an RTK Query API slice.
+- It defines the **queries** and **mutations** your application can perform and allows for flexible configurations.
+- Each endpoint defined here is used to generate **hooks** like `useFetchAlbumssQuery` or `useAddAlbumMutation`, making it easy to integrate these operations into React components.
+#### Api Slice:
+- Here is the api slice file (`albumsApi.js`) for **Albumes** data:
 ```javascript
 // store/apis/albumsApi.js
 
