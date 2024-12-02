@@ -633,6 +633,13 @@ function AlbumsList({ user }) {
 
 export default AlbumsList;
 ```
+#### Queries vs Mutations:
+| **Aspect**             | **Queries**                        | **Mutations**                        |
+|-------------------------|-------------------------------------|--------------------------------------|
+| **Purpose**             | Fetching (reading) data.           | Creating, updating, or deleting data.|
+| **HTTP Methods**        | Typically `GET`.                   | Typically `POST`, `PUT`, `DELETE`.   |
+| **Caching**             | Automatic caching of responses.    | No automatic caching.                |
+
 #### isLoading vs isFetching:
 -  `isLoading` is `true` **only** during the first fetch.
 -  `isFetching` is true **whenever** a network request is in progress.
