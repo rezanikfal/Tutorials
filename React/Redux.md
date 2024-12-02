@@ -633,3 +633,9 @@ function AlbumsList({ user }) {
 
 export default AlbumsList;
 ```
+#### isLoading vs isFetching:
+-  `isLoading` is `true` **only** during the first fetch.
+-  `isFetching` is true **whenever** a network request is in progress.
+```javascript
+const { data, error, isLoading } = useFetchAlbumsQuery(user);
+```
