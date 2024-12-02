@@ -563,7 +563,8 @@ const albumsApi = createApi({
 export const { useFetchAlbumsQuery, useAddAlbumMutation } = albumsApi;
 export { albumsApi };
 ```
-- Integrating with Redux Store:
+#### Setup Redux Store:
+- Here is how we integrate the Api Slice with Redux Store:
 ```javascript
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
