@@ -516,6 +516,8 @@ dispatch(fetchUsers())
   }
 }
 ```
+#### baseQuery
+- `baseQuery` is the mechanism for handling how requests are made in RTK Query. Use `fetchBaseQuery` for simple REST APIs.
 ```javascript
 // store/apis/albumsApi.js
 
