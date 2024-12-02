@@ -492,8 +492,9 @@ dispatch(fetchUsers())
 ```
 ### RTK Query
 - RTK Query helps manage API calls and state for an application in a structured way.
-- It provides an abstraction layer for making API requests and caching responses.
-- Setting Up the API Slice:
+- The `endpoints(builder)` function is the backbone of an RTK Query API slice.
+- It defines the **queries** and **mutations** your application can perform and allows for flexible configurations.
+- Each endpoint defined here is used to generate **hooks** like `useFetchAlbumssQuery` or `useAddAlbumMutation`, making it easy to integrate these operations into React components.
 ```javascript
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { faker } from '@faker-js/faker';
