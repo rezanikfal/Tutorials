@@ -426,6 +426,10 @@ function ItemsList({ items }) {
   - Modifies something outside of the current function's scope.
   - Examples include updating the DOM, fetching data from an API, setting a timer, logging to the console, or modifying global variables.
   - Here, handleClick is a side effect because it directly updates the DOM outside of React's control.
+- The useEffect hook in React runs **after** the component renders to the DOM, not during the rendering process.
+  - In one case, In component `A`, I dispatched a data to redux store using useEffect and rendered something that relies on the data in `A`.
+  - That causes issue because React renders the component `A` before updating the store.  
+
 ```javascript
 function Example() {
   const handleClick = () => {
