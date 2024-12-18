@@ -644,3 +644,43 @@ function CounterPage({ initialCount }) {
 
 export default CounterPage;
 ```
+## Custom Hook
+- A custom hook in React is a **JavaScript function** that uses one or more built-in hooks (like useState, useEffect, etc.) to encapsulate reusable logic.
+- It helps to create a code with **Reusability**, **Readability**, and **Separation of Concerns** that means Keeping UI-related logic (e.g., rendering JSX) separated.
+- Creating Custom Hook:
+```javascript
+import { useState, useEffect } from "react";
+
+// Custom Hook
+export const useFetchData = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error }; // Return data to consuming components
+};
+```
+- Using Custom Hook:
+```javascript
+import { useFetchData } from "./hooks/useFetchData";
+
+export default function App() {
+  const { data, loading, error } = useFetchData("https://api.example.com/data");
+  ...
+```
