@@ -647,7 +647,38 @@ export default AlbumsList;
 const { data, error, isLoading } = useFetchAlbumsQuery(user);
 ```
 ### Memoized Selector:
+#### Expensive Calculation:
 - The selector is always recalculated when the Redux store updates.Even if the inputs to the selector haven't changed.
+  - We need memoization for any expensive computation:
+```javascript
+const state = {
+  numbers: Array.from({ length: 100000 }, (_, i) => i + 1), // 1 to 100,000
+};
+```
+- Every time the selector is called, the expensive calculation `reduce` runs again, even if state.numbers hasn’t changed:
+```javascript
+const selectSumOfSquares = (state) => {
+  console.log("Calculating sum of squares...");
+  return state.numbers.reduce((sum, num) => sum + num ** 2, 0);
+};
+
+const result1 = selectSumOfSquares(state); // Logs: "Calculating sum of squares..."
+const result2 = selectSumOfSquares(state); // Logs: "Calculating sum of squares..." again
+```
+- Memoized Selector
+```javascript
+import { createSelector } from "@reduxjs/toolkit"
+
+const selectNumbers = (state) => state.numbers;
+const selectSumOfSquares = createSelector(
+  [selectNumbers],
+  (numbers) => {
+    console.log("Calculating sum of squares...");
+    return numbers.reduce((sum, num) => sum + num ** 2, 0);
+  }
+);
+```
+#### Performing transformation:
 - React-Redux's useSelector compares the selector's new result with its previous result using **strict equality (===)**.If the result is the same, React skips the component's re-render.
   - If the selector performs any transformation, like **filtering**, **mapping**, or **creating a new object/array**, memoization becomes critical.
   - Because with any store update, you create a new reference variable.
@@ -667,4 +698,22 @@ const selectActiveAccounts = createSelector(
   [selectAccounts],
   (accounts) => accounts.filter((account) => account.isActive)
 );
+``` 
+#### Direct Object Selection:
+- You don’t need to memoize when the slice of the Redux store is an object and you are directly selecting it without modifications.
+- In Redux, on any state update, the reducer returns a new state object while leaving the previous state intact.
+```javascript
+const state = {
+  user: { id: 1, name: "John" },
+  settings: { theme: "dark" },
+};
+
+// Reducer updates `user` slice only
+const newState = {
+  ...state,
+  user: { ...state.user, name: "Jane" },
+};
+
+console.log(state.settings === newState.settings); // true (reference unchanged)
+console.log(state.user === newState.user); // false (new object created)
 ``` 
