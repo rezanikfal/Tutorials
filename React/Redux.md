@@ -646,3 +646,8 @@ export default AlbumsList;
 ```javascript
 const { data, error, isLoading } = useFetchAlbumsQuery(user);
 ```
+### Selectors & Memoizing 
+- Identify the core features of the application.
+- When a content on the screen is changing, we need a `state`.
+- Avoid Derived States, derive it using `selectors` instead of storing it.
+- Use a **Flat State** Structure (Normalized Form):
