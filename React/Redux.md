@@ -646,8 +646,25 @@ export default AlbumsList;
 ```javascript
 const { data, error, isLoading } = useFetchAlbumsQuery(user);
 ```
-### Selectors & Memoizing 
-- Identify the core features of the application.
-- When a content on the screen is changing, we need a `state`.
-- Avoid Derived States, derive it using `selectors` instead of storing it.
-- Use a **Flat State** Structure (Normalized Form):
+### Memoized Selector:
+- The selector is always recalculated when the Redux store updates.Even if the inputs to the selector haven't changed.
+- React-Redux's useSelector compares the selector's new result with its previous result using **strict equality (===)**.If the result is the same, React skips the component's re-render.
+  - If the selector performs any transformation, like **filtering**, **mapping**, or **creating a new object/array**, memoization becomes critical.
+  - Because with any store update, you create a new reference variable.
+```javascript
+const selectActiveAccounts = (state) => {
+  const accounts = state.accounts.accountsInfo;
+  return accounts.filter((account) => account.isActive);
+};
+```
+- Since `.filter()` returns a new array, the reference will always be different, potentially causing unnecessary re-renders in components using useSelector.
+- So we memoize the selector using `createSelector`
+```javascript
+import { createSelector } from "@reduxjs/toolkit"
+
+const selectAccounts = (state) => state.accounts.accountsInfo;
+const selectActiveAccounts = createSelector(
+  [selectAccounts],
+  (accounts) => accounts.filter((account) => account.isActive)
+);
+``` 
