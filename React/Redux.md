@@ -717,3 +717,24 @@ const newState = {
 console.log(state.settings === newState.settings); // true (reference unchanged)
 console.log(state.user === newState.user); // false (new object created)
 ``` 
+- In case you transform the API response to a new object using `transformResponse`, we do need memoize even with direct selecting.
+```javascript
+const accountsApi = createApi({
+  reducerPath: "apiAccounts",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:7878",
+  }),
+  endpoints(builder) {
+    return {
+      fetchAccounts: builder.mutation({
+        query: () => {
+          return {
+            url: "/eligibleAccounts",
+            method: "POST",
+            body: {},
+          };
+        },
+        transformResponse: (res) => {
+        // Re-Organize the response object
+          return { ...
+``` 
