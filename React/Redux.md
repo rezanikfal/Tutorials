@@ -717,24 +717,12 @@ const newState = {
 console.log(state.settings === newState.settings); // true (reference unchanged)
 console.log(state.user === newState.user); // false (new object created)
 ``` 
-- In case you transform the API response to a new object using `transformResponse`, we do need memoize even with direct selecting.
-```javascript
-const accountsApi = createApi({
-  reducerPath: "apiAccounts",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:7878",
-  }),
-  endpoints(builder) {
-    return {
-      fetchAccounts: builder.mutation({
-        query: () => {
-          return {
-            url: "/eligibleAccounts",
-            method: "POST",
-            body: {},
-          };
-        },
-        transformResponse: (res) => {
-        // Re-Organize the response object
-          return { ...
-``` 
+- In case you transform the API response to a new object using `transformResponse`, the transformed data becomes part of your Redux store.
+- It behaves just like any other slice of your Redux state.
+- The memoization happens inside the function returned by `createSelector`. It keeps track of:
+  - The last input values (`lastInputs`).
+  - The last computed result (`lastResult`).
+- If no change happens to the input values, the function returned by `createSelector` leverages its memoization mechanism and returns `lastResult`.
+- So, `state.complexObject` works exactly the same. even if you drive a property `like state.complexObject.users`. NO need to memoization using `createSelector`.
+- If you’re computing derived data (e.g., **filtering**, **mapping**), you should use `createSelector` to memoize the result.
+- Because React’s `useSelector` checks for strict equality (===) to determine whether to trigger a re-render.
