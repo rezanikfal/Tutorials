@@ -1,3 +1,27 @@
+## Primitive & Reference / Mutable & Immutable
+- Primitive Types: Immutable data types like `string`, `number`, `boolean`.
+  - Values are stored directly.
+  - Comparisons `(===)` check values, not memory references.
+```javascript
+let a = "REZA";
+let b = a;
+b = "REZA2"
+console.log(a === b); // false
+``` 
+- Reference Types: Mutable types like `object`, `array`, and `function`.
+  - Stored in memory by reference.
+  - Comparisons `(===)` check references, not the actual content.
+```javascript
+let obj1 = { name: "REZA" };
+let obj2 = { name: "REZA" };
+console.log(obj1 === obj2); // false (different references)
+``` 
+```javascript
+let obj1 = { name: "REZA" };
+let obj2 = obj1;
+obj2.age = 12
+console.log(obj1 === obj2); // true, both are {name: 'REZA', age: 12}
+``` 
 ## React Redux
 - **React Redux** is the official React UI bindings layer for Redux. It lets your React components read data from a **Redux store**, and dispatch **actions** to the store to update state.
 - The **Redux Toolkit** package is intended to be the standard way to write Redux logic.
