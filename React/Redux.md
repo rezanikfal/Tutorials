@@ -1,27 +1,3 @@
-## Primitive & Reference / Mutable & Immutable
-- Primitive Types: Immutable data types like `string`, `number`, `boolean`.
-  - Values are stored directly.
-  - Comparisons `(===)` check values, not memory references.
-```javascript
-let a = "REZA";
-let b = a;
-b = "REZA2"
-console.log(a === b); // false
-``` 
-- Reference Types: Mutable types like `object`, `array`, and `function`.
-  - Stored in memory by reference.
-  - Comparisons `(===)` check references, not the actual content.
-```javascript
-let obj1 = { name: "REZA" };
-let obj2 = { name: "REZA" };
-console.log(obj1 === obj2); // false (different references)
-``` 
-```javascript
-let obj1 = { name: "REZA" };
-let obj2 = obj1;
-obj2.age = 12
-console.log(obj1 === obj2); // true, both are {name: 'REZA', age: 12}
-``` 
 ## React Redux
 - **React Redux** is the official React UI bindings layer for Redux. It lets your React components read data from a **Redux store**, and dispatch **actions** to the store to update state.
 - The **Redux Toolkit** package is intended to be the standard way to write Redux logic.
@@ -750,3 +726,58 @@ console.log(state.user === newState.user); // false (new object created)
 - So, `state.complexObject` works exactly the same. even if you drive a property `like state.complexObject.users`. NO need to memoization using `createSelector`.
 - If you’re computing derived data (e.g., **filtering**, **mapping**), you should use `createSelector` to memoize the result.
 - Because React’s `useSelector` checks for strict equality (===) to determine whether to trigger a re-render.
+## Primitive & Reference / Mutable & Immutable
+- Primitive Types: Immutable data types like `string`, `number`, `boolean`.
+  - Values are stored directly.
+  - Comparisons `(===)` check values, not memory references.
+```javascript
+let a = "REZA";
+let b = a;
+b = "REZA2"
+console.log(a === b); // false
+``` 
+- Reference Types: Mutable types like `object`, `array`, and `function`.
+  - Stored in memory by reference.
+  - Comparisons `(===)` check references, not the actual content.
+```javascript
+let obj1 = { name: "REZA" };
+let obj2 = { name: "REZA" };
+console.log(obj1 === obj2); // false (different references)
+``` 
+```javascript
+let obj1 = { name: "REZA" };
+let obj2 = obj1;
+obj2.age = 12
+console.log(obj1 === obj2); // true, both are {name: 'REZA', age: 12}
+```
+### Selectors and immutable stores
+- if the selector is directly accessing a slice of state from the Redux store, you generally don’t need to use `createSelector`.
+- This is because the Redux store is updated immutably, ensuring that reference equality `(===)` works as expected.
+- Whenever the store's state is updated (after an action is dispatched and the reducer processes it), React-Redux:
+  - Calls the selector function `(state) => state.user` with the updated store state (it re-calculate and returns the new value).
+  - Compares the returned value (state.user) to the value returned during the previous state.
+``` 
+const user = useSelector((state) => state.user);
+```
+- Use `createSelector` for calculations, filtering, or other transformations to optimize performance.
+- In other words, with any change to the store, all selectors are triggered:
+  - Direct Selectors: If the slice of the state associated with the selector does not change, React-Redux skips re-rendering because the Redux store updates immutably. The reference remains the same, so the shallow comparison (===) prevents unnecessary updates.
+  - Derived Selectors: If the selector returns a reference type (like an object or array), a new reference is created with every store change unless memoization is used. This can cause unnecessary UI re-renders even if the derived data hasn't actually changed.
+- To prevent these issues:
+  - Memoize Derived Selectors: Use createSelector to ensure that if the input state/selectors remain unchanged, the selector returns the previously computed value without recalculating. This prevents unnecessary re-renders by keeping the reference stable.
+  - Optimize Heavy Computations: For selectors involving expensive calculations, memoization avoids redundant recomputation, further improving performance. Even if recalculating with the same inputs gives the same output (avoiding re-renders), avoiding the computation altogether saves processing time.
+```javascript
+import { createSelector } from 'reselect';
+
+// Selector to get all items
+const selectItems = (state) => state.items;
+
+// Memoized selector to filter items
+const selectFilteredItems = createSelector(
+  [selectItems],
+  (items) => items.filter((item) => item.isVisible)
+);
+
+// Usage in a component
+const filteredItems = useSelector(selectFilteredItems);
+```
