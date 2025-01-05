@@ -753,6 +753,8 @@ console.log(obj1 === obj2); // true, both are {name: 'REZA', age: 12}
 ### Selectors and immutable stores
 - if the selector is directly accessing a slice of state from the Redux store, you generally don’t need to use `createSelector`.
 - This is because the Redux store is updated immutably, ensuring that reference equality `(===)` works as expected.
+- If you update the Redux store **mutably**, selectors (or any components that rely on the store) won't detect changes because of the same reference.
+- a state change is required to **notify** all subscribers (e.g., components using `useSelector` or `connect`) so that they can determine whether their associated selectors need to re-run or not.
 - Whenever the store's state is updated (after an action is dispatched and the reducer processes it), React-Redux:
   - Calls the selector function `(state) => state.user` with the updated store state (it re-calculate and returns the new value).
   - Compares the returned value (state.user) to the value returned during the previous state.
@@ -760,7 +762,7 @@ console.log(obj1 === obj2); // true, both are {name: 'REZA', age: 12}
 const user = useSelector((state) => state.user);
 ```
 - Use `createSelector` for calculations, filtering, or other transformations to optimize performance.
-- In other words, with any change to the store, all selectors are triggered:
+- In other words, with any change to the store, all selectors are notified:
   - Direct Selectors: If the slice of the state associated with the selector does not change, React-Redux skips re-rendering because the Redux store updates immutably. The reference remains the same, so the shallow comparison (===) prevents unnecessary updates.
   - Derived Selectors: If the selector returns a reference type (like an object or array), a new reference is created with every store change unless memoization is used. This can cause unnecessary UI re-renders even if the derived data hasn't actually changed.
 - To prevent these issues:
