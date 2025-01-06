@@ -757,10 +757,13 @@ console.log(obj1 === obj2); // true, both are {name: 'REZA', age: 12}
 - a state change is required to **notify** all subscribers (e.g., components using `useSelector` or `connect`) so that they can determine whether their associated selectors need to re-run or not.
 - Whenever the store's state is updated (after an action is dispatched and the reducer processes it), React-Redux:
   - Calls the selector function `(state) => state.user` with the updated store state (it re-calculate and returns the new value).
-  - Compares the returned value (state.user) to the value returned during the previous state.
-``` 
-const user = useSelector((state) => state.user);
-```
+  - React-Redux assumes that reducers return a new state object after every action, even if the new state looks identical to the old state.
+  - Without memoization, React-Redux will always execute the selector after every state update, even if the state (or the specific slice of state the selector depends on) is identical.
+  - Compares the returned value (state.user) to the value returned during the previous state. The comparison checks if the two values are strictly equal (===).
+    - If the value is the same: React-Redux skips re-rendering the connected component.
+    - If the value is different: React-Redux triggers a re-render of the connected component.
+    - If it is input selector for a Memoized selector (with no UI connection),the Memoized selector gets recalculated in case of any change in the input selector's result.
+    - If it is input selector for a Memoized selector (with no UI connection),the Memoized selector returns its previous result in case of no change in the input selector's result.
 - Use `createSelector` for calculations, filtering, or other transformations to optimize performance.
 - In other words, with any change to the store, all selectors are notified:
   - Direct Selectors: If the slice of the state associated with the selector does not change, React-Redux skips re-rendering because the Redux store updates immutably. The reference remains the same, so the shallow comparison (===) prevents unnecessary updates.
