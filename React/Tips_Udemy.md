@@ -688,3 +688,28 @@ export default function App() {
   const { data, loading, error } = useFetchData("https://api.example.com/data");
   ...
 ```
+## React Rendering Rules
+Here’s a brief explanation of the steps React takes during the **initial render**, including elements from external libraries like MUI:
+### 1. **Component Invocation**  
+React calls your component function to generate the virtual DOM based on:
+   - Default state values (`useState`).
+   - Default values of the Redux store if your component subscribes to the store using hooks like `useSelector`.
+   - Props passed to the component.
+   - JSX structure.
+### 2. **MUI Component Integration**  
+- MUI components (or other external UI components) are invoked like regular React components.
+- MUI generates its own virtual DOM based on props and internal logic (e.g., styles, themes).
+### 3. **Build the Virtual DOM**  
+React combines your component's virtual DOM with the virtual DOM from child components (including MUI components). No actual DOM updates happen yet.
+### 4. **Inject Styles (MUI Specific)**  
+MUI (or similar libraries):
+   - Inject dynamic styles into the DOM (via Emotion or JSS).
+   - Load external assets like fonts (if configured properly).
+### 5. **Compare and Update the Real DOM**  
+React compares the virtual DOM with the current real DOM (empty during the first render). It then updates the real DOM to match the virtual DOM.
+### 6. **Trigger Side Effects**  
+After the initial render, React runs effects (`useEffect`) for tasks like:
+   - Fetching data.
+   - Triggering re-renders by updating the state.
+### Final UI Display  
+The real DOM reflects the final output, including styled and functional MUI components, once all styles and resources are applied.
