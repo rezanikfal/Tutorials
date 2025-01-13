@@ -769,7 +769,7 @@ console.log(obj1 === obj2); // true, both are {name: 'REZA', age: 12}
   - Direct Selectors: If the slice of the state associated with the selector does not change, React-Redux skips re-rendering because the Redux store updates immutably. The reference remains the same, so the shallow comparison (===) prevents unnecessary updates.
   - Derived Selectors: If the selector returns a reference type (like an object or array), a new reference is created with every store change unless memoization is used. This can cause unnecessary UI re-renders even if the derived data hasn't actually changed.
 - To prevent these issues:
-  - Memoize Derived Selectors: Use createSelector to ensure that if the input state/selectors remain unchanged, the selector returns the previously computed value without recalculating. This prevents unnecessary re-renders by keeping the reference stable.
+  - Memoize Derived Selectors: Use `createSelector` to ensure that if the input state/selectors remain unchanged, the selector returns the previously computed value without recalculating. This prevents unnecessary re-renders by keeping the reference stable.
   - Optimize Heavy Computations: For selectors involving expensive calculations, memoization avoids redundant recomputation, further improving performance. Even if recalculating with the same inputs gives the same output (avoiding re-renders), avoiding the computation altogether saves processing time.
 ```javascript
 import { createSelector } from 'reselect';
