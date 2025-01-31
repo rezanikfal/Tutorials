@@ -609,9 +609,54 @@ function Provider({ children }) {
 const memoizedValue = useMemo(() => computeValue(a, b), [a, b]);
 const memoizedFunction = useCallback(() => doSomething(a, b), [a, b]);
 ```
+- `useMemo` returns the **memoized** value of the function, which is only recalculated when one of the dependencies changes.
+- `useMemo` is used for **Expensive Calculation**s and **Avoid Unnecessary Re-renders**
+- Here, on any state change, we re-render the `UserProfile` component because the `user` is an object (Ref type):
+```javascript
+import React, { useEffect, useState, useMemo } from 'react';
 
+const UserProfile = ({ user }) => {
+  useEffect(() => {
+    console.log('User changed:', user);
+    // Perform some action when the user object changes
+  }, [user]); // Dependency array includes `user`
 
+  return (
+    <div>
+      <h2>User Profile</h2>
+      <p>Name: {user.name}</p>
+      <p>Age: {user.age}</p>
+    </div>
+  );
+};
 
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  // This creates a new `user` object on every render
+  const user = { name: 'John', age: 30 };
+
+  return (
+    <div>
+      <UserProfile user={user} />
+      <button onClick={() => setCount(count + 1)}>Increment Count</button>
+      <p>Count: {count}</p>
+    </div>
+  );
+};
+
+export default App;
+```
+- To fix the issue:
+```javascript
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  // Memoize the `user` object to maintain referential equality
+  const user = useMemo(() => {
+    return { name: 'John', age: 30 };
+  }, []); // Empty dependency array means the object is only created once
+```
 
 ## useReducer
 - `useReducer` is a React Hook that lets you add a reducer to your component.
