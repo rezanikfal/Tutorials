@@ -824,3 +824,30 @@ After the initial render, React runs effects (`useEffect`) for tasks like:
    - Triggering re-renders by updating the state.
 ### Final UI Display  
 The real DOM reflects the final output, including styled and functional MUI components, once all styles and resources are applied.
+## Middleware in Redux?
+- `middleware` is a powerful feature that allows you to intercept, modify, or **enhance actions before they reach the reducer**.
+- It is for Handling asynchronous logic, Logging actions for debugging, and Adding delays or throttling.
+- Custom Middleware in Redux Toolkit:
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import usersReducer from './usersSlice';
+
+const loggingMiddleware = (store) => (next) => (action) => {
+  console.log('Dispatching action:', action);
+  const result = next(action);
+  console.log('New state:', store.getState());
+  return result;
+};
+
+const store = configureStore({
+  reducer: {
+    users: usersReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(loggingMiddleware),
+});
+
+export default store;
+```
+
+
