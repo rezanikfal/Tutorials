@@ -602,6 +602,17 @@ function Provider({ children }) {
     setBooks(response.data);
   }, []);
 ```
+## useCallback vs useMemo
+- **useMemo:** Memoizes a value (e.g., the result of a computation).
+- **useCallback:** Memoizes a function (e.g., an event handler).
+```javascript
+const memoizedValue = useMemo(() => computeValue(a, b), [a, b]);
+const memoizedFunction = useCallback(() => doSomething(a, b), [a, b]);
+```
+
+
+
+
 ## useReducer
 - `useReducer` is a React Hook that lets you add a reducer to your component.
 - The reducer function that specifies how the state gets updated. It must be **pure**, should take the **state and action as arguments**, and should **return the next state**.
