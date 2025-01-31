@@ -488,6 +488,61 @@ useEffect(() => {
 - If the dependencies array is empty ([]), the effect runs only once after the initial render.
 - If the dependencies array contains values, the effect runs whenever any of those values change.
 - If there is no dependencies array, the effect runs after every render.
+## useContext
+- The `useContext` hook in React is a way to share data between components without having to pass props manually at every level of the component tree. 
+- The `useContext` use case is **Global State**, **Theming** (managing themes or styles across the application) and User **Authentication** to share user authentication state across the app.
+- Create Context
+```javascript
+import { createContext } from "react";
+const ThemeContext = createContext();
+```
+- Provider
+```javascript
+import { useState } from 'react';
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+```
+- useContext
+```javascript
+import React, { useContext } from 'react';
+
+const ThemedButton = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <button 
+      onClick={toggleTheme}
+      style={{
+        backgroundColor: theme === 'light' ? '#fff' : '#333',
+        color: theme === 'light' ? '#000' : '#fff',
+      }}
+    >
+      Toggle Theme
+    </button>
+  );
+};
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <ThemedButton />
+    </ThemeProvider>
+  );
+};
+
+export default App;
+```
 ## useCallback
 - `useCallback` is used to memoize functions, making them efficient and preventing unnecessary re-renders.
 - The callback is only recreated when one of the `dependencies` changes. If you leave the `dependencies` array empty (`[]`), the callback will only be created once.
