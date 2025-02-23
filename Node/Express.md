@@ -64,3 +64,22 @@ dotenv.config({path: './config/config.env'});
 
 const connectedDB = () => mongoose.connect(process.env.MONGO_URI);
 ```
+### Controllers
+- Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
+```javascript
+// userController.js
+exports.getUser = (req, res) => {
+  const userId = req.params.id;
+  // Imagine fetching user from DB here
+  res.json({ id: userId, name: "John Doe" });
+};
+```
+```javascript
+const express = require('express');
+const router = express.Router();
+const userController = require('./controllers/userController');
+
+router.get('/user/:id', userController.getUser);
+
+module.exports = router;
+```
