@@ -1,17 +1,81 @@
-### Request-Response cycle
-- **Client** sends a request to a server, and the server processes this request and sends back a **response**.
-- **Request** can include methods like `GET`, `POST`, `PUT`, or `DELETE`, as well as **headers** and any required **data** (in the case of a `POST` or `PUT`).
-### Client vs Server's Perspective on Request/Response
-- **Client** sends a `request` and **Server** receives a `request`. It includes:
-  - HTTP Method (e.g., GET, POST, PUT, DELETE)
-  - URL/URI
-  - Headers (Authorization tokens, Content-Type, User-Agent, etc.)
-  - Body (Optional)
-- **Client** receives a `response` and **Server** sends a `response`. It includes:
-  - Status Code
-  - Headers
-  - Body (Optional)
-### Request Headers vs Response Headers
+## **OSI Model & Network Layers**
+In networking, data is broken into smaller units called **packets** before being sent over a network. Each layer in the **OSI model** adds information to these packets to ensure proper delivery.
+### **1. Application Layer (HTTP, Developer's Layer)**
+- Handles **HTTP, HTTPS, FTP, DNS, etc.**
+- Used by web browsers, APIs, and applications.
+
+### **2. Transport Layer (TCP & UDP)**
+- Creates **ports (16-bit: 0 - 65535) for communication.**  
+- **TCP (Transmission Control Protocol)**:  
+  - **Reliable**, **ordered** delivery.  
+  - Connection-based (handshake).  
+  - Includes **error checking & congestion control**.  
+- **UDP (User Datagram Protocol)**:  
+  - **Faster** but **unreliable** (no handshake).  
+  - Used for **streaming, gaming, VoIP**.
+
+### **3. Network Layer (IP & Routing)**
+- Uses **IP (Internet Protocol)** to assign addresses and route packets.
+- When you connect to the internet, your **ISP** assigns a **public IP** to your router(changes over time).
+- When you type URL, **DNS** translates it to an IP address.
+  - **DNS (Domain Name System)** is a global network of servers that translate domain names (e.g., www.google.com) into IP addresses (e.g., 142.250.190.46).
+  - Internet provider automatically assigns DNS servers when you connect. It functions like the internet's phonebook.
+
+### **4. Link Layer (Ethernet, WiFi, MAC Addresses)**
+- Manages **physical addressing (MAC address)**.
+- Handles **LAN connections (WiFi, Ethernet, cables).**
+
+### **5. Physical Layer (Hardware & Signals)**
+- Includes **network cables, fiber optics, radio waves**.
+## **HTTP and Networking Basics**
+- **HTTP Characteristics:**  
+  - Stateless  
+  - Connectionless  
+  - Flexible  
+
+- **HTTP Message Structure:**  
+  1. **Start Line:**  
+     - Request: `GET /blog HTTP/1.1`  
+     - Response: `HTTP/1.1 200 OK`  
+  2. **Headers (Key-Value Pairs):**  
+     - `Content-Type: text/html`  
+     - `Content-Type: application/json` (note: typo in "application")  
+     - `Cache-Control: public, max-age=0`  
+     - `Date: Fri, 24 Aug 2018 15:23:58 GMT`  
+  3. **Blank Line (Separates Headers & Body)**  
+  4. **Body (Actual Content):**  
+     - Can contain HTML, binary data (e.g., 4K video, images)  
+
+Here’s a sample **HTTP request and response** where the server returns **JSON data** instead of HTML.
+
+---
+
+### **HTTP Request (Client to Server)**
+```http
+GET /api/user HTTP/1.1
+Host: api.example.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+Accept: application/json
+Connection: keep-alive
+```
+---
+### **HTTP Response (Server to Client)**
+```http
+HTTP/1.1 200 OK
+Date: Tue, 26 Feb 2025 12:00:00 GMT
+Server: Apache/2.4.41 (Ubuntu)
+Content-Type: application/json
+Content-Length: 98
+Cache-Control: public, max-age=3600
+
+{
+    "id": 123,
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "role": "admin"
+}
+```
+### Request Headers vs Response Headers (Another example)
 - **Request Headers**: Sent by the client to provide details about the request and the client environment (like `Authorization`, `User-Agent`).
 ```javascript
 GET /api/resource HTTP/1.1
