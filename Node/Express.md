@@ -128,6 +128,52 @@ dotenv.config({path: './config/config.env'});
 
 const connectedDB = () => mongoose.connect(process.env.MONGO_URI);
 ```
+### First Simple Server
+- You should install `express`, `nodemon`, and `dotenv` to create and run a simple express server.
+- To use **ES modules** syntaxt (using `import` instead of `require`, add `"type": "module"` to the **package.json**:
+```javascript
+// package.json
+{
+  "name": "express_anson",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "type": "module"
+}
+```
+```javascript
+// index.js
+import express from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const app = express();
+
+app.get('/', (req, res) => {
+    res.status(201).send({"name":"Reza"});
+});
+
+const PORT = process.env.PORT || 3100;
+
+app.listen(PORT, () => {
+    console.log("Server running on port 3000");
+});
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
