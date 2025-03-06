@@ -174,6 +174,51 @@ app.listen(PORT, () => {
     console.log("Server running on port 3000");
 });
 ```
+### Route Parameters
+- **Route params** (like `:id`) are placeholders in the URL path that capture values from the request URL.
+- In `app.get('/api/users/:id')`, `:id` captures whatever comes after `/api/users/` and makes it available as `req.params.id`.
+```javascript
+// index.js
+import express from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+const mockUsers = [
+    {id: 1, username: "anson", displayName: "Anson"},
+    {id: 2, username: "jack", displayName: "Jack"},
+    {id: 3, username: "adam", displayName: "Adam"},
+    {id: 4, username: "tina", displayName: "Tina"},
+    {id: 5, username: "jason", displayName: "Jason"},
+    {id: 6, username: "henry", displayName: "Henry"},
+    {id: 7, username: "marilyn", displayName: "Marilyn"},
+];
+
+app.listen(PORT, () => {
+    console.log("Server running on port 3000");
+});
+
+app.get('/api/users', (req, res) => {
+    res.status(201).send(mockUsers);
+});
+
+app.get('/api/users/:id', (req, res) => {
+
+    // better than (if(isNaN(id)):
+    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
+
+    const id = parseInt((req.params.id));
+    const user = mockUsers.find(user => user.id === id);
+    if (!user) {
+        res.status(404).send('User not found');
+    } else {
+        res.status(200).send(user);
+    }
+});
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
