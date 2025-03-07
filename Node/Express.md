@@ -219,6 +219,23 @@ app.get('/api/users/:id', (req, res) => {
     }
 });
 ```
+### Query Parameters
+- In Express, `req.query` is used to access the **query parameters** that are sent in the URL.
+- For example: `http://localhost:3000/api/users?filter=displayName&value=T`
+```javascript
+// index.js
+// Same as above
+app.get('/api/users', (req, res) => {
+    const {filter, value} = req.query;
+    console.log(filter, value);
+    if (filter && value) {
+        const selectedUsers = mockUsers.filter(user => user[filter].includes(value));
+        res.json(selectedUsers);
+    } else {
+        res.status(200).send(mockUsers);
+    }
+});
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
