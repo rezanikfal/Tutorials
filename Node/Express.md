@@ -230,7 +230,7 @@ app.get('/api/users', (req, res) => {
     console.log(filter, value);
     if (filter && value) {
         const selectedUsers = mockUsers.filter(user => user[filter].includes(value));
-        res.json(selectedUsers);
+        res.status(200).json(selectedUsers);
     }
     res.status(200).send(mockUsers);
 });
