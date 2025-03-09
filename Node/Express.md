@@ -231,9 +231,8 @@ app.get('/api/users', (req, res) => {
     if (filter && value) {
         const selectedUsers = mockUsers.filter(user => user[filter].includes(value));
         res.json(selectedUsers);
-    } else {
-        res.status(200).send(mockUsers);
     }
+    res.status(200).send(mockUsers);
 });
 ```
 ### CRUD Operations 
@@ -248,11 +247,10 @@ app.delete('/api/users/:id', (req, res) => {
     const user = mockUsers.find(user => user.id === id);
     if (!user) {
         res.status(404).send('username not found');
-    } else {
-        const arrayId = mockUsers.indexOf(user);
-        mockUsers.splice(arrayId, 1);
-        res.sendStatus(200);
     }
+    const arrayId = mockUsers.indexOf(user);
+    mockUsers.splice(arrayId, 1);
+    res.sendStatus(200);
 });
 
 app.post('/api/users', (req, res) => {
@@ -279,12 +277,11 @@ app.patch('/api/users/:id', (req, res) => {
         return res.status(400).json({error: 'username and displayName are required'});
     }
 
-    if (userIndex ===-1) {
+    if (userIndex === -1) {
         res.status(404).send('username not found');
-    } else {
-        mockUsers[userIndex] ={...mockUsers[userIndex], ...body};
-        res.status(200).json(mockUsers[userIndex] );
     }
+    mockUsers[userIndex] = {...mockUsers[userIndex], ...body};
+    res.status(200).json(mockUsers[userIndex]);
 });
 
 app.put('/api/users/:id', (req, res) => {
@@ -298,12 +295,11 @@ app.put('/api/users/:id', (req, res) => {
         return res.status(400).json({error: 'username and displayName are required'});
     }
 
-    if (userIndex ===-1) {
+    if (userIndex === -1) {
         res.status(404).send('username not found');
-    } else {
-        mockUsers[userIndex] ={id, ...body};
-        res.status(200).json(mockUsers[userIndex] );
     }
+    mockUsers[userIndex] = {id, ...body};
+    res.status(200).json(mockUsers[userIndex]);
 });
 ```
 ### Controllers
