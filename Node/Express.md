@@ -213,10 +213,9 @@ app.get('/api/users/:id', (req, res) => {
     const id = parseInt((req.params.id));
     const user = mockUsers.find(user => user.id === id);
     if (!user) {
-        res.status(404).send('User not found');
-    } else {
-        res.status(200).send(user);
+        return res.status(404).send('User not found');
     }
+        res.status(200).send(user);
 });
 ```
 ### Query Parameters
@@ -230,13 +229,14 @@ app.get('/api/users', (req, res) => {
     console.log(filter, value);
     if (filter && value) {
         const selectedUsers = mockUsers.filter(user => user[filter].includes(value));
-        res.status(200).json(selectedUsers);
+        return res.status(200).json(selectedUsers);
     }
     res.status(200).send(mockUsers);
 });
 ```
 ### CRUD Operations 
 - These four operations are fundamental in managing data in applications and databases.
+- **Note that:** To prevent further execution of the function when we send the response, we should `return` it. 
 ```javascript
 app.delete('/api/users/:id', (req, res) => {
 
@@ -246,7 +246,7 @@ app.delete('/api/users/:id', (req, res) => {
     const id = parseInt((req.params.id));
     const user = mockUsers.find(user => user.id === id);
     if (!user) {
-        res.status(404).send('username not found');
+        return res.status(404).send('username not found');
     }
     const arrayId = mockUsers.indexOf(user);
     mockUsers.splice(arrayId, 1);
@@ -278,7 +278,7 @@ app.patch('/api/users/:id', (req, res) => {
     }
 
     if (userIndex === -1) {
-        res.status(404).send('username not found');
+        return res.status(404).send('username not found');
     }
     mockUsers[userIndex] = {...mockUsers[userIndex], ...body};
     res.status(200).json(mockUsers[userIndex]);
@@ -296,7 +296,7 @@ app.put('/api/users/:id', (req, res) => {
     }
 
     if (userIndex === -1) {
-        res.status(404).send('username not found');
+        return res.status(404).send('username not found');
     }
     mockUsers[userIndex] = {id, ...body};
     res.status(200).json(mockUsers[userIndex]);
