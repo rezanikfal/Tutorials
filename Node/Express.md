@@ -236,6 +236,76 @@ app.get('/api/users', (req, res) => {
     }
 });
 ```
+### CRUD Operations 
+- These four operations are fundamental in managing data in applications and databases.
+```javascript
+app.delete('/api/users/:id', (req, res) => {
+
+    // better than (if(isNaN(id)):
+    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
+
+    const id = parseInt((req.params.id));
+    const user = mockUsers.find(user => user.id === id);
+    if (!user) {
+        res.status(404).send('username not found');
+    } else {
+        const arrayId = mockUsers.indexOf(user);
+        mockUsers.splice(arrayId, 1);
+        res.sendStatus(200);
+    }
+});
+
+app.post('/api/users', (req, res) => {
+    const {body} = req;
+
+    if (!body.username || !body.displayName) {
+        return res.status(400).json({error: 'username and displayName are required'});
+    }
+    const {username, displayName} = body;
+    const newId = mockUsers.length > 0 ? parseInt(mockUsers[mockUsers.length - 1].id) + 1 : 1;
+    const newUser = {id: newId, username, displayName};
+    mockUsers.push(newUser);
+    res.status(201).json(newUser);
+});
+
+app.patch('/api/users/:id', (req, res) => {
+    // better than (if(isNaN(id)):
+    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
+    const id = parseInt((req.params.id));
+    const userIndex = mockUsers.findIndex(user => user.id === id);
+
+    const {body} = req;
+    if (!body.username && !body.displayName) {
+        return res.status(400).json({error: 'username and displayName are required'});
+    }
+
+    if (userIndex ===-1) {
+        res.status(404).send('username not found');
+    } else {
+        mockUsers[userIndex] ={...mockUsers[userIndex], ...body};
+        res.status(200).json(mockUsers[userIndex] );
+    }
+});
+
+app.put('/api/users/:id', (req, res) => {
+    // better than (if(isNaN(id)):
+    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
+    const id = parseInt((req.params.id));
+    const userIndex = mockUsers.findIndex(user => user.id === id);
+
+    const {body} = req;
+    if (!body.username || !body.displayName) {
+        return res.status(400).json({error: 'username and displayName are required'});
+    }
+
+    if (userIndex ===-1) {
+        res.status(404).send('username not found');
+    } else {
+        mockUsers[userIndex] ={id, ...body};
+        res.status(200).json(mockUsers[userIndex] );
+    }
+});
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
