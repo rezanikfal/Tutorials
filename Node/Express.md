@@ -346,6 +346,35 @@ app.delete('/api/users/:id', resolveIndex, (req, res) => {
 });
 
 ```
+### Validation
+- We use 3rd party library for express validation: `npm install express-validator`
+#### Validate Query Params
+- We use `query` and `validationResult` for this goal. Note that we are validating 2 query params here:
+```javascript
+import {query, validationResult} from 'express-validator';
+
+app.get('/api/users',
+    [
+        query("filter")
+            .notEmpty()
+            .withMessage("filter is required"),
+        query("value")
+            .notEmpty()
+            .withMessage("value is required")
+    ],
+    (req, res) => {
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.status(404).send('filter and value is required');
+        }
+        const {filter, value} = req.query;
+        if (filter && value) {
+            const selectedUsers = mockUsers.filter(user => user[filter].includes(value));
+            return res.status(200).json(selectedUsers);
+        }
+        res.status(200).send(mockUsers);
+    });
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
