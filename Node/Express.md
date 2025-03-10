@@ -206,16 +206,18 @@ app.get('/api/users', (req, res) => {
 });
 
 app.get('/api/users/:id', (req, res) => {
-
     // better than (if(isNaN(id)):
-    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
-
-    const id = parseInt((req.params.id));
-    const user = mockUsers.find(user => user.id === id);
-    if (!user) {
-        return res.status(404).send('User not found');
+    if (!/^\d+$/.test(req.params.id)) {
+        return res.status(400).send('Invalid ID');
     }
-        res.status(200).send(user);
+    const id = parseInt((req.params.id));
+    const userIndex = mockUsers.findIndex(user => user.id === id);
+
+    if (userIndex === -1) {
+        return res.status(404).send('username not found');
+    }
+
+    res.status(200).send(mockUsers[userIndex]);
 });
 ```
 ### Query Parameters
@@ -239,17 +241,17 @@ app.get('/api/users', (req, res) => {
 - **Note that:** To prevent further execution of the function when we send the response, we should `return` it. 
 ```javascript
 app.delete('/api/users/:id', (req, res) => {
-
     // better than (if(isNaN(id)):
-    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
-
+    if (!/^\d+$/.test(req.params.id)) {
+        return res.status(400).send('Invalid ID');
+    }
     const id = parseInt((req.params.id));
-    const user = mockUsers.find(user => user.id === id);
-    if (!user) {
+    const userIndex = mockUsers.findIndex(user => user.id === id);
+
+    if (userIndex === -1) {
         return res.status(404).send('username not found');
     }
-    const arrayId = mockUsers.indexOf(user);
-    mockUsers.splice(arrayId, 1);
+    mockUsers.splice(userIndex, 1);
     res.sendStatus(200);
 });
 
@@ -268,36 +270,42 @@ app.post('/api/users', (req, res) => {
 
 app.patch('/api/users/:id', (req, res) => {
     // better than (if(isNaN(id)):
-    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
+    if (!/^\d+$/.test(req.params.id)) {
+        return res.status(400).send('Invalid ID');
+    }
     const id = parseInt((req.params.id));
     const userIndex = mockUsers.findIndex(user => user.id === id);
+
+    if (userIndex === -1) {
+        return res.status(404).send('username not found');
+    }
 
     const {body} = req;
     if (!body.username && !body.displayName) {
         return res.status(400).json({error: 'username and displayName are required'});
     }
 
-    if (userIndex === -1) {
-        return res.status(404).send('username not found');
-    }
     mockUsers[userIndex] = {...mockUsers[userIndex], ...body};
     res.status(200).json(mockUsers[userIndex]);
 });
 
 app.put('/api/users/:id', (req, res) => {
     // better than (if(isNaN(id)):
-    if (!/^\d+$/.test(req.params.id)) res.status(400).send('Invalid ID');
+    if (!/^\d+$/.test(req.params.id)) {
+        return res.status(400).send('Invalid ID');
+    }
     const id = parseInt((req.params.id));
     const userIndex = mockUsers.findIndex(user => user.id === id);
+
+    if (userIndex === -1) {
+        return res.status(404).send('username not found');
+    }
 
     const {body} = req;
     if (!body.username || !body.displayName) {
         return res.status(400).json({error: 'username and displayName are required'});
     }
 
-    if (userIndex === -1) {
-        return res.status(404).send('username not found');
-    }
     mockUsers[userIndex] = {id, ...body};
     res.status(200).json(mockUsers[userIndex]);
 });
