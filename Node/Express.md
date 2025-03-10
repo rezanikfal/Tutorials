@@ -310,6 +310,42 @@ app.put('/api/users/:id', (req, res) => {
     res.status(200).json(mockUsers[userIndex]);
 });
 ```
+### Middleware
+- Middleware in Express.js is a function that executes before reaching the actual route handler. It can be **global** (applies to all routes) or **local** (applies to specific routes).
+- **Global** Logging Middleware. It runs for all following requests:
+```javascript
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next(); // Moves to the next middleware or route handler
+});
+```
+- **Local** Middleware (i.e. `resolveIndex`). Runs only for specific routes:
+```javascript
+const resolveIndex = (req, res, next) => {
+    // better than (if(isNaN(id)):
+    if (!/^\d+$/.test(req.params.id)) {
+        return res.status(400).send('Invalid ID');
+    }
+    const id = parseInt((req.params.id));
+    const userIndex = mockUsers.findIndex(user => user.id === id);
+
+    if (userIndex === -1) {
+        return res.status(404).send('username not found');
+    }
+    req.userIndex = userIndex;
+    next();
+};
+
+app.get('/api/users/:id', resolveIndex, (req, res) => {
+    res.status(200).send(mockUsers[req.userIndex]);
+});
+
+app.delete('/api/users/:id', resolveIndex, (req, res) => {
+    mockUsers.splice(req.userIndex, 1);
+    res.sendStatus(200);
+});
+
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
