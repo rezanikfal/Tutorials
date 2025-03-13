@@ -375,6 +375,32 @@ app.get('/api/users',
         res.status(200).send(mockUsers);
     });
 ```
+## Session-Based Authentication in Express with Cookies
+- **Cookies** are small pieces of data stored on the client (browser) and sent with every request.
+  - The server sets a cookie in the response.
+  - The browser stores the cookie and sends it back with every request.
+  - The server reads the cookie to access stored data.
+- **Cookies** Are Sent with Every Request, BUT…
+  - By default, cookies are sent automatically with every request to the **same domain** (same-origin requests).
+  - However, for cross-origin requests (e.g., frontend on localhost:4200, backend on localhost:3000), cookies are not sent automatically due to browser security restrictions.
+  - In cross-origin cases, you must explicitly **enable credentials** in the request.
+- **Sessions** store data server-side, with only a session ID stored in a cookie (`connect.sid`).
+  - The server creates a session and stores data on the server.
+  - A session ID is sent to the client in a cookie (`connect.sid`).
+  - The client sends this session ID with every request.
+  - The server retrieves the session data using the ID.
+```javascript
+// userController.js
+exports.getUser = (req, res) => {
+  const userId = req.params.id;
+  // Imagine fetching user from DB here
+  res.json({ id: userId, name: "John Doe" });
+};
+```
+```javascript
+const express = require('express');
+const router = express.Router();
+const userController = require('./controllers/userController');
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
