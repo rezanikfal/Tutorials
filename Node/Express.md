@@ -406,19 +406,35 @@ const userController = require('./controllers/userController');
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
-// userController.js
-exports.getUser = (req, res) => {
-  const userId = req.params.id;
-  // Imagine fetching user from DB here
-  res.json({ id: userId, name: "John Doe" });
-};
-```
-```javascript
-const express = require('express');
-const router = express.Router();
-const userController = require('./controllers/userController');
+const session = require('express-session');
 
-router.get('/user/:id', userController.getUser);
+app.use(session({
+    secret: 'mySecretKey',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { httpOnly: true, maxAge: 600000 }
+}));
 
-module.exports = router;
+app.get('/set-session', (req, res) => {
+    req.session.user = { username: 'JohnDoe' };
+    res.send('Session set');
+});
+
+app.get('/get-session', (req, res) => {
+    res.send(req.session.user || 'No session found');
+});
 ```
+- The **session middleware** from `express-session` is used to manage user sessions in an Express app.
+
+
+
+
+
+
+
+
+
+
+
+
+
