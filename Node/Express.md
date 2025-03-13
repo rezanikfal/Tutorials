@@ -380,10 +380,12 @@ app.get('/api/users',
   - The server sets a cookie in the response.
   - The browser stores the cookie and sends it back with every request.
   - The server reads the cookie to access stored data.
+    
 - **Cookies** Are Sent with Every Request, BUT…
   - By default, cookies are sent automatically with every request to the **same domain** (same-origin requests).
   - However, for cross-origin requests (e.g., frontend on localhost:4200, backend on localhost:3000), cookies are not sent automatically due to browser security restrictions.
   - In cross-origin cases, you must explicitly **enable credentials** in the request.
+    
 - **Sessions** store data server-side, with only a session ID stored in a cookie (`connect.sid`).
   - The server creates a session and stores data on the server.
   - A session ID is sent to the client in a cookie (`connect.sid`).
