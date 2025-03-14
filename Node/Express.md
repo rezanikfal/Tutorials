@@ -112,7 +112,7 @@ Access-Control-Allow-Origin: https://example.com
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
 - To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
-### dotenv 
+### Environmental Variables 
 - The `dotenv` package is used to manage environment variables in Node.js applications. To install: `npm install dotenv`
 ```
 //config.env
@@ -127,6 +127,13 @@ const dotenv = require('dotenv');
 dotenv.config({path: './config/config.env'});
 
 const connectedDB = () => mongoose.connect(process.env.MONGO_URI);
+```
+### `NEW:` Native Environmental Variables & Watch mode
+- The following modification in `package.json` replaces the `dotenv` and `nodemon` packages.
+```
+  "scripts": {
+    "start:dev": "node --watch --env-file=.env ./src/server.js"
+  },
 ```
 ### First Simple Server
 - You should install `express`, `nodemon`, and `dotenv` to create and run a simple express server.
