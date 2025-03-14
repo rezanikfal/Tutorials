@@ -410,6 +410,7 @@ exports.getUser = (req, res) => {
 const express = require('express');
 const router = express.Router();
 const userController = require('./controllers/userController');
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
 ```javascript
