@@ -399,21 +399,6 @@ app.get('/api/users',
   - The client sends this session ID with every request.
   - The server retrieves the session data using the ID.
 ```javascript
-// userController.js
-exports.getUser = (req, res) => {
-  const userId = req.params.id;
-  // Imagine fetching user from DB here
-  res.json({ id: userId, name: "John Doe" });
-};
-```
-```javascript
-const express = require('express');
-const router = express.Router();
-const userController = require('./controllers/userController');
-```
-### Controllers
-- Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**.
-```javascript
 const session = require('express-session');
 
 app.use(session({
@@ -433,16 +418,18 @@ app.get('/get-session', (req, res) => {
 });
 ```
 - The **session middleware** from `express-session` is used to manage user sessions in an Express app.
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Controllers
+- Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**
+```javascript
+// userController.js
+exports.getUser = (req, res) => {
+  const userId = req.params.id;
+  // Imagine fetching user from DB here
+  res.json({ id: userId, name: "John Doe" });
+};
+```
+```javascript
+const express = require('express');
+const router = express.Router();
+const userController = require('./controllers/userController');
+```
