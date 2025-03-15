@@ -473,18 +473,34 @@ app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 - The signed session ID is stored in the `connect.sid` cookie.
 - In the POST call you check the creds and if correct, sends the 200 OK response
 - When a new session is created (e.g., after logging in), the server sends `connect.sid` in the Set-Cookie **header**.
+#### Breaking Down the `connect.sid`
+1. **Prefix (`s%3A`)**  
+   - `s%3A` is **URL-encoded** for `s:`.  
+   - It **indicates that the session ID is signed** for security purposes.  
+
+2. **Session ID (`f12345678xyzabcdef`)**  
+   - This is the **randomly generated session identifier**.  
+   - `express-session` assigns this **unique** session ID to each user.  
+   - It is used as a **lookup key** in the session store (memory, Redis, etc.).  
+
+3. **Signature (`KJHgf67sdhASD87sdjh`)**  
+   - This is an **HMAC signature**, created using:  
+     ```
+     HMAC(secret, sessionID) → Signature
+     ```
+   - Ensures that the session ID **has not been tampered with**.  
+   - If a hacker modifies the session ID, the signature **won't match**, and the session is rejected.  
 #### After log in
 - After logging in, the browser automatically sends the `connect.sid` cookie with each request.
 - The express-session middleware extracts the session ID, verifies it in the session store, and populates `req.session` with stored data (i.e. username).
   - Extracts the Session ID
-    - express-session retrieves the connect.sid cookie and extracts the first part (session ID) from it.
+    - express-session retrieves the `connect.sid` cookie and extracts the first part (session ID) from it.
   - Recomputes the HMAC Signature
     - Using the session ID + secret, it generates a new HMAC signature.
-    - If the recomputed signature matches the one from connect.sid, it confirms the session ID hasn’t been tampered with.
+    - If the recomputed signature matches the one from `connect.sid`, it confirms the session ID hasn’t been tampered with.
   - Looks Up the Session ID in the Store
     - The middleware checks if the session ID exists in memory (or Redis, database, etc.).
-    - If the session is found, it loads the stored session data into req.session.
-- Protected routes check `req.session.user` to authenticate users. If the session is expired or destroyed, the user must log in again.
+    - If the session is found, it loads the stored session data into `req.session`.
 ```javascript
 app.get('/get-session', (req, res) => {
     res.send(req.session.user || 'No session found');
@@ -501,6 +517,15 @@ app.post('/logout', (req, res) => {
 });
 
 app.listen(3000, () => console.log('Server running on port 3000'));
+```
+- **Protected** routes check `req.session.user` to authenticate users. If the session is expired or destroyed, the user must log in again.
+- When we are saying **Protected**, it meand using an if condition to check is `req.session.user` exists. like the following middleware:
+```javascript
+const requireAuth = (req, res, next) => {
+    if (!req.session.user) {
+        return res.status(401).send("Unauthorized - Please log in");
+    }
+    next(); // Proceed to the next middleware or route handler
 ```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**
