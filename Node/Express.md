@@ -398,26 +398,110 @@ app.get('/api/users',
   - A session ID is sent to the client in a cookie (`connect.sid`).
   - The client sends this session ID with every request.
   - The server retrieves the session data using the ID.
+- The **session middleware** from `express-session` is used to manage user sessions in an Express app.
 ```javascript
-const session = require('express-session');
+import express from 'express';
+import session from 'express-session';
+
+const app = express();
+app.use(express.json());
+
+// Simulated user database
+const users = {
+    'JohnDoe': 'password123',  // Username: Password
+    'JaneDoe': 'securePass'
+};
 
 app.use(session({
-    secret: 'mySecretKey',
+    secret: 'mySecret',
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, maxAge: 600000 }
+    cookie: {httpOnly: true, maxAge: 600000},
 }));
 
-app.get('/set-session', (req, res) => {
-    req.session.user = { username: 'JohnDoe' };
-    res.send('Session set');
+app.get("/", (req, res) => {
+    res.send("index");
 });
 
+app.post("/login", (req, res) => {
+    console.log(req.body);
+    const {username, password} = req.body;
+    if (users[username] && users[username] === password) {
+        req.session.user = username;
+        res.send(`Welcome ${username}`);
+    }else{
+        res.status(401).send("Not authorized");
+    }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+```
+- the user logs in using a correct creds:
+```javascript
+{
+    "username": "JohnDoe",
+    "password": "password123"
+}
+```
+- `session` middleware creates a new **session** and assignes a **session id.**
+- A **session** is essentially a **container** for storing data specific to a user between HTTP requests. Since HTTP is stateless, sessions help maintain user state without requiring the client to send data every time.
+- Since a session is just a container for user data, you can store:
+  - Authentication Data
+  - Shopping Cart Data
+  - Temporary Form Data
+- Session looks like:
+```javascript
+{
+  "f12345678xyzabcdef": {
+    "cookie": {
+      "originalMaxAge": 600000,
+      "expires": "2025-03-14T12:30:00.000Z",
+      "httpOnly": true
+    },
+    "user": {
+      "username": "JohnDoe"
+    }
+  }
+}
+```
+- The key (f12345678xyzabcdef) is the session ID.
+- The value is an object that contains:
+  - cookie → Cookie settings.
+  - user → Custom data (set in `req.session.user`).
+- The session ID is signed using HMAC with a secret key (mySecret).
+- The signed session ID is stored in the `connect.sid` cookie.
+- In the POST call you check the creds and if correct, sends the 200 OK response
+- When a new session is created (e.g., after logging in), the server sends `connect.sid` in the Set-Cookie **header**.
+#### After log in
+- After logging in, the browser automatically sends the `connect.sid` cookie with each request.
+- The express-session middleware extracts the session ID, verifies it in the session store, and populates `req.session` with stored data (i.e. username).
+  - Extracts the Session ID
+    - express-session retrieves the connect.sid cookie and extracts the first part (session ID) from it.
+  - Recomputes the HMAC Signature
+    - Using the session ID + secret, it generates a new HMAC signature.
+    - If the recomputed signature matches the one from connect.sid, it confirms the session ID hasn’t been tampered with.
+  - Looks Up the Session ID in the Store
+    - The middleware checks if the session ID exists in memory (or Redis, database, etc.).
+    - If the session is found, it loads the stored session data into req.session.
+- Protected routes check `req.session.user` to authenticate users. If the session is expired or destroyed, the user must log in again.
+```javascript
 app.get('/get-session', (req, res) => {
     res.send(req.session.user || 'No session found');
 });
+
+// Logout route
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).send('Error logging out');
+        }
+        res.send('Logged out successfully');
+    });
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
 ```
-- The **session middleware** from `express-session` is used to manage user sessions in an Express app.
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**
 ```javascript
