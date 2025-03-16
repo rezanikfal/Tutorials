@@ -554,6 +554,14 @@ app.post('/logout', (req, res) => {
     });
 });
 ```
+#### saveUninitialized: false
+- a new session ID will be created for every request if the session middleware is used but no existing session is found.
+- `saveUninitialized: false` ensures that an empty session is not stored unless something is added to it.
+- Using `POST` ensures intentional logout actions.
+- `POST /logout` prevents automatic execution via links (`<a href="/logout">`).
+#### resave: false
+- If the session is unchanged, it will not be re-saved to the store.
+- If the session is modified (e.g., `req.session.user = {...})`, it will be saved.
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**
 ```javascript
