@@ -527,6 +527,27 @@ const requireAuth = (req, res, next) => {
     }
     next(); // Proceed to the next middleware or route handler
 ```
+- When multiple users log in, each **user has their own unique session ID (`connect.sid`)**, and when a user makes a request, `req.session` contains **only that user’s session data**.
+1. **Each User Gets a Unique Session**
+   - When **User A** logs in, a **session is created** and assigned a unique session ID (`connect.sid`).
+   - When **User B** logs in, they receive a **different session ID**.
+   - The session data for each user is stored separately in memory, Redis, or a database.
+
+2. **Requests Include the User's Session ID**
+   - The browser automatically sends the **correct `connect.sid`** for each user.
+   - The **server retrieves the matching session** and loads it into `req.session`.
+
+3. **Each `req.session` Holds the Authenticated User's Data**
+   - When a request is made, **only the session for that user is available** in `req.session`.
+   - Example:
+     ```javascript
+     app.get("/dashboard", (req, res) => {
+         console.log(req.session); // Logs the current user's session data
+         res.send(`Hello, ${req.session.user.username}`);
+     });
+     ```
+   - If **User A** is logged in, `req.session.user.username` might be `"JohnDoe"`.
+   - If **User B** makes a request, `req.session.user.username` will be `"JaneDoe"`.
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**
 ```javascript
