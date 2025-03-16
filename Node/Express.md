@@ -506,16 +506,6 @@ app.get('/get-session', (req, res) => {
     res.send(req.session.user || 'No session found');
 });
 
-// Logout route
-app.post('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.status(500).send('Error logging out');
-        }
-        res.send('Logged out successfully');
-    });
-});
-
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
 - **Protected** routes check `req.session.user` to authenticate users. If the session is expired or destroyed, the user must log in again.
@@ -548,6 +538,22 @@ const requireAuth = (req, res, next) => {
      ```
    - If **User A** is logged in, `req.session.user.username` might be `"JohnDoe"`.
    - If **User B** makes a request, `req.session.user.username` will be `"JaneDoe"`.
+#### Logout
+- Best Practice for logout is Using `POST`
+- Using `POST` ensures intentional logout actions.
+- `POST /logout` prevents automatic execution via links (`<a href="/logout">`).
+```javascript
+// Logout route
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).send('Error logging out');
+        }
+        res.send('Logged out successfully');
+        // res.status(200).end(); Another Option with no response
+    });
+});
+```
 ### Controllers
 - Controllers handle the business logic for specific **routes**. They receive **requests**, process them (possibly interacting with a database), and send back **responses**
 ```javascript
