@@ -550,7 +550,7 @@ app.post('/logout', (req, res) => {
             return res.status(500).send('Error logging out');
         }
         res.send('Logged out successfully');
-        // res.status(200).end(); Another Option with no response
+        // res.status(200).end(); Another Option with no response value, just status
     });
 });
 ```
