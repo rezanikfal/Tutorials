@@ -586,15 +586,20 @@ const userController = require('./controllers/userController');
   
 `hAjfg` + `test1234` → `[ Hashing Algorithm ]` → `$5.6A6g34c9....`
 
-- sign-up (registration):
+ #### sign-up (registration):
   - User enters a password: The user provides a password (e.g., "test1234") during registration.
   - Salt is generated: A unique random salt (e.g., "hAjfg") is created for that user.
   - Hashing process: The password is combined with the salt and passed through a hashing algorithm (e.g., bcrypt, Argon2).
   - Hashed password is stored: The resulting hash (e.g., "$5.6A6g34c9....") is stored in the database along with the salt.
-
-- login:
+  - **bcrypt** returns a single string that contains:
+    - The algorithm version (`$2b$`)
+    - The cost factor (`$12$`)
+    - The salt
+    - The hashed password
+- Sample: `$2b$12$G8Y9Xg5s9MfB8Q9.rQ.r9OSQ3j2FdR3DOe6GTUoHgLQxPK/P2mD3q`
+#### login:
   - The user provides their email/username and password on the login form.
-  - The system looks up the user's stored hashed password and the salt in the database.
+  - The system looks up the user's stored hashed password and the salt in the database.Then **bcrypt** extracts the salt and cost from the stored hash
   - The system combines the salt with the entered password and applies the same hashing algorithm (e.g., bcrypt, Argon2, PBKDF2).
   - The newly generated hash is compared with the stored hash in the database.
 - If a hacker compromises a database and gains access to both salted hashes and salts, it still significantly improves security compared to unsalted hashing. Here’s why:
