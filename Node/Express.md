@@ -382,6 +382,57 @@ app.get('/api/users',
         res.status(200).send(mockUsers);
     });
 ```
+## Cookies 
+- Cookies are small pieces of data stored on the client’s browser and sent with every request to the server. They are used for session management, authentication, preferences, and tracking.
+```javascript
+app.get('/set-cookies', (req, res) => {
+    res.setHeader('Set-Cookie', ['newUser=false, 'isEmployee=true']);
+    res.send('Cookies set without cookie-parser!');
+});
+```
+- Here the Express app demonstrates how to set and read cookies using the `cookie-parser` library/middleware.
+```javascript
+const express = require('express');
+const mongoose = require('mongoose');
+const authRoutes = require('./routes/authRoutes');
+const cookieParser = require('cookie-parser');
+
+const app = express();
+
+// Middleware
+app.use(express.static('public'));
+app.use(express.json());
+app.use(cookieParser());
+```
+- Setting Cookies:
+```javascript
+app.get('/set-cookies', (req, res) => {
+    res.cookie('newUser', false);
+    res.cookie('isEmployee', true, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
+
+    res.send('you got the cookies!');
+});
+```
+- Reading Cookies:
+```javascript
+app.get('/read-cookies', (req, res) => {
+    const cookies = req.cookies;
+    console.log(cookies);
+    res.json(cookies);
+});
+```
+
+- Summary Table
+
+| **Property**  | **Description** | **Default** |
+|--------------|----------------|-------------|
+| `maxAge` | Expiration time in milliseconds | **Session-based** (until browser closes) |
+| `httpOnly` | Prevents JavaScript access | `false` |
+| `secure` | Sends only over HTTPS | `false` |
+| Without `cookie-parser` | Must manually parse `req.headers.cookie` | N/A |
+
+- **Best Practices**: Always use **`httpOnly`** for security and **`secure: true`** in production with HTTPS.
+
 ## Session-Based Authentication in Express with Cookies
 - **Cookies** are small pieces of data stored on the client (browser) and sent with every request.
   - The server sets a cookie in the response.
