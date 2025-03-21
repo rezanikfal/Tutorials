@@ -577,3 +577,27 @@ const express = require('express');
 const router = express.Router();
 const userController = require('./controllers/userController');
 ```
+### Hashing passwords
+**bcrypt** is a password hashing algorithm designed to securely store passwords by making brute-force attacks slow and computationally expensive. It includes salting and adaptive cost factors to improve security.
+- **Salt**: `hAjfg`
+- **Password**: `test1234`
+- **Hashing Algorithm**: Applied to the salted password
+- **Hashed Output**: `$5.6A6g34c9....`
+  
+`hAjfg` + `test1234` → `[ Hashing Algorithm ]` → `$5.6A6g34c9....`
+
+- sign-up (registration):
+  - User enters a password: The user provides a password (e.g., "test1234") during registration.
+  - Salt is generated: A unique random salt (e.g., "hAjfg") is created for that user.
+  - Hashing process: The password is combined with the salt and passed through a hashing algorithm (e.g., bcrypt, Argon2).
+  - Hashed password is stored: The resulting hash (e.g., "$5.6A6g34c9....") is stored in the database along with the salt.
+
+- login:
+  - The user provides their email/username and password on the login form.
+  - The system looks up the user's stored hashed password and the salt in the database.
+  - The system combines the salt with the entered password and applies the same hashing algorithm (e.g., bcrypt, Argon2, PBKDF2).
+  - The newly generated hash is compared with the stored hash in the database.
+- If a hacker compromises a database and gains access to both salted hashes and salts, it still significantly improves security compared to unsalted hashing. Here’s why:
+  - **Unique Hashes for Same Passwords:** If multiple users have the same password, their hashed passwords will be different.
+  - **Prevents Rainbow Table Attacks:** Hackers cannot use precomputed hash tables (rainbow tables) to instantly crack passwords.
+  - **Slows Down Brute Force Attacks:** Even if a hacker tries to brute-force each hash, they must compute the hash for each user.
