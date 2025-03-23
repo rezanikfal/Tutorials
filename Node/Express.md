@@ -628,7 +628,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('./controllers/userController');
 ```
-### Hashing passwords
+## Hashing passwords
 **bcrypt** is a password hashing algorithm designed to securely store passwords by making brute-force attacks slow and computationally expensive. It includes salting and adaptive cost factors to improve security.
 - **Salt**: `hAjfg`
 - **Password**: `test1234`
@@ -659,6 +659,61 @@ const userController = require('./controllers/userController');
   - **Slows Down Brute Force Attacks:** Even if a hacker tries to brute-force each hash, they must compute the hash for each user.
 
 ## Passport
+### Before login: Request flow with `passport.session()`
+
+#### 1. User is **not logged in**
+- No session has been created yet.
+- Browser has **no session cookie** (`connect.sid`).
+
+#### 2. On each request:
+```js
+app.use(passport.session());
+```
+
+This middleware:
+- **Checks for a session ID** in the cookie.
+- **No cookie is found**, so:
+  - It skips `deserializeUser()`
+  - `req.user` stays **undefined**
+
+```js
+// deserializeUser is NOT called
+// req.user === undefined
+```
+
+❌ `req.isAuthenticated()` returns **false**
+
+---
+
+#### 3. User attempts to log in:
+
+```js
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/login',
+}));
+```
+
+- Triggers the `LocalStrategy`:
+
+```js
+passport.use(new LocalStrategy((username, password, done) => {
+  const user = findUserByUsername(username);
+  if (!user || user.password !== password) {
+    return done(null, false, { message: 'Invalid credentials' });
+  }
+  return done(null, user); // ✅ Successful login
+}));
+```
+#### 4. `serializeUser()` is called:
+```js
+passport.serializeUser((user, done) => {
+  done(null, user.id); // Store only user ID in session
+});
+```
+
+✅ The session is now stored (in memory, Redis, DB, etc.)  
+✅ The client receives a session cookie (`connect.sid`)
 
 ### After login: Request flow with `passport.session()`
 
@@ -713,7 +768,99 @@ function ensureAuthenticated(req, res, next) {
 
 Usage:
 ```js
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next(); // ✅ Logged in — continue to route
+  }
+
+  // ❌ Not logged in — choose one based on your app type:
+
+  // For SPA or client-side routing:
+  return res.status(401).json({ message: 'Unauthorized' });
+
+  // For SSR (e.g., EJS, Pug, etc.):
+  return res.redirect('/login');
+}
+```
+### ✅ Logout
+`req.logout()` is a method added by Passport to the req object when you're using Passport with sessions.
+- It removes the authenticated user from the session.
+- Clears `req.user`.
+- After calling it, `req.isAuthenticated()` will return false.
+
+### Express + Passport Session Auth: Full Flow
+```js
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// ----------------- SESSION SETUP -----------------
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// ----------------- PASSPORT SETUP -----------------
+app.use(passport.initialize());
+app.use(passport.session());
+
+const users = [{ id: 1, username: 'admin', password: '1234' }];
+
+// Strategy (runs only on login)
+passport.use(new LocalStrategy((username, password, done) => {
+  const user = users.find(u => u.username === username);
+  if (!user || user.password !== password) {
+    return done(null, false, { message: 'Invalid credentials' });
+  }
+  return done(null, user);
+}));
+
+// Serialize (runs on successful login)
+passport.serializeUser((user, done) => {
+  done(null, user.id); // stores user ID in session
+});
+
+// Deserialize (runs on every request *after* login)
+passport.deserializeUser((id, done) => {
+  const user = users.find(u => u.id === id);
+  done(null, user || false);
+});
+
+// ----------------- LOGIN ROUTE -----------------
+app.post('/login', passport.authenticate('local'), (req, res) => {
+  res.json({ message: 'Logged in', user: req.user });
+});
+
+// ----------------- PROTECTED ROUTE -----------------
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) return next();
+
+  // For SPA:
+  return res.status(401).json({ message: 'Unauthorized' });
+
+  // For SSR:
+  // return res.redirect('/login');
+}
+
 app.get('/profile', ensureAuthenticated, (req, res) => {
   res.json({ user: req.user });
 });
+
+// ----------------- LOGOUT ROUTE -----------------
+app.post('/logout', (req, res) => {
+  req.logout(err => {
+    if (err) return res.status(500).json({ message: 'Logout failed' });
+    res.json({ message: 'Logged out' });
+  });
+});
+
+// ----------------- SERVER -----------------
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+
 ```
