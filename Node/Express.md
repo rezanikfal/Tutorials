@@ -657,3 +657,63 @@ const userController = require('./controllers/userController');
   - **Unique Hashes for Same Passwords:** If multiple users have the same password, their hashed passwords will be different.
   - **Prevents Rainbow Table Attacks:** Hackers cannot use precomputed hash tables (rainbow tables) to instantly crack passwords.
   - **Slows Down Brute Force Attacks:** Even if a hacker tries to brute-force each hash, they must compute the hash for each user.
+
+## Passport
+
+### After login: Request flow with `passport.session()`
+
+#### 1. User is **logged in**
+- `serializeUser` has saved the user ID in the session.
+- A session ID is stored in a cookie (`connect.sid` by default).
+
+#### 2. On any future request:
+```js
+app.use(passport.session());
+```
+
+This middleware:
+- **Checks for a session ID** in the cookie (e.g., from the browser).
+- If session exists, it reads the stored user ID.
+- Then it calls:
+
+```js
+passport.deserializeUser((id, done) => {
+  const user = findUserById(id); // could be DB or in-memory
+  done(null, user); // attaches user to req.user
+});
+```
+
+✅ If deserialization succeeds → `req.user` is populated  
+❌ If no session or user → `req.user` stays `undefined` OR `req.isAuthenticated()` returns `false`  
+❌ `req.isAuthenticated()` is a Passport method that tells you if the current request has a valid authenticated session.
+
+
+#### 3. `req.user` is populated on **every request**:
+
+- **Between two calls**, things *could* change:
+  - User logs out from another tab or device.
+  - Session expires.
+  - Server is restarted (and session store cleared).
+  - Session is manually revoked (e.g., admin force-logout).
+
+> So Passport **re-validates the session** on every request via `deserializeUser()` to make sure the session is still valid and user still exists.
+Excellent question — here's a clean breakdown to fully answer this:
+
+### ✅ We should **always check** authentication in `protected routes`:
+- That’s our job to handle the error in the route handler or via middleware.
+```js
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next(); // ✅ user is authenticated
+  }
+  // ❌ not authenticated
+  res.status(401).json({ message: 'Unauthorized' });
+}
+```
+
+Usage:
+```js
+app.get('/profile', ensureAuthenticated, (req, res) => {
+  res.json({ user: req.user });
+});
+```
