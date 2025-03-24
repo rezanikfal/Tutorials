@@ -759,17 +759,6 @@ Excellent question — here's a clean breakdown to fully answer this:
 ```js
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return next(); // ✅ user is authenticated
-  }
-  // ❌ not authenticated
-  res.status(401).json({ message: 'Unauthorized' });
-}
-```
-
-Usage:
-```js
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
     return next(); // ✅ Logged in — continue to route
   }
 
@@ -781,6 +770,13 @@ function ensureAuthenticated(req, res, next) {
   // For SSR (e.g., EJS, Pug, etc.):
   return res.redirect('/login');
 }
+```
+Usage:
+```js
+app.get('/profile', ensureAuthenticated, (req, res) => {
+  // ✅ Logged in — send user data
+  res.json({ user: req.user });
+});
 ```
 ### ✅ Logout
 `req.logout()` is a method added by Passport to the req object when you're using Passport with sessions.
