@@ -860,3 +860,105 @@ app.post('/logout', (req, res) => {
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
 ```
+## Express + MongoDB + Mongoose API
+
+### What is MongoDB?
+MongoDB is a **NoSQL database** that stores data in flexible, JSON-like documents (called BSON internally). It uses collections instead of tables and documents instead of rows.
+
+- Documents = JavaScript objects
+- Collections = Arrays of documents
+- Schema-less (but schema can be enforced with Mongoose)
+
+### What is Mongoose?
+Mongoose automatically maps the model name to a MongoDB collection name by converting it to lowercase and pluralizing it.
+
+For example:
+```js
+mongoose.model('User', UserSchema)
+```
+This maps to the `users` collection in MongoDB.
+Mongoose is an ODM (Object Data Modeling) library that:
+- Creates schemas to define document structure
+- Adds validation, default values, and type casting
+- Maps models to MongoDB collections
+- Makes it easy to interact with MongoDB using familiar JavaScript syntax
+
+Mongoose handles:
+- Defining schemas
+- Connecting to MongoDB
+- CRUD operations (`find()`, `save()`, `deleteOne()`, etc.)
+- Validation and error handling
+
+### Mongoose Schema and Model (`schemas/users.js`)
+
+```js
+import mongoose, { Schema } from "mongoose";
+
+const UserSchema = new Schema({
+    name: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+    age: {
+        type: Number,
+        required: true,
+        min: [0, 'Age must be at least 0'],
+        max: [120, 'Age cannot be more than 120']
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        validate: {
+            validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+            message: props => `${props.value} is not a valid email!`
+        }
+    }
+});
+```
+### MongoDB Connection & Express Setup (`index.js`)
+
+```js
+import express from "express";
+import mongoose from "mongoose";
+import User from "./schemas/users.js";
+
+const app = express();
+app.use(express.json());
+
+mongoose.connect('mongodb://localhost:27017/myDB')
+    .then(() => console.log('Connected to DB'))
+    .catch((err) => console.log(err));
+
+app.get("/api/home", async (req, res) => {
+    const users = await User.find();
+    res.status(200).json(users);
+});
+
+app.get("/api/home/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const user = await User.findById(id);
+        if (!user) return res.status(404).json({ error: 'User not found' });
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(400).json({ error: 'Invalid ID' });
+    }
+});
+
+app.post("/api/home", async (req, res) => {
+    const user = new User(req.body);
+    try {
+        await user.save();
+        res.status(201).json(user);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
+```
