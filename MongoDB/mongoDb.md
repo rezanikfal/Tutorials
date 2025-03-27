@@ -124,4 +124,83 @@ db.users.find({ age: { $not: { $gte: 30 } } })
 db.users.find({ email: { $exists: true } })
 db.users.find({ age: { $type: "number" } })
 ```
+## MongoDB Basics Tutorial (Part 2)
 
+### 6. Using $in & $nin
+```javascript
+// Find users whose names are in the list
+db.users.find({ name: { $in: ["Alice", "Bob"] } })
+
+// Find users whose names are NOT in the list
+db.users.find({ name: { $nin: ["Charlie", "Diana"] } })
+
+// Combine with another condition
+db.users.find({
+  age: { $gt: 20 },
+  name: { $in: ["Alice", "Charlie"] }
+})
+```
+
+### 7. Querying Arrays
+```javascript
+// Insert a document with an array
+db.users.insertOne({
+  name: "Eve",
+  hobbies: ["reading", "hiking", "coding"]
+})
+
+// Match if array contains a value
+db.users.find({ hobbies: "coding" })
+
+// Match if array contains all specified values
+db.users.find({ hobbies: { $all: ["reading", "coding"] } })
+
+// Match array by length
+db.users.find({ hobbies: { $size: 3 } })
+
+// Match by position
+db.users.find({ "hobbies.0": "reading" })
+```
+
+### 8. Deleting Documents
+```javascript
+// Delete one document
+db.users.deleteOne({ name: "Alice" })
+
+// Delete many documents
+db.users.deleteMany({ age: { $lt: 30 } })
+
+// Delete all documents in a collection
+db.users.deleteMany({})
+
+// Drop the collection entirely
+db.users.drop()
+```
+
+### 9. Updating Documents
+```javascript
+// Update one document
+db.users.updateOne(
+  { name: "Bob" },
+  { $set: { age: 29 } }
+)
+
+// Update many documents
+db.users.updateMany(
+  { age: { $lt: 30 } },
+  { $set: { status: "young" } }
+)
+
+// Upsert: update if found, insert if not
+db.users.updateOne(
+  { name: "Charlie" },
+  { $setOnInsert: { verified: false } },
+  { upsert: true }
+)
+
+// Replace a document completely
+db.users.replaceOne(
+  { name: "Diana" },
+  { name: "Diana", age: 28, city: "Dallas" }
+)
+```
