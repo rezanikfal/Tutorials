@@ -916,6 +916,7 @@ const UserSchema = new Schema({
         }
     }
 });
+export default mongoose.model('User', userSchema);
 ```
 ### MongoDB Connection & Express Setup (`index.js`)
 
