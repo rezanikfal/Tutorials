@@ -628,6 +628,227 @@ const express = require('express');
 const router = express.Router();
 const userController = require('./controllers/userController');
 ```
+## express-validator
+
+`express-validator` validates and sanitizes the user input in an Express API with `checkSchema`, `validationResult`, and `matchedData`.
+
+### Flow Diagram
+
+```
+Client Request (POST /users)
+        ↓
+  userSchema (Validation Rules via checkSchema)
+        ↓
+  validateRequest (ValidationResult Handling Middleware)
+        ↓
+  createUsers Controller (Business Logic + matchedData)
+        ↓
+   Response (201 Created or 400 Bad Request)
+        ↓
+Unhandled Errors → errorHandler Middleware
+```
+
+### user.router.js
+
+```js
+import express from 'express';
+import { userSchema } from '../schemas/user.schema.js';
+import { createUsers } from '../controllers/user.controller.js';
+import { validateRequest } from '../middleware/validateRequest.js';
+
+const router = express.Router();
+
+router.post('/', userSchema, validateRequest, createUsers);
+
+export default router;
+```
+### user.controller.js
+```js
+import { matchedData } from 'express-validator';
+
+export const createUsers = (req, res, next) => {
+    try {
+        const data = matchedData(req); // Only validated and sanitized fields
+        return res.status(201).send(data);
+    } catch (error) {
+        next(error); // Pass unexpected errors to the error handler
+    }
+};
+```
+### user.schema.js
+
+```js
+import { checkSchema } from 'express-validator';
+
+export const userSchema = checkSchema({
+    username: {
+        in: ['body'],
+        trim: true,
+        escape: true,
+        isString: { errorMessage: 'Username should be a string' },
+        notEmpty: { errorMessage: 'Username is required' },
+        isLength: {
+            options: { min: 3, max: 20 },
+            errorMessage: 'Username must be between 3 and 20 characters'
+        },
+        matches: {
+            options: [/^[a-zA-Z0-9]+$/],
+            errorMessage: 'Invalid username (letters and numbers only)'
+        }
+    },
+    email: {
+        in: ['body'],
+        notEmpty: { errorMessage: 'Email is required' },
+        isEmail: { errorMessage: 'Invalid email address' },
+        normalizeEmail: true
+    },
+    password: {
+        in: ['body'],
+        notEmpty: { errorMessage: 'Password is required' },
+        isLength: {
+            options: { min: 8 },
+            errorMessage: 'Password must be at least 8 characters'
+        },
+        matches: {
+            options: [/^(?=.*[A-Za-z])(?=.*\d).+$/],
+            errorMessage: 'Password must contain at least one letter and one number'
+        }
+    },
+    age: {
+        in: ['body'],
+        optional: true,
+        isInt: {
+            options: { min: 13, max: 120 },
+            errorMessage: 'Age must be an integer between 13 and 120'
+        },
+        toInt: true
+    },
+    phone: {
+        in: ['body'],
+        optional: true,
+        isMobilePhone: {
+            options: ['en-US'],
+            errorMessage: 'Invalid phone number'
+        }
+    },
+    isAdmin: {
+        in: ['body'],
+        optional: true,
+        isBoolean: {
+            errorMessage: 'isAdmin must be a boolean value'
+        },
+        toBoolean: true
+    }
+});
+```
+### middleware/validateRequest.js
+
+```js
+import { validationResult } from 'express-validator';
+
+export const validateRequest = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            errors: errors.array().map(err => ({
+                field: err.param,
+                message: err.msg
+            }))
+        });
+    }
+    next();
+};
+```
+
+### middleware/errorHandler.js
+- `errorHandler` catches and formats unexpected runtime errors.
+```js
+export const errorHandler = (err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Something went wrong', error: err.message });
+};
+```
+
+In your main server file (e.g. `app.js` or `index.js`), make sure to use the middleware:
+
+```js
+import express from 'express';
+import userRouter from './routes/user.router.js';
+import { errorHandler } from './middleware/errorHandler.js';
+
+const app = express();
+app.use(express.json());
+app.use('/users', userRouter);
+
+// Error handler should be last
+app.use(errorHandler);
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
+### matchedData(req)
+- `matchedData(req)` is a utility function from express-validator that extracts only the validated and sanitized fields from the request.
+- Notice how "role" is not included because it wasn't in the schema.
+```js
+// Given a schema:
+checkSchema({
+  username: { in: ['body'], isString: true, trim: true },
+  age: { in: ['body'], isInt: true, toInt: true }
+});
+
+// And a request body:
+{
+  "username": "  John  ",
+  "age": "30",
+  "role": "admin"  // not validated
+}
+
+const data = matchedData(req);
+console.log(data); // { username: "John", age: 30 }
+```
+### validationResult(req)
+
+This function returns a `Result` object that contains info about validation errors (if any). From it, you can use:
+
+#### 1. isEmpty()
+- Checks if there are any validation errors.
+- Returns: `true` if no errors, `false` if there are errors.
+```js
+const errors = validationResult(req);
+if (!errors.isEmpty()) {
+  // There are validation errors
+}
+```
+#### 2. array()
+-Returns all validation errors as an array.
+```js
+const errorArray = errors.array();
+```
+Each item looks like:
+```js
+{
+  value: 'abc',
+  msg: 'Invalid input',
+  param: 'username',
+  location: 'body'
+}
+```
+#### 3. mapped()
+- Returns validation errors as an object keyed by field name.
+- Best when you want to show errors by field (e.g., form inputs).
+```js
+const errorMap = errors.mapped();
+```
+Example output:
+```js
+{
+  username: {
+    value: 'abc',
+    msg: 'Invalid input',
+    param: 'username',
+    location: 'body'
+  }
+}
+```
 ## Hashing passwords
 **bcrypt** is a password hashing algorithm designed to securely store passwords by making brute-force attacks slow and computationally expensive. It includes salting and adaptive cost factors to improve security.
 - **Salt**: `hAjfg`
