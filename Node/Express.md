@@ -1088,7 +1088,7 @@ MongoDB is a **NoSQL database** that stores data in flexible, JSON-like document
 
 - Documents = JavaScript objects
 - Collections = Arrays of documents
-- Schema-less (but schema can be enforced with Mongoose)
+- Schema-less (**but schema can be enforced with Mongoose)**
 
 ### What is Mongoose?
 Mongoose automatically maps the model name to a MongoDB collection name by converting it to lowercase and pluralizing it.
@@ -1110,77 +1110,60 @@ Mongoose handles:
 - CRUD operations (`find()`, `save()`, `deleteOne()`, etc.)
 - Validation and error handling
 
-### Mongoose Schema and Model (`schemas/users.js`)
+### Mongoose Schema and Model
 
 ```js
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
-const UserSchema = new Schema({
-    name: {
-        type: String,
-        unique: true,
-        required: true,
-    },
-    age: {
-        type: Number,
-        required: true,
-        min: [0, 'Age must be at least 0'],
-        max: [120, 'Age cannot be more than 120']
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-        validate: {
-            validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
-            message: props => `${props.value} is not a valid email!`
-        }
-    }
-});
-export default mongoose.model('User', userSchema);
+const userSchema = new Schema({
+    name: { type: String, required: true, unique: true },
+    age: { type: Number, required: true },
+    email: { type: String, required: true, unique: true }
+}, {
+    collection: 'user_info' // 👈 Optional: name your MongoDB collection 
+});                         // Otherwise it will use the plural, lowercase model name (User ->users) 
+
+export const User = mongoose.model('User', userSchema);
 ```
-### MongoDB Connection & Express Setup (`index.js`)
-
+### MongoDB Connection
 ```js
-import express from "express";
-import mongoose from "mongoose";
-import User from "./schemas/users.js";
+// File: `src/config/db.js`
+import mongoose from 'mongoose';
 
-const app = express();
-app.use(express.json());
-
-mongoose.connect('mongodb://localhost:27017/myDB')
-    .then(() => console.log('Connected to DB'))
-    .catch((err) => console.log(err));
-
-app.get("/api/home", async (req, res) => {
-    const users = await User.find();
-    res.status(200).json(users);
-});
-
-app.get("/api/home/:id", async (req, res) => {
-    const id = req.params.id;
+const connectDB = async () => {
     try {
-        const user = await User.findById(id);
-        if (!user) return res.status(404).json({ error: 'User not found' });
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(400).json({ error: 'Invalid ID' });
+        await mongoose.connect(process.env.MONGODB_URI);  //MONGODB_URI=mongodb://localhost:27017/your-db-name
+        console.log('✅ Connected to MongoDB');
+    } catch (error) {
+        console.error('❌ MongoDB connection error:', error.message);
+        process.exit(1); //Any non-zero value (like 1) indicates an error or abnormal termination.
     }
-});
+};
 
-app.post("/api/home", async (req, res) => {
-    const user = new User(req.body);
-    try {
-        await user.save();
-        res.status(201).json(user);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
+export default connectDB;
+```
+### Controller to Save Data (Express 5, no need to tray-catch)
+```js
+// File: `src/controllers/user.controller.js`
+import { matchedData } from 'express-validator';
+import { User } from '../models/user.model.js';
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-});
+const createUser = async (req, res, next) => {
+    const data = matchedData(req); // Picks validated fields only
+    const user = new User(data);
+    await user.save();
+    res.status(201).json(user);
+};
+
+export default createUser;
+```
+### Error handling
+in `app.js`, the Error Handler middleware goes after all routes
+```js
+// File: `src/middlewares/errorHandler.js`
+const errorHandler = (err, req, res, next) => {
+    res.status(500).json({ error: err.message });
+};
+
+export default errorHandler;
 ```
