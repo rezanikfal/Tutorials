@@ -10,6 +10,7 @@
 ├── /middleware                  # Middleware functions (auth, error handling, logging)
 │   ├── auth.js
 │   └── errorHandler.js
+│   └── validate.js              # Validate using validationResult(req)
 │
 ├── /models                      # Database models (Mongoose, Sequelize, etc.)
 │   └── Bootcamp.js
