@@ -1039,8 +1039,16 @@ app.get('/profile', ensureAuthenticated, (req, res) => {
 `req.logout()` is a method added by Passport to the req object when you're using Passport with sessions.
 - It removes the authenticated user from the session.
 - Clears `req.user`.
+- req.logout(callback) is asynchronous and **requires** a callback.
 - After calling it, `req.isAuthenticated()` will return false.
-
+```js
+router.post('/logout', (req, res, next) => {
+    req.logout(err => {
+        if (err) next(err);
+        res.sendStatus(200);
+    });
+});
+```
 ### Express + Passport Session Auth: Full Flow
 ```js
 const express = require('express');
