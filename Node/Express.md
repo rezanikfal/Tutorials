@@ -850,15 +850,27 @@ Example output:
 }
 ```
 ## Hashing passwords
-**bcrypt** is a password hashing algorithm designed to securely store passwords by making brute-force attacks slow and computationally expensive. It includes salting and adaptive cost factors to improve security.
-- **Salt**: `hAjfg`
-- **Password**: `test1234`
-- **Hashing Algorithm**: Applied to the salted password
-- **Hashed Output**: `$5.6A6g34c9....`
-  
-`hAjfg` + `test1234` → `[ Hashing Algorithm ]` → `$5.6A6g34c9....`
+- **bcryptjs** is a password hashing algorithm designed to securely store passwords by making brute-force attacks slow and computationally expensive.
+```bash
+npm install bcryptjs
+```
+```js
+import bcrypt from 'bcryptjs';
 
- #### sign-up (registration):
+const saltRounds = 10;
+
+// Hash password before saving to DB
+export const hashPassword = (password) => {
+    const salt = bcrypt.genSaltSync(saltRounds);
+    return bcrypt.hashSync(password, salt);
+};
+
+// Compare plain password with hashed password
+export const comparePassword = (plain, hashed) => {
+    return bcrypt.compareSync(plain, hashed);
+};
+```
+### sign-up (registration):
   - User enters a password: The user provides a password (e.g., "test1234") during registration.
   - Salt is generated: A unique random salt (e.g., "hAjfg") is created for that user.
   - Hashing process: The password is combined with the salt and passed through a hashing algorithm (e.g., bcrypt, Argon2).
@@ -869,7 +881,21 @@ Example output:
     - The salt
     - The hashed password
 - Sample: `$2b$12$G8Y9Xg5s9MfB8Q9.rQ.r9OSQ3j2FdR3DOe6GTUoHgLQxPK/P2mD3q`
-#### login:
+```js
+import express from 'express';
+import { User } from '../models/user.model.js';
+import { hashPassword } from '../utils/helpers.js';
+
+const router = express.Router();
+
+router.post('/signup', async (req, res) => {
+    const newUser = new User(req.body);
+    newUser.password = hashPassword(newUser.password); // 🔐 hash here
+    await newUser.save();
+    res.json(newUser);
+});
+```
+### login:
   - The user provides their email/username and password on the login form.
   - The system looks up the user's stored hashed password and the salt in the database.Then **bcrypt** extracts the salt and cost from the stored hash
   - The system combines the salt with the entered password and applies the same hashing algorithm (e.g., bcrypt, Argon2, PBKDF2).
@@ -878,7 +904,17 @@ Example output:
   - **Unique Hashes for Same Passwords:** If multiple users have the same password, their hashed passwords will be different.
   - **Prevents Rainbow Table Attacks:** Hackers cannot use precomputed hash tables (rainbow tables) to instantly crack passwords.
   - **Slows Down Brute Force Attacks:** Even if a hacker tries to brute-force each hash, they must compute the hash for each user.
+```js
+import { comparePassword } from '../utils/helpers.js';
 
+router.post('/login', async (req, res) => {
+    const user = await User.findOne({ username: req.body.username });
+    if (!user || !comparePassword(req.body.password, user.password)) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    res.json({ msg: 'Login successful', user });
+});
+```
 ## Passport
 ### Before login: Request flow with `passport.session()`
 
