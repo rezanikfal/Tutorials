@@ -11,6 +11,9 @@ express-api/
 │   ├── models/
 │   │   └── user.model.js        # Mongoose schema/model
 │   │
+│   ├── strategies/
+│   │   └── passport-local.js    # Passport strategies
+│   │
 │   ├── routes/
 │   │   └── user.routes.js       # Express routes
 │   │
