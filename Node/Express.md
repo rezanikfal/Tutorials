@@ -1169,6 +1169,58 @@ const userSchema = new Schema({
 
 export const User = mongoose.model('User', userSchema);
 ```
+
+### Mongoose Schema and Password Hashing /Comparing
+
+```js
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: [true, 'Username is required'],
+        unique: [true, 'Username is already in use'],
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: false,
+        unique: [true, 'email is already in use'],
+    }
+}, {timestamps: true, collection: "usersNew", versionKey: false});
+
+userSchema.pre("save", async function (next) {
+    if (!this.isModified('password')) return next();
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    return next();
+});
+
+userSchema.methods.isValidPassword = async function (plainPassword) {
+    return bcrypt.compare(plainPassword, this.password);
+};
+
+export const User = mongoose.model('User', userSchema);
+```
+```js
+export const login = async (req, res) => {
+    const {username, password} = matchedData(req);
+    const user = await User.findOne({username});
+    if (!user) {
+        res.status(401).json({error: 'Username does not exist'});
+    }
+    const isMatch = await user.isValidPassword(password);
+    if (!isMatch) {
+        return res.status(401).json({ error: 'Incorrect password' });
+    }
+
+    res.status(200).send(user);
+};
+```
 ### MongoDB Connection
 ```js
 // File: `src/config/db.js`
