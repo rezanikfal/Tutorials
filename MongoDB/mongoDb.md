@@ -1,4 +1,26 @@
-### Introduction to mongosh
+## 4 main levels in MongoDB Atlas:
+```
+Organization ➝ Project ➝ Cluster ➝ Database
+```
+
+### 1. **Organization**
+- Top-level container for multiple **Projects**.
+- Think of it like a company or a team.
+
+### 2. **Project**
+- Contains **clusters** (i.e., MongoDB deployments).
+- Access controls, alerts, and billing are usually set at the project level.
+
+### 3. **Cluster**
+- The actual MongoDB server deployment.
+- Can be shared (M0–M5) or dedicated (M10+). M defines the size, performance, and pricing of a MongoDB deployment.
+- Each cluster can hold **many databases**.
+
+### 4. **Database**
+- Logical container for collections (tables in SQL terms).
+- Each **database** holds **collections** and **documents**.
+
+## Introduction to mongosh
 
 
 `mongosh` is the MongoDB Shell — an interactive command-line interface used to connect to MongoDB databases and run queries. It supports JavaScript syntax and MongoDB commands, making it ideal for quick prototyping, learning, and database management.
