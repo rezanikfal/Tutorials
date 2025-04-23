@@ -367,6 +367,10 @@ app.delete('/api/users/:id', resolveIndex, (req, res) => {
 });
 
 ```
+- The following applies the middleware to **any route starting with `/example`** (e.g., `/example`, `/example/test`).
+```js
+app.use('/example', middleware);
+```
 ### Validation
 - We use 3rd party library for express validation: `npm install express-validator`
 #### Validate Query Params
