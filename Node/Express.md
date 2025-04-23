@@ -149,11 +149,6 @@ const connectedDB = () => mongoose.connect(process.env.MONGO_URI);
 | **Flexibility & Plugins**  | ✅ Huge ecosystem (body-parser, etc.)       | ❌ Very basic                           |
 | **Example Response**       | `res.send("Hello")`                        | `res.writeHead(200); res.end("Hello")` |
 
-### TL;DR
-- Use **Express.js** for web apps or REST APIs — it’s simpler and powerful.
-- Use **http module** for learning, custom logic, or minimal setups.
-
-Let me know if you want to see both full code examples side by side.
 ### First Simple Server
 - You should install `express`, `nodemon`, and `dotenv` to create and run a simple express server.
 - To use **ES modules** syntaxt (using `import` instead of `require`, add `"type": "module"` to the **package.json**:
