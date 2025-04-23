@@ -867,6 +867,28 @@ Example output:
   }
 }
 ```
+## Normal VS Error-handling middleware
+This image explains **how error handling works in Express when you have multiple middleware functions**.
+### Normal middleware:
+- If `middleware2` throws an error or calls `next(err)`, Express **skips** `middleware3` and `middleware4` and jumps to the **error-handling middleware**.
+
+   ```js
+   app.use(middleware1);
+   app.use(middleware2); // Error occurs here
+   app.use(middleware3);
+   app.use(middleware4);
+   ```
+### Error-handling middleware
+- Always use 4 parameters for the error middleware.
+- Define your **error middleware at the end**.
+- Errors skip the normal middleware and go straight to the error handler.
+
+  ```js
+   app.use((err, req, res, next) => {
+       console.error(err.stack);
+       res.status(500).send("Something went wrong!");
+   });
+   ```
 ## Hashing passwords
 - **bcryptjs** is a password hashing algorithm designed to securely store passwords by making brute-force attacks slow and computationally expensive.
 ```bash
