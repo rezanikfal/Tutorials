@@ -1345,3 +1345,9 @@ const errorHandler = (err, req, res, next) => {
 
 export default errorHandler;
 ```
+### Run Time Errors
+- Somthing like missing params — that’s runtime behavior, so it's handled in routes/controllers or global error handlers.
+- Mongoose schemas handle:
+  - Validation (e.g., required, minLength)
+  - Hooks (pre, post)
+  - Defaults
