@@ -135,6 +135,25 @@ const connectedDB = () => mongoose.connect(process.env.MONGO_URI);
     "start:dev": "node --watch --env-file=.env ./src/server.js"
   },
 ```
+### HTTP vs Express
+- comparison between using Express.js and the built-in http module
+
+| Feature                     | **Express.js**                             | **Node.js http module**                |
+|----------------------------|---------------------------------------------|----------------------------------------|
+| **Import**                 | `const express = require('express')`       | `const http = require('http')`         |
+| **Create server**          | `const app = express();`                   | `const server = http.createServer()`   |
+| **Listen on port**         | `app.listen(port)`                         | `server.listen(port)`                  |
+| **Routing support**        | ✅ Built-in (`app.get('/', ...)`)           | ❌ Manual check inside callback         |
+| **Middleware support**     | ✅ Easy with `app.use(...)`                 | ❌ Needs custom implementation          |
+| **Code simplicity**        | ✅ Cleaner and shorter                     | ❌ More boilerplate                     |
+| **Flexibility & Plugins**  | ✅ Huge ecosystem (body-parser, etc.)       | ❌ Very basic                           |
+| **Example Response**       | `res.send("Hello")`                        | `res.writeHead(200); res.end("Hello")` |
+
+### TL;DR
+- Use **Express.js** for web apps or REST APIs — it’s simpler and powerful.
+- Use **http module** for learning, custom logic, or minimal setups.
+
+Let me know if you want to see both full code examples side by side.
 ### First Simple Server
 - You should install `express`, `nodemon`, and `dotenv` to create and run a simple express server.
 - To use **ES modules** syntaxt (using `import` instead of `require`, add `"type": "module"` to the **package.json**:
