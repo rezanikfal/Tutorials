@@ -149,6 +149,22 @@ const connectedDB = () => mongoose.connect(process.env.MONGO_URI);
 | **Flexibility & Plugins**  | ✅ Huge ecosystem (body-parser, etc.)       | ❌ Very basic                           |
 | **Example Response**       | `res.send("Hello")`                        | `res.writeHead(200); res.end("Hello")` |
 
+### express.static
+- `express.static` is built-in middleware in Express used to serve static files like **HTML, CSS, JS, Images (PNG, JPG, etc.), PDFs, etc.**
+```js
+app.use(express.static('public'));
+```
+This serves files from the `public` folder.
+#### Example:
+If you have:
+```
+/public/logo.png
+```
+
+You can access it in browser at:
+```
+http://localhost:3000/logo.png
+```
 ### First Simple Server
 - You should install `express`, `nodemon`, and `dotenv` to create and run a simple express server.
 - To use **ES modules** syntaxt (using `import` instead of `require`, add `"type": "module"` to the **package.json**:
