@@ -413,6 +413,37 @@ app.use('/example', middleware);
      - `cors` (for cross-origin support)
      - `helmet`, `morgan`, `cookie-parser`, etc.
 
+### Routes
+- `express.Router()` creates a mini Express app — a modular, mountable route handler.
+- You attach HTTP method handlers (like `.get`, `.post`) to it.
+- It allows you to group related routes (e.g., `/tasks`) in one file, then plug them into the main app.
+- We can chain different HTTP methods for the **same route path**.
+```javascript
+//routes/tasks.js
+import express from 'express';
+import {createTasks, deleteTasks, getTasks, updateTasks} from "../controller/tasks.js";
+
+const router = express.Router();
+
+router.use(express.json());
+
+router.route('/')
+    .get(getTasks)
+    .post(createTasks);
+
+router.route('/:id')
+    .put(updateTasks)
+    .delete(deleteTasks);
+
+export default router;
+```
+```javascript
+//index.js
+import express from 'express';
+import router from "./routes/tasks.js";
+
+app.use('/v1/api', router);
+```
 ### Validation
 - We use 3rd party library for express validation: `npm install express-validator`
 #### Validate Query Params
