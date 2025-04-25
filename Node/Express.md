@@ -109,6 +109,30 @@ Access-Control-Allow-Origin: https://example.com
   - **Token Usage**: The client stores the token (often in `localStorage`) and includes it in the headers of subsequent requests.
   - **Token Validation**: When the server receives a request, it checks the token for validity (Is it expired or is it tampered)
   - **Access Control:** If the token is valid, the server allows access to the requested resource.
+### Top 5 REST Guidelines
+1. **Separation of Client and Server**
+   - Promotes **maintainability**
+   - Enables **independent development**
+   - Supports different clients (web, mobile)
+
+2. **Stateless**
+   - No server-side session
+   - Each request is independent
+   - **Lightweight**, easier to scale
+
+3. **Uniform Interface**
+   - Standardized communication (URLs, methods)
+   - Clear resource identification (`/shoes`, `/shirts`)
+   - **Consistency** across APIs
+
+4. **Cacheable**
+   - Responses can be **cached**
+   - Improves **performance** and reduces load
+
+5. **Layered System**
+   - Enables **modularity** (e.g., using MVC)
+   - Supports load balancers, gateways, security layers
+
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
 - To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
