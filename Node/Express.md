@@ -165,6 +165,28 @@ You can access it in browser at:
 ```
 http://localhost:3000/logo.png
 ```
+### Template Engines
+Template engines are libraries that allow developers to generate dynamic HTML content by combining:
+- Static HTML templates
+- Dynamic data (from a database or variables)
+- Example in EJS:
+```html
+<p>Hello, <%= data %></p>
+```
+```js
+// app.js
+import express from 'express';
+import ejs from 'ejs';
+
+const app = express();
+
+app.set('view engine', 'ejs'); // Tell Express to use EJS
+
+app.get('/', (req, res) => {
+  const user = 'Reza'; // 👉 This is the "data"
+  res.render('home', { data: user }); // Sends "data" to EJS template
+});
+```
 ### First Simple Server
 - You should install `express`, `nodemon`, and `dotenv` to create and run a simple express server.
 - To use **ES modules** syntaxt (using `import` instead of `require`, add `"type": "module"` to the **package.json**:
