@@ -107,6 +107,25 @@ ul li:nth-child(3n+1) {  // should be "n" and n starts from 0. So here it impact
   padding: calc(2em + 2px);
 }
 ```
+### clamp() function
+- The `clamp()` function in CSS is a powerful tool for creating responsive designs with minimum and maximum boundaries.
+- It allows you to set a value that's dynamically calculated between a defined range.
+- It is useful for:
+  - Responsive Font Sizes
+  - Flexible Container Widths
+  - Responsive Padding/Margins
+```css
+property: clamp(minimum, preferred, maximum);
+h1 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+.container {
+  width: clamp(300px, 80%, 1200px);
+}
+section {
+  padding: clamp(1rem, 5%, 3rem);
+}
+```
 ### Attribute selectors
 - These attribute selectors provide a powerful way to target and style elements based on the attributes they possess
 - We use ```[]``` for this type of selectors.
