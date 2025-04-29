@@ -290,7 +290,8 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/users/:id', (req, res) => {
     // better than (if(isNaN(id)):
-    if (!/^\d+$/.test(req.params.id)) {
+    // if (!/^\d+$/.test(req.params.id)) {
+    if (isNaN(Number(req.params.id))) {
         return res.status(400).send('Invalid ID');
     }
     const id = parseInt((req.params.id));
