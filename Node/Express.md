@@ -308,6 +308,13 @@ app.get('/api/users/:id', (req, res) => {
 - In Express, `req.query` is used to access the **query parameters** that are sent in the URL.
 - For example: `http://localhost:3000/api/users?filter=displayName&value=T`
 ```javascript
+// req.query
+{
+  filter: 'displayName',
+  value: 'T'
+}
+```
+```javascript
 // index.js
 // Same as above
 app.get('/api/users', (req, res) => {
