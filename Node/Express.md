@@ -500,10 +500,25 @@ or restrictively:
 ```http
 Access-Control-Allow-Origin: http://example.com
 ```
+#### cors middleware:
+- `CORS` is a `node.js` package for providing a Express middleware that can be used to enable `CORS` with various options.
+```javascript
+const express = require('express');
+const cors = require('cors'); // Import cors
 
-Would you like an example of how to enable CORS in an Express.js server?
+const app = express();
 
+app.use(cors()); // Enable CORS for all routes
 
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'Hello from the API!' });
+});
+
+app.listen(3000, () => {
+  console.log('Server is running');
+});
+
+```
 ### Routes
 - `express.Router()` creates a mini Express app — a modular, mountable route handler.
 - You attach HTTP method handlers (like `.get`, `.post`) to it.
