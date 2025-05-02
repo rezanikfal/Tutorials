@@ -132,6 +132,26 @@ Access-Control-Allow-Origin: https://example.com
 5. **Layered System**
    - Enables **modularity** (e.g., using MVC)
    - Supports load balancers, gateways, security layers
+This image explains the concept of **API versioning in RESTful APIs**, which is very relevant when building APIs with **Express.js**.
+
+### API Versioning
+
+**Versioning** means maintaining multiple versions of your API to:
+* Support older clients (backward compatibility)
+* Add new features without breaking existing apps
+
+How to Do Versioning in Express.js (URL Path Versioning):
+```js
+// v1 routes
+app.get('/api/v1/resource', (req, res) => {
+  res.send('Response from API v1');
+});
+
+// v2 routes
+app.get('/api/v2/resource', (req, res) => {
+  res.send('Response from API v2');
+});
+```
 
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
