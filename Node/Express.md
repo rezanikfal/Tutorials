@@ -550,6 +550,22 @@ import router from "./routes/tasks.js";
 
 app.use('/v1/api', router);
 ```
+### Serialization and Deserialization
+* Express **automatically handles** both serialization (response) and deserialization (request) using `res.json()` and `express.json()`.
+* You just need to use the correct middleware for parsing request bodies.
+When you send data (like an object) in a response:
+```js
+res.json({ name: "Reza", age: 30 });
+```
+Express **serializes** the JavaScript object to JSON before sending it over the network.
+#### *Deserialization**
+When you receive JSON from a client (like in a `POST` request), Express uses middleware (e.g., `express.json()`) to **deserialize** the JSON back into a JavaScript object:
+```js
+app.use(express.json()); // Middleware to deserialize incoming JSON
+app.post('/user', (req, res) => {
+  console.log(req.body); // Already deserialized into JS object
+});
+```
 ### Validation
 - We use 3rd party library for express validation: `npm install express-validator`
 #### Validate Query Params
