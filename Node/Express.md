@@ -467,6 +467,43 @@ app.use('/example', middleware);
      - `cors` (for cross-origin support)
      - `helmet`, `morgan`, `cookie-parser`, etc.
 
+### CORS (Cross-Origin Resource Sharing)
+
+* **CORS** is a **security feature** in browsers that blocks requests from one origin (domain, protocol, or port) to a different origin unless explicitly allowed by the server.
+* The **origin** includes:
+
+  * Protocol (HTTP or HTTPS)
+  * Domain (e.g., interviewwhappy.com vs xyz.com)
+  * Port (default 80, 443, or custom like :12)
+
+#### From the image:
+
+✅ Allowed:
+
+* `http://interviewwhappy.com/getdata` → Same origin (domain, protocol, port) as `http://interviewwhappy.com/index.html`
+
+❌ Blocked:
+
+* Different domain: `http://xyz.com/getdata`
+* Different subdomain: `http://api.interviewwhappy.com/getdata`
+* Different protocol: `https://interviewwhappy.com/getdata`
+* Different port: `http://interviewwhappy.com:12/getdata`
+
+To **allow CORS**, the server must send specific headers like:
+
+```http
+Access-Control-Allow-Origin: *
+```
+
+or restrictively:
+
+```http
+Access-Control-Allow-Origin: http://example.com
+```
+
+Would you like an example of how to enable CORS in an Express.js server?
+
+
 ### Routes
 - `express.Router()` creates a mini Express app — a modular, mountable route handler.
 - You attach HTTP method handlers (like `.get`, `.post`) to it.
