@@ -66,7 +66,7 @@ export default ListScreen;
 ## Button /  TouchableOpacity
  - `Button`: basic button, no custom styling.
  - `TouchableOpacity`: flexible button with custom styles.
- - `props`.navigation.navigate('Components'): navigates to another screen (requires props passed in).
+ - `props.navigation.navigate`('Components'): navigates to another screen (requires props passed in).
 ```js
 import React from "react";
 import { Text, StyleSheet, Button, View, TouchableOpacity } from "react-native";
