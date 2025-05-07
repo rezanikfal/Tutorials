@@ -63,3 +63,32 @@ const styles = StyleSheet.create({
 export default ListScreen;
 
 ```
+## Button /  TouchableOpacity
+ - `Button`: basic button, no custom styling.
+ - `TouchableOpacity`: flexible button with custom styles.
+ - `props`.navigation.navigate('Components'): navigates to another screen (requires props passed in).
+```js
+import React from "react";
+import { Text, StyleSheet, Button, View, TouchableOpacity } from "react-native";
+
+const HomeScreen = (props) => {
+  return (
+    <View>
+      <Button
+        onPress={() => console.log('Hi')}
+        title="Components Screen"         // Button label
+      />
+      <TouchableOpacity onPress={() => props.navigation.navigate('Components')}>
+        <Text style={styles.text}>Fot test</Text>  // Button label
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 25,
+    ...
+  },
+});
+```
