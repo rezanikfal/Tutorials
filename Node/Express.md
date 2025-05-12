@@ -185,6 +185,13 @@ console.log(sanitizedInput); // Output: Happy
    Process large files in chunks instead of loading all at once (less memory).
 7. **Monitoring & Profiling**:
    Use tools to detect slow parts and continuously improve performance.
+### Authentication vs Authorization
+| **Authentication**                 | **Authorization**                             |
+| ---------------------------------- | --------------------------------------------- |
+| Confirms **who you are**           | Determines **what you can access**            |
+| Example: Username + Password login | Example: Can view results but **cannot edit** |
+| Happens **first**                  | Happens **after** authentication              |
+| Validates credentials              | Grants or denies **permissions/rights**       |
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
 - To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
