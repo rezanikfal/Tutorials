@@ -1545,6 +1545,39 @@ export const login = async (req, res) => {
     res.status(200).send(user);
 };
 ```
+
+### Mongoose hooks
+- They also known as **middleware**, are functions that run **before or after** certain lifecycle events in your Mongoose models (like saving, updating, validating, etc.).
+#### Types of Mongoose Hooks
+1. **Document Middleware** (for operations like `.save()`, `.remove()`, `.validate()`):
+
+   * `pre('save', function (next) { ... })` – runs **before saving** a document.
+   * `post('save', function (doc) { ... })` – runs **after saving**.
+
+2. **Query Middleware** (for `.find()`, `.update()`, `.findOneAndUpdate()`, etc.):
+
+   * `pre('find', function () { ... })`
+   * `post('find', function (docs) { ... })`
+```js
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+});
+
+// Pre-save hook
+userSchema.pre('save', function (next) {
+  console.log('About to save user:', this.name);
+  next();
+});
+
+// Post-save hook
+userSchema.post('save', function (doc) {
+  console.log('Saved user:', doc.name);
+});
+
+const User = mongoose.model('User', userSchema);
+
+```
 ### MongoDB Connection
 ```js
 // File: `src/config/db.js`
