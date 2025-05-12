@@ -212,6 +212,16 @@ console.log(sanitizedInput); // Output: Happy
 | **Performance Testing** | Checks app performance under load (speed, scalability, etc.) |
 | **Security Testing**    | Identifies vulnerabilities and security issues               |
 
+### WebSocket 
+- WebSocket is a protocol that enables two-way communication between the client and server over a single, persistent connection.
+
+#### How It Works:
+| **HTTP**                            | **WebSocket**                        |
+| ----------------------------------- | ------------------------------------ |
+| New request/response each time      | Persistent open connection           |
+| One-way at a time (client → server) | **Bi-directional** (client ↔ server) |
+| More overhead                       | Less overhead, faster interaction    |
+
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
 - To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
