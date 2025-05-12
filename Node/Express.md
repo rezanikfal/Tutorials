@@ -153,6 +153,23 @@ app.get('/api/v2/resource', (req, res) => {
 });
 ```
 
+### XSS Attack / SQL Injection Attack
+- Definition: XSS occurs when an attacker injects malicious JavaScript into a web page's input fields.
+- SQL Injection is when an attacker sends malicious SQL code in input fields. This could be run if the backend doesn’t sanitize inputs.
+```html
+<script>
+  console.log("XSS attack!");
+  var img = new Image();
+  img.src = "http://attacker.com";
+</script>
+```
+- to Prevent XSS use `sanitize-html`, a Node.js module:
+```javascript
+const sanitizeHtml = require('sanitize-html');
+const userInput = '<script>alert("XSS attack!");</script>Happy';
+const sanitizedInput = sanitizeHtml(userInput);
+console.log(sanitizedInput); // Output: Happy
+```
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
 - To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
