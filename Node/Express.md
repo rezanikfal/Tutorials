@@ -185,6 +185,7 @@ console.log(sanitizedInput); // Output: Happy
    Process large files in chunks instead of loading all at once (less memory).
 7. **Monitoring & Profiling**:
    Use tools to detect slow parts and continuously improve performance.
+
 ### Authentication vs Authorization
 | **Authentication**                 | **Authorization**                             |
 | ---------------------------------- | --------------------------------------------- |
@@ -192,6 +193,25 @@ console.log(sanitizedInput); // Output: Happy
 | Example: Username + Password login | Example: Can view results but **cannot edit** |
 | Happens **first**                  | Happens **after** authentication              |
 | Validates credentials              | Grants or denies **permissions/rights**       |
+
+### Types of Testing 
+#### 1. **Functional Testing** – Focuses on *what the system does*:
+
+| Type                    | Description                                                            |
+| ----------------------- | ---------------------------------------------------------------------- |
+| **Unit Testing**        | Tests individual functions or components in isolation                  |
+| **Integration Testing** | Tests how components or modules work together                          |
+| **System Testing**      | End-to-end testing from the user’s perspective (includes smoke/sanity) |
+| **Acceptance Testing**  | Verifies the app meets user requirements (done by end users)           |
+| **Regression Testing**  | Ensures new code doesn’t break existing functionality                  |
+
+#### 2. **Non-Functional Testing** – Focuses on *how the system behaves*:
+
+| Type                    | Description                                                  |
+| ----------------------- | ------------------------------------------------------------ |
+| **Performance Testing** | Checks app performance under load (speed, scalability, etc.) |
+| **Security Testing**    | Identifies vulnerabilities and security issues               |
+
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
 - To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
