@@ -170,6 +170,21 @@ const userInput = '<script>alert("XSS attack!");</script>Happy';
 const sanitizedInput = sanitizeHtml(userInput);
 console.log(sanitizedInput); // Output: Happy
 ```
+### Node.js Performance
+1. **Database Optimization**:
+   Use indexes and efficient queries to speed up DB operations.
+2. **Asynchronous Code**:
+   Use async/await or promises to prevent blocking the event loop.
+3. **Caching**:
+   Store frequent data in memory (e.g., Redis) to reduce DB load.
+4. **Load Balancing**:
+   Distribute traffic across app instances using tools like Nginx or PM2.
+5. **Compression**:
+   Compress responses (e.g., gzip) to reduce payload size and speed up transfer.
+6. **Streaming I/O**:
+   Process large files in chunks instead of loading all at once (less memory).
+7. **Monitoring & Profiling**:
+   Use tools to detect slow parts and continuously improve performance.
 ### Nodemon 
 - A tool that helps with Node.js development by automatically restarting the server whenever it detects file changes in the project.
 - To install: `npm install -D nodemon` (`--save-dev` is older version of `-D`)
