@@ -1,3 +1,12 @@
+### **When to Use RDBMS vs NoSQL**
+
+| Feature           | **RDBMS**                                                | **NoSQL**                                                  |
+| ----------------- | -------------------------------------------------------- | ---------------------------------------------------------- |
+| 🔹 Use Case       | Banking, finance, e-commerce (needs **ACID** compliance) | Social media, IoT, gaming (needs **speed + scale**)        |
+| 🔹 Structure      | Table-based (structured, relational)                     | Flexible (document, key-value, graph, etc.)                |
+| 🔹 Data Integrity | Strong consistency, transactions supported               | Eventually consistent, faster writes                       |
+| 🔹 Best For       | Complex queries, relationships, transactions             | **High-speed**, **high-volume** data with frequent updates |
+
 ## 4 main levels in MongoDB Atlas:
 ```
 Organization ➝ Project ➝ Cluster ➝ Database
