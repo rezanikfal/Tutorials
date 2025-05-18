@@ -508,6 +508,57 @@ const mood = 'Happy! ';
 console.log(`I feel ${mood.repeat(3)}`);
 // Expected output: "I feel Happy! Happy! Happy! "
 ```
+
+### Object-style view of an array
+The array:
+
+```js
+const arr = [1, 2, 3];
+```
+Internally behaves like this:
+```js
+{
+  0: 1,
+  1: 2,
+  2: 3,
+  length: 3,
+  __proto__: Array.prototype
+}
+```
+* Keys: `0`, `1`, `2`
+* Values: `1`, `2`, `3`
+* Special property: `length`
+* `__proto__`: link to `Array.prototype` for built-in methods like `.map()`, `.forEach()`
+### Methods can exist on the object itself
+```js
+const arr = [1, 2, 3];
+
+arr.sayHi = function() {
+  console.log("Hi from array!");
+};
+
+arr.sayHi(); // Works!
+```
+* Here, `sayHi` is a method **on the array object itself**, not from `Array.prototype`.
+Excellent question!
+### A **callback** can be passed to:
+1. A regular function
+2. A method (which is just a function attached to an object or class)
+#### Callback in a function:
+```js
+function greet(name, callback) {
+  console.log("Hello " + name);
+  callback();
+}
+```
+#### Callback in a method (e.g., `.map()` method of Array):
+```js
+[1, 2, 3].map(function (num) {
+  return num * 2;
+});
+```
+* Here, `map` is a **method** of the `Array` class.
+* It takes a **callback function** as an argument.
 ### Date object 
 ```javascript
 let pastDay= new Date(2000,1,1,20,11,28)
