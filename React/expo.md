@@ -1,4 +1,5 @@
 ### Create React project using ```expo``` :
+- Here is the tutorial: [Expo Tutorial](https://docs.expo.dev/get-started/create-a-project/)
 - Using `./` the `create-expo-app` directly creates the app in the folder & app name is the **folder name**:
 ```
 npx create-expo-app@latest --template blank ./
