@@ -56,11 +56,61 @@ shelfie_app/
 
 ## Add a Layout
 - To use a consistent layout or **slot**/**stack**/**tabs** navigation, add `_layout.js`:
+
+| Layout Type | Best For                                                |
+| ----------- | ------------------------------------------------------- |
+| `Stack`     | Navigation flow, modal-like pages                       |
+| `Tabs`      | Bottom navigation bar apps                              |
+| `Slot`      | Static layouts (custom headers, footers, layout groups) |
+
+### Stack — Default Native Screen Transitions:
+- `Stack.Screen` can accept options like title, headerShown, etc.
 ```js
 import { Stack } from 'expo-router';
 
 export default function Layout() {
   return <Stack />;
+}
+```
+### Tabs — Bottom Tab Navigation:
+- Shows a bottom tab bar.
+- Each file like `home.js`, `settings.js` becomes a tab automatically.
+```js
+// app/_layout.js
+import { Tabs } from 'expo-router';
+
+export default function Layout() {
+  return <Tabs />;
+}
+```
+- You can customize with icons:
+```js
+<Tabs.Screen
+  name="home"
+  options={{
+    tabBarIcon: ({ color, size }) => (
+      <Ionicons name="home" color={color} size={size} />
+    ),
+  }}
+/>
+```
+### Slot — Custom Layout Wrapper:
+- `<Slot />` is a placeholder. It renders whichever screen matches the current route (like `index.js`).
+- Good for **custom headers**, **footers**, or static layouts (e.g., blog layout).
+- No built-in navigation like Stack/Tabs.
+```js
+// app/_layout.js
+import { Slot } from 'expo-router';
+import { View, Text } from 'react-native';
+
+export default function Layout() {
+  return (
+    <View style={{ flex: 1 }}>
+      <Text>Header</Text>
+      <Slot /> {/* renders the current route screen */}
+      <Text>Footer</Text>
+    </View>
+  );
 }
 ```
 
