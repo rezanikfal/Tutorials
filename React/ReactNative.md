@@ -16,6 +16,54 @@ const styles = StyleSheet.create({
 
 export default HomeScreen;
 ```
+Here’s a **step-by-step tutorial** for setting up a new Expo + Expo Router React Native app with a custom URI scheme (`shelfieApp`):
+
+## Expo Router React Native app
+- This creates a new project in the current directory using the blank template:
+```bash
+npx create-expo-app@latest --template blank ./
+```
+- Install Expo Router and Dependencies:
+```bash
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
+```
+- Update `package.json`:
+```json
+"main": "expo-router/entry",
+```
+- Update `app.json`:
+```json
+"scheme": "shelfieApp"
+```
+### Folder Structure:
+```
+shelfie_app/
+├── app/                    # All your route-based screens
+│   ├── _layout.js          # Layout for navigation (e.g., Stack or Tabs)
+│   ├── index.js            # Home screen (route: "/")
+│   └── about.js            # Another screen (route: "/about")
+│
+├── assets/                 # Images, fonts, media files
+│   └── icon.png
+│
+├── node_modules/
+│
+├── .gitignore
+├── app.json                # Expo app configuration
+├── package.json            # Project dependencies and config
+├── README.md               # Project overview (optional)
+```
+
+## Add a Layout
+- To use a consistent layout or **slot**/**stack**/**tabs** navigation, add `_layout.js`:
+```js
+import { Stack } from 'expo-router';
+
+export default function Layout() {
+  return <Stack />;
+}
+```
+
 ## FlatList 
 - Displays a scrollable list using `FlatList` in React Native.
 - Unlike Web, the default list here is column based.
