@@ -202,6 +202,99 @@ const styles = StyleSheet.create({
   }
 }
 ```
+
+## Implementing Navigation Layouts
+### 1. Folder Structure
+
+* Follows the recommended layout for `expo-router`.
+* Uses two `_layout.jsx` files:
+
+  * `app/_layout.jsx`: root stack layout for the whole app.
+  * `app/(auth)/_layout.jsx`: nested layout for auth-related screens.
+
+```
+app/
+├── _layout.jsx         → Root-level layout
+├── index.jsx           → Home screen
+├── (auth)/             → Auth stack (login, register)
+│   ├── _layout.jsx     → Auth layout
+│   ├── login.jsx
+│   └── register.jsx
+```
+
+### 2. Root Layout: `app/_layout.jsx`
+
+* Applies global theming and navigation style.
+* Configures `StatusBar` and sets custom header styles (battery, WiFi, time light/dark mode).
+* Keeps the back button but hides the title for the auth stack.
+
+```js
+import { Stack } from 'expo-router';
+import { useColorScheme } from 'react-native';
+import { Colors } from '../constants/Colors';
+import { StatusBar } from 'expo-status-bar';
+
+export default function RootLayout() {
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.light;
+
+  return (
+    <>
+      <StatusBar style='auto'} />
+      <Stack
+        screenOptions={{
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: theme.navBackground,
+          },
+          headerTintColor: theme.title,
+        }}
+      >
+        <Stack.Screen
+          name="index"
+          options={{
+            title: 'Home',
+          }}
+        />
+        <Stack.Screen
+          name="(auth)"
+          options={{
+            headerShown: true,
+            headerTitle: '',
+            animation: 'none',
+          }}
+        />
+      </Stack>
+    </>
+  );
+}
+```
+
+### 3. Auth Layout: `app/(auth)/_layout.jsx`
+
+* Used to group and manage the login/register stack.
+* Hides headers and disables animation (when you navigate from one page to another) for simplicity.
+
+```js
+import { Stack } from 'expo-router';
+import { useColorScheme } from 'react-native';
+import { Colors } from '../../constants/Colors';
+
+export default function AuthLayout() {
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.light;
+
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        animation: 'none',
+      }}
+    />
+  );
+}
+```
+
 ## FlatList 
 - Displays a scrollable list using `FlatList` in React Native.
 - Unlike Web, the default list here is column based.
