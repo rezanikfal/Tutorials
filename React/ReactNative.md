@@ -113,7 +113,95 @@ export default function Layout() {
   );
 }
 ```
+## Light and Dark Mode
+### 1. Create a `Colors` Theme File
+* Organized as `light` and `dark` objects to match the system theme.
+```js
+// constants/Colors.js
+export const Colors = {
+  primary: "#6849a7",
+  warning: "#cc475a",
+  dark: {
+    text: "#d4d4d4",
+    title: "#fff",
+    background: "#252231",
+    navBackground: "#201e2b",
+    iconColor: "#9591a5",
+    iconColorFocused: "#fff",
+    uiBackground: "#2f2b3d",
+  },
+  light: {
+    text: "#625f72",
+    title: "#201e2b",
+    background: "#e0dfe8",
+    navBackground: "#e8e7ef",
+    iconColor: "#686477",
+    iconColorFocused: "#201e2b",
+    uiBackground: "#d6d5e1",
+  },
+};
+```
+### 2. Create a `ThemedView` Component
+* Automatically uses light or dark theme based on user settings.
+* `useColorScheme()` returns `"light"` or `"dark"` depending on device.
+```js
+// components/ThemedView.js
+import { useColorScheme, View } from "react-native";
+import { Colors } from "../constants/Colors";
 
+const ThemedView = ({ style, ...props }) => {
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.light;
+
+  return (
+    <View
+      style={[{ backgroundColor: theme.background }, style]}
+      {...props}
+    />
+  );
+};
+
+export default ThemedView;
+```
+### 3. Use ThemedView in a Screen
+* Replace normal `View` with `ThemedView` to auto-adjust to dark/light mode.
+* Inherits all View props and allows custom styles as usual.
+```js
+// screens/About.js
+import { Text, StyleSheet } from 'react-native';
+import ThemedView from '../components/ThemedView';
+
+export default function About() {
+  return (
+    <ThemedView style={styles.container}>
+      <Text>about</Text>
+    </ThemedView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
+```
+### 4. Configure `app.json` for System Theme
+* Tells Expo to follow the user’s system preference (light/dark).
+* Works automatically in production without additional setup.
+* Use `"dark"` or `"light"` instead if you want to force a specific mode.
+```json
+// app.json
+{
+  "expo": {
+    "name": "shelfie_app",
+    "scheme": "shelfieApp",
+    "userInterfaceStyle": "automatic"
+     ...
+  }
+}
+```
 ## FlatList 
 - Displays a scrollable list using `FlatList` in React Native.
 - Unlike Web, the default list here is column based.
