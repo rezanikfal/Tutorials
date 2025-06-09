@@ -294,7 +294,48 @@ export default function AuthLayout() {
   );
 }
 ```
+## Tabs Layout
+- building a tabbed layout for an authenticated area of the app using `expo-router`, `@expo/vector-icons`.
+```js
+// _layout.js
+import { Tabs } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { useColorScheme } from "react-native";
+import { Colors } from '../../constants/Colors';
+import { Ionicons } from "@expo/vector-icons";
 
+export default function AuthLayout() {
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.light;
+  return (
+    <>
+      <StatusBar style="auto" />
+      <Tabs screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: theme.iconColorFocused,
+        tabBarInactiveTintColor: theme.iconColor,
+        tabBarStyle: {
+          backgroundColor: theme.navBackground,
+          paddingTop: 10,
+          height: 90,
+        },
+      }}>
+        <Tabs.Screen name="profile" options={{
+          title: 'Profile', tabBarIcon: ({ focused }) => {
+            return <Ionicons
+              size={24}
+              name={focused ? "person" : "person-outline"}
+              color={focused ? theme.iconColorFocused : theme.iconColor}
+            />;
+          }
+        }} />
+        <Tabs.Screen name="books"...
+        <Tabs.Screen name="create" ...
+      </Tabs>
+    </>
+  );
+}
+```
 ## FlatList 
 - Displays a scrollable list using `FlatList` in React Native.
 - Unlike Web, the default list here is column based.
