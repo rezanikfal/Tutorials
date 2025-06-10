@@ -336,6 +336,50 @@ export default function AuthLayout() {
   );
 }
 ```
+## Pressable 
+`Pressable` is a core component in React Native used to detect press interactions.
+- It detects press, long press, and hover (web)
+- Supports dynamic styling via `style={({ pressed }) => ...}`
+- Ideal for custom buttons, cards, or any touchable UI
+- It's more flexible than `TouchableOpacity` or `TouchableHighlight`
+```js
+import React from 'react';
+import { Pressable, Text, StyleSheet, View } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Pressable
+        onPress={() => alert('Button Pressed!')}
+        style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      >
+        <Text style={styles.text}>Press Me</Text>
+      </Pressable>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#007bff',
+    padding: 16,
+    borderRadius: 8,
+  },
+  pressed: {
+    opacity: 0.6,
+  },
+  text: {
+    color: 'white',
+    fontSize: 16,
+  },
+});
+
+```
 ## FlatList 
 - Displays a scrollable list using `FlatList` in React Native.
 - Unlike Web, the default list here is column based.
