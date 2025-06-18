@@ -336,6 +336,39 @@ export default function AuthLayout() {
   );
 }
 ```
+### Tabs Sample
+- Layout:
+  
+![image](https://github.com/user-attachments/assets/39d94893-85a3-4131-a035-ebe11e45558a)
+
+```js
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+
+export default function TabsLayout() {
+  return (
+    <Tabs screenOptions={{
+      headerShown: false,
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: '',
+      tabBarInactiveTintColor: '#999',
+    }}>
+      <Tabs.Screen name="index" options={{
+        tabBarIcon: ({ color, focused }) =>
+          <Ionicons name={focused ? 'home' : 'home-outline'} size={36} color={color} />,
+      }} />
+      <Tabs.Screen name="profile" options={{
+        tabBarIcon: ({ color, focused }) =>
+          <Ionicons name={focused ? 'person' : 'person-outline'} size={36} color={color} />,
+      }} />
+      <Tabs.Screen name="create" options={{
+        tabBarIcon: ({ color, focused }) =>
+          <Ionicons name={focused ? 'create' : 'create-outline'} size={36} color={color} />,
+      }} />
+    </Tabs>
+  );
+}
+```
 ## Pressable 
 `Pressable` is a core component in React Native used to detect press interactions.
 - It detects press, long press, and hover (web)
