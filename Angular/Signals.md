@@ -213,3 +213,33 @@ effect(() => {
   }
 });
 ```
+### **Enable "Submit" button when form is valid**
+```ts
+import { signal, computed, effect } from '@angular/core';
+
+export class LoginForm {
+  email = signal('');
+  password = signal('');
+  canSubmit = signal(false);
+
+  constructor() {
+    effect(() => {
+      const isEmailValid = this.email().includes('@');
+      const isPasswordValid = this.password().length >= 6;
+
+      this.canSubmit.set(isEmailValid && isPasswordValid);
+    });
+  }
+
+  submit() {
+    if (this.canSubmit()) {
+      console.log('Form submitted:', this.email(), this.password());
+    }
+  }
+}
+```
+```html
+<input type="text" (input)="email.set($event.target.value)" />
+<input type="password" (input)="password.set($event.target.value)" />
+<button [disabled]="!canSubmit()">Submit</button>
+```
