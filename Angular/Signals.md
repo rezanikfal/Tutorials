@@ -243,3 +243,25 @@ export class LoginForm {
 <input type="password" (input)="password.set($event.target.value)" />
 <button [disabled]="!canSubmit()">Submit</button>
 ```
+## Recommendation
+
+* Use `computed()` for **deriving data only**
+* Use `effect()` only for **side effects**, not logic
+* Angular's signal engine automatically tracks dependencies and only recomputes when inputs actually change.
+* Break complex computed() into smaller, named ones. Instead of:
+
+```ts
+statusMessage = computed(() => {
+  const status = this.service.status();
+  const user = this.auth.user();
+  return `User ${user.name} is ${status}`;
+});
+```
+
+Split for clarity:
+
+```ts
+userName = computed(() => this.auth.user().name);
+status = computed(() => this.service.status());
+statusMessage = computed(() => `User ${this.userName()} is ${this.status()}`);
+```
