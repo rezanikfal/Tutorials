@@ -247,6 +247,7 @@ export class LoginForm {
 
 * Use `computed()` for **deriving data only**
 * Use `effect()` only for **side effects**, not logic
+* Use effect() for DOM changes that Angular templates can't handle easily.
 * Angular's signal engine automatically tracks dependencies and only recomputes when inputs actually change.
 * Break complex computed() into smaller, named ones. Instead of:
 
