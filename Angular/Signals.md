@@ -167,3 +167,49 @@ Keep `StatementsStore` the **owner of shared signals**, and inject it into any c
 * Flatten account types early if showing a unified account picker
 
 This architecture scales cleanly across complex enterprise-grade Angular apps while remaining reactive and testable.
+Excellent point — in the HTTP + signal example we discussed, `effect()` wasn't used. That's because:
+
+> `effect()` is useful **when you want to react to signal changes** with **side effects**, not just for storing fetched data.
+
+---
+
+## 6. When to Use `effect()` with Signals:
+
+Here are practical use cases for `effect()` in the context of `HttpClient + signals`:
+
+### **Auto-fetch on some signal change**
+
+```ts
+filter = signal('all');
+
+constructor(private http: HttpClient) {
+  effect(() => {
+    const value = filter();
+    this.http.get(`/api/items?type=${value}`).subscribe(res => {
+      this.dataSignal.set(res);
+    });
+  });
+}
+```
+- `effect()` reacts when `filter()` changes and triggers the request.
+---
+### **Log or track analytics**
+
+```ts
+effect(() => {
+  const d = this.dataSignal();
+  if (d.length > 0) {
+    console.log('Data loaded:', d.length);
+    // send analytics, trigger notification, etc.
+  }
+});
+```
+### **Trigger a follow-up action**
+
+```ts
+effect(() => {
+  if (this.user().role === 'admin') {
+    this.fetchAdminData();
+  }
+});
+```
