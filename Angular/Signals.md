@@ -266,3 +266,79 @@ userName = computed(() => this.auth.user().name);
 status = computed(() => this.service.status());
 statusMessage = computed(() => `User ${this.userName()} is ${this.status()}`);
 ```
+## Dumb Store
+- It just **holds state**
+- It just **exposes set/update methods**
+- It **doesn’t** decide *when* to call them
+
+### accounts.store.ts
+```ts
+@Injectable({ providedIn: 'root' })
+export class AccountsStore {
+  private _selectedAccountId = signal<string | null>(null);
+  private _accountsList = signal<Account[]>([]);
+
+  readonly selectedAccountId = this._selectedAccountId.asReadonly();
+  readonly accountsList = this._accountsList.asReadonly();
+
+  setSelectedAccountId(id: string) {
+    this._selectedAccountId.set(id);
+  }
+
+  setAccountsList(list: Account[]) {
+    this._accountsList.set(list);
+  }
+}
+```
+- No side effects!
+- No API calls!
+- Just **holds state**.
+
+## “Smart” Loader Service Example
+
+- Handles *when* and *how* to update the store
+
+### accounts-loader.service.ts
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class AccountsLoaderService {
+  constructor(
+    private api: ApiService,
+    private store: AccountsStore
+  ) {}
+
+  loadAccounts() {
+    this.api.getAccounts().subscribe({
+      next: (data) => this.store.setAccountsList(data),
+      error: (err) => console.error('Failed to load accounts', err)
+    });
+  }
+
+  selectAccount(id: string) {
+    this.store.setSelectedAccountId(id);
+  }
+}
+```
+
+- Decides **when to call** `setX`
+- Encapsulates side-effects
+
+---
+
+### In the Component
+
+```ts
+constructor(
+  public accountsStore: AccountsStore,
+  private loader: AccountsLoaderService
+) {}
+
+ngOnInit() {
+  this.loader.loadAccounts();
+}
+
+onUserSelectsAccount(id: string) {
+  this.loader.selectAccount(id);
+}
+```
