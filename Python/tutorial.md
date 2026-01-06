@@ -250,3 +250,45 @@ The decorator wraps the original function and runs code **before and/or after** 
 **One-line takeaway:**
 
 > Decorators modify function behavior without modifying the function itself.
+## Collections module
+
+### Counter
+
+`Counter` is a **subclass of `dict`** designed for **counting hashable objects**.
+Each unique element becomes a key, and its frequency becomes the value.
+
+**Common uses:**
+
+* Counting items in a list
+* Counting characters in a string
+* Counting words in text
+
+**Example:**
+
+```python
+from collections import Counter
+
+c = Counter([1, 1, 2, 3])
+# Counter({1: 2, 2: 1, 3: 1})
+```
+
+### Useful `Counter` Methods & Patterns
+
+* `most_common(n)` → get the `n` most frequent elements
+* `sum(c.values())` → total number of counted items
+* `list(c)` / `set(c)` → unique elements
+* `dict(c)` → convert to a regular dictionary
+* `c.items()` → `(element, count)` pairs
+* `c.clear()` → reset all counts
+* `c += Counter()` → remove zero or negative counts
+  
+## list of the other key collections types:
+
+* `defaultdict` – dictionary with default values for missing keys
+* `deque` – double-ended queue for fast appends/pops at both ends
+* `namedtuple` – lightweight, immutable objects with named fields
+* `ChainMap` – combines multiple dictionaries into a single view
+* `OrderedDict` – dictionary that remembers insertion order
+* `UserDict` – wrapper for creating custom dictionary-like objects
+* `UserList` – wrapper for creating custom list-like objects
+* `UserString` – wrapper for creating custom string-like objects
