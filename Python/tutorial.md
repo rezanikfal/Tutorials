@@ -110,7 +110,7 @@ def print_hi(name: str):
 
 ---
 
-## `main.py`
+### `main.py`
 
 Entry point of the project. Demonstrates:
 
@@ -176,3 +176,77 @@ pip freeze > requirements.txt
 ```bash
 python main.py
 ```
+## Python Generator
+
+A **generator** is a function or expression that returns values **one at a time** using `yield`, instead of creating all values at once.
+
+**Why use it?**
+
+* Saves memory
+* Efficient for large or continuous data
+
+**Example:**
+
+```python
+def count_up(n):
+    for i in range(n):
+        yield i
+
+for x in count_up(3):
+    print(x)
+```
+
+Output:
+
+```
+0
+1
+2
+```
+
+**Key idea:**
+Each `yield` pauses the function and resumes on the next request.
+
+**One-line takeaway:**
+
+> Generators produce values lazily, only when needed.
+## Python Decorator
+
+A **decorator** is a function that **adds extra behavior** to another function **without changing its code**.
+
+**Why use it?**
+
+* Reuse logic (logging, timing, auth, etc.)
+* Keep code clean and readable
+
+**Example:**
+
+```python
+def my_decorator(func):
+    def wrapper():
+        print("Before function")
+        func()
+        print("After function")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello")
+
+say_hello()
+```
+
+Output:
+
+```
+Before function
+Hello
+After function
+```
+
+**Key idea:**
+The decorator wraps the original function and runs code **before and/or after** it.
+
+**One-line takeaway:**
+
+> Decorators modify function behavior without modifying the function itself.
