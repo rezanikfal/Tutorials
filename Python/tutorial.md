@@ -342,7 +342,7 @@ Here are the key patterns and operations demonstrated, which are useful for real
 
 Certainly. Here is the updated summary focusing on the key tools and common meta-characters.
 
-### 📋 Core Summary: Python `re` Module
+## Python `re` Module (regular expressions)
 The Python `re` module provides support for **regular expressions**, which are powerful sequences of characters that define **search patterns**. They are essential for complex string searching, validation, and manipulation tasks that are difficult or impossible with basic string methods.
 
 ### 🔧 Key Functions & Patterns with Examples
@@ -356,7 +356,7 @@ The module revolves around a few core functions. This table summarizes the main 
 | **`re.compile()`** | **Compile** a pattern for repeated use, improving efficiency. | `pattern = re.compile(r'\d{3}')` |
 | **`re.split()`** | **Split** a string by the pattern matches. | `re.split(r'\s+', "split on spaces")` → `['split', 'on', 'spaces']` |
 
-### 🔣 Common Meta-Characters & Symbols
+### Common Meta-Characters & Symbols
 To build the patterns used by the functions above, you use special meta-characters. This table lists the most common ones:
 
 | Meta-Character | Purpose | Example Pattern | Example Match |
@@ -375,3 +375,42 @@ To build the patterns used by the functions above, you use special meta-characte
 | **`$`** | Matches the end of a string. | `r"end$"` | "end" at the end. |
 | **`\|`** | Acts as an OR operator. | `r"cat\|dog"` | "cat" or "dog" |
 | **`()`** | Groups patterns and captures the matched text. | `r"(\d{3})-(\d{3})"` | Captures area code and number separately. |
+I will provide a summary for Python's **`math`** and **`random`** modules, following the same concise table format you prefer.
+
+## Python `math` Module
+The Python `math` module provides access to mathematical functions defined by the C standard. It is essential for advanced **mathematical operations**, **constants**, and **trigonometric calculations**.
+
+### Key Functions & Constants (`math` Module)
+This table summarizes the most commonly used functions and constants from the `math` module.
+
+| Category | Function/Constant | Primary Purpose | Simple Example |
+| :--- | :--- | :--- | :--- |
+| **Numeric Operations** | `math.ceil(x)` | Return the **ceiling** of *x* (smallest integer ≥ *x*). | `math.ceil(4.2)` → `5` |
+| | `math.floor(x)` | Return the **floor** of *x* (largest integer ≤ *x*). | `math.floor(4.9)` → `4` |
+| | `math.pow(x, y)` | Return *x* raised to the power *y* (`x**y`). | `math.pow(2, 3)` → `8.0` |
+| | `math.sqrt(x)` | Return the **square root** of *x*. | `math.sqrt(9)` → `3.0` |
+| | `math.fabs(x)` | Return the **absolute value** of *x* as a float. | `math.fabs(-7.5)` → `7.5` |
+| **Logarithms & Constants** | `math.log(x[, base])` | Return the **logarithm** of *x* to the given `base` (natural log by default). | `math.log(10)` ≈ `2.302` |
+| | `math.pi` | The mathematical constant **π** (≈ 3.14159). | `math.pi * (r**2)` |
+| | `math.e` | The mathematical constant **e** (≈ 2.71828). | `math.e ** x` |
+| **Trigonometry (radians)** | `math.sin(x)` | Return the **sine** of *x* radians. | `math.sin(math.pi/2)` → `1.0` |
+| | `math.cos(x)` | Return the **cosine** of *x* radians. | `math.cos(math.pi)` → `-1.0` |
+| | `math.degrees(x)` | Convert angle *x* from **radians to degrees**. | `math.degrees(math.pi)` → `180.0` |
+| | `math.radians(x)` | Convert angle *x* from **degrees to radians**. | `math.radians(180)` → `π` |
+
+## Python `random` Module
+The Python `random` module implements pseudo-random number generators for various distributions. It is used for **simulations**, **games**, **random sampling**, and **shuffling**.
+
+### Key Functions (`random` Module)
+This table summarizes the most commonly used functions from the `random` module.
+
+| Category | Function | Primary Purpose | Simple Example |
+| :--- | :--- | :--- | :--- |
+| **Basic Random Values** | `random.random()` | Return a random **float** between `0.0` and `1.0`. | `0.6572...` |
+| | `random.uniform(a, b)` | Return a random **float** between *a* and *b* (inclusive). | `random.uniform(5, 10)` → `7.384...` |
+| | `random.randint(a, b)` | Return a random **integer** between *a* and *b* (inclusive). | `random.randint(1, 6)` → `4` |
+| **Sequences & Choices** | `random.choice(seq)` | Return a random **element** from a non-empty sequence. | `random.choice(['a','b','c'])` → `'b'` |
+| | `random.choices(pop, k)` | Return a **list** of *k* random elements with replacement. | `random.choices([1,2], k=3)` → `[1, 1, 2]` |
+| | `random.sample(pop, k)` | Return a **list** of *k* **unique** elements without replacement. | `random.sample(range(10), 3)` → `[7, 2, 4]` |
+| | `random.shuffle(seq)` | **Shuffle** a mutable sequence *in place*. | `shuffle(my_list)` |
+| **Distributions** | `random.gauss(mu, sigma)` | Return a random float from a **Gaussian (normal) distribution**. | `random.gauss(0, 1)` |
