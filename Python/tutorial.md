@@ -500,3 +500,57 @@ This table summarizes the most commonly used functions from the `os` module, gro
 | | `os.system(command)` | **Execute a shell command** string. | `os.system('ls -la')` |
 
 This format provides a concise, at-a-glance reference for the essential tools in the `os` module. If you'd like a similar table for the `os.path` submodule specifically or examples combining these functions, feel free to ask.
+Here is a structured overview of web scraping in Python, covering the key libraries, the general process, and important considerations.
+
+## Web Scraping in Python
+Web scraping is the **automated process of extracting data from websites**. In Python, it primarily involves using libraries to fetch web pages (like making a browser request) and then parse the HTML/XML content to locate and extract the specific data you need.
+
+### The Essential Toolkit
+Modern Python web scraping typically relies on these core libraries. This table summarizes their primary roles.
+
+| Library | Primary Purpose & Role | Key Analogy |
+| :--- | :--- | :--- |
+| **`requests`** | **Fetches** raw HTML content from a URL. It's the part that "goes to the website and gets the page." | The **browser** that requests the page. |
+| **`BeautifulSoup` (from `bs4`)** | **Parses** and navigates the messy HTML structure. It lets you search for and extract data by tags, classes, IDs, etc. | The **eye and brain** that reads the page and finds the relevant information. |
+| **`lxml`** | A powerful alternative parser for `BeautifulSoup`, known for being very **fast**. | A specialized, high-speed **reading assistant**. |
+| **`Selenium`** | **Automates a real web browser**. Essential for scraping **JavaScript-heavy** sites where content is loaded dynamically. | A **robot controlling a browser**, clicking buttons and waiting for pages to load. |
+
+### The Standard Scraping Workflow
+A typical scraping project follows these logical steps:
+
+1.  **Inspect the Target**: Use your browser's **Developer Tools** (F12) to examine the page's HTML structure and find the patterns (tags, CSS classes) that hold your target data.
+2.  **Fetch the Page**: Use `requests.get(url)` to download the HTML.
+3.  **Parse the HTML**: Load the HTML into `BeautifulSoup` to create a searchable "soup" object.
+4.  **Locate & Extract Data**: Use `soup` methods like `.find()`, `.find_all()`, and CSS selectors (`.select()`) to get the specific elements.
+5.  **Clean & Store Data**: Process the extracted text (e.g., strip whitespace, convert numbers) and save it to a file (CSV, JSON) or database.
+
+### A Concrete Code Example
+Here is a minimal, complete example scraping book titles and prices from a hypothetical book list:
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+# 1. FETCH
+url = "https://books.toscrape.com/"
+response = requests.get(url)
+html = response.content
+
+# 2. PARSE
+soup = BeautifulSoup(html, 'html.parser') # 'lxml' is often faster if installed
+
+# 3. LOCATE & EXTRACT (Using browser inspection)
+books = []
+for book in soup.find_all('article', class_='product_pod'): # Find each book container
+    title = book.h3.a['title'] # Navigate the tag structure
+    price = book.find('p', class_='price_color').text
+    books.append({'title': title, 'price': price})
+    print(f"Title: {title}, Price: {price}")
+
+# 4. STORE (using the CSV module)
+import csv
+with open('books.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.DictWriter(f, fieldnames=['title', 'price'])
+    writer.writeheader()
+    writer.writerows(books)
+```
