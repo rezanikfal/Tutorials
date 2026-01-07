@@ -176,6 +176,169 @@ pip freeze > requirements.txt
 ```bash
 python main.py
 ```
+# Python Collections
+
+## Core Collections Overview
+The three core mutable, ordered (except `set`) collections for storing data in Python.
+
+| Collection | Mutable? | Ordered? | Unique? | Key Use Case |
+|------------|----------|----------|---------|--------------|
+| **List** `[]` | ✅ Yes | ✅ Yes | ❌ No | Ordered sequences, preserving insertion order |
+| **Dictionary** `{}` | ✅ Yes | ✅ (Python 3.7+) | Keys: ✅, Values: ❌ | Key-value lookups, fast access by key |
+| **Set** `{}` | ✅ Yes | ❌ No | ✅ Yes | Membership testing, removing duplicates |
+
+---
+
+## LISTS (`list`): Ordered Sequences
+
+### Core Operations & Methods
+
+| Method/Operation | Syntax Example | Returns | Time Complexity |
+|------------------|----------------|---------|-----------------|
+| **Create** | `list1 = [1, 2, 3]`<br>`list2 = list("abc")` | New list | O(n) |
+| **Access** | `list1[0]`<br>`list1[-1]` (last) | Element | O(1) |
+| **Slice** | `list1[1:3]`<br>`list1[::2]` (every 2nd) | New list | O(k) |
+| **Append** | `list1.append(4)` | `None` | O(1) |
+| **Extend** | `list1.extend([5, 6])` | `None` | O(k) |
+| **Insert** | `list1.insert(1, "x")` | `None` | O(n) |
+| **Remove** | `list1.remove(2)` (value) | `None` | O(n) |
+| **Pop** | `list1.pop()` (last)<br>`list1.pop(1)` (index) | Element | O(1)/O(n) |
+| **Index** | `list1.index(3)` | First index | O(n) |
+| **Count** | `list1.count(2)` | Count | O(n) |
+| **Sort** | `list1.sort()` (in-place)<br>`sorted(list1)` (new) | `None`/New list | O(n log n) |
+| **Reverse** | `list1.reverse()` (in-place) | `None` | O(n) |
+| **Length** | `len(list1)` | Integer | O(1) |
+| **Membership** | `3 in list1` | Boolean | O(n) |
+| **Copy** | `list2 = list1.copy()`<br>`list2 = list1[:]` | Shallow copy | O(n) |
+
+### Key Patterns
+```python
+# List Comprehension (powerful creation/filtering)
+squares = [x**2 for x in range(10)]  # [0, 1, 4, ..., 81]
+evens = [x for x in range(10) if x % 2 == 0]  # [0, 2, 4, 6, 8]
+
+# Iteration with index
+for i, value in enumerate(my_list):
+    print(f"Index {i}: {value}")
+
+# Zipping multiple lists
+names = ["Alice", "Bob"]
+scores = [85, 92]
+for name, score in zip(names, scores):
+    print(f"{name}: {score}")
+```
+
+---
+
+## DICTIONARIES (`dict`): Key-Value Maps
+
+### Core Operations & Methods
+
+| Method/Operation | Syntax Example | Returns | Time Complexity |
+|------------------|----------------|---------|-----------------|
+| **Create** | `dict1 = {"a": 1, "b": 2}`<br>`dict2 = dict(a=1, b=2)` | New dict | O(n) |
+| **Access** | `dict1["a"]` | Value | O(1) |
+| **Get (safe)** | `dict1.get("c", "default")` | Value/default | O(1) |
+| **Set/Update** | `dict1["c"] = 3`<br>`dict1.update({"d": 4})` | `None` | O(1) |
+| **Keys** | `dict1.keys()` | View of keys | O(1) |
+| **Values** | `dict1.values()` | View of values | O(1) |
+| **Items** | `dict1.items()` | View of (k, v) pairs | O(1) |
+| **Pop** | `dict1.pop("a")` | Removed value | O(1) |
+| **Pop Item** | `dict1.popitem()` (last) | (key, value) | O(1) |
+| **Check Key** | `"a" in dict1` | Boolean | O(1) |
+| **Clear** | `dict1.clear()` | `None` | O(1) |
+| **Copy** | `dict2 = dict1.copy()` | Shallow copy | O(n) |
+| **Length** | `len(dict1)` | Integer | O(1) |
+
+### Key Patterns
+```python
+# Dictionary Comprehension
+square_dict = {x: x**2 for x in range(5)}  # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+# Safe key access with default
+value = my_dict.get("missing_key", "default_value")
+
+# Looping through items
+for key, value in my_dict.items():
+    print(f"{key}: {value}")
+
+# Merging dictionaries (Python 3.9+)
+dict1 = {"a": 1}
+dict2 = {"b": 2}
+merged = dict1 | dict2  # {'a': 1, 'b': 2}
+
+# Default dictionary (from collections)
+from collections import defaultdict
+count_dict = defaultdict(int)  # Missing keys return 0
+count_dict["a"] += 1  # No KeyError
+```
+
+---
+
+## SETS (`set`): Unique Collections
+
+### Core Operations & Methods
+
+| Method/Operation | Syntax Example | Returns | Time Complexity |
+|------------------|----------------|---------|-----------------|
+| **Create** | `set1 = {1, 2, 3}`<br>`set2 = set([1, 2, 2, 3])` | New set | O(n) |
+| **Add** | `set1.add(4)` | `None` | O(1) |
+| **Remove** | `set1.remove(2)` (error if missing) | `None` | O(1) |
+| **Discard** | `set1.discard(5)` (no error) | `None` | O(1) |
+| **Pop** | `set1.pop()` (arbitrary) | Element | O(1) |
+| **Union** | `set1 | set2`<br>`set1.union(set2)` | New set | O(len(s1)+len(s2)) |
+| **Intersection** | `set1 & set2`<br>`set1.intersection(set2)` | New set | O(min(len(s1), len(s2))) |
+| **Difference** | `set1 - set2`<br>`set1.difference(set2)` | New set | O(len(s1)) |
+| **Symmetric Diff** | `set1 ^ set2`<br>`set1.symmetric_difference(set2)` | New set | O(len(s1)+len(s2)) |
+| **Subset** | `set1 <= set2`<br>`set1.issubset(set2)` | Boolean | O(len(s1)) |
+| **Superset** | `set1 >= set2`<br>`set1.issuperset(set2)` | Boolean | O(len(s2)) |
+| **Membership** | `3 in set1` | Boolean | O(1) |
+| **Length** | `len(set1)` | Integer | O(1) |
+| **Clear** | `set1.clear()` | `None` | O(1) |
+| **Copy** | `set2 = set1.copy()` | Shallow copy | O(n) |
+
+### Key Patterns
+```python
+# Set Comprehension
+unique_squares = {x**2 for x in [1, -1, 2, -2, 3]}  # {1, 4, 9}
+
+# Removing duplicates from a list
+unique_list = list(set(duplicate_list))  # Order not preserved!
+
+# Common set operations
+A = {1, 2, 3}
+B = {3, 4, 5}
+print(A | B)  # Union: {1, 2, 3, 4, 5}
+print(A & B)  # Intersection: {3}
+print(A - B)  # Difference (in A not B): {1, 2}
+print(A ^ B)  # Symmetric diff (in one but not both): {1, 2, 4, 5}
+
+# Frozen sets (immutable)
+immutable_set = frozenset([1, 2, 3])
+```
+
+## Quick Decision Guide
+
+### When to use each:
+
+- **Use a LIST when:**
+  - You need ordered elements
+  - You need to access elements by position/index
+  - You have duplicate values
+  - Example: Shopping cart items, log entries, sorted data
+
+- **Use a DICTIONARY when:**
+  - You need to associate keys with values
+  - You need fast lookups by a unique identifier
+  - You're counting or grouping items
+  - Example: User profiles (id → data), word frequency counts
+
+- **Use a SET when:**
+  - You need to ensure uniqueness
+  - You need fast membership testing
+  - You're doing mathematical set operations
+  - Example: Tags, unique visitors, removing duplicates
+
 ## Python Generator
 
 A **generator** is a function or expression that returns values **one at a time** using `yield`, instead of creating all values at once.
