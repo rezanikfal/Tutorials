@@ -554,3 +554,86 @@ with open('books.csv', 'w', newline='', encoding='utf-8') as f:
     writer.writeheader()
     writer.writerows(books)
 ```
+## Core Summary: Pillow (PIL) for Image Processing
+Pillow (a friendly fork of the Python Imaging Library, PIL) is the standard Python library for **opening, manipulating, and saving many different image file formats**. It provides essential tools for basic image editing, filtering, drawing, and format conversion.
+
+### The Pillow Toolkit: Core Modules & Concepts
+Pillow's functionality is organized around a few key objects. This table summarizes the essential components for getting started.
+
+| Component | Primary Purpose & Role | Key Analogy |
+| :--- | :--- | :--- |
+| **`Image` Module & Object** | The **core module**. The `Image` object represents an image and provides 90% of the methods you'll use (open, save, resize, filter, etc.). | The **main workshop** and the **canvas** you're working on. |
+| **`ImageDraw` Module** | Provides 2D graphics support for creating simple shapes, text, and other graphics on top of images. | The set of **drawing tools** (pens, brushes, text). |
+| **`ImageFilter` Module** | Contains a set of predefined **filter kernels** (BLUR, CONTOUR, DETAIL, etc.) for applying effects. | A box of **photo filters** or **Instagram-like effects**. |
+| **`ImageFont` Module** | Used to load TrueType or OpenType font files, necessary for rendering text with `ImageDraw`. | The **font book** for your text tool. |
+
+### The Standard Image Workflow
+Most image processing tasks follow a predictable pattern with Pillow:
+
+1.  **Open an Image**: Create an `Image` object from a file.
+2.  **Examine Properties**: Check the image's size, format, and mode.
+3.  **Process/Manipulate**: Perform operations like cropping, resizing, filtering, or drawing.
+4.  **Save or Display**: Save the result to a new file or show it on screen.
+
+### A Concrete Code Example
+Here is a minimal, complete example that demonstrates several common operations:
+
+```python
+from PIL import Image, ImageFilter, ImageDraw, ImageFont
+
+# 1. OPEN
+image = Image.open('input_photo.jpg')
+
+# 2. EXAMINE
+print(f"Size: {image.size}")  # (width, height)
+print(f"Format: {image.format}")
+print(f"Mode: {image.mode}")  # e.g., 'RGB', 'L' (grayscale)
+
+# 3. PROCESS
+# --- Basic Operations ---
+image = image.rotate(90)             # Rotate 90 degrees
+image = image.resize((800, 600))     # Resize to new dimensions
+cropped_image = image.crop((100, 100, 500, 400)) # (left, upper, right, lower)
+
+# --- Apply a Filter ---
+blurred_image = image.filter(ImageFilter.GaussianBlur(radius=2))
+
+# --- Draw on the Image ---
+draw = ImageDraw.Draw(image)
+# Draw a red rectangle outline
+draw.rectangle([50, 50, 200, 200], outline="red", width=5)
+# Add text (requires a font file, using default here for simplicity)
+try:
+    font = ImageFont.truetype("arial.ttf", 40)
+except:
+    font = ImageFont.load_default()
+draw.text((300, 300), "Hello Pillow!", fill="blue", font=font)
+
+# 4. SAVE
+image.save('processed_image.jpg')  # Pillow determines format from extension
+image.save('output.png', 'PNG')    # Explicitly specify format
+```
+
+### Essential Operations Reference
+For quick documentation, here are the most common `Image` object methods and their syntax.
+
+| Operation | Method / Approach | Example & Notes |
+| :--- | :--- | :--- |
+| **Open / Create** | `Image.open(filepath)` | `img = Image.open('pic.jpg')` |
+| | `Image.new(mode, size, color)` | Creates a new blank image. |
+| **Save** | `.save(filepath, format)` | `img.save('new.png', 'PNG')` |
+| **Basic Props** | `.size`, `.format`, `.mode` | `width, height = img.size` |
+| **Resize** | `.resize((new_width, new_height))` | Maintains aspect ratio if you calculate it. |
+| **Crop** | `.crop((left, top, right, bottom))` | The coordinates define a box. |
+| **Rotate** | `.rotate(angle, expand=True)` | Use `expand=True` to avoid cropping corners. |
+| **Convert** | `.convert(mode)` | `grayscale = img.convert('L')` |
+| **Filter** | `.filter(filter_object)` | `from PIL import ImageFilter` <br> `img.filter(ImageFilter.SHARPEN)` |
+
+### Important Considerations
+| Consideration | Why It Matters | Good Practice |
+| :--- | :--- | :--- |
+| **Installation** | It's not part of the standard library. | Install via pip: `pip install Pillow` |
+| **Image Modes** | Defines pixel representation ('RGB', 'RGBA', 'L', '1'). | Convert to the correct mode before operations (e.g., `.convert('RGB')`). |
+| **Coordinate System** | Origin `(0, 0)` is at the **top-left** corner. X increases to the right, Y increases *downward*. | Important for drawing and cropping. |
+| **File Formats** | Pillow supports many formats (JPEG, PNG, GIF, BMP, TIFF, WebP). | Use the correct extension and optional format-specific parameters in `.save()`. |
+| **Original Preservation** | Many operations return a new image; they don't modify the original in-place. | Chain operations or assign back: `img = img.rotate(90)` |
