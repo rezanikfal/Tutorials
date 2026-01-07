@@ -338,7 +338,43 @@ immutable_set = frozenset([1, 2, 3])
   - You need fast membership testing
   - You're doing mathematical set operations
   - Example: Tags, unique visitors, removing duplicates
+  - 
+# `with` Statement
+## Core Purpose
+Use `with` to **automatically manage resources** that need **cleanup** (closing, releasing, committing). It ensures cleanup happens even if errors occur.
 
+## When to Use It (Practical Scenarios)
+
+| Resource Type | Why Use `with` | Example |
+|--------------|----------------|---------|
+| **Files** | Auto-closes file (even on errors) | `with open('file.txt') as f: data = f.read()` |
+| **Database Connections** | Auto-closes connection & handles transactions | `with sqlite3.connect('db.db') as conn: ...` |
+| **Locks (Threading)** | Auto-releases lock to prevent deadlocks | `with threading.Lock(): # critical code` |
+| **Network Connections** | Auto-closes sockets/connections | `with socket.socket() as s: s.connect(...)` |
+| **Temporary Files/Dirs** | Auto-deletes temp resources | `with tempfile.TemporaryFile() as tmp: ...` |
+
+## Key Benefits
+1. **No more forgetting to close resources**
+2. **Cleaner, shorter code** (removes `try-finally` blocks)
+3. **Exception-safe** (cleanup happens even during crashes)
+
+### File Operations (Most Common)
+```python
+# READING files
+with open('data.txt', 'r') as file:
+    content = file.read()
+    # Process content here
+# File auto-closed here
+
+# WRITING files
+with open('output.txt', 'w') as file:
+    file.write('Hello World')
+    # No need to call file.close()
+
+# MULTIPLE files at once
+with open('input.txt', 'r') as src, open('copy.txt', 'w') as dst:
+    dst.write(src.read())
+```
 ## Python Generator
 
 A **generator** is a function or expression that returns values **one at a time** using `yield`, instead of creating all values at once.
