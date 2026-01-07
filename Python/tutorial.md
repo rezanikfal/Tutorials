@@ -335,10 +335,43 @@ Here are the key patterns and operations demonstrated, which are useful for real
     parsed_date = datetime.strptime(date_string, "%Y-%m-%d")
     ```
 
-### Documentation Tips
-When documenting code that uses `datetime`, consider noting:
+### Tips
 1.  **Time Zone Awareness**: The basic `datetime` objects are "naive" (no timezone). For timezone-aware operations, use the `pytz` library or Python 3.9+'s `zoneinfo`.
 2.  **Format Codes**: Keep a reference for `strftime` directives (e.g., `%Y`=4-digit year, `%m`=month, `%d`=day, `%H`=24-hour).
 3.  **Use Case**: Briefly state the purpose, like "calculates user's subscription end date" or "logs event timestamps in ISO format."
 
-I hope this structured summary with examples is helpful for your documentation. Would you like a similar breakdown of another Python module?
+Certainly. Here is the updated summary focusing on the key tools and common meta-characters.
+
+### 📋 Core Summary: Python `re` Module
+The Python `re` module provides support for **regular expressions**, which are powerful sequences of characters that define **search patterns**. They are essential for complex string searching, validation, and manipulation tasks that are difficult or impossible with basic string methods.
+
+### 🔧 Key Functions & Patterns with Examples
+The module revolves around a few core functions. This table summarizes the main tools:
+
+| Function | Primary Purpose | Simple Example |
+| :--- | :--- | :--- |
+| **`re.search()`** | Scan a string for the **first** location where the pattern matches. | `re.search(r'\d+', "Order 123")` |
+| **`re.findall()`** | Find **all** non-overlapping matches, returning a list of strings. | `re.findall(r'\d+', "1a22b333")` → `['1', '22', '333']` |
+| **`re.sub()`** | **Replace** all matches with a specified string. | `re.sub(r'\s+', '-', "hello world")` → `"hello-world"` |
+| **`re.compile()`** | **Compile** a pattern for repeated use, improving efficiency. | `pattern = re.compile(r'\d{3}')` |
+| **`re.split()`** | **Split** a string by the pattern matches. | `re.split(r'\s+', "split on spaces")` → `['split', 'on', 'spaces']` |
+
+### 🔣 Common Meta-Characters & Symbols
+To build the patterns used by the functions above, you use special meta-characters. This table lists the most common ones:
+
+| Meta-Character | Purpose | Example Pattern | Example Match |
+| :--- | :--- | :--- | :--- |
+| **`.`** | Matches any single character (except newline). | `r"b.t"` | "bat", "bit", "but" |
+| **`\d`** | Matches any digit (0-9). | `r"\d\d"` | "42", "07" |
+| **`\w`** | Matches any alphanumeric character or underscore. | `r"\w+"` | "hello", "user_1" |
+| **`\s`** | Matches any whitespace character. | `r"hello\sworld"` | "hello world" |
+| **`[]`** | Matches any **one** character inside the brackets. | `r"[aeiou]"` | Any vowel: "a", "e" |
+| **`[^]`** | Matches any **one** character **NOT** inside the brackets. | `r"[^0-9]"` | Any non-digit: "a", "-" |
+| **`*`** | Matches 0 or more repetitions of the preceding element. | `r"co*l"` | "cl", "col", "cool" |
+| **`+`** | Matches 1 or more repetitions of the preceding element. | `r"co+l"` | "col", "cool" |
+| **`?`** | Matches 0 or 1 repetitions of the preceding element. | `r"colou?r"` | "color", "colour" |
+| **`{}`** | Matches an explicit number of repetitions. | `r"\d{3}"` | Exactly 3 digits: "123" |
+| **`^`** | Matches the start of a string. | `r"^Hello"` | "Hello" at the start. |
+| **`$`** | Matches the end of a string. | `r"end$"` | "end" at the end. |
+| **`\|`** | Acts as an OR operator. | `r"cat\|dog"` | "cat" or "dog" |
+| **`()`** | Groups patterns and captures the matched text. | `r"(\d{3})-(\d{3})"` | Captures area code and number separately. |
