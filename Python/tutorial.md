@@ -250,6 +250,67 @@ The decorator wraps the original function and runs code **before and/or after** 
 **One-line takeaway:**
 
 > Decorators modify function behavior without modifying the function itself.
+
+For reading, writing, and creating files in Python, the core tool is the built-in `open()` function, along with the methods of **file objects** it returns. This is not a module you import, but a fundamental Python operation.
+
+## Reading, Writing & Creating Files
+The built-in `open()` function is used to create, read from, and write to files on your computer. It returns a **file object** which provides methods to interact with the file's content. The key to all operations is the **mode** in which you open the file (e.g., read `'r'`, write `'w'`, append `'a'`).
+
+### Key Modes & File Object Methods
+This table summarizes the primary modes for the `open()` function and the most common methods used on the resulting file object.
+
+| Operation | File Mode | Primary Purpose | Key Methods & Notes |
+| :--- | :--- | :--- | :--- |
+| **Reading** | `'r'` | **Read** text from an existing file (default mode). | `.read()`, `.readline()`, `.readlines()`, **Iteration** |
+| **Writing** | `'w'` | **Write** text to a file. **Creates** the file if it doesn't exist. **Overwrites** the file if it exists. | `.write()`, `.writelines()` |
+| **Appending** | `'a'` | **Append** text to the end of a file. **Creates** the file if it doesn't exist. | `.write()`, `.writelines()` |
+| **Binary Mode** | `'rb'`, `'wb'`, `'ab'` | Work with non-text files (images, videos, etc.). | Use with `'b'` (e.g., `'wb'` for writing binary). |
+
+### Common Patterns & Examples
+Here are the most essential patterns for working with files, demonstrating how the modes and methods from the table are used.
+
+*   **Reading an Entire File**: Use the `'r'` mode.
+    ```python
+    with open('notes.txt', 'r') as file:
+        content = file.read()  # Reads the entire file as a single string
+        # OR: lines = file.readlines()  # Reads all lines into a list
+    print(content)
+    ```
+
+*   **Reading Line by Line**: Efficient for large files. The `with` statement ensures the file is properly closed.
+    ```python
+    with open('data.log', 'r') as file:
+        for line in file:  # Iterates over each line
+            print(f"Line: {line.strip()}")  # .strip() removes trailing newline
+    ```
+
+*   **Writing/Creating a File**: Use the `'w'` mode. **Caution: This will erase an existing file with the same name.**
+    ```python
+    with open('report.txt', 'w') as file:
+        file.write("Final Report\n")
+        file.write("============\n")
+        file.writelines(["Line 1\n", "Line 2\n"])  # Writes a list of strings
+    ```
+
+*   **Appending to a File**: Use the `'a'` mode to add to the end.
+    ```python
+    with open('log.txt', 'a') as file:
+        file.write("New log entry at 10:00 AM\n")
+    ```
+
+*   **Creating/Checking with `os.path`**: Often used alongside file operations to check for a file's existence.
+    ```python
+    import os.path
+    filename = 'config.json'
+    if not os.path.exists(filename):
+        # Create the file with initial content if it doesn't exist
+        with open(filename, 'w') as file:
+            file.write('{}')  # Write an empty JSON object
+        print(f"Created {filename}")
+    else:
+        print(f"{filename} already exists.")
+    ```
+
 ## Collections module
 
 ### Counter
@@ -414,3 +475,28 @@ This table summarizes the most commonly used functions from the `random` module.
 | | `random.sample(pop, k)` | Return a **list** of *k* **unique** elements without replacement. | `random.sample(range(10), 3)` → `[7, 2, 4]` |
 | | `random.shuffle(seq)` | **Shuffle** a mutable sequence *in place*. | `shuffle(my_list)` |
 | **Distributions** | `random.gauss(mu, sigma)` | Return a random float from a **Gaussian (normal) distribution**. | `random.gauss(0, 1)` |
+Here is the requested summary for the Python `os` module in the same structured table format.
+
+## Python `os` Module
+The Python `os` module provides a portable way to use operating system-dependent functionality. It allows scripts to interact with the file system, environment, and system processes, essential for tasks like file management and system operations.
+
+### Key Functions (`os` Module)
+This table summarizes the most commonly used functions from the `os` module, grouped by their primary purpose.
+
+| Category | Function / Submodule | Primary Purpose | Simple Example |
+| :--- | :--- | :--- | :--- |
+| **Path Manipulation** | **`os.path`** | **Submodule** for common pathname manipulations. | `os.path.join('dir', 'file.txt')` |
+| | `os.path.join(a, b, ...)` | Join path components intelligently for the OS. | `os.path.join('home', 'docs')` → `'home/docs'` |
+| | `os.path.exists(path)` | Check if a **path exists**. | `os.path.exists('myfile.txt')` → `True` |
+| | `os.path.getsize(path)` | Get the **size of a file** in bytes. | `os.path.getsize('data.log')` → `1024` |
+| **Directory Operations** | `os.getcwd()` | Get the **current working directory** path. | `os.getcwd()` → `'/home/user'` |
+| | `os.chdir(path)` | **Change** the current working directory. | `os.chdir('../new_dir')` |
+| | `os.listdir(path='.')` | **List** all files and directories in `path`. | `os.listdir('.')` → `['a.txt', 'folder']` |
+| | `os.mkdir(path)` | **Create a new directory**. | `os.mkdir('new_folder')` |
+| | `os.rmdir(path)` | **Remove an empty directory**. | `os.rmdir('old_folder')` |
+| **File Operations** | `os.rename(src, dst)` | **Rename (move)** a file or directory. | `os.rename('old.txt', 'new.txt')` |
+| | `os.remove(path)` | **Delete a file**. | `os.remove('temp.txt')` |
+| **System & Environment** | `os.environ` | A **dictionary** of the user's environment variables. | `os.environ.get('HOME')` |
+| | `os.system(command)` | **Execute a shell command** string. | `os.system('ls -la')` |
+
+This format provides a concise, at-a-glance reference for the essential tools in the `os` module. If you'd like a similar table for the `os.path` submodule specifically or examples combining these functions, feel free to ask.
