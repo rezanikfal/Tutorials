@@ -114,3 +114,28 @@ const matches = text.match(regex); // ["gray", "grey"]
 - `a{1,3}`	between one & three
 - `a+? a{2,}?`	match as few as possible
 - `ab|cd`	match ab or cd
+### **Regex Analysis:** `^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(.{8,})$`
+
+This is a **password validation regex** that checks for:
+
+#### **Requirements:**
+1. ✅ At least **one lowercase** letter `[a-z]`
+2. ✅ At least **one uppercase** letter `[A-Z]`
+3. ✅ At least **one digit** `\d`
+4. ✅ Minimum **8 characters** total
+
+#### **Breakdown:**
+```
+^                # Start of string
+(?=.*[a-z])     # Lookahead: Must contain at least one lowercase letter
+(?=.*[A-Z])     # Lookahead: Must contain at least one uppercase letter  
+(?=.*\d)        # Lookahead: Must contain at least one digit
+(.{8,})         # CAPTURING GROUP 1: 8 or more of any character
+$                # End of string
+```
+
+## **How It Works:**
+1. **All 3 lookaheads** check their conditions independently
+2. The **order doesn't matter** (lookaheads are positionless)
+3. Then matches **8+ characters** (captured in group 1)
+4. All conditions must pass
