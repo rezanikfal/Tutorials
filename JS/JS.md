@@ -1487,3 +1487,15 @@ null || "Hello" || 42 || "";    // "Hello"
 <button> Submit <button />
 </form>
 ```
+## Coding tricks
+#### Frequency counting
+- const arr = [1, 3, 2, 3, 4, 1, 3];
+- result: {1: 2, 2: 1, 3: 3, 4: 1}
+```javascript
+    const freq = arr.reduce((acc, x) => {
+        acc[x] = (acc[x] || 0) + 1;
+        return acc;
+    }, {});
+
+    return freq;
+```
