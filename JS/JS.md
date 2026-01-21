@@ -1499,3 +1499,9 @@ null || "Hello" || 42 || "";    // "Hello"
 
     return freq;
 ```
+#### Set for uniqueness / duplicates
+- const arr = [1, 3, 2, 3, 4, 1, 3];
+- result: true
+```javascript
+    const hasDuplicate = arr.length !== new Set(arr).size;
+```
