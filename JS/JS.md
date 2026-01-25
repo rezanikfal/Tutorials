@@ -1505,3 +1505,15 @@ null || "Hello" || 42 || "";    // "Hello"
 ```javascript
     const hasDuplicate = arr.length !== new Set(arr).size;
 ```
+#### Regex Power-of-Base Checker
+A "visual" check that determines if a number `n` is a perfect power of a given `base`.
+```javascript
+const isPower = (num, base) => /^10*$/.test(num.toString(base));
+```
+| Decimal Number | Target Base | `.toString(base)` | Is it a power? |
+| --- | --- | --- | --- |
+| **9** | 3 | `"100"` | **True** () |
+| **27** | 3 | `"1000"` | **True** () |
+| **16** | 4 | `"100"` | **True** () |
+| **64** | 4 | `"1000"` | **True** () |
+| **12** | 4 | `"30"` | **False** |
