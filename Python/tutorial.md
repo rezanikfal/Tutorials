@@ -125,10 +125,10 @@ def process_user(name):
 
 ### 2. Outside `app/` (e.g., in `main.py`)
 
-Use **absolute imports via the package**:
+The following structure helps to prevent the code from running when the file is imported.:
 
 ```python
-from app.utils import format_name
+from app import format_name
 def main():
     print(format_name('Hi'))
 
@@ -182,7 +182,6 @@ from app import logger
 logger.info("App started")
 ```
 
----
 ---
 
 ## Import Rules Summary
