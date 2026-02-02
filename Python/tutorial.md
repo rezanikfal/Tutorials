@@ -129,6 +129,13 @@ Use **absolute imports via the package**:
 
 ```python
 from app.utils import format_name
+def main():
+    print(format_name('Hi'))
+
+
+if __name__ == "__main__":
+    main()
+
 ```
 
 ---
@@ -142,6 +149,7 @@ from app.utils import format_name
 from .utils import format_name
 ```
 
+* __init__.py should mostly re-export public functions or initialize package-level code.
 * Allows importing directly from the package:
 
 ```python
@@ -153,7 +161,28 @@ from app import format_name
 * Re-export only **key public functions**, not everything.
 * Inside the package, it's clearer to import **directly from the module**.
 * Avoid `from .utils import *` — it pollutes the namespace.
+* Python executes the code in `app/__init__.py` **once**. This is the perfect place to set up **anything the package needs globally**.
+  
+### Examples of package-level initialization
 
+#### Setting up a logger
+
+```python
+# app/__init__.py
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+```
+
+* Now every module in `app/` can import `logger`:
+
+```python
+from app import logger
+logger.info("App started")
+```
+
+---
 ---
 
 ## Import Rules Summary
