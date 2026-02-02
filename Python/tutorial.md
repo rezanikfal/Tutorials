@@ -24,7 +24,7 @@
    * If VSCode uses that interpreter, it will only see packages installed in that venv.
    * To switch to the current interpreter push F1 in ```Vs-Code -> Python: Select Interpreter``` 
 
-* Created with:
+* Created with (Python Virtual Environment):
 
 ```bash
 python -m venv venv
