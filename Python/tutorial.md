@@ -36,16 +36,6 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-* Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-* Keeps dependencies **isolated per project**, like `node_modules` in JS.
-
----
-
 ## Project Overview
 
 This project demonstrates a **basic Python package (`app`)** with multiple modules, along with usage of a **3rd-party library (`requests`)** for HTTP requests. It illustrates how to:
@@ -57,93 +47,141 @@ This project demonstrates a **basic Python package (`app`)** with multiple modul
 
 ---
 
-## Project Structure
+## Project Layout
 
 ```
 PYTHON_PROJECT/
 │
-├─ app/                 # Custom package
-│  ├─ __init__.py       # Marks folder as package, exposes public API
-│  └─ utils.py          # Internal module with helper functions
+├─ app/                 # Custom package with actual application code
+│  ├─ __init__.py       # Marks folder as a package, can expose public API
+│  ├─ utils.py          # Helper functions
+│  ├─ services.py       # Example business logic module
+│  └─ ai_client.py      # Another module
 │
 ├─ venv/                # Python virtual environment (isolated dependencies)
-│
-├─ main.py              # Entry point, uses app package and requests library
+├─ main.py              # Entry point of the application
 └─ requirements.txt     # Project dependencies
 ```
 
 ---
 
-## app Package
+## Folder & File Roles
 
-### `__init__.py`
+* **`app/`**: Contains your actual code and logic. Each `.py` file is a module.
+* **`app/__init__.py`**: Marks the folder as a package. Can re-export important functions for cleaner imports.
+* **`app/utils.py`**: A module for helper functions. Example:
 
-* Marks `app/` as a package.
-* Exposes selected functions for top-level import.
+  ```python
+  def format_name(name):
+      return name.strip().title()
+  ```
+* **`venv/`**: Isolated Python environment to manage dependencies. Do not commit to git.
+* **`main.py`**: Entry point that uses functions from `app` and third-party libraries like `requests`.
+* **`requirements.txt`**: Lists project dependencies. Install with:
+
+A **normal, simple `requirements.txt`** we can use for a small Python project:
+
+```txt
+# Core libraries
+requests==2.31.0
+
+# Optional utilities
+numpy==1.27.5
+pandas==2.1.1
+
+# For AI / ML projects
+openai==1.7.0
+
+# For environment management (optional)
+python-dotenv==1.0.1
+```
+* Keeps dependencies **isolated per project**, like `node_modules` in JS.
+---
+
+### Notes:
+
+* `==` locks the version — helps avoid breaking changes.
+* Keep it minimal for your project; only add libraries you actually use.
+* Install with:
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+---
+
+## Using `utils.py` in the project
+
+### 1. Inside `app/` (other modules)
+
+Use **relative imports**:
 
 ```python
-from .utils import print_hi
-__all__ = ["print_hi"]
+from .utils import format_name
+
+def process_user(name):
+    return format_name(name)
 ```
 
-* Now users can do:
+### 2. Outside `app/` (e.g., in `main.py`)
+
+Use **absolute imports via the package**:
 
 ```python
-import app
-app.print_hi("Reza")
-```
-
-### `utils.py`
-
-Contains reusable functions:
-
-```python
-def print_hi(name: str):
-    print(f"Hi, {name}!")
+from app.utils import format_name
 ```
 
 ---
 
-### `main.py`
+## Using `__init__.py` for cleaner imports
 
-Entry point of the project. Demonstrates:
-
-1. Using a **3rd-party package (`requests`)**.
-2. Using your **custom package (`app`)**.
+### Re-export functions
 
 ```python
-import requests
-import app
-
-# 3rd-party package usage
-response = requests.get("https://api.github.com")
-print(response.json())
-
-# Custom package usage
-app.print_hi("Nikfal")
+# app/__init__.py
+from .utils import format_name
 ```
 
-## Dependencies
+* Allows importing directly from the package:
 
-`requirements.txt` example:
-
-```
-requests==2.32.5
+```python
+from app import format_name
 ```
 
-* Installed via:
+### Tips
 
-```bash
-pip install -r requirements.txt
-```
-
-* Freeze current environment:
-
-```bash
-pip freeze > requirements.txt
-```
+* Re-export only **key public functions**, not everything.
+* Inside the package, it's clearer to import **directly from the module**.
+* Avoid `from .utils import *` — it pollutes the namespace.
 
 ---
+
+## Import Rules Summary
+
+| File Location      | Import Style                      |
+| ------------------ | --------------------------------- |
+| Inside `app/`      | `from .utils import func_name`    |
+| Outside `app/`     | `from app.utils import func_name` |
+| With `__init__.py` | `from app import func_name`       |
+
+---
+
+## Best Practices
+
+1. Keep business logic in `app/`.
+2. Use `utils.py` for shared helper functions.
+3. Re-export only important functions in `__init__.py`.
+4. Use relative imports **inside the package**.
+5. Use absolute imports **outside the package**.
+6. Keep `main.py` clean — it should orchestrate your code.
+7. Organize for scaling: later you can add `services/`, `models/`, `prompts/` etc.
+
+---
+
+I can also make a **slim visual diagram version** for the README so it’s easier to understand at a glance.
+
+Do you want me to make that diagram too?
+
 
 ## Key Python Concepts Demonstrated
 
