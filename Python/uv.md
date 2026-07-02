@@ -163,3 +163,47 @@ uv run python -m myproject
 ```
 
 **Core principle:** only `__main__.py` ever "runs." Every other module just sits there as importable functions until called — same pattern that scales to bigger apps like FastAPI (`app.py` holds the app, `routers/`, `models/` hold logic, `__main__.py` just boots things).
+
+## Project setup
+```bash
+uv init --package llama
+uv python pin 3.12
+uv add openai
+```
+
+## Final structure
+```
+llama/
+├── pyproject.toml
+├── .python-version
+└── src/
+    └── llama/
+        ├── __init__.py   # from llama.ai import main
+        ├── ai.py         # main() — orchestrates everything
+        ├── chat.py       # OpenAI/Ollama client + ask()
+        ├── memory.py     # conversation history
+        └── prompts.py    # system prompt templates
+```
+
+## Key facts
+
+- **Module** = any `.py` file. **Package** = folder with `__init__.py`.
+- **`__main__.py`** — only needed for `python -m llama`. Not needed for `uv run llama` or `from llama import main`. Safe to **omit**.
+- **`__init__.py`** — needed to expose `main` for:
+  - `[project.scripts]` → `llama = "llama:main"` (powers `uv run llama`)
+  - `from llama import main`
+- **`__all__`** — only affects `from llama import *` (wildcard). Does NOT hide/restrict direct imports like `from llama import ask`. To keep something internal, simply don't import it into `__init__.py` at all.
+- **Internal modules** (`chat.py`, `memory.py`, `prompts.py`) — imported directly by `ai.py` using absolute imports (`from llama.chat import ask`). Never re-exported in `__init__.py` unless deliberately meant to be public.
+
+## Real-world convention
+`__init__.py` stays minimal — only the entry point needed for the CLI:
+```python
+# src/llama/__init__.py
+from llama.ai import main
+
+__all__ = ["main"]
+```
+Libraries (PyPI packages) curate a bigger public API this way; internal apps/CLIs (like `llama`) typically expose just the entry point.
+
+## src/ layout — why
+Prevents accidentally importing an uninstalled package during testing/dev. Forces imports to go through the properly installed package, catching packaging bugs early. One project, one package inside `src/` — not for holding multiple projects.
