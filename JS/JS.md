@@ -108,6 +108,26 @@ for(let i=1; i<=5; i++){
 setTimeout(()=>(console.log(i)),1000)  // 1 2 3 4 5
 }
 ```
+### Closures
+- A closure means an inner function "remembers" variables from its outer scope even after the outer function has finished running.
+```javascript
+function makeToggle() {
+  let state = false;
+  return function() {
+    state = !state;
+    return state;
+  };
+}
+
+const toggle = makeToggle();
+console.log(toggle()); // true
+console.log(toggle()); // false
+console.log(toggle()); // true
+```
+- `makeToggle()` runs once, creates `state`, then returns. Normally `state` would be garbage collected — but the returned inner function keeps a reference to it, so it stays alive.
+- Each call to `toggle()` flips and remembers `state` for next time — private, persistent state without a global variable.
+- Same mechanism behind event listeners (callback remembers scope) and Angular subscriptions (why `unsubscribe()` in `ngOnDestroy` matters — an active subscription is a closure holding a reference).
+
 ### Simple Regular Expression:
 - **n1**: a integer number that does not start with "0"
   - **^** asserts the start of the string.
