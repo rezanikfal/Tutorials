@@ -101,11 +101,11 @@ Want to move on to the next section, or should I quiz you on this one first (e.g
 - To achieve better variable isolation within closures, it's recommended to use **let** or **const** for variable declarations, as they provide more controlled scoping behavior.
 ```javascript
 for(var i=1; i<=5; i++){
-setTimeout(function(){console.log(i)},1000)  // 6 6 6 6 6
+setTimeout(()=>(console.log(i)),1000)  // 6 6 6 6 6
 }
 -------------------------
 for(let i=1; i<=5; i++){
-setTimeout(function(){console.log(i)},1000)  // 1 2 3 4 5
+setTimeout(()=>(console.log(i)),1000)  // 1 2 3 4 5
 }
 ```
 ### Simple Regular Expression:
