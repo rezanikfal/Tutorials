@@ -24,48 +24,77 @@
 - **Global Scope**: Variables declared outside of any function or block have global scope, which means they can be accessed from anywhere in the code.
 - **Local Scope:** Variables declared within a function or block have local scope. They are only accessible within that function or block.
 ### Hoisting in JavaScript:
-- Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their containing scope during the compilation phase, before the code is executed.
-- **Variable Hoisting:** When a variable is declared using the **var** keyword.
-- **Function Hoisting:** Function declarations are also hoisted to the top of the scope, making them available for use before the actual declaration in the code. 
-```javascript
-console.log(x); // Output: undefined
-x = 5; // Variable assignment
-console.log(x); // Output: 5
-var x; // Variable declaration is hoisted
-```
-- Another sample of Scope & Hoisting
-```javascript
-myFunction(); // Function declarations are hoisted to the top of their containing scope.
+Let's walk through this piece by piece — the details matter a lot here because interviewers love asking *why* the error is different in each case, not just *that* there's an error.
 
+**1. `var` hoisting**
+```javascript
+console.log(x); // undefined
+x = 5;
+console.log(x); // 5
+var x;
+```
+JS hoists the **declaration** (`var x`) to the top of the scope, but not the assignment. So it's as if the engine rewrites this as:
+```javascript
+var x;          // hoisted to top, initialized to undefined
+console.log(x); // undefined
+x = 5;
+console.log(x); // 5
+```
+Key point: `var` is hoisted **and initialized to `undefined`** automatically. That's why accessing it early doesn't throw — it just gives you `undefined`.
+
+**2. Function declaration hoisting**
+```javascript
+myFunction(); // works
 function myFunction() {
-  var localVar = "I am a local variable"; // localVar is local to myFunction
-  console.log(localVar); // Output: "I am a local variable"
+  var localVar = "I am a local variable";
+  console.log(localVar);
 }
+console.log(localVar); // ReferenceError
+```
+Function *declarations* (not expressions) are hoisted **whole** — the entire function body, not just the name. That's why calling it before its line in the code works fine. `localVar` throws because `var` scope is function-level, not global — it doesn't leak outside `myFunction`.
 
-console.log(localVar); // Throws an error: localVar is not defined outside of the function's scope
-```
-- Class won't be hoisted like functions
+**3. Classes are not hoisted the same way**
 ```javascript
-let p1 = new Person();  //ERROR:  Cannot access 'Person' before initialization
-class Person { }
-----------------------------------
-employee(); //Works fine because of hoisting
-function employee() { }
+let p1 = new Person(); // ReferenceError: Cannot access 'Person' before initialization
+class Person {}
 ```
-- Arrow function expressions, like regular function expressions, are not hoisted.
+Classes ARE technically hoisted (the binding exists), but they land in the **Temporal Dead Zone (TDZ)** — same as `let`/`const`. The binding exists but is uninitialized, so touching it before the declaration line throws a `ReferenceError`, not "undefined."
+
 ```javascript
-greet(); // Throws an error: greet is not a function
+employee(); // works
+function employee() {}
+```
+This is a plain function declaration, so full hoisting applies as in example 2.
+
+**4. Arrow functions / function expressions assigned to `var`**
+```javascript
+greet(); // TypeError: greet is not a function
 var greet = function() {
   console.log("Greetings!");
 };
 ```
-```javascript
-sayHi(); // Throws an error: Cannot access 'sayHi' before initialization
+This is the one people get wrong most often. `greet` is declared with `var`, so the *variable* is hoisted and initialized to `undefined` — same as example 1. So at the point `greet()` runs, you're actually calling `undefined()`. That's a **TypeError**, not a ReferenceError. The function *value* isn't hoisted — only the `var` declaration is.
 
+**5. Arrow function assigned to `let`**
+```javascript
+sayHi(); // ReferenceError: Cannot access 'sayHi' before initialization
 let sayHi = () => {
   console.log("Hi there!");
 };
 ```
+Same idea as example 4, but because it's `let`, the binding is hoisted into the **TDZ** instead of being initialized to `undefined`. So the error type is different: `ReferenceError`, not `TypeError`. This is the exact same mechanism as the `class Person` example.
+
+**The pattern to remember, since this is what gets tested:**
+
+| Declared with | Hoisting behavior | Error if accessed early |
+|---|---|---|
+| `var` | hoisted + initialized to `undefined` | none, or `TypeError` if you try to call it as a function |
+| `function` declaration | fully hoisted (whole body) | none — works fine |
+| `let` / `const` / `class` | hoisted but stuck in TDZ | `ReferenceError` |
+
+That table is basically the whole "scope & hoisting" topic in one line, and it's a great one to have ready verbatim if asked in an interview.
+
+Want to move on to the next section, or should I quiz you on this one first (e.g. a snippet mixing `var` and `let` in the same block) to make sure it's locked in?
 ### var - let - const:
 - **var** to declare variables, they have function-level scope. This means that variables declared with var are accessible throughout the entire function, including any nested functions or closures.
 - On the other hand, if you use **let** or **const** to declare variables within a block (such as a loop or a conditional) inside a function, those variables will have block-level scope.
