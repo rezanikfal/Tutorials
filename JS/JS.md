@@ -430,7 +430,7 @@ console.log(numbers2); /[1, 2, 3, 5, 8, 10]
 const myStr = "abqzwtolcbtrst"
 stringLength = myStr.length;
 for (let index = 0; index < stringLength; index++) {
-  for (let i = 1; i < stringLength + 1; i++) {
+  for (let i = index+1; i <= stringLength; i++) {
     subStr = myStr.slice(index, i);
   }
 }
