@@ -497,7 +497,7 @@ Array.from({ length: 5 }, (v, i) => i).map(x=>console.log(x))
 const Str = "  Reza NNikf   www  "
 console.log(Str.trim())    //Reza NNikf   www
 ```
-- The **chatAt()** method returns the exact character:
+- The **charAt()** method returns the exact character:
 ```javascript
 let myFirst = 'js string exercises'
 let var1 = myFirst.split(' ').map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(' ')
