@@ -708,14 +708,43 @@ Array.from(deleteKey).forEach(element => {   //Convert to JS array
 ## Variables
 ### Closure
 - A closure gives you access to an outer function's scope from an inner function. So basically after execution of the outer function, the inner function can remember the scope (e.g. if there are any variables in the outer function the inner function can access them)
+- A closure can be used to create private variables. For example, a bank account function can keep the balance private and return methods like deposit and withdraw. Those methods remember the balance through closure even after the outer function has finished.
 ```javascript
-function adder(a) {
-  return function (b) {
-    return a + b
-  }
+function createBankAccount(initialBalance) {
+
+    let balance = initialBalance;
+
+    return {
+        deposit(amount) {
+            balance += amount;
+        },
+
+        withdraw(amount) {
+            balance -= amount;
+        },
+
+        getBalance() {
+            return balance;
+        }
+    };
 }
-add5 = adder(5)
-console.log(add5(10)) //15
+
+const account = createBankAccount(5000);
+
+account.deposit(1000);
+
+console.log(account.getBalance()); // 6000
+```
+- Then the function finishes, but the returned methods still remember: `balance = 5000` because of the closure.
+```javascript
+const account1 = createBankAccount(1000);
+const account2 = createBankAccount(5000);
+
+account1.deposit(500);
+account2.withdraw(1000);
+
+console.log(account1.getBalance()); // 1500
+console.log(account2.getBalance()); // 4000
 ```
 ### Declaration VS Definition
 ```javascript
