@@ -1080,7 +1080,8 @@ console.log(myObj.prop1)
 console.log(myObj["prop1"])
 
 var myProperty = "prop3"
-console.log(myObj["1"])        //Invalid prop name
+console.log(myObj["1"])     //Works for invalid prop name
+console.log(myObj.1)        //Syntax error
 console.log(myObj[myProperty]) //variable prop name
 ```
 ### Comparing Objects
