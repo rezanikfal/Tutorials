@@ -1424,42 +1424,31 @@ var b = secondWord.toLowerCase().split('').sort().join('')
 console.log(a==b);
 ```
 ## Event Bubbling  
-- Every time an event occurs on an element in the DOM, it has the potential to propagate or "bubble" up through the parent elements in the hierarchy, triggering event handlers on those parent elements.
-- You can prevent it by using a method called **stopPropagation()** on the event object.
+A modal/dialog with a close button is the classic real-world case.
+
 ```html
-<body>
-  <table id="outside">
-    <tr>
-      <td id="t1">one</td> //If click here : Click on inside t1
-    </tr>
-    <tr>
-      <td id="t2">two</td> //If click here : Click on inside t2  Outside event
-    </tr>
-  </table>
-</body>
+<div class="overlay" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <p>Modal content</p>
+    <button (click)="closeModal()">Close</button>
+  </div>
+</div>
 ```
-```javascript
-const el = document.getElementById("outside");
-const e2 = document.getElementById("t1");
-const e3 = document.getElementById("t2");
 
-el.addEventListener("click", outsideFunc);
-e2.addEventListener("click", insideFunc);
-e3.addEventListener("click", insideFunc2);
+- Clicking the dark **overlay** (outside the modal) should close it.
+- Clicking **inside** the modal shouldn't — but without `stopPropagation()`, a click inside the modal would bubble up to the overlay's `(click)="closeModal()"` and close it anyway, since the overlay technically "received" that click too (bubbling).
+- `$event.stopPropagation()` on the modal box stops that bubbling, so inner clicks stay inner.
 
-function insideFunc(e){
-  e.stopPropagation()
-  console.log('Click on inside t1')
-}
-
-function insideFunc2(){
-  console.log('Click on inside t2')
-}
-
-function outsideFunc() {
-console.log('Outside event')
-}
+**Another common one: a card with a delete button.**
+```html
+<div class="card" (click)="openDetails(item)">
+  <p>{{ item.name }}</p>
+  <button (click)="deleteItem(item); $event.stopPropagation()">Delete</button>
+</div>
 ```
+Whole card is clickable to open details, but clicking Delete shouldn't *also* trigger `openDetails` — same fix.
+
+This is a very common real Angular pattern, worth having as your go-to example instead of the table/`td` one — it's something you'd actually build, not just a DOM demo.
 ## SetInterval vs setTimeout  
 setTimeout runs the code/function once after the timeout. setInterval runs the code/function repeatedly, with the length of the timeout between each repeat.
 ```javascript
