@@ -34,48 +34,83 @@ export class SignalRService {
 - Ahead-of-time (AOT) compilation: With AOT, the compiler runs at the build time. render the application immediately
 - Just-in-time (JIT) compilation: This is a standard developviment approach which compiles our Typescript and html files in the browser at runtime (Default ng serve or build).
 - Template reference variables -> <input #reza ...
-- An **Attribute directive changes the appearance or behavior of a DOM element** and extend the power of the HTML by giving it new syntax. (Structural directives -> *ngIf and *ngFor , Attribute directives -> *ngStyle and *ngClass, Components)
-```htm
-<div *ngIf="condition">Content to render when condition is true.</div></ul>
+## Decorators — metadata, applied to classes/properties/methods
+
+A decorator is a **function that attaches metadata** to a class, property, method, or parameter. It doesn't change what the code *does* at runtime by itself — it tells Angular (or TypeScript) how to interpret that piece of code.
+
+```typescript
+@Component({...})   // class decorator — tells Angular "this class is a component"
+@Injectable({...})  // class decorator — "this class can be injected"
+@NgModule({...})    // class decorator — "this class defines a module"
+
+@Input() name!: string;   // property decorator — "this property receives data from a parent"
+@Output() clicked = new EventEmitter(); // property decorator — "this property emits events"
+
+@HostListener('click', ['$event']) // method decorator — "call this method on a DOM event"
+onClick(e: Event) {}
 ```
-```htm
-<ul>
-  <li *ngFor="let user of users">{{ user.name }}</li>
-</ul>
+
+**Mental model:** decorators are **descriptive labels** — they tell Angular's compiler/runtime what role a class or member plays. `@Component` doesn't render anything itself; it just says "here's the config Angular needs to treat this class as a component."
+
+## Directives — behavior/logic applied to DOM elements
+
+A directive is a **class that attaches behavior to a DOM element** — it can modify the element's appearance, behavior, or structure. There are three kinds:
+
+**1. Component** — technically a directive with a template (the most common kind you build):
+```typescript
+@Component({ selector: 'app-user-card', template: '...' })
+export class UserCardComponent {}
 ```
-```htm
-<ul>
-  <div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }"></<div>
-</ul>
-```
-```htm
-<ul *ngFor="let person of people">
-  <li [style.color]="getColor(person.country)">{{ person.name }} ({{ person.country }})
-  <div [class.special]="isSpecial" [style.font-size.px]="fontSize">
-  </li>
-</ul>
-```
-```htm
-<h4>NgClass</h4>
-<ul *ngFor="let person of people">
-  <li [ngClass]="{
-    'text-success':person.country === 'UK',
-    'text-primary':person.country === 'USA',
-    'text-danger':person.country === 'HK'
-  }">{{ person.name }} ({{ person.country }})
-  </li>
-</ul>
-```
-- Component Directives: It forms the main class and is declared by @Component. It contains the details on component processing, instantiated and usage at run time.
-```htm
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, Comp1, Comp2, Comp4, Comp5, ReactiveFormsModule],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
-  standalone:true
+
+**2. Attribute directive** — changes appearance/behavior of an existing element, no template of its own:
+```typescript
+@Directive({
+  selector: '[appHighlight]',
+  standalone: true
 })
+export class HighlightDirective {
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', 'yellow');
+  }
+}
 ```
+```html
+<p appHighlight>Hover over me</p>
+```
+
+**3. Structural directive** — changes the DOM's actual structure (adds/removes elements):
+```typescript
+*ngIf, *ngFor, *ngSwitch // classic examples — though @if/@for/@switch now replace most use cases
+```
+```html
+<p *ngIf="isVisible">Shown conditionally</p>
+```
+
+## The key relationship — how they connect
+
+**Every directive (and component) is *built using* the `@Directive` (or `@Component`) decorator.** The decorator is what registers the class as a directive in the first place — without it, it's just a plain TypeScript class Angular knows nothing about.
+
+```typescript
+@Directive({          // ← decorator: registers this class as a directive
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {  // ← the directive itself: the class + its behavior
+  // logic here
+}
+```
+
+**One-line summary, good to have ready verbatim:**
+> "A decorator is a function that attaches metadata to a class so Angular knows how to treat it — `@Component`, `@Directive`, `@Injectable` are all decorators. A directive is a specific *kind* of Angular building block — a class (defined using the `@Directive` decorator) that attaches behavior to a DOM element. Components are technically directives with a template; attribute and structural directives modify existing elements without owning their own template."
+
+**Quick way to remember the distinction if put on the spot:**
+> "Decorators are how you *label* a class for Angular. Directives are *what* you're building — one of the three things a decorator can label a class as being: a component, an attribute directive, or a structural directive."
+
+**Good follow-up worth being ready for: "Is `@Component` a type of `@Directive`?"**
+> Conceptually yes — a `@Component` is a `@Directive` with a mandatory template. In fact, in Angular's own source, `ComponentDecorator` is built on top of the same underlying directive metadata system as `DirectiveDecorator` — components are the special case of directives that render their own view.
 - Services encapsulates business logic and separates them from UI concerns
 - Pure pipes are stateless that flow input date without remembering
 - Impure pipes are those which can manage the state of the data (Async)
