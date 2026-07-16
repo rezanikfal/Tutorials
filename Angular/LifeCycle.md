@@ -112,6 +112,61 @@ export class ChildComponent implements AfterContentInit {
 ...
 <app-card>
 ```
+**Simplest form — one slot, no `select`:**
+```typescript
+// card.component.ts
+@Component({
+  selector: 'app-card',
+  template: `<div class="card"><ng-content></ng-content></div>`
+})
+export class CardComponent {}
+```
+```html
+<app-card>
+  <p>Anything goes here</p>
+  <button>Even a button</button>
+</app-card>
+```
+Everything between `<app-card>` and `</app-card>` gets projected into wherever `<ng-content>` sits in the card's own template. This is exactly how your `ButtonComponent` used `<ng-content />` earlier to let the label text be whatever the consumer wants, instead of hardcoding "Click me".
+
+**Multiple named slots — your example, explained fully:**
+```typescript
+@Component({
+  selector: 'app-card',
+  template: `
+    <div class="card">
+      <div class="card-header">
+        <ng-content select="[card-header]"></ng-content>
+      </div>
+      <div class="card-body">
+        <ng-content select="[card-body]"></ng-content>
+      </div>
+      <div class="card-footer">
+        <ng-content select="[card-footer]"></ng-content>
+      </div>
+    </div>
+  `
+})
+export class CardComponent {}
+```
+```html
+<app-card>
+  <div card-header>My Card Header</div>
+  <div card-body>Main content goes here</div>
+  <div card-footer>Footer actions</div>
+</app-card>
+```
+The `select` attribute is a **CSS selector**, not a special Angular-only syntax — it's matching against attributes/classes/tags on the projected content, same rules as any CSS selector.
+
+**`select` can match different things, worth knowing the variety:**
+```html
+<ng-content select="[card-header]"></ng-content>  <!-- matches by attribute -->
+<ng-content select=".header-class"></ng-content>   <!-- matches by CSS class -->
+<ng-content select="app-icon"></ng-content>         <!-- matches by tag/element type -->
+```
+**One-line summary for the interview:**
+> "`ng-content` is Angular's content projection mechanism — it lets a parent pass actual markup into designated slots inside a child's template, rather than just data via `@Input()`. Named slots via the `select` attribute (a real CSS selector) let a component expose multiple distinct insertion points, which is the standard pattern for building flexible, reusable layout components like cards, modals, or panels in a component library."
+
 - ngAfterContentChecked()
   -  ```ngAfterContentChecked``` is used to respond to changes in the projected content.
 - ngAfterViewInit()
