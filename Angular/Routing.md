@@ -103,8 +103,8 @@ This directly replaces the `ActivatedRoute.paramMap.subscribe(...)` pattern from
 **Interview-ready summary sentence:**
 > "The routing concepts — path matching, guards, resolvers, lazy loading, nested routes — are all the same as before. What changed with standalone is the *plumbing*: `provideRouter()` replaces `RouterModule.forRoot/forChild`, guards and resolvers became plain functions using `inject()` instead of injectable classes, `loadComponent` lets you lazy-load a single component without a wrapper module, and `withComponentInputBinding()` lets route params flow directly into component inputs instead of manually subscribing to `ActivatedRoute`."
 
-Want this turned into a trimmed doc for your notes, or keep going through more topics first?
-------------------------- OLD --------------------------------
+Want this turned into a trimmed doc for your notes, or keep going through more topics first?    
+------------------------- OLD --------------------------------    
 To create a module with routing we should run ```ng g m Reza --routing``` the outcome is 2 files as follows in ```reza``` folder:
 - ```reza-routing.module.ts```
 - ```reza.module.ts```
