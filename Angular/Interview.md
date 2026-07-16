@@ -268,7 +268,8 @@ npm publish --access public   // --access public required for scoped packages (d
 5. `npm unpublish <pkg> --force` — only allowed within 72 hours, no dependents.
 
 **One-liner:** *"Angular libraries declare `@angular/core` as a peer dependency so consumers use their own Angular version, not a bundled copy — publishing follows standard semver, and scoped packages need `--access public` since npm defaults scoped packages to private."*
-- (citi) Multiple Angular Applications (it shares node_modules, main app src, e2e, ...):  
+- (citi) Multiple Angular Applications (it shares node_modules, main app src, e2e, ...):
+ -  A single Angular workspace can host multiple applications that share dependencies, tooling config, and — critically — a common component library, without needing separate repos or npm publishing. This is exactly how a lot of enterprise design-system setups work: one workspace, N apps, one shared UI library that all apps consume via workspace-relative imports, kept in sync automatically since it's all one node_modules install."
 - A multi-project workspace is suitable for an enterprise that uses a single repository and global configuration for all Angular projects. 
   - main app: ```ng new my-app --routing```
   - Sub Application 1 ``` ng generate application app1 –-routing```
