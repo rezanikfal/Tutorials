@@ -349,36 +349,70 @@ npm publish --access public   // --access public required for scoped packages (d
       </ng-container>
    ```
 - __Getter__ & __Setter__ VS __Methods__
-  - A difference between using a getter or setter and using a standard function is that getters/setters are automatically invoked on assignment. So it looks just like a normal property but behind the scenes you can have extra logic (or checks) to be run just before or after the assignment.
-  - So if you decide to add this kind of extra logic to one of the existing object properties that is already being referenced, you can convert it to getter/setter style without altering the rest of the code that has access to that property.
-  - This is useful if you want to follow the JavaScript convention of using __methods__ (functions that have been attached to objects) to do things, and use __properties__ (variables that have been attached to objects) to describe things. Or, put differently, you may want methods to mutate the object and getters to describe it.
-  - Getter becomes useful when you start needing to do more than one representation of the same data:
-  ```javascript
-  class Distance { 
-    setCentimeters(cm) { 
-      this.setMeters(cm / 100); 
-    } 
+```typescript
+class Account {
+  private _balance = 1000;
 
-    get centimeters() { 
-       return this.meters / 100; 
-    } 
-  } 
-  ```
-   - The __set__ syntax binds an object property to a function to be called when there is an attempt to set that property:
-  ```javascript
-  const language = {
-    set current(name) {
-      this.log.push(name);
-    },
-    log: []
-  };
+  // getter — "converts" a method into property-like access
+  get balance() {
+    return this._balance;
+  }
+}
 
-  language.current = 'EN';
-  language.current = 'FA';
+const acc = new Account();
+console.log(acc.balance);   // ✅ no parens — reads like a property
+console.log(acc.balance()); // ❌ error — balance is not a function
+```
 
-  console.log(language.log);
-  // expected output: Array ["EN", "FA"]
-  ```
+Without the getter, you'd need:
+```typescript
+getBalance() {
+  return this._balance;
+}
+acc.getBalance(); // has to be called explicitly
+```
+
+**Setter — same idea, but for writing:**
+```typescript
+class Account {
+  private _balance = 1000;
+
+  get balance() {
+    return this._balance;
+  }
+
+  set balance(value: number) {
+    if (value < 0) throw new Error('Balance cannot be negative');
+    this._balance = value;
+  }
+}
+
+const acc = new Account();
+acc.balance = 2000; // looks like plain assignment, but actually runs your setter logic
+console.log(acc.balance); // 2000
+```
+
+**Why this matters, not just syntax sugar:** the setter lets you run validation/logic **on assignment**, while the outside world still writes `acc.balance = 2000` like it's a normal property — they have no idea there's a private `_balance` and a guard clause underneath. That's the real value: **controlled access that looks uncontrolled from the outside.**
+
+**One precise correction to your phrasing, worth having exact:** a getter doesn't turn a method into a "variable" — it turns a method into something accessed with **property syntax** (no `()`), while still running full method logic underneath, every single time it's read. It's not cached/stored like a real variable — call `acc.balance` twice, it runs the getter's code twice.
+
+**Where this shows up in Angular specifically, worth naming:**
+```typescript
+@Component({...})
+export class MyComponent {
+  private _items: Item[] = [];
+
+  @Input()
+  set items(value: Item[]) {
+    this._items = value;
+    this.processItems(); // side effect on every input assignment
+  }
+  get items(): Item[] {
+    return this._items;
+  }
+}
+```
+`@Input()` setters are a real pattern for reacting to input changes without `ngOnChanges` — worth connecting to what you already know, since it's the same getter/setter mechanism just applied to `@Input()`.
 - Planning the Architecture of your Angular App  
   - App Overview: the application goals
   - Development Methodology:  using a waterfall or agile approach
