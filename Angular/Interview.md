@@ -105,6 +105,42 @@ export class HighlightDirective {  // ← the directive itself: the class + its 
 - Services encapsulates business logic and separates them from UI concerns
 - Pure pipes are stateless that flow input date without remembering
 - Impure pipes are those which can manage the state of the data (Async)
+- **Pure pipe (default):** only re-runs when the input **reference** changes — a new object/array, or a primitive value change. If you mutate an array/object in place (same reference), Angular won't re-run the pipe, even though the data changed.
+- **Impure pipe:** re-runs on **every change detection cycle**, regardless of whether the input reference changed — useful when the pipe needs to react to internal state changes Angular can't detect via reference (e.g. `AsyncPipe`, which needs to check if the Observable/Promise emitted something new).
+
+```typescript
+@Pipe({ name: 'myPipe' }) // pure: true by default
+@Pipe({ name: 'myPipe', pure: false }) // impure — opt in explicitly
+```
+
+**Why `AsyncPipe` is impure, worth knowing precisely:** the Observable reference itself never changes when it emits — `user$` is still the same Observable object on emission #50 as it was on emission #1. A pure pipe would never notice anything happened. `AsyncPipe` has to be impure so it checks for new emissions on every CD cycle instead of relying on reference equality.
+**Where "pure" actually shows its teeth — with an object/array:**
+```typescript
+@Pipe({ name: 'double' })
+export class DoublePipe implements PipeTransform {
+  transform(nums: number[]): number[] {
+    return nums.map(n => n * 2);
+  }
+}
+```
+```typescript
+numbers = [1, 2, 3];
+
+addNumber() {
+  this.numbers.push(4); // mutates in place — SAME array reference
+}
+```
+```html
+{{ numbers | double }} <!-- won't update after addNumber(), because reference didn't change -->
+```
+The pipe doesn't re-run, because `numbers` is still pointing at the *same* array object — pure pipes only check "is this the same reference as last time," not "did the contents change."
+
+**Fix — replace the array instead of mutating it:**
+```typescript
+addNumber() {
+  this.numbers = [...this.numbers, 4]; // NEW reference — pipe re-runs
+}
+```
 - prevent security threads (external HTML /external urls/API)
 - optimize Angular: lazy loading/un-necessary import/AOT compilation/
 - NgZone The most common use of this service is to optimize performance when starting a work consisting of one or more asynchronous tasks that don't require UI updates or error handling to be handled by Angular.
