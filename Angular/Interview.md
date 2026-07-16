@@ -70,8 +70,10 @@ export class SignalRService {
 ```htm
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [RouterOutlet, Comp1, Comp2, Comp4, Comp5, ReactiveFormsModule],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  standalone:true
 })
 ```
 - Services encapsulates business logic and separates them from UI concerns
