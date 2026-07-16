@@ -13,7 +13,25 @@ When an interviewer asks, *"What is Redux/NgRx and why do we use it?"*, hit them
 ### Key Terms Cheat Sheet
 
 * **Action:** A plain JavaScript object representing a unique event. It has a `type` and an optional `payload`.
-* **Dispatcher:** The mechanism that delivers Actions to Reducers.
+If you define an action with properties (associated data) using `props`:
+
+```typescript
+export const resetTo = createAction(
+  '[Counter] Reset To', 
+  props<{ value: number }>()
+);
+
+```
+
+Calling `resetTo({ value: 10 })` produces this plain JavaScript object:
+
+```json
+{
+  "type": "[Counter] Reset To",
+  "value": 10
+}
+
+```
 * **Reducer:** A pure function that takes the `currentState` and an `action`, and returns a `newState` using immutable updates (e.g., the spread operator `...`).
 * **Selector:** A query for the store. Selectors "slice" and memoize state for performance (no re-calculations if inputs don't change).
 * **Effects:** Side-effect handlers (using RxJS). They listen for actions, perform external/async tasks (like HTTP calls or listening to window events), and dispatch new actions.
