@@ -49,6 +49,16 @@ Calling `resetTo({ value: 10 })` produces this plain JavaScript object:
 
 ```
 * **Reducer:** A pure function that takes the `currentState` and an `action`, and returns a `newState` using immutable updates (e.g., the spread operator `...`).
+If you are just running a basic production app without debugging tools, the old state at Address #101 would normally be thrown away by JavaScript's automatic garbage collection because nothing is pointing to it anymore. However, during development, the Redux DevTools Extension is running in your browser. The DevTools keep an internal Array of History. Every time an action passes through, the DevTools push the reference of that state into its history array.
+```javascript
+// A simplified view of what Redux DevTools is doing behind the scenes:
+const devToolsHistory = [
+  { type: 'INITIAL_STATE', state: referenceToAddress101 },
+  { type: '[Counter] Increment', state: referenceToAddress202 },
+  { type: '[Counter] Increment', state: referenceToAddress303 }
+];
+```
+Because the DevTools array is still holding onto the pointers (referenceToAddress101), JavaScript is forbidden from deleting that old data from your RAM.
 * **Selector:** A query for the store. Selectors "slice" and memoize state for performance (no re-calculations if inputs don't change).
 * **Effects:** Side-effect handlers (using RxJS). They listen for actions, perform external/async tasks (like HTTP calls or listening to window events), and dispatch new actions.
 
