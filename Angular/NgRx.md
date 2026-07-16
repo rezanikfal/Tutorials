@@ -1,405 +1,197 @@
-### Redux terms:
-- **Action:** It is used to decide how to change data in the Redux Store
-- **Distpatch:** Takes an actions and forwards it on to all the different **Reducers**.
-- **Reducer:** It takes two arguments: the current state and an action. The action often contains a type (a string that indicates the kind of action being performed) and an optional payload. The reducer processes these inputs and returns a new state.
-- **Store:** A repository that contains all the recent data. To Create the **Store** we should take the **Reducrers**, wire them up and create a coherent unit to accept actions. 
-- Redux by comparing the Old and new state can understand the state change status. That is why reducer does not touch the current state. It creates a copy of the current **mutable** state and returns it to the store.
+Here is a highly structured, clear, and comprehensive NgRx study guide tailored for your interview prep. It condenses all your notes into quick-fire concepts, core definitions, and code patterns that interviewers love to hear.
 
-# NgRx Introduction
-- NgRx is a group of libraries inspired by the Redux pattern. The main purpose of this pattern is to provide a predictable state container, based on three main principles:
-  - **Single source of truth**  
-    In the case of a redux/ngrx architecture, this means that the state of your whole application is stored in an object tree within a single store.
-  - **State is read-only**  
-    You are never going to change the state directly instead you are going to dispatch actions.
-  - **Changes are made with pure functions**  
-    The operation triggered by dispatching an action is going to be a pure function (any function that doesn’t alter input data) called reducers. The reducer function takes an object that represents the “old” state, then creates a brand new object by copying all the old object’s details into a it and **overriding** old properties with new ones.  
-  - **Change detection**      
-    The main benefit is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.
+---
 
-## Smart vs Dumb Component
-- Smart: Know about state, business ligic and how to manage the state 
-- Dumb: Don't know about state (stateless) & business logic. Dumb components only responsibility is to present something to the DOM.
-## Pure and Impure functions in JS
-When the function **changes the state** or produces **different results** each time, it is Impure:
-### Pure
-```javascript
-function add(a, b) {
-    const total = a + b;
-    return total;
-}
-console.log(add(1, 3));
+## 1. Redux Principles & Core Concepts
+
+When an interviewer asks, *"What is Redux/NgRx and why do we use it?"*, hit them with these three principles:
+
+1. **Single Source of Truth:** The entire application state is stored in a single, read-only object tree inside the **Store**.
+2. **State is Read-Only:** You can never mutate the state directly. The only way to change it is to dispatch an **Action**.
+3. **Changes via Pure Functions:** State transitions are handled by **Reducers**, which are pure functions (they return a brand-new state object without modifying the old one).
+
+### Key Terms Cheat Sheet
+
+* **Action:** A plain JavaScript object representing a unique event. It has a `type` and an optional `payload`.
+* **Dispatcher:** The mechanism that delivers Actions to Reducers.
+* **Reducer:** A pure function that takes the `currentState` and an `action`, and returns a `newState` using immutable updates (e.g., the spread operator `...`).
+* **Selector:** A query for the store. Selectors "slice" and memoize state for performance (no re-calculations if inputs don't change).
+* **Effects:** Side-effect handlers (using RxJS). They listen for actions, perform external/async tasks (like HTTP calls or listening to window events), and dispatch new actions.
+
+---
+
+## 2. NgRx Architecture Flow
+
+This is how data flows in a unidirectional loop:
+
 ```
-### Impure
-The first function changes the state. Note that, even logging something on the console renders a new thing on the screen. That is part of the application state. We are triggering a **Side Effect**. Side effects means an external source that you don't know about 100%. Like make a http call. Maybe return data, maybe error!
-```javascript
-function add(a, b) {
-    const total = a + b;
-    console.log(total);
-}
+[ Component / UI ] --(Dispatches Action)--> [ Action ] 
+       ^                                         │
+       │ (Subscribed via Selectors)              ▼
+[ New State ] <--(Updates Store)--- [ Reducers / Effects ]
 
-function subtractWithRandom(a, b) {
-    const rnd = Math.random();
-    const total = a - b - rnd;
-    return total;
-}
 ```
-### NgRx process summary:
-- **Action Dispatching**: Actions are dispatched to indicate changes in the application.
-  - Actions are plain JavaScript objects that describe what happened and are dispatched to the store.
-  - An action is an object that has a **type** and an optional **payload**.
-  - Actions are the only way to interact with the NgRx store.
-```javascript
-import { createAction, props } from '@ngrx/store';
 
-export const updateName = createAction(
-  '[User] Update Name',
-  props<{ name: string }>()
-);
+---
+
+## 3. Pure vs. Impure Functions
+
+Interviewers frequently test your JavaScript fundamentals with this distinction:
+
+### Pure Functions
+
+* Always return the same output for the same input.
+* Have **no side effects** (don't mutate external state, don't log to console, don't write to DB).
+* *Example:*
+```typescript
+const add = (a, b) => a + b; // Pure
+
 ```
-- **Reducer Execution**: Reducers create a new, immutable state based on the action and the current state.
-  - when the updateName action is dispatched, the reducer creates a new state object with the updated name:
-```javascript
-import { createReducer, on } from '@ngrx/store';
-import { updateName } from './user.actions';
 
-export const initialState = {
-  user: {
-    name: 'John Doe',
-    age: 30
-  },
-  settings: {
-    theme: 'dark'
-  }
+
+
+### Impure Functions
+
+* Produce different results or trigger side effects.
+* Include HTTP calls, `Math.random()`, `Date.now()`, or direct state mutation.
+* *Example:*
+```typescript
+const addAndLog = (a, b) => { 
+  console.log(a + b); // Impure: Side effect (writing to console/DOM)
 };
 
-const userReducer = createReducer(
-  initialState,
-  on(updateName, (state, { name }) => ({
-    ...state,
-    user: {
-      ...state.user,
-      name: name
-    }
-  }))
-);
+```
 
-export function reducer(state: any, action: any) {
-  return userReducer(state, action);
+
+
+---
+
+## 4. Components: Smart vs. Dumb
+
+| Feature | Smart Components (Containers) | Dumb Components (Presentational) |
+| --- | --- | --- |
+| **State Awareness** | Knows about the NgRx Store & state | Has no knowledge of the Store or state |
+| **Logic** | Contains business logic | Only handles UI presentation |
+| **Data Flow** | Selects state from store & dispatches actions | Receives data via `@Input()`, emits events via `@Output()` |
+| **Change Detection** | Often default | Can use highly performant `OnPush` change detection |
+
+---
+
+## 5. NgRx Code Implementation Quick-Reference
+
+### Step 1: Define State (`counter.state.ts`)
+
+```typescript
+export interface CounterState {
+  myCount: number;
 }
+export const initialState: CounterState = {
+  myCount: 0
+};
 
-``` 
-- **State Replacement**: The new state replaces the old state in the NgRx store.
-- **State Change Detection**: NgRx detects state changes by comparing the old and new state references.
-  - NgRx will notify any components that are subscribed to the affected parts of the state (using selectors).
-  -  selectors play a crucial role after state change detection.
-  - Selectors allow you to "slice" the state by selecting only the parts of the state that a particular component or service needs:
-  - Selectors can be composed from other selectors, allowing you to create complex state selections:
-  - Selectors are often **memoized**, meaning that they remember the result of their last execution. So no input change, no re-calculate, more performance.
-```javascript
-import { createSelector } from '@ngrx/store';
+```
 
-export const selectUser = (state: AppState) => state.user;
+### Step 2: Define Actions (`counter.actions.ts`)
 
-export const selectUserName = createSelector(
-  selectUser,
-  (user) => user.name
+```typescript
+import { createAction, props } from '@ngrx/store';
+
+export const increment = createAction('[Counter] Increment');
+export const resetTo = createAction('[Counter] Reset To', props<{ value: number }>());
+
+```
+
+### Step 3: Define Reducer (`counter.reducer.ts`)
+
+```typescript
+import { createReducer, on } from '@ngrx/store';
+import { increment, resetTo } from './counter.actions';
+import { initialState } from './counter.state';
+
+export const counterReducer = createReducer(
+  initialState,
+  on(increment, (state) => ({ ...state, myCount: state.myCount + 1 })),
+  on(resetTo, (state, { value }) => ({ ...state, myCount: value }))
 );
-``` 
-```javascript
-export const selectUserDetails = createSelector(
-  selectUserName,
-  selectUserAge,
-  (name, age) => ({ name, age })
+
+```
+
+### Step 4: Write Selectors (`counter.selectors.ts`)
+
+```typescript
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { CounterState } from './counter.state';
+
+export const selectCounterState = createFeatureSelector<CounterState>('cState');
+export const selectMyCount = createSelector(
+  selectCounterState,
+  (state) => state.myCount
 );
 
-``` 
-- **Component Update**: Only components impacted by the state change are re-rendered.
-  - In an Angular component, you typically use the **select method of the NgRx** store to subscribe to a piece of state.
-  - The component subscribes to the observable returned by the select method, and this observable emits new values whenever the selected part of the state changes.
-```javascript
-import { Component } from '@angular/core';
+```
+
+### Step 5: Dispatch & Select in Component (`counter.component.ts`)
+
+```typescript
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectUserName } from './user.selectors';
+import { increment, resetTo } from './store/counter.actions';
+import { selectMyCount } from './store/counter.selectors';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-counter',
   template: `
-    <div>{{ userName$ | async }}</div>
+    <p>Count: {{ count$ | async }}</p>
+    <button (click)="onIncrement()">+</button>
   `
 })
-export class UserComponent {
-  userName$: Observable<string>;
+export class CounterComponent implements OnInit {
+  count$: Observable<number>;
 
-  constructor(private store: Store) {
-    this.userName$ = this.store.select(selectUserName);
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.count$ = this.store.select(selectMyCount);
+  }
+
+  onIncrement() {
+    this.store.dispatch(increment());
   }
 }
-``` 
-- **Rendering the UI**: The UI updates to reflect the new state.
-### NgRx libraries installation (other elements of the store should be installed individually):
-```code
-ng add @ngrx/store@latest
+
 ```
 
-- NgRx flow:
-<img src="https://www.danielcornock.co.uk/assets/images/articles/ngrx-intro/ngrx-flow.png" width="1000" />
+---
 
-## File Structure
+## 6. Advanced Patterns: RxJS Search & Generic Interfaces
 
-- For Each module we can create a Store and register the store on `appName.module.ts`
-- Store includs the following folders: 
-  - `counter.actions.ts`
-  - `counter.reducer.ts`
-  - `counter.selectors.ts`
-  - `counter.state.ts`
-  - `counter.effects.ts`
-  
-## Store Elements Sample Code
+### RxJS Search Pipeline (Best Practice)
 
-1- `counter.state.ts`:
+To avoid spamming an API on keypress, use this declarative pipeline:
 
-- By default it includs the **State Interface** & **Initial State**.
-
-```javascript
-export interface CounterState {
-  myCount: number
-  channelName:string
-}
-export const initialState = {
-  myCount: 0,
-  channelName:'Reza from Citi'
-}    
-```
-
-2- `counter.actions.ts`
-
-- Actions express unique events that happen throughout your application.
-- Any Component tells give me something or update something. It is **Actions** (with or without Data):
-
-```javascript
-import { createAction, props } from '@ngrx/store'
-
-export const Time6 = createAction('[App Page] Time6');
-export const Reset = createAction('[App Page] Reset');
-export const ResetTo = createAction('[App Page] ResetTo', props<{value: number}>());
-```
-
-- **ES6** Format:
-
-```javascript
-import { createAction } from '@ngrx/store'
-
-export const increment = createAction('increment')
-export const customIncrement = createAction('[App Page] ResetTo', (value: number)=>({value}))
-```
-
-3- `counter.reducer.ts`
-
-- Reducers are responsible for handling transitions from one state to the next state in your application.
-- Adding the business logic for each Actions:
-
-```javascript
-import { createReducer, on } from '@ngrx/store'
-import { customIncrement, increment } from './counter.actions'
-import { initialState } from './counter.store'
-
-const _counterReducer = createReducer(
-  initialState,
-  on(Time6, (state) => ({ ...state, myCount: state.myCount * 6 })), //Shorter version
-  on(Reset, (state) => ({ ...state, myCount: 0 })),
-  on(ResetTo, (state, action) => {
-    return {
-      ...state,
-      myCount: action.value
-    }
-  })
-)
-
-export function counterReducer(state, action) {
-  return _counterReducer(state, action)
-}
-```
-
-4- `app.module.ts`
-
-- Register the reducer on App Module (Assign **counter** as the Reducer Name):
-
-```javascript
-import { BrowserModule } from '@angular/platform-browser'
-import { StoreModule } from '@ngrx/store'
-import { counterReducer } from './counter/store/counter.reducer'
-
-@NgModule({
-  declarations: [AppComponent, ....],
-  imports: [
-    BrowserModule, StoreModule.forRoot({ cState: counterReducer }),
-  ],
-})
-export class AppModule {}
-```
-
-- **Lazy Load the NgRx State - app.module** 
-
-```javascript
-import { StoreModule } from '@ngrx/store'
-
-@NgModule({
-  declarations: [AppComponent, ....],
-  imports: [
-    StoreModule.forRoot({}),
-  ],
-})
-```
-
-- **Lazy Load the NgRx State - counter.module** 
-
-```javascript
-import { StoreModule } from '@ngrx/store'
-import { counterReducer } from './counter/store/counter.reducer'
-
-@NgModule({
-  declarations: [AppComponent, ....],
-  imports: [
-    StoreModule.forFeature({ cState: counterReducer }),
-  ],
-})
-```
-
-5- `*.component.ts`
-
-- Dispatching actions / Select states.
-
-```javascript
-import { Store } from '@ngrx/store'
-import { Reset, ResetTo, Time6 } from '../store/app.action';
-import { counterState } from '../store/app.state'
-
-constructor(private store: Store<{ cState: counterState }>) {}
-
-  ngOnInit(): void {
-    this.store.select('cState').subscribe((data) => {
-      this.counter = data.myCount
-    })
-  }
-  
-  onClick(){
-    this.store.dispatch(Time6())
-  }
-  onClickReset(){
-    this.store.dispatch(Reset())
-  }
-  onClickResetTo() {
-    this.store.dispatch(ResetTo({ value: +this.binding }))
-  }
-})
-```
-
-6- `counter.selectors.ts`
-
-- Selector is a query of store (getting a slice of store):
-
-```javascript
-import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { CounterState } from './counter.store'
-
-const getCounterState = createFeatureSelector<counterState>('cState');
-export const getCounter = createSelector(
-    getCounterState,
-    (state: counterState) => state.myCount
-);
-```
-
-- Component:
-
-```javascript
-import { Store } from '@ngrx/store'
-import { getCounter } from '../store/app.selectors'
-import { counterState } from '../store/app.state'
-
-  constructor(private store: Store<{ cState: counterState }>) {}
-  counter: number
-  ngOnInit(): void {
-    this.store.select(getCounter).subscribe((data) => {
-      this.counter = data
-    })
-  }
-```
-
-## NgRx Effects
-- Effects provide a powerful model to keep our reducers pure and describe side effect handling in a declarative way using RxJS streams.
-- This could be success or the fail action.
-### Native events
-- Trigger an action whenever the user resizes the browser window.
-- Using the **fromEvent** function from RxJS we can easily build up an observable stream of window resizing events. The **debounce** is just cosmetic and makes the stream only emit once when the user has stopped resizing for a certain amount of time.
-
-```javascript
-import { fromEvent } from 'rxjs';
-// ...
-@Effect()
-resize$ = fromEvent(window, 'resize').pipe(
-  debounceTime(300),
-  map(e => new MyWindowResizeAction(e))
-);
-```
-### Fill the store implicitly
-- This effect starts working when the book list in our store changes. Using the filter operator it continues the pipeline only when there are no books in the store.
-- The key behind this idea is that store selectors like store.pipe(select(mySelector)) also return Observables. Thus, we can build an effect like the one following.
-
-```javascript
-import { fromEvent } from 'rxjs';
-// ...
-@Effect()
-getBooks$ = this.store$.pipe(
-  select(getAllBooks), // get book list from store
-  filter(booksFromStore => booksFromStore.length == 0), // only continue if there are no books
-  map(_ => new LoadBooks())
+```typescript
+this.results$ = this.searchControl.valueChanges.pipe(
+  map(val => val.trim()),
+  debounceTime(200),           // Wait for user to stop typing
+  distinctUntilChanged(),      // Avoid duplicate calls
+  filter(val => val !== ''),   // Don't search empty strings
+  switchMap(val => this.apiService.search(val).pipe(
+    retry(3),                  // Robustness against minor network blips
+    startWith([])              // Emit empty array instantly on start
+  ))
 );
 
-// Selector
-const getAllBooks = createSelector(getBooksState, state => state.books);
 ```
-## RxJS
-- Pipeline for a letter based search call
 
-```htm
-<div>
-<label>Search reddit.com/r/aww for images containing: </label>
-<input [formControll="search" />
-</div>
-<div class="box" *ngFor="let post of results | async">
-<img [src]="post.thumbnail" [alt]="post.title" />
-</div> >
-```
-```javascript
-results: Observable<RedditResult[]>;
-search: FormControl = new FormControl('');
+### Generic CRUD Action Interface
 
-constructor(ris: RedditImageSearchService) {
-  this.results = this.search.valueChanges.pipe(
-    map((search) => search.trim()),
-    debounceTime(200),
-    distinctUntilChanged(),
-    filter((search) => search !== ''),
-    switchMap((search) =>
-      ris.search(search).pipe(
-        retry(3),
-        startwith([])
-      )
-    )
-  );
-}
-```
-### Generic Interface
-- For example for CRUD operation:
-```javascript
+Useful for scaling state architecture across multiple domains without duplicating interfaces:
+
+```typescript
 export interface CRUDAction<T> {
   action: 'add' | 'update' | 'delete';
   data: T;
 }
 
-private postCRUDSubject = new Subject<CRUDAction<IPost>>();
-addPost(post: IPost) {
-  this.postCRUDSubject.next({ action: 'add', data: post })
-}
 ```
