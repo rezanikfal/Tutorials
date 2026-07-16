@@ -60,8 +60,8 @@ const devToolsHistory = [
 ```
 Because the DevTools array is still holding onto the pointers (referenceToAddress101), JavaScript is forbidden from deleting that old data from your RAM.
 * **Selector:** A query for the store. Selectors "slice" and memoize state for performance (no re-calculations if inputs don't change).
-* **Effects:** Side-effect handlers (using RxJS). They listen for actions, perform external/async tasks (like HTTP calls or listening to window events), and dispatch new actions.
-"Yes, an Effect must handle all potential outcomes of an async operation. The standard pattern is to listen for a Trigger Action, execute the side effect, and then map the result to either a Success Action (passing the payload to update the store) or a Failure Action (to handle errors gracefully). If an Effect is strictly one-way (like logging or analytics), we configure it with { dispatch: false }."
+* **Effects:** Side-effect handlers (using RxJS). They listen for actions, perform external/async tasks (like HTTP calls or listening to window events), and dispatch new actions.   
+An Effect must handle all potential outcomes of an async operation. The standard pattern is to listen for a Trigger Action, execute the side effect, and then map the result to either a Success Action (passing the payload to update the store) or a Failure Action (to handle errors gracefully). If an Effect is strictly one-way (like logging or analytics), we configure it with { dispatch: false }.
 ---
 
 ## 2. NgRx Architecture Flow
