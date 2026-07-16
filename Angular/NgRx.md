@@ -12,7 +12,7 @@ When an interviewer asks, *"What is Redux/NgRx and why do we use it?"*, hit them
 
 ### Key Terms Cheat Sheet
 
-* **Store:**Store is just a single, plain JavaScript object.
+* **Store:** Store is just a single, plain JavaScript object.
 We often refer to this object as the **State Tree** because it can have nested branches (representing different features of your app), but at its core, it is just a standard JS object.
 ```javascript
 {
