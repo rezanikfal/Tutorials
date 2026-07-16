@@ -227,6 +227,47 @@ import('./elements/elements.module').then(m=>m.ElementModule)
 - ng-template tag to your template, it and everything inside it will be replaced by a comment.
 - Protractor: spec file and app.po.ts (page object) get all individual element in page object and test it in spec files
 - (citi) Create library in Angular: https://angular.io/guide/creating-libraries
+**Create a library in a workspace:**
+```bash
+ng new my-workspace --no-create-application
+ng generate library ui-components
+ng generate component button --project=ui-components
+```
+- `public-api.ts` is the library's contract — only what's exported here is usable by consumers.
+```typescript
+// public-api.ts
+export * from './lib/button/button.component';
+```
+
+**Build:**
+```bash
+ng build ui-components   // output goes to dist/ui-components — the actual publishable folder
+```
+
+**Consume locally (before publishing):**
+- Same workspace → TypeScript path mapping (`tsconfig.json`) auto-wired by CLI.
+- Separate project → `npm link` (symlinks the build into another project's `node_modules`, behaves like a real installed package).
+
+### Publishing to npm
+1. Package metadata in `projects/ui-components/package.json`:
+```json
+{
+  "name": "@yourname/ui-components",
+  "peerDependencies": { "@angular/core": "^19.0.0" }
+}
+```
+   - **Scoped name** (`@yourname/...`) avoids name collisions on the public registry.
+   - **`peerDependencies`, not `dependencies`** — Angular libraries never bundle their own `@angular/core`; consumer's own Angular version is used instead.
+2. `npm login`
+3. Publish from the **built output**, not source:
+```bash
+cd dist/ui-components
+npm publish --access public   // --access public required for scoped packages (default is private/paid)
+```
+4. Updates: `npm version patch|minor|major` (semver) → rebuild → `npm publish` again.
+5. `npm unpublish <pkg> --force` — only allowed within 72 hours, no dependents.
+
+**One-liner:** *"Angular libraries declare `@angular/core` as a peer dependency so consumers use their own Angular version, not a bundled copy — publishing follows standard semver, and scoped packages need `--access public` since npm defaults scoped packages to private."*
 - (citi) Multiple Angular Applications (it shares node_modules, main app src, e2e, ...):  
 - A multi-project workspace is suitable for an enterprise that uses a single repository and global configuration for all Angular projects. 
   - main app: ```ng new my-app --routing```
