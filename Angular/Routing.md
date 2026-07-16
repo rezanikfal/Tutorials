@@ -1,4 +1,110 @@
 ## Routes and Paths
+Good instinct to modernize this — your routing notes are solid on concepts, but the syntax is entirely module-based, and this JD is testing standalone-era Angular. Let's map the essentials.
+
+**1. Root routing setup — no more `RouterModule.forRoot()`**
+```typescript
+// app.routes.ts
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  { path: '', redirectTo: 'products', pathMatch: 'full' },
+  { path: 'products', component: ProductListComponent },
+  { path: 'users/:id', component: UserProfileComponent },
+  { path: '**', component: WildcardComponent }
+];
+```
+```typescript
+// app.config.ts
+import { provideRouter } from '@angular/router';
+
+export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes)]
+};
+```
+`provideRouter(routes)` replaces `RouterModule.forRoot(routes)` — no `AppRoutingModule` class needed at all.
+
+**2. Lazy loading — components directly, no module wrapper needed**
+```typescript
+{
+  path: 'inbox',
+  loadComponent: () => import('./inbox/inbox.component').then(m => m.InboxComponent)
+}
+```
+This is a real simplification worth highlighting: your notes show `loadChildren` pointing at an entire `NgModule` just to lazy-load one component. Standalone lets you skip that — `loadComponent` lazy-loads a single component directly. `loadChildren` still exists for lazy-loading a whole **set of child routes**:
+```typescript
+{
+  path: 'inbox',
+  loadChildren: () => import('./inbox/inbox.routes').then(m => m.INBOX_ROUTES)
+}
+```
+where `inbox.routes.ts` just exports a `Routes` array — no module needed there either.
+
+**3. Feature/child routing — same nested `children` structure, no separate routing module file needed**
+```typescript
+export const routes: Routes = [
+  {
+    path: 'first-component',
+    component: FirstComponent,
+    children: [
+      { path: 'child-a', component: ChildAComponent },
+      { path: 'child-b', component: ChildBComponent }
+    ]
+  }
+];
+```
+Your `-routing.module.ts` file duplication pattern is gone — it's just one `routes` array, imported wherever needed.
+
+**4. Guards — functional, not class-based (this is the biggest real change, worth having cold)**
+```typescript
+// Old — class implementing CanActivate
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService) {}
+  canActivate() { return this.authService.isLoggedIn(); }
+}
+
+// New — plain function using inject()
+export const authGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  return authService.isLoggedIn() ? true : router.parseUrl('/login');
+};
+```
+```typescript
+{ path: 'inbox', canActivate: [authGuard], component: InboxComponent }
+```
+Same functional pattern applies to `canActivateChild`, `canDeactivate`, `canMatch` (which replaced `canLoad`).
+
+**5. Resolvers — also functional now**
+```typescript
+export const userResolver: ResolveFn<User> = (route) => {
+  const userService = inject(UserService);
+  return userService.getUser(route.paramMap.get('id')!);
+};
+```
+```typescript
+{ path: 'user/:id', component: UserProfileComponent, resolve: { user: userResolver } }
+```
+
+**6. Reading route params — the newer, cleaner way: input binding, no `ActivatedRoute` subscription needed**
+```typescript
+// app.config.ts — turn this feature on
+provideRouter(routes, withComponentInputBinding())
+```
+```typescript
+// component — route param becomes an input automatically
+export class UserProfileComponent {
+  id = input<string>(); // matches :id in the route path — no ActivatedRoute injection needed at all
+}
+```
+This directly replaces the `ActivatedRoute.paramMap.subscribe(...)` pattern from your notes — Angular wires the route param straight into a component input. `ActivatedRoute` still exists and still works the old way if you need query params, fragments, or resolved data specifically — but for simple path params, this is the modern idiom.
+
+**7. `routerLink` / `router-outlet` — unchanged, still exactly as in your notes.**
+
+**Interview-ready summary sentence:**
+> "The routing concepts — path matching, guards, resolvers, lazy loading, nested routes — are all the same as before. What changed with standalone is the *plumbing*: `provideRouter()` replaces `RouterModule.forRoot/forChild`, guards and resolvers became plain functions using `inject()` instead of injectable classes, `loadComponent` lets you lazy-load a single component without a wrapper module, and `withComponentInputBinding()` lets route params flow directly into component inputs instead of manually subscribing to `ActivatedRoute`."
+
+Want this turned into a trimmed doc for your notes, or keep going through more topics first?
+------------------------- OLD --------------------------------
 To create a module with routing we should run ```ng g m Reza --routing``` the outcome is 2 files as follows in ```reza``` folder:
 - ```reza-routing.module.ts```
 - ```reza.module.ts```
