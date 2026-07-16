@@ -7,7 +7,8 @@ Here is a highly structured, clear, and comprehensive NgRx study guide tailored 
 When an interviewer asks, *"What is Redux/NgRx and why do we use it?"*, hit them with these three principles:
 
 1. **Single Source of Truth:** The entire application state is stored in a single, read-only object tree inside the **Store**.
-2. **State is Read-Only:** You can never mutate the state directly. The only way to change it is to dispatch an **Action**.
+2. **State is Read-Only:** You can never mutate the state directly. The only way to change it is to dispatch an **Action**.   
+state is the condition of a system at a specific point in time. If you take a snapshot of any system right now, everything you can measure, observe, or write down to describe that system at this exact second is its state.
 3. **Changes via Pure Functions:** State transitions are handled by **Reducers**, which are pure functions (they return a brand-new state object without modifying the old one).
 
 ### Key Terms Cheat Sheet
