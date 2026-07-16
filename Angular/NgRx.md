@@ -12,6 +12,22 @@ When an interviewer asks, *"What is Redux/NgRx and why do we use it?"*, hit them
 
 ### Key Terms Cheat Sheet
 
+* **Store:**Store is just a single, plain JavaScript object.
+We often refer to this object as the **State Tree** because it can have nested branches (representing different features of your app), but at its core, it is just a standard JS object.
+```javascript
+{
+  // "cState" is the key we assigned in AppModule / StoreModule
+  cState: { 
+    myCount: 12,
+    channelName: 'Reza from Citi'
+  },
+  userState: {
+    name: 'John Doe',
+    age: 30
+  }
+}
+
+```
 * **Action:** A plain JavaScript object representing a unique event. It has a `type` and an optional `payload`.
 If you define an action with properties (associated data) using `props`:
 
