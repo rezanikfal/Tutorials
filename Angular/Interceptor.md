@@ -5,6 +5,18 @@
 - The ```withCredentials``` option is particularly useful when the backend service requires authentication.
   - To handle CORS, setting withCredentials to true tells the browser to include credentials with requests to a different origin.
   - If your backend uses cookies for authentication or session management, you need ```withCredentials: true```
+### withCredentials
+- Cross-origin requests **don't** send cookies by default (security default).
+- `withCredentials: true` tells the browser to include cookies (and other credentials: basic auth, TLS client certs) on a cross-origin request.
+```typescript
+this.http.get('https://api.example.com/data', {
+  withCredentials: true,
+  headers
+});
+```
+- Real use case: cookie-based session auth (e.g. `HttpOnly` session/refresh token cookie) — without this flag, the server won't see the cookie even though it exists in the browser.
+- **Server must also opt in via CORS**, or the browser blocks the response:
+- One-liner: *"`withCredentials` opts a cross-origin request into sending cookies, which are excluded by default. It only works if the server's CORS response also explicitly allows credentials with an exact (non-wildcard) origin."*
 ### HttpHeaders
 - HTTP headers are crucial in requests, as they provide the server with information about the client and the nature of the request..
 - ```HttpHeaders``` are key-value pairs that provide additional context about the request, such as the content type, authorization credentials, or custom metadata.
