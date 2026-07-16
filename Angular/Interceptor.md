@@ -2,10 +2,6 @@
 - By default, web browsers enforce the Same-Origin Policy (SOP).
 - CORS is a security feature implemented by web browsers that allows or restricts web applications running at one origin (domain) to request resources from a different origin.
 ### withCredentials
-- The ```withCredentials``` option is particularly useful when the backend service requires authentication.
-  - To handle CORS, setting withCredentials to true tells the browser to include credentials with requests to a different origin.
-  - If your backend uses cookies for authentication or session management, you need ```withCredentials: true```
-### withCredentials
 - Cross-origin requests **don't** send cookies by default (security default).
 - `withCredentials: true` tells the browser to include cookies (and other credentials: basic auth, TLS client certs) on a cross-origin request.
 ```typescript
@@ -17,6 +13,22 @@ this.http.get('https://api.example.com/data', {
 - Real use case: cookie-based session auth (e.g. `HttpOnly` session/refresh token cookie) — without this flag, the server won't see the cookie even though it exists in the browser.
 - **Server must also opt in via CORS**, or the browser blocks the response:
 - One-liner: *"`withCredentials` opts a cross-origin request into sending cookies, which are excluded by default. It only works if the server's CORS response also explicitly allows credentials with an exact (non-wildcard) origin."*
+- The second argument is the **options object** for `HttpClient.get()`. It's not part of the URL or the request body; it's a bag of configuration for how the request should be made and how the response should be handled.
+```typescript
+this.http.get(url, {
+  headers,            // HttpHeaders
+  withCredentials: true,
+  params,             // HttpParams — query string params
+  observe: 'body',    // 'body' | 'response' | 'events' — how much of the response to return
+  responseType: 'json' // 'json' | 'text' | 'blob' | 'arraybuffer'
+});
+```
+A few things worth knowing about this options object, since it comes up a lot:
+- **`get()` has no request body** — that's why the second param is just options, not `(body, options)` like `post()`/`put()` have:
+```typescript
+this.http.post(url, body, options); // body is the 2nd arg, options is 3rd
+this.http.get(url, options);        // no body — options is the 2nd arg
+```
 ### HttpHeaders
 - HTTP headers are crucial in requests, as they provide the server with information about the client and the nature of the request..
 - ```HttpHeaders``` are key-value pairs that provide additional context about the request, such as the content type, authorization credentials, or custom metadata.
