@@ -102,15 +102,6 @@ export class HighlightDirective {  // ← the directive itself: the class + its 
   // logic here
 }
 ```
-
-**One-line summary, good to have ready verbatim:**
-> "A decorator is a function that attaches metadata to a class so Angular knows how to treat it — `@Component`, `@Directive`, `@Injectable` are all decorators. A directive is a specific *kind* of Angular building block — a class (defined using the `@Directive` decorator) that attaches behavior to a DOM element. Components are technically directives with a template; attribute and structural directives modify existing elements without owning their own template."
-
-**Quick way to remember the distinction if put on the spot:**
-> "Decorators are how you *label* a class for Angular. Directives are *what* you're building — one of the three things a decorator can label a class as being: a component, an attribute directive, or a structural directive."
-
-**Good follow-up worth being ready for: "Is `@Component` a type of `@Directive`?"**
-> Conceptually yes — a `@Component` is a `@Directive` with a mandatory template. In fact, in Angular's own source, `ComponentDecorator` is built on top of the same underlying directive metadata system as `DirectiveDecorator` — components are the special case of directives that render their own view.
 - Services encapsulates business logic and separates them from UI concerns
 - Pure pipes are stateless that flow input date without remembering
 - Impure pipes are those which can manage the state of the data (Async)
