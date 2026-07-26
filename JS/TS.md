@@ -14,6 +14,18 @@ console.log(A) //12324545.242
 const A:[number, string] = [1,'Reza']
 const A:[number, string][] = [[1,'Reza'], [2,'Fariba'], [3,'Maneli']]
 ```
+## Building Dynamic TypeScript Record<K, V>
+`Record<K, V>` is a TypeScript utility type used to create a typed object (dictionary).
+In `Record<string, object[]>`, each **string key** maps to an **array of objects**.
+
+```javascript
+const result: Record<string, object[]> = {};
+
+result["sedans"] = [{ make: "Toyota", model: "Camry" }];
+result["sedans"].push({ make: "Honda", model: "Accord" });
+
+console.log(result["sedans"]);
+```
 ## any VS unknown
 - While both any and unknown allow for dynamic typing, unknown enforces stricter type checks and requires type assertions.
 ```javascript
