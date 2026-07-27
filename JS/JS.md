@@ -1113,6 +1113,7 @@ var myObj2 = myObj;
 
 console.log(myObj === myObj2); //true
 console.log(myObj === myObj3); //false
+console.log(JSON.stringify(myObj) === JSON.stringify(myObj3)); //true
 ```
 ### Object Destructuring
 ```javascript
