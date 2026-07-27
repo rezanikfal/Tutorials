@@ -124,6 +124,20 @@ console.log(toggle()); // true
 console.log(toggle()); // false
 console.log(toggle()); // true
 ```
+- Create **private** variable:
+```javascript
+function counter() {
+    let count = 0;
+
+    return () => ++count;
+}
+
+const c = counter();
+
+c(); // 1
+c(); // 2
+c(); // 3
+```
 - `makeToggle()` runs once, creates `state`, then returns. Normally `state` would be garbage collected — but the returned inner function keeps a reference to it, so it stays alive.
 - Each call to `toggle()` flips and remembers `state` for next time — private, persistent state without a global variable.
 - Same mechanism behind event listeners (callback remembers scope) and Angular subscriptions (why `unsubscribe()` in `ngOnDestroy` matters — an active subscription is a closure holding a reference).
