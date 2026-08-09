@@ -93,4 +93,82 @@ Same category of bug as the empty-array percentage/`NaN` issue from JS practice 
 - **List comprehension `[...]` vs generator expression `(...)`:** list comprehension builds the full list in memory first; generator yields values lazily, one at a time. Negligible difference for small data, but generators avoid building large throwaway intermediate lists.
 
 ---
-*(Next: Day 4 — connecting to a real PostgreSQL database)*
+# FastAPI / Python — Day 4: Connecting to PostgreSQL (via Supabase)
+
+- **Supabase** = free hosted Postgres — no local Docker/install needed. It's a real Postgres database; everything about SQLAlchemy/queries applies normally, only the *hosting* differs.
+- Get connection string from: Supabase dashboard → Project Settings → Database → Connection string (URI format).
+
+## Connection string driver suffix
+```
+postgresql://...            → generic standard URI (what Supabase's website gives you) — defaults to psycopg2 in SQLAlchemy
+postgresql+psycopg://...    → explicitly use psycopg (v3, modern, has native async support)
+postgresql+psycopg2://...   → explicitly use psycopg2 (older, mature, sync-only)
+```
+- Supabase (and any hosting provider) gives the **plain, universal** `postgresql://` format — the `+driver` suffix is SQLAlchemy-specific, added manually based on which Python driver is installed.
+- If `psycopg2` is installed → plain `postgresql://` works fine (SQLAlchemy's default). If using `psycopg` (v3) → must explicitly add `+psycopg`.
+- `psycopg2`: older, no async, extremely mature/stable. `psycopg` (v3): newer, native async support, actively developed. Either is fine for a sync FastAPI app; `psycopg` matters more if you need async DB calls later.
+
+## `@` in the connection string
+```
+postgresql+psycopg://[user]:[password]@[host]:[port]/[database]
+```
+- The `@` separating credentials from host is required syntax. If the **password itself** contains `@` (or `#`, `%`, `/`, `:`), it must be URL-encoded (`@` → `%40`) or parsing breaks.
+- Safer: use `urllib.parse.quote_plus(password)` to auto-encode instead of doing it by hand.
+
+## Two model types, kept separate on purpose
+```python
+# Pydantic — API input/output shape
+class Todo(BaseModel):
+    id: int
+    title: str
+    completed: bool
+
+# SQLAlchemy — actual DB table structure
+class TodoDB(Base):
+    __tablename__ = "todos"
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, nullable=False)
+    completed = Column(Boolean, default=False)
+```
+Pydantic validates API data; SQLAlchemy maps to DB rows. Keeping them separate lets API shape and DB schema evolve independently — standard practice.
+
+## FastAPI dependency injection for DB sessions
+```python
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.get("/todos", response_model=list[Todo])
+def get_todos(db: Session = Depends(get_db)) -> list[Todo]:
+    return db.query(TodoDB).all()
+```
+- `Depends(get_db)` = same concept as Angular's `inject(SomeService)` — declare a dependency, framework provides it.
+- `yield` here means "give the endpoint this session, then close it after, even on error" — prevents connection leaks.
+
+## `text()` — for raw SQL
+```python
+from sqlalchemy import text
+result = conn.execute(text("SELECT version();"))
+```
+- SQLAlchemy 2.0+ requires raw SQL strings to be wrapped in `text()` — a safety guardrail against accidental SQL injection (forces you to be deliberate about "this is literal SQL").
+- Never use f-string interpolation into SQL (`f"...{value}"` → injection risk). Use named parameters instead:
+```python
+conn.execute(text("SELECT * FROM todos WHERE completed = :status"), {"status": True})
+```
+- Normal app code should prefer the **ORM style** instead of raw SQL: `db.query(TodoDB).filter(TodoDB.completed == True).all()` — safer (auto-escaped), more Pythonic. `text()` is mainly for diagnostics or SQL the ORM can't easily express.
+
+## Reading query results — `fetchone()` / `fetchall()`
+```python
+result = conn.execute(text("SELECT version();"))
+row = result.fetchone()   # next single row (tuple-like), even 1 column → row[0] for the value
+```
+- `fetchone()` — one row (or `None` if exhausted). `fetchall()` — all remaining rows as a list. `fetchmany(n)` — next n rows (batch processing).
+- `result` behaves like an iterator/cursor — each `fetchone()` call advances to the next row, doesn't repeat the same one. Same mental model as a JS generator's `.next()`.
+
+## `max()` gotcha (from Day 3, still relevant)
+```python
+max((t.id for t in todos_db), default=0) + 1   # safe — default= avoids crashing on empty sequence
+```
