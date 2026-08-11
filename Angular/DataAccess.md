@@ -51,6 +51,94 @@ Here is the shadow DOM that we can access using Chrome Inspection tool (```app-r
 </app-root>
 ```
 When we apply a css on ```:host```, it will be applied on ```<app-root>``` tag.
+### Angular ViewEncapsulation
+
+| Mode                     | Component CSS  | Global CSS                   |
+| ------------------------ | -------------- | ---------------------------- |
+| **Emulated** *(default)* | Scoped         | Can affect component         |
+| **ShadowDom**            | Truly isolated | Cannot cross shadow boundary |
+| **None**                 | Global         | Global                       |
+
+#### 1. `Emulated` — Default
+ - In Emulated, Angular adds an attribute selector like [_ngcontent-abc], which increases the CSS selector's specificity compared with a simple button selector.
+```ts
+@Component({
+  encapsulation: ViewEncapsulation.Emulated
+})
+```
+
+```css
+button {
+  color: red;
+}
+```
+
+Angular effectively scopes it:
+
+```css
+button[_ngcontent-abc] {
+  color: red;
+}
+```
+
+✅ Component CSS → scoped
+✅ Global CSS → can still affect it
+
+---
+
+#### 2. `ShadowDom`
+
+```ts
+@Component({
+  encapsulation: ViewEncapsulation.ShadowDom
+})
+```
+
+```css
+button {
+  color: red;
+}
+```
+
+The CSS lives inside:
+
+```text
+<my-component>
+  #shadow-root
+    <button>...</button>
+</my-component>
+```
+
+❌ Global `button { color: blue }` normally cannot style the button inside.
+
+---
+
+#### 3. `None`
+
+```ts
+@Component({
+  encapsulation: ViewEncapsulation.None
+})
+```
+
+```css
+button {
+  color: red;
+}
+```
+
+This effectively becomes:
+
+```css
+/* Global */
+button {
+  color: red;
+}
+```
+
+✅ Component CSS → global
+✅ Global CSS → global
+
 ## Access to the component HTML content:
 By injecting the ```ElementRef``` in the component, we have access to the DOM elements. 
 ```javascript
