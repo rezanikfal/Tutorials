@@ -200,62 +200,70 @@ export class InputComponent implements OnInit {
       });
   }
 ```
-## Dynamic Forms using FormBuilder/FormArray:  
-Lets say we need a form with name and email of the user and nultiple (unknown number) addresses for him. Here is the process:
-- Using Getter to get a form array to push **formCotrols** in:   
-- Inject  ```FormBuilder```:
-```javascript
-import { FormBuilder, FormGroup } from '@angular/forms';
+## Angular `FormArray`
 
-export class YourComponent {
-  form: FormGroup;
+`FormArray` is used in **Reactive Forms** when we need a **dynamic number of form controls**, such as skills, phone numbers, or addresses.
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      name: [''],           // Single form control
-      email: [''],          // Single form control
-      addresses: this.fb.array([])  // Form array for multiple addresses
-    });
-  }
+### Basic Example
 
-  get addresses() {
-    return this.form.get('addresses') as FormArray;
-  }
+```ts
+employeeForm = this.fb.group({
+  employeeName: ['', Validators.required],
+  department: ['', Validators.required],
+  skills: this.fb.array([])
+});
+```
+
+Access the array:
+
+```ts
+get skills(): FormArray {
+  return this.employeeForm.get('skills') as FormArray;
 }
 ```
-- You can dynamically add form controls to the FormArray using the push method.:
-```javascript
-addAddress() {
-  const addressGroup = this.fb.group({
-    street: [''],
-    city: [''],
-    state: [''],
-    zip: ['']
-  });
 
-  this.addresses.push(addressGroup);
+Add and remove controls:
+
+```ts
+addSkill() {
+  this.skills.push(this.fb.control(''));
+}
+
+removeSkill(index: number) {
+  this.skills.removeAt(index);
 }
 ```
-- Here is the ```FormArray``` template (similar form controls for each address):
-```javascript
-  <div formArrayName="addresses">
-    <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
-      <label for="street">Street:</label>
-      <input id="street" formControlName="street">
 
-      <label for="city">City:</label>
-      <input id="city" formControlName="city">
+HTML:
 
-      <label for="state">State:</label>
-      <input id="state" formControlName="state">
+```html
+<div formArrayName="skills">
+  @for (skill of skills.controls; track skill; let i = $index) {
+    <input [formControlName]="i">
+    <button type="button" (click)="removeSkill(i)">Remove</button>
+  }
+</div>
 
-      <label for="zip">Zip:</label>
-      <input id="zip" formControlName="zip">
+<button type="button" (click)="addSkill()">Add Skill</button>
+```
 
-      <button type="button" (click)="removeAddress(i)">Remove Address</button>
-    </div>
-  </div>
-  ```
+### Key Interview Points
+
+- **FormControl** → one field
+- **FormGroup** → group of named controls
+- **FormArray** → dynamic collection of controls
+- Add with `push()`
+- Remove with `removeAt(index)`
+- Template uses `formArrayName`
+- Individual controls are connected using `[formControlName]="i"`
+- Values are automatically available through:
+
+```ts
+this.employeeForm.value
+```
+
+**Interview answer:**  
+> I use `FormArray` when the number of form fields is dynamic. For example, if users can add or remove skills, I create a `FormArray`, push new `FormControl`s into it, remove them using `removeAt()`, and bind the controls in the template using `formArrayName` and their index.
 ## Custom Validator (Synchrones):
 We use dependency injection to be unified with the Async Custom Validator. ```implements Validator```
 ### form.component.ts:
