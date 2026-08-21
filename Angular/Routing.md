@@ -268,6 +268,21 @@ During development, you write separate .ts, .html, and .css files. However, duri
    3. Chunk Fetch: The browser downloads the targeted Lazy Chunk .js file from your Static Server.
    4. Data Fetch: The newly running lazy component executes, paints the UI on the screen, and sends an API request to your Backend API Server to grab the required data.
 
+#### CSR (normal Angular) vs SSR:**
+
+| | CSR | SSR |
+|---|---|---|
+| First paint | Blank until JS runs | Real content immediately |
+| SEO | Sees empty shell | Sees full HTML |
+| Time to interactive | Faster once JS loads | Slightly slower (hydration step) |
+
+**How it works:** A Node.js process runs the Angular app on the server, calls the API server for data, and renders full HTML per request. The browser gets real content immediately; once `main.js` loads, Angular **hydrates** — attaches event listeners to the existing HTML instead of re-rendering it.
+
+**Three servers involved:**
+1. **Static web server** — serves `index.html`, `main.js`, chunk files as-is (Nginx, CDN, S3). No logic.
+2. **API server** — backend (Spring/Node/etc.), handles auth, business logic, DB queries, returns JSON.
+3. **SSR server** — a Node.js process running the Angular app itself, calling the API server for data and rendering HTML per request. Deployed separately (e.g. Cloud Run, container behind a load balancer).
+
 - Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
 - We can directly Lazily load a component ouside of the current moduel i.e. ```LazyComponent``` in the Lazy module(22).
 ```javascript
