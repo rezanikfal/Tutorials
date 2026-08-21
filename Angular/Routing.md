@@ -243,6 +243,31 @@ post(url: string,
 - withCredentials: Whether this request should be sent with outgoing credentials (cookies).
 
 ### Lazy Loading
+#### 1. The Code-Splitting Architecture
+Angular uses its build engine to split your code into isolated JavaScript files called chunks to optimize performance:
+
+* The Main Chunk: Includes your physical index.html file, a global styles.css file, and a main.js bundle. The main.js file holds the Angular framework core engine and your initial landing page logic (components Html/CSS/Ts).
+* Lazy Chunks: Pure .js files containing specific routes or deferred blocks. They reside on the server and are only downloaded when a user activates that specific part of the application.
+
+#### 2. Pure JavaScript Components
+During development, you write separate .ts, .html, and .css files. However, during the build process, Angular transforms everything into 100% pure JavaScript:
+
+* HTML templates are compiled into high-performance JavaScript UI rendering instructions.
+* Component CSS styles are converted into plain JavaScript text strings.
+* Result: At runtime, your components are pure script files. This allows the browser to assemble and style the layout in memory instantly without making separate network requests for HTML or CSS assets.
+
+#### 3. Server Roles & Core Workflow
+
+* Static Web Server / CDN: Hosts your compiled Angular files (.html, .js, .css, and images). Its sole purpose is to serve these static files to the browser upon request.
+* Backend API Server: Runs your server-side programming logic and queries your database. It exchanges raw data (typically JSON) with your frontend application.
+
+#### The Runtime Process
+
+   1. Initial Visit: The Static Server delivers the Main Chunk. The browser runs the main.js file to instantly build and render your landing page.
+   2. User Interaction: The user navigates to a lazy-loaded route or activates an asynchronous action.
+   3. Chunk Fetch: The browser downloads the targeted Lazy Chunk .js file from your Static Server.
+   4. Data Fetch: The newly running lazy component executes, paints the UI on the screen, and sends an API request to your Backend API Server to grab the required data.
+
 - Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
 - We can directly Lazily load a component ouside of the current moduel i.e. ```LazyComponent``` in the Lazy module(22).
 ```javascript
