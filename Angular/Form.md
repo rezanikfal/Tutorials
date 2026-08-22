@@ -246,7 +246,17 @@ HTML:
 
 <button type="button" (click)="addSkill()">Add Skill</button>
 ```
+## value VS ngValue
 
+* [value]: For strings only. Non-strings get converted into text (e.g., [object Object]).
+* [ngValue]: For any data type (Objects, Numbers, Booleans, null). It preserves the exact data type.
+
+```html
+<select formControlName="isPrimary">
+    <option [ngValue]="true">Yes</option>
+    <option [ngValue]="false">No</option>
+</select>
+```
 ### Key Interview Points
 
 - **FormControl** → one field
