@@ -51,3 +51,28 @@ function groupStrings(strs: string[]): string[][] {
 
 console.log(groupStrings(strs))
 ```
+- **Given an integer array `nums` and an integer `k`, return the `k` most frequent elements.**
+```
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+```
+```javascript
+const nums = [1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3]
+const k = 2
+
+function mostFrequent(num: number[], k: number): number[] {
+
+    const map = new Map()
+
+    num.forEach(x => {
+        if (!map.has(x)) map.set(x, 0)
+        map.set(x, map.get(x) + 1)
+    })
+
+    const result = [...map].sort((a, b) => b[1] - a[1])
+    return result.slice(0, k).map(x=>x[0])
+
+}
+
+console.log(mostFrequent(nums, k))
+```
