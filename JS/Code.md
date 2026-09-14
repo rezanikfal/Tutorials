@@ -144,3 +144,33 @@ function rotateImage(matrix: number[][]): number[][] {
 
 console.log(rotateImage(matrix))
 ```
+- **Given an array of integers nums and an integer target, return the indices of the two numbers that add up to target.**
+```
+Input: nums = [2, 7, 11, 15], target = 9
+Output: [0, 1]
+```
+```javascript
+const nums = [2, 7, 11, 15]
+const target = 9
+
+function findTarget(nums: number[], target: number): number[] {
+
+    const map = new Map<number, number>()
+
+    for (let i = 0; i < nums.length; i++) {
+
+        const needed = target - nums[i]
+
+        if (map.has(needed)) {
+            return [map.get(needed)!, i]
+        } else {
+            map.set(nums[i], i)
+        }
+
+    }
+    return []
+
+}
+
+console.log(findTarget(nums, target))
+```
