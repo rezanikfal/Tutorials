@@ -174,3 +174,37 @@ function findTarget(nums: number[], target: number): number[] {
 
 console.log(findTarget(nums, target))
 ```
+- **Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.**
+```
+Input: s = "anagram", t = "nagaram"
+Output: true
+
+Input: s = "rat", t = "car"
+Output: false
+```
+```javascript
+const s = "anagram"
+const t = "nagaram"
+
+function validAnagram(str1: string, str2: string): boolean {
+
+    if (str1.length !== str2.length) return false
+
+    const map = new Map<string, number>()
+
+    for (let char of str1) {
+        map.set(char, (map.get(char) || 0) + 1)
+    }
+
+    for (let char of str2) {
+        map.set(char, (map.get(char) || 0) - 1)
+    }
+
+    if ([...map.values()].every(x => x === 0)) return true
+
+    return false
+
+}
+
+console.log(validAnagram(s, t))
+```
