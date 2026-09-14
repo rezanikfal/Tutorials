@@ -208,3 +208,26 @@ function validAnagram(str1: string, str2: string): boolean {
 
 console.log(validAnagram(s, t))
 ```
+- **Given a string `s`, return the number of unique characters in it**
+```
+Input: s = "pwwkew"
+Output: 4
+Explanation: The unique characters are 'p', 'w', 'k', and 'e'.
+```
+```javascript
+const s = "abcabcbb"
+
+function longestSubstring(str1: string): number {
+
+    const set = new Set<string>()
+
+    for (let char of str1) {
+
+        if (!set.has(char)) set.add(char)
+    }
+
+    return set.size
+}
+
+console.log(longestSubstring(s))
+```
