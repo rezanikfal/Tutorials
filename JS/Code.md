@@ -76,7 +76,7 @@ function mostFrequent(num: number[], k: number): number[] {
 
 console.log(mostFrequent(nums, k))
 ```
-- **Rotate the image by 90 degrees clockwise in-place (do not use extra matrix).**
+- **Rotate the image by 90 degrees clockwise.**
 ```
 Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
 Output: [[7,4,1],[8,5,2],[9,6,3]]
@@ -100,6 +100,46 @@ const result = matrix.map((x,i)=>(x.map((y,j)=>matrix[j][i]).reverse()))
 
 
 return result
+}
+
+console.log(rotateImage(matrix))
+```
+- **Rotate the image by 90 degrees clockwise in-place (do not use extra matrix).**
+```
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+Matrix ->Transpose ->Reverse
+```
+```javascript
+const matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+const output = [
+    [7, 4, 1],
+    [8, 5, 2],
+    [9, 6, 3]
+]
+
+function rotateImage(matrix: number[][]): number[][] {
+
+    const n = matrix.length
+
+    for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+
+            let temp = matrix[i][j]
+            matrix[i][j] = matrix[j][i]
+            matrix[j][i] = temp
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        matrix[i].reverse()
+    }
+
+    return matrix
 }
 
 console.log(rotateImage(matrix))
