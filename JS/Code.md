@@ -231,3 +231,35 @@ function longestSubstring(str1: string): number {
 
 console.log(longestSubstring(s))
 ```
+- **Given a string s, find the length of the longest substring without repeating characters(Sliding Window).**
+```
+Input: s = "abcabcbb"
+Output: 3
+Explanation: "abc" is the longest substring without repeating characters.
+```
+```javascript
+const s = "pwwkew"
+
+function longestSubstring(str1: string): number {
+
+    let left = 0
+    let maxLen = 0
+    const strArray = str1.split("")
+
+    const set = new Set<string>()
+
+    for (let right = 0; right < strArray.length; right++) {
+
+        while (set.has(strArray[right])) {
+            set.delete(strArray[left])
+            left++
+        }
+        set.add(strArray[right])
+        maxLen = Math.max(maxLen, right - left + 1)
+
+    }
+    return maxLen
+}
+
+console.log(longestSubstring(s))
+```
