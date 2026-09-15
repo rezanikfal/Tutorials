@@ -231,7 +231,7 @@ function longestSubstring(str1: string): number {
 
 console.log(longestSubstring(s))
 ```
-- **Given a string s, find the length of the longest substring without repeating characters(Sliding Window).**
+- **Given a string s, find the length of the longest substring without repeating characters (Sliding Window).**
 ```
 Input: s = "abcabcbb"
 Output: 3
