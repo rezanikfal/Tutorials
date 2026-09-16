@@ -314,3 +314,35 @@ function islands(grid: string[][]): number {
 
 console.log(islands(grid))
 ```
+- **You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.**
+
+```
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: No profit can be made.
+```
+```javascript
+function maxProfit(prices: number[]): number {
+  if (prices.length === 0) return 0;
+
+  let minPrice = Infinity;
+  let maxProfit = 0;
+
+  for (const price of prices) {
+    if (price < minPrice) {
+      minPrice = price;
+    }
+
+    const profit = price - minPrice;
+    if (profit > maxProfit) {
+      maxProfit = profit;
+    }
+  }
+
+  return maxProfit;
+}
+```
