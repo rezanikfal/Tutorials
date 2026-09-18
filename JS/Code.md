@@ -346,3 +346,38 @@ function maxProfit(prices: number[]): number {
   return maxProfit;
 }
 ```
+- **Longest consecutive sequence**
+
+```
+Input: prices = [100, 4, 200, 1, 3, 2]
+Output: 4
+Explanation: because 1,2,3,4.
+```
+```javascript
+const nums = [100, 4, 200, 1, 3, 2,]
+
+function longestConsecutive(input) {
+
+    let maxLength = 0
+    const set = new Set(input)
+
+    for (const x of set) {
+
+        if (set.has(x - 1)) continue
+        let len = 1
+        let cur = x
+
+        while (set.has(cur + 1)) {
+            len++
+            cur++
+        }
+
+        if (len > maxLength) maxLength = len
+    }
+
+    return maxLength
+
+}
+
+console.log(longestConsecutive(nums))
+```
