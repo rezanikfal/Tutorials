@@ -381,3 +381,34 @@ function longestConsecutive(input) {
 
 console.log(longestConsecutive(nums))
 ```
+- **Longest consecutive sequence. Return the array itself**
+
+```
+Input: prices = [100, 4, 200, 1, 3, 2]
+Output: [1,2,3,4]
+Explanation: because 1,2,3,4.
+```
+```javascript
+function longestSeq(nums) {
+  const set = new Set(nums);
+  let best = [];
+
+  for (const n of set) {
+    if (set.has(n - 1)) continue; // not a streak start
+
+    const seq = [n];
+    let cur = n;
+    while (set.has(cur + 1)) {
+      cur++;
+      seq.push(cur);
+    }
+
+    if (seq.length > best.length) best = seq;
+  }
+
+  return best;
+}
+
+const input = [100, 4, 200, 1, 3, 2, 0];
+console.log(longestSeq(input)); // [0, 1, 2, 3, 4]
+```
