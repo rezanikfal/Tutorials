@@ -412,3 +412,31 @@ function longestSeq(nums) {
 const input = [100, 4, 200, 1, 3, 2, 0];
 console.log(longestSeq(input)); // [0, 1, 2, 3, 4]
 ```
+- **Given an array of intervals where intervals[i] = [start, end], merge all overlapping intervals that cover the input.**
+
+```
+Input:  [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+```
+```javascript
+function mergeData(arr) {
+  if (arr.length === 0) return [];
+
+  arr.sort((a, b) => a[0] - b[0]);
+
+  const merged = [arr[0]];
+
+  for (let i = 1; i < arr.length; i++) {  //start from 1
+    const curr = arr[i];
+    const last = merged[merged.length - 1];
+
+    if (curr[0] <= last[1]) {
+      last[1] = Math.max(last[1], curr[1]);
+    } else {
+      merged.push(curr);
+    }
+  }
+
+  return merged;
+}
+```
