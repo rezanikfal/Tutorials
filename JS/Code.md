@@ -440,3 +440,36 @@ function mergeData(arr) {
   return merged;
 }
 ```
+- **You are given a list of non-overlapping intervals already sorted by start.Insert newInterval and merge if needed.**
+
+```
+intervals    = [[1,3],[6,9]]
+newInterval  = [2,5]
+Output       = [[1,5],[6,9]]
+```
+```javascript
+const intervalsData = [[1, 3], [6, 9]]
+const newIntervalData = [2, 5]
+
+function insert(intervals, newInterval) {
+
+  if (intervals.length === 0) return [newInterval];
+  
+  const all = [...intervals, newInterval].sort((a, b) => a[0] - b[0]);
+  const merged = [all[0]];
+
+  for (let i = 1; i < all.length; i++) {
+    const curr = all[i];
+    const last = merged[merged.length - 1];
+
+    if (curr[0] <= last[1]) {
+      last[1] = Math.max(last[1], curr[1]);
+    } else {
+      merged.push(curr);
+    }
+  }
+  return merged;
+}
+
+console.log(insert(intervalsData, newIntervalData))
+```
