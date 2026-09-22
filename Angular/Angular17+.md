@@ -35,9 +35,14 @@
     return validatorFunc;
   }
 ```
-```htm
-@if (regForm.errors?.['mismatchPasswords']) {
-  <div>Passwords not matching!</div>
+- **Async Validator** is usually used when validation needs an API call, like checking whether a username already exists.
+```javascript
+checkUsername(): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return this.userService.checkUsername(control.value).pipe(
+      map(exists => exists ? { usernameTaken: true } : null)
+    );
+  };
 }
 ```
 ## HTTP/API status codes.
