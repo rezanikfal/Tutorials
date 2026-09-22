@@ -18,6 +18,28 @@
   <!-- optional empty block -->
 }
 ```
+## Custom Validator
+- It is function or method that returns a `ValidatorFn`:
+```javascript
+  matchPasswords(): ValidatorFn {
+
+    const validatorFunc = (control: AbstractControl) => {
+
+      const val1 = control.get('password')?.value;
+      const val2 = control.get('repeatPassword')?.value;
+
+      return val1 === val2 ? null : { mismatchPasswords: true };
+
+    };
+
+    return validatorFunc;
+  }
+```
+```htm
+@if (regForm.errors?.['mismatchPasswords']) {
+  <div>Passwords not matching!</div>
+}
+```
 ## HTTP/API status codes.
 
 | Status | Your idea 
