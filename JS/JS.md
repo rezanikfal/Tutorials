@@ -141,6 +141,25 @@ c(); // 3
 - `makeToggle()` runs once, creates `state`, then returns. Normally `state` would be garbage collected — but the returned inner function keeps a reference to it, so it stays alive.
 - Each call to `toggle()` flips and remembers `state` for next time — private, persistent state without a global variable.
 - Same mechanism behind event listeners (callback remembers scope) and Angular subscriptions (why `unsubscribe()` in `ngOnDestroy` matters — an active subscription is a closure holding a reference).
+### Closure in Angular
+- `Validators.maxLength(22)` is a **factory**: it takes a config value (`22`) and returns a **validator function** with that value baked in (a closure).
+```typescript
+// Simplified version of Angular's implementation
+function maxLength(max: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null =>
+    control.value?.length > max // `max` is captured by the closure
+      ? { maxlength: { requiredLength: max, actualLength: control.value.length } }
+      : null;
+}
+
+// Usage
+name = new FormControl('', [Validators.maxLength(22)]);
+```
+
+### How it works
+- `maxLength(22)` runs **once** and returns a validator with `22` fixed inside it.
+- Angular calls the returned validator on **every value change**.
+- `maxLength(10)` and `maxLength(22)` are separate validators, each with its own captured number.
 
 ### Simple Regular Expression:
 - **n1**: a integer number that does not start with "0"
