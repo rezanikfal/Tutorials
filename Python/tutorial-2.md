@@ -11,7 +11,7 @@ print(list(answer))  # [(0, 'Alex'), (1, 'Sara'), (2, 'John')]
 
 - `enumerate(iterable, start=0)` yields `(index, item)` tuples on demand.
 - Printing it shows the object repr, not its contents.
-- It's a one-shot iterator: after you consume it once (e.g. `list(answer)`), it's exhausted and a second pass returns `[]`.
+- **It's a one-shot iterator:** after you consume it once (e.g. `list(answer)`), it's exhausted and a second pass returns `[]`.
 - Typical usage is a direct loop:
 
 ```python
