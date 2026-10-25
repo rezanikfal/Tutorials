@@ -175,9 +175,7 @@ The tokenizer and model are trained and designed to work together.
 
 We can conceptually represent the model as a function:
 
-\[
-f(x;\theta)
-\]
+`f(x; θ)`
 
 Where:
 
@@ -189,17 +187,21 @@ The model calculates scores for possible next tokens.
 
 Conceptually:
 
-\[
-f(x;\theta) \rightarrow \text{logits}
-\]
+`f(x; θ) → logits`
 
 Logits are numerical scores for the possible next tokens.
 
 These scores can be converted into probabilities.
 
-\[
-P(\text{next token}\mid x)
-\]
+`P(next token | x)`
+
+The model therefore estimates which tokens are likely to follow the current context.
+
+**Important distinction**
+
+The model does not necessarily select the next token itself.
+
+The model calculates scores or probabilities. A decoding or selection strategy (greedy, top-k, top-p, temperature sampling) chooses the token to generate.
 
 The model therefore estimates which tokens are likely to follow the current context.
 
@@ -381,17 +383,11 @@ This means the model generates one token at a time, using the previous context.
 
 Conceptually:
 
-\[
-f(x_1) \rightarrow P(x_2)
-\]
+`f(x1) → P(x2)`
 
-\[
-f(x_1,x_2) \rightarrow P(x_3)
-\]
+`f(x1, x2) → P(x3)`
 
-\[
-f(x_1,x_2,x_3) \rightarrow P(x_4)
-\]
+`f(x1, x2, x3) → P(x4)`
 
 Each step predicts the next token based on the tokens already available.
 
