@@ -513,9 +513,7 @@ Generated tokens become part of the context used for subsequent predictions.
 
 Think of the AI as a prediction function:
 
-\[
-\boxed{f(x;\theta)\rightarrow\text{next-token scores}}
-\]
+`f(x; θ) → next-token scores`
 
 Where:
 
