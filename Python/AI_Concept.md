@@ -48,7 +48,47 @@ The GPU does not decide token boundaries. Tokenization happens before the model 
 The tokenizer is generally fixed for a particular model.
 
 ---
+# GPT Tokenization – Notes
 
+### 1. Vocabulary
+- A vocabulary is like a dictionary that maps tokens to unique integer IDs.
+- It contains words, word parts, punctuation, and spaces combined with words.
+- Token IDs are identifiers, not meanings.
+
+### 2. Tokenizer
+- Converts text into tokens using a vocabulary.
+- GPT commonly uses BPE (Byte Pair Encoding) or related methods.
+- Frequent text patterns can become single tokens; uncommon words may split into smaller tokens.
+
+### 3. Tokenization Example
+```text
+Text: Hello, how are you?
+
+Tokens: Hello | , | how | are | you | ?
+Token IDs: 15496 | 11 | 703 | 527 | 345 | 30
+```
+*Example IDs are illustrative.*
+
+### 4. How GPT Uses Tokens
+```text
+Text
+ ↓
+Tokenizer
+ ↓
+Token IDs
+ ↓
+Embedding vectors
+ ↓
+Neural network
+ ↓
+Predict next token
+```
+
+### Key Concepts
+- **Vocabulary:** Dictionary of tokens and their IDs.
+- **Tokenizer:** Converts text into tokens and IDs.
+- **Embedding:** Converts token IDs into numerical vectors.
+- **Model:** Learns relationships between tokens and predicts the next token.
 ## 3. Do Tokens Have to Be Complete Words?
 
 No.
