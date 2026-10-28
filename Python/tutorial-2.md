@@ -635,37 +635,7 @@ Conversation history allows the AI model to receive previous messages as context
 
 ---
 
-## 13. Current Implementation Status
-
-### Completed
-
-- Created a new Python project
-- Initialized project using `uv`
-- Installed FastAPI
-- Created FastAPI application
-- Created Pydantic `ChatMessage`
-- Created Pydantic `ChatRequest`
-- Defined GET endpoint
-- Defined POST endpoint
-- Tested request validation
-- Received JSON request payload
-- Converted Pydantic objects using `model_dump()`
-- Learned Python list comprehension
-- Learned Python `*` unpacking
-- Constructed the AI messages payload
-
-### Not implemented yet
-
-- AI API client
-- API key configuration
-- AI model selection
-- Calling the AI model
-- Extracting the generated answer
-- Returning the AI answer to Angular
-
----
-
-## 14. Next Step: Call the AI Model
+## 13. Next Step: Call the AI Model
 
 The next phase will connect the prepared `messages` list to an AI model.
 
