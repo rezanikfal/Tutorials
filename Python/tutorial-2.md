@@ -734,6 +734,7 @@ try:
         messages=messages,
     )
     return {"answer": response.choices[0].message.content}
+
 except GroqError:
     raise HTTPException(
         status_code=502,
