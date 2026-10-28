@@ -692,7 +692,111 @@ async def chat(request: ChatRequest):
         "response": answer
     }
 ```
+## 1. Current project
 
-The actual AI client, model, and API key configuration will be added in the next phase.
+A FastAPI endpoint receives a chat request, combines a system instruction with the conversation history and the latest user message, sends the messages to Groq, and returns the assistant's answer.
 
-**Current stopping point:** The backend can receive and validate the chat request and prepare the messages list. The AI model has not been called yet.
+- **Model used successfully:** `openai/gpt-oss-120b`
+- **Environment variable:** `GROQ_API_KEY` is the recommended name for the Groq API key.
+
+## 2. Request models
+
+`ChatMessage` represents one message:
+
+- `role`: `Literal["user", "assistant", "system"]`
+- `content`: `str`
+
+`ChatRequest` contains the current message, optional name, and history list.
+
+- The current message has Pydantic validation: minimum length 1, maximum length 100.
+- History uses `Field(default_factory=list)`, so it defaults to an empty list.
+
+## 3. Message roles and request flow
+
+- **`system`**: Sets the assistant's behavior, e.g. “You are a helpful assistant.”
+- **`user`**: Contains a user's message.
+- **`assistant`**: Contains an earlier response from the AI.
+
+Include the system message on every Groq request; it is not automatically remembered between API calls. Keep the system message separate from history. History should contain prior conversation messages.
+
+## 4. Building messages and Pylance typing
+
+The Groq SDK expects a specific message-parameter type. Pylance reported a type mismatch when the list was inferred as `list[dict[str, Any]]`. The working approach used an explicit list annotation and `cast()` for each Pydantic history message:
+
+```python
+from typing import cast
+from groq.types.chat import ChatCompletionMessageParam
+
+messages: list[ChatCompletionMessageParam] = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    *[
+        cast(ChatCompletionMessageParam, msg.model_dump())
+        for msg in request.history
+    ],
+    {"role": "user", "content": request.message},
+]
+```
+
+**Note:** `cast()` affects static type checking only; it does not validate or convert the value at runtime. The explicit role-branch helper was discussed as a way to avoid `cast()`, but the cast-based version is the one confirmed to work in this project.
+
+## 5. Calling Groq and returning the answer
+
+```python
+response = client.chat.completions.create(
+    model="openai/gpt-oss-120b",
+    messages=messages,
+)
+
+return {"answer": response.choices[0].message.content}
+```
+
+Returning only the answer gives the client clean JSON instead of the full completion object.
+
+## 6. Error handling
+
+```python
+from fastapi import HTTPException
+from groq import GroqError
+
+try:
+    response = client.chat.completions.create(
+        model="openai/gpt-oss-120b",
+        messages=messages,
+    )
+    return {"answer": response.choices[0].message.content}
+except GroqError:
+    raise HTTPException(
+        status_code=502,
+        detail="AI service is temporarily unavailable.",
+    )
+```
+
+This was tested successfully. A mistaken API key produced a Groq error, and the endpoint handled it.
+
+## 7. Conversation history
+
+History is currently supplied by the client in each request. FastAPI does not automatically store previous messages, and the model does not remember earlier API calls unless their messages are sent again.
+
+Example request body:
+
+```json
+{
+  "message": "What is my name?",
+  "history": [
+    {"role": "user", "content": "My name is Alex."},
+    {"role": "assistant", "content": "Nice to meet you, Alex!"}
+  ]
+}
+```
+
+The frontend should append each user message and assistant answer to its history and send that history with the next request.
+
+## 8. Keeping history shorter
+
+We discussed this slice:
+
+```python
+messages = messages[:1] + messages[-10:]
+```
+
+It keeps the first message (the system prompt) plus the last 10 messages. That is up to 11 messages total. In production, make sure the system message is not duplicated and consider keeping complete user/assistant turns together.
